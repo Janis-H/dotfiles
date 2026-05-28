@@ -28,8 +28,9 @@ Plug 'nvim-lua/plenary.nvim' "lua functions that many plugins use
 Plug 'nvim-telescope/telescope.nvim' "fuzzy finder over lists
 Plug 'nvim-telescope/telescope-fzf-native.nvim' "improved sorting for telescope
 Plug 'ThePrimeagen/harpoon' "project specific commands
-Plug 'tpope/vim-fugitive' "git commands with :Git or :G
 Plug 'tpope/vim-commentary' "comment stuff out with gcc
+Plug 'tpope/vim-fugitive' "git commands with :Git or :G
+Plug 'tpop/vim-surround' "mappings for easy deleting, changing and adding surrounding pairs
 call plug#end()
 
 " TODO: setup harpoon
