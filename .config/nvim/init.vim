@@ -1,3 +1,4 @@
+"***** BASIC SETTINGS *****
 set guicursor=
 set scrolloff=10
 set number
@@ -6,6 +7,8 @@ set tabstop=4 softtabstop=4
 set shiftwidth=4
 set expandtab
 set smartindent
+
+syntax on
 
 filetype plugin indent on
 
@@ -27,6 +30,9 @@ Plug 'ThePrimeagen/harpoon' "project specific commands
 Plug 'tpope/vim-fugitive' "git commands with :Git or :G
 Plug 'tpope/vim-commentary' "comment stuff out with gcc
 call plug#end()
+
+" TODO: setup harpoon
+"           reference link: https://deepwiki.com/ThePrimeagen/harpoon/1.1-installation-and-setup
 
 "***** COLOR SCHEME: *****
 set termguicolors    " enable true colors support
