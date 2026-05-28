@@ -23,6 +23,7 @@ Plug 'junegunn/fzf.vim' "fuzzy finder for vim
 Plug 'ellisonleao/gruvbox.nvim' "colorscheme
 Plug 'hrsh7th/nvim-cmp' "completion engine for neovim
 Plug 'loctvl842/monokai-pro.nvim' "colorscheme
+Plug 'neoclide/coc.nvim', {'branch': 'release'} " autocomplete
 Plug 'nvim-lua/plenary.nvim' "lua functions that many plugins use
 Plug 'nvim-telescope/telescope.nvim' "fuzzy finder over lists
 Plug 'nvim-telescope/telescope-fzf-native.nvim' "improved sorting for telescope
