@@ -53,7 +53,7 @@ nnoremap <leader><leader> :w<CR>
 "source vim file
 nnoremap <leader><CR> :so ~/.config/nvim/init.vim<CR>
 "exit vim
-nnoremap <C-e> <Esc>
+" nnoremap <C-e> <Esc>
 "quit nvim
 nnoremap <leader>q :q<CR>
 "vertical explorer
@@ -93,7 +93,7 @@ nnoremap <leader>fh :Telescope help_tags<CR>
 
 " Visual Mode Remaps:
 "escape visual mode
-vnoremap <C-e> <Esc>
+" vnoremap <C-e> <Esc>
 "delete current selection, yank to void register (to avoid replacing prev yank)
 vnoremap <leader>p "_dp
 "copy into system clipboard
@@ -105,10 +105,10 @@ vnoremap J :m '>+1<CR>gv=gv
 
 " Insert Mode Remaps:
 "escape insert mode
-inoremap <C-e> <Esc>
+" inoremap <C-e> <Esc>
 
 " Command Mode Remaps:
 "escape command mode              
-cnoremap <C-e> <Esc>
+" cnoremap <C-e> <Esc>
 
 " Archived Remaps:
