@@ -30,7 +30,7 @@ Plug 'nvim-telescope/telescope-fzf-native.nvim' "improved sorting for telescope
 Plug 'ThePrimeagen/harpoon' "project specific commands
 Plug 'tpope/vim-commentary' "comment stuff out with gcc
 Plug 'tpope/vim-fugitive' "git commands with :Git or :G
-Plug 'tpop/vim-surround' "mappings for easy deleting, changing and adding surrounding pairs
+Plug 'tpope/vim-surround' "mappings for easy deleting, changing and adding surrounding pairs
 call plug#end()
 
 " TODO: setup harpoon
