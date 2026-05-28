@@ -23,7 +23,7 @@ sudo apt install stow
 First, check out the dotfiles repo in your $HOME directory 
 
 ```
-git clone git@github.com/<username>/dotfiles.git
+git clone git@github.com:Janis-H/dotfiles.git
 cd dotfiles
 ```
 
