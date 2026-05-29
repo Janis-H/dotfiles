@@ -256,6 +256,9 @@ set $gnome_parted_class "Gnome-parted"
 set $gnome_terminal_cmd "gnome-terminal"
 set $gnome_terminal_class "Gnome-terminal"
 
+set $ghostty_terminal_cmd "ghostty"
+set $ghostty_terminal_class "ghostty"
+
 set $librewolf_cmd "librewolf"
 set $librewolf_class "librewolf"
 
