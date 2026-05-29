@@ -292,9 +292,13 @@ set $steam_class "steam"
 set $teleprompter_cmd "flatpak run io.github.nokse22.teleprompter"
 set $teleprompter_class "teleprompter"
 
-set $vifm_cmd "gnome-terminal --title=vifm -- vifm"
-set $vifm_class "Gnome-terminal"
+set $vifm_cmd "ghostty --title=vifm -e vifm"
+set $vifm_class "ghostty"
 set $vifm_title "vifm"
+
+set $yazi_cmd "ghostty --title=yazi -e yazi"
+set $yazi_class "ghostty"
+set $yazi_title "yazi"
 
 set $zoom_cmd "zoom"
 set $zoom_class "zoom"
