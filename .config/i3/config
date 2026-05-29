@@ -303,8 +303,8 @@ set $zoom_class "zoom"
 bindsym $mod+F1 \
     exec --no-startup-id \
         $focus_or_open_by_class \
-            $gnome_terminal_cmd \
-            $gnome_terminal_class
+            $ghostty_terminal_cmd \
+            $ghostty_terminal_class
 bindsym $mod+F2 \
     exec --no-startup-id \
         $focus_or_open_by_class \
