@@ -7,8 +7,14 @@ set tabstop=4 softtabstop=4
 set shiftwidth=4
 set expandtab
 set smartindent
+set cursorline
+set history=1000
+set linebreak
+set wrap
+set wildmenu
+set background=dark
 
-syntax on
+syntax enable
 
 filetype plugin indent on
 
@@ -40,7 +46,6 @@ call plug#end()
 set termguicolors    " enable true colors support
 
 " Color Scheme: gruvbox
-set background=dark
 colorscheme gruvbox
 
 " Color Scheme: monokai-pro
@@ -92,10 +97,21 @@ nnoremap <leader>fo :Telescope oldfiles<CR>
 nnoremap <leader>fb :Telescope buffers<CR>
 "telescope plugin help_tags - lists available help tags
 nnoremap <leader>fh :Telescope help_tags<CR>
+"git quick type
+nnoremap <leader>gi :Git 
+"git add
+nnoremap <leader>ga :Git add  
+"git status
+nnoremap <leader>gs :Git ss<CR>
+"git diff
+nnoremap <leader>gd :Git diff<CR>
+"git log
+nnoremap <leader>gl :Git log<CR>
+"git commit -m
+nnoremap <leader>gc :Git co "
+
 
 " Visual Mode Remaps:
-"escape visual mode
-" vnoremap <C-e> <Esc>
 "delete current selection, yank to void register (to avoid replacing prev yank)
 vnoremap <leader>p "_dp
 "copy into system clipboard
@@ -106,11 +122,7 @@ vnoremap K :m '<-2<CR>gv=gv
 vnoremap J :m '>+1<CR>gv=gv
 
 " Insert Mode Remaps:
-"escape insert mode
-" inoremap <C-e> <Esc>
 
 " Command Mode Remaps:
-"escape command mode              
-" cnoremap <C-e> <Esc>
 
 " Archived Remaps:
