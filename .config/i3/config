@@ -247,6 +247,9 @@ set $calculator_class "Gnome-calculator"
 set $calibre_cmd "calibre"
 set $calibre_class "calibre"
 
+set $discord_cmd "flatpak run com.discordapp.Discord"
+set $discord_class "discord"
+
 set $freetube_cmd "flatpak run io.freetubeapp.FreeTube"
 set $freetube_class "FreeTube"
 
@@ -356,6 +359,7 @@ assign [class=$steam_class] workspace number $ws2
 
 # Assign applications to workspace 3
 assign [class=$calibre_class] workspace number $ws3
+assign [class=$discord_class] workspace number $ws3
 assign [class=$freetube_class] workspace number $ws3
 assign [class=$lotion_class] workspace number $ws3
 
