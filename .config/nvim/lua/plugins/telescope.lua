@@ -1,4 +1,4 @@
-require('telescope').setup(
+require('telescope').setup{
     defaults = {
         -- configure to use ripgrep
         vimgrep_arguments = {
@@ -49,4 +49,4 @@ require('telescope').setup(
     file_ignore_patterns = {
         "node_modules", "build", "dist", "package-lock.json", "yarn.lock"
     }
-)
+}
