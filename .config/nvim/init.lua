@@ -2,7 +2,7 @@
 vim.opt.background = dark
 vim.opt.cursorline = true
 vim.opt.expandtab = true
-vim.opt.guicursor = true 
+vim.opt.guicursor = ""
 vim.opt.history = 1000
 vim.opt.ignorecase = true
 vim.opt.incsearch = true
@@ -51,7 +51,7 @@ Plug('hrsh7th/nvim-cmp')
 Plug('loctvl842/monokai-pro.nvim') 
 
 -- autocomplete
-Plug('neoclide/coc.nvim', { ['branch'] = 'release'} 
+Plug('neoclide/coc.nvim', { ['branch'] = 'release'} )
 
 -- lua functions that many plugins use
 Plug('nvim-lua/plenary.nvim') 
@@ -81,11 +81,11 @@ vim.call('plug#end')
 --           reference link: https://deepwiki.com/ThePrimeagen/harpoon/1.1-installation-and-setup
 
 -- Color Scheme: 
-local colorscheme_ok, _ = pcall(vim.cmd, [[colorscheme gruvbox]])
-if not coloscheme_ok then
-    print("Warning: gruvbox theme not found. Falling back to default theme.")
-    return
-end
+-- local colorscheme_ok, _ = pcall(vim.cmd, [[colorscheme gruvbox]])
+-- if not coloscheme_ok then
+--     print("Warning: gruvbox theme not found. Falling back to default theme.")
+--     return
+-- end
 
 vim.cmd.colorscheme("gruvbox")
 
@@ -97,12 +97,12 @@ vim.cmd.colorscheme("gruvbox")
 local opts = { noremap = true, silent = true }
 
 -- leader key
-vim.g.leader = " " -- Space as the leader key
+vim.g.mapleader = " " -- Space as the leader key
 
 -- write to file
 vim.keymap.set('n', '<leader><leader>', ':w<CR>', opts)
 -- source vim file
-vim.keymap.set('n', '<leader><CR>', ':so ~/.config/nvim/init.vim<CR>', opts)
+vim.keymap.set('n', '<leader><CR>', ':so ~/.config/nvim/init.lua<CR>', opts)
 -- quit nvim
 vim.keymap.set('n', '<leader>q', ':q<CR>', opts)
 -- vertical explorer
