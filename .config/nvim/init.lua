@@ -77,6 +77,9 @@ Plug('tpope/vim-surround')
 -- end Plug plugin declaration
 vim.call('plug#end')
 
+-- Plugin setup
+require("plugins.telescope")
+
 -- TODO: setup harpoon
 --           reference link: https://deepwiki.com/ThePrimeagen/harpoon/1.1-installation-and-setup
 
