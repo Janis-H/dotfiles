@@ -97,7 +97,7 @@ vim.cmd.colorscheme("gruvbox")
 -- vim.cmd.colorscheme("monokai-pro-octagon")
 
 -- Remaps:
-local opts = { noremap = true, silent = true }
+local opts = { noremap = true }
 
 -- leader key
 vim.g.mapleader = " " -- Space as the leader key
@@ -143,9 +143,9 @@ vim.keymap.set('n', '<leader>fb', ':Telescope buffers<CR>', opts)
 -- telescope plugin help_tags - lists available help tags
 vim.keymap.set('n', '<leader>fh', ':Telescope help_tags<CR>', opts)
 -- git quick type
-vim.keymap.set('n', '<leader>gi', ':Git' , opts)
+vim.keymap.set('n', '<leader>gi', ':Git ' , opts)
 -- git add
-vim.keymap.set('n', '<leader>ga', ':Git add'  , opts)
+vim.keymap.set('n', '<leader>ga', ':Git add '  , opts)
 -- git status
 vim.keymap.set('n', '<leader>gs', ':Git ss<CR>', opts)
 -- git diff
