@@ -176,16 +176,24 @@ exec --no-startup-id i3-msg 'workspace $ws1; layout stacked'
 exec --no-startup-id i3-msg 'workspace $ws3; layout stacked'
 
 # Color schemes for windows
-set $focused     #5f7fa6
-set $bgcolor     #171a21
-set $in-bgcolor  #2a2f3a
+#   - alter transparency via this guide: 
+#     https://gist.github.com/lopspower/03fb1cc0ac9f32ef38f4?ref=itsfoss.com
 set $text        #e3eaf2
-set $in-text     #9099a6
+set $bar-color   #171a2199
+# focused container and workspaces colors
+set $focused-co  #5f7fa699
+set $focused-ws  #5f7fa680
+
+# inactive background and text colors
+set $in-bgcolor  #2a2f3a66
+set $in-text     #9099a666
+
+# urgent background colors
 set $u-bgcolor   #d95f5f
 set $indicator   #4a5568
 
 #                       border          background      text            indicator (a line which shows where the next window will be placed)     
-client.focused          $focused        $focused        $text           $indicator
+client.focused          $focused-co     $focused-co     $text           $indicator
 client.unfocused        $in-bgcolor     $in-bgcolor     $in-text        $in-bgcolor
 client.focused_inactive $in-bgcolor     $in-bgcolor     $in-text        $in-bgcolor
 client.urgent           $u-bgcolor      $u-bgcolor      $text           $u-bgcolor 
@@ -407,11 +415,13 @@ assign [class=$proton_mail_class] workspace number $ws3
 bar {
         status_command i3status -c /home/$USER/.config/i3status/i3status.conf
         colors {
-                background $bgcolor
+                background $bar-color
                 separator #191919
                 #                       border          background      text
-                focused_workspace       $focused        $focused        $text
+                focused_workspace       $focused-ws     $focused-ws     $text
                 inactive_workspace      $in-bgcolor     $in-bgcolor     $text
                 urgent_workspace        $u-bgcolor      $u-bgcolor      $text   
         }
+        i3bar_command i3bar --transparency
+        tray_output none
 }
