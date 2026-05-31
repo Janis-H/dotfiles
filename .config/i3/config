@@ -198,8 +198,11 @@ client.unfocused        $in-bgcolor     $in-bgcolor     $in-text        $in-bgco
 client.focused_inactive $in-bgcolor     $in-bgcolor     $in-text        $in-bgcolor
 client.urgent           $u-bgcolor      $u-bgcolor      $text           $u-bgcolor 
 
+# Enabling "Smart Gaps" means no gaps will be shown where
+# there is one window
+smart_gaps on
 # Inner gaps for all windows: space between two adjacent windows (or split containers)
-gaps inner 10
+gaps inner 15
 # Outer gaps for all windws: space along the screen edges
 gaps outer 5
 
