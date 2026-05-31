@@ -368,13 +368,13 @@ bindsym $mod+F8 \
 bindsym $mod+F10 \
     exec --no-startup-id \
         $focus_or_open_by_title \
-            $vifm_cmd \
-            $vifm_title
+            $yazi_cmd \
+            $yazi_title
 bindsym $mod+Shift+F10 \
     exec --no-startup-id \
         $focus_or_open_by_title \
-            $yazi_cmd \
-            $yazi_title
+            $vifm_cmd \
+            $vifm_title
 bindsym $mod+F11 \
     exec --no-startup-id \
         $focus_or_open_by_class \
