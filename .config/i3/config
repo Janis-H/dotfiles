@@ -410,7 +410,7 @@ bar {
                 background $bgcolor
                 separator #191919
                 #                       border          background      text
-                focused_workspace       $bgcolor        $bgcolor        $text
+                focused_workspace       $focused        $focused        $text
                 inactive_workspace      $in-bgcolor     $in-bgcolor     $text
                 urgent_workspace        $u-bgcolor      $u-bgcolor      $text   
         }
