@@ -199,9 +199,9 @@ client.focused_inactive $in-bgcolor     $in-bgcolor     $in-text        $in-bgco
 client.urgent           $u-bgcolor      $u-bgcolor      $text           $u-bgcolor 
 
 # Inner gaps for all windows: space between two adjacent windows (or split containers)
-gaps inner 8px
+gaps inner 10
 # Outer gaps for all windws: space along the screen edges
-gaps outer 5px
+gaps outer 5
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
