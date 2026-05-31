@@ -175,6 +175,12 @@ bindsym $mod+Shift+0 move container to workspace number $ws10
 exec --no-startup-id i3-msg 'workspace $ws1; layout stacked'
 exec --no-startup-id i3-msg 'workspace $ws3; layout stacked'
 
+# Inner gaps for all windows: space between two adjacent windows (or split containers)
+gaps inner 8px
+# Outer gaps for all windws: space along the screen edges
+gaps outer 5px
+
+
 # reload the configuration file
 bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
@@ -351,6 +357,7 @@ bindsym $mod+F12 \
             $proton_pass_class
 
 # For_Window applications
+# TODO: add border pixel 1 to focused window
 for_window [class=$pika_backup_class] \
     floating enable
 
@@ -376,4 +383,5 @@ assign [class=$lotion_class] workspace number $ws3
 # finds out, if available)
 bar {
         status_command i3status
+        position top
 }
