@@ -82,9 +82,7 @@ vim.call('plug#end')
 
 -- Plugin setup
 require("plugins.telescope")
-
--- TODO: setup harpoon
---           reference link: https://deepwiki.com/ThePrimeagen/harpoon/1.1-installation-and-setup
+require("plugins.harpoon")
 
 -- Color Scheme: 
 vim.cmd.colorscheme("gruvbox")
