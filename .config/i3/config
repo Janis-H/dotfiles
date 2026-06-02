@@ -411,9 +411,9 @@ assign [class=$qprompt_class] workspace number $ws1
 assign [class=$zoom_class] workspace number $ws1
 
 # Assign applications to workspace 2
-assign [class=$librewolf_class] workspace number $ws1
+assign [class=$librewolf_class] workspace number $ws2
 assign [class=$steam_class] workspace number $ws2
-assign [class=$zen_browser_class] workspace number $ws1
+assign [class=$zen_browser_class] workspace number $ws2
 
 # Assign applications to workspace 3
 assign [class=$1password_class] workspace number $ws3
