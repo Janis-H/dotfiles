@@ -27,7 +27,7 @@ alias cdot='cd "$DOTFILES"'
 # config file paths
 export DOT_CONFIG="$HOME/dotfiles/.config"
 export I3_CONFIG="$DOT_CONFIG/i3/config"
-export NVIM_CONFIG="$DOT_CONFIG/nvim/init.vim"
+export NVIM_CONFIG="$DOT_CONFIG/nvim/init.lua"
 export ZSH_CONFIG="$DOT_CONFIG/.zshrc"
 export ZSH_ALIASES_CONFIG="$ZSH_CUSTOM/aliases.zsh"
 

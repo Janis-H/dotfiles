@@ -145,7 +145,7 @@ vim.keymap.set('n', '<leader>fh', ':Telescope help_tags<CR>', opts)
 -- git quick type
 vim.keymap.set('n', '<leader>gi', ':Git ' , opts)
 -- git add
-vim.keymap.set('n', '<leader>ga', ':Git add '  , opts)
+vim.keymap.set('n', '<leader>ga', ':Git add .<CR>'  , opts)
 -- git status
 vim.keymap.set('n', '<leader>gs', ':Git ss<CR>', opts)
 -- git diff
