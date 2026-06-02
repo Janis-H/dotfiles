@@ -424,8 +424,6 @@ assign [class=$lotion_class] workspace number $ws3
 assign [class=$proton_mail_class] workspace number $ws3
 assign [class=$proton_pass_class] workspace number $ws3
 
-# Assign applications to workspace 4
-
 # For_Window applications
 for_window [class=".*"] border normal 3
 for_window [class=$pika_backup_class] \
