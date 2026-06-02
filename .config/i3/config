@@ -341,6 +341,9 @@ set $yazi_cmd "ghostty --title=yazi -e yazi"
 set $yazi_class "ghostty"
 set $yazi_title "yazi"
 
+set $youtube_cmd ""
+set $youtube_class "WebApp-Youtube2592"
+
 set $zen_browser_cmd "flatpak run app.zen_browser.zen"
 set $zen_browser_class "zen"
 
@@ -423,6 +426,7 @@ assign [class=$freetube_class] workspace number $ws3
 assign [class=$lotion_class] workspace number $ws3
 assign [class=$proton_mail_class] workspace number $ws3
 assign [class=$proton_pass_class] workspace number $ws3
+assign [class=$youtube_class] workspace number $ws3
 
 # For_Window applications
 for_window [class=".*"] border normal 3
