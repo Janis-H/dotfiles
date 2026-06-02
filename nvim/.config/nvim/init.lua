@@ -80,10 +80,6 @@ Plug('tpope/vim-surround')
 -- end Plug plugin declaration
 vim.call('plug#end')
 
--- Plugin setup
-require("plugins.telescope")
-require("plugins.harpoon")
-
 -- Color Scheme: 
 vim.cmd.colorscheme("gruvbox")
 
