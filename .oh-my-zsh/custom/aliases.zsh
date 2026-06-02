@@ -39,6 +39,7 @@ alias nzsha='nvim "$ZSH_ALIASES_CONFIG"'
 
 # program shortcuts
 alias bat=batcat 
+alias vim=nvim
 
 # colorize man pages with batcat
 export MANPAGER='sh -c "col -bx | batcat -l man -p"'
