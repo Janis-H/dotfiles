@@ -87,12 +87,6 @@ require("plugins.telescope")
 --           reference link: https://deepwiki.com/ThePrimeagen/harpoon/1.1-installation-and-setup
 
 -- Color Scheme: 
--- local colorscheme_ok, _ = pcall(vim.cmd, [[colorscheme gruvbox]])
--- if not coloscheme_ok then
---     print("Warning: gruvbox theme not found. Falling back to default theme.")
---     return
--- end
-
 vim.cmd.colorscheme("gruvbox")
 
 -- Color Scheme: monokai-pro
