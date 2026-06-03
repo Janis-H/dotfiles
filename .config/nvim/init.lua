@@ -47,6 +47,9 @@ Plug('ellisonleao/gruvbox.nvim')
 -- completion engine for neovim
 Plug('hrsh7th/nvim-cmp') 
 
+-- lazygit for nvim
+Plug("kdheepak/lazygit.nvim")
+
 -- colorscheme
 Plug('loctvl842/monokai-pro.nvim') 
 
@@ -96,7 +99,7 @@ vim.cmd.colorscheme("gruvbox")
 -- vim.cmd.colorscheme("monokai-pro")
 -- vim.cmd.colorscheme("monokai-pro-octagon")
 
--- Remaps:
+-- Basic remaps:
 local opts = { noremap = true }
 
 -- leader key
@@ -126,6 +129,16 @@ vim.keymap.set('n', '<leader>w', '<C-w>', opts)
 vim.keymap.set('n', '<leader>y', '"+y', opts)
 -- yank entire file into system clipboard
 vim.keymap.set('n', '<leader>Y', 'gg"+yG', opts)
+-- delete current selection, yank to void register (to avoid replacing prev yank)
+vim.keymap.set('v', '<leader>p', '"_dp', opts)
+-- copy into system clipboard
+vim.keymap.set('v', '<leader>y', '"+y', opts)
+-- move line up
+vim.keymap.set('v', 'K', ":m '<-2<CR>gv=gv", opts)
+-- move line down
+vim.keymap.set('v', 'J', ":m '>+1<CR>gv=gv", opts)
+
+-- Plugin: Telescope remaps
 -- telescope git_files - fuzzy search git ls-files
 vim.keymap.set('n', '<C-p>', ':Telescope git_files<CR>', opts)
 -- telescope find_files - list files in current directory
@@ -142,32 +155,14 @@ vim.keymap.set('n', '<leader>fo', ':Telescope oldfiles<CR>', opts)
 vim.keymap.set('n', '<leader>fb', ':Telescope buffers<CR>', opts)
 -- telescope plugin help_tags - lists available help tags
 vim.keymap.set('n', '<leader>fh', ':Telescope help_tags<CR>', opts)
+
+-- Plugin: Fugitive remaps
 -- git quick type
 vim.keymap.set('n', '<leader>gi', ':Git ' , opts)
 -- git add
-vim.keymap.set('n', '<leader>ga', ':Git add '  , opts)
--- git status
-vim.keymap.set('n', '<leader>gs', ':Git ss<CR>', opts)
--- git diff
-vim.keymap.set('n', '<leader>gd', ':Git diff<CR>', opts)
--- git log
-vim.keymap.set('n', '<leader>gl', ':Git log<CR>', opts)
+vim.keymap.set('n', '<leader>ga', ':Git add .<CR>'  , opts)
 -- git commit -m
 vim.keymap.set('n', '<leader>gc', ':Git co "', opts)
 
-
--- Visual mode remaps:
--- delete current selection, yank to void register (to avoid replacing prev yank)
-vim.keymap.set('v', '<leader>p', '"_dp', opts)
--- copy into system clipboard
-vim.keymap.set('v', '<leader>y', '"+y', opts)
--- move line up
-vim.keymap.set('v', 'K', ":m '<-2<CR>gv=gv", opts)
--- move line down
-vim.keymap.set('v', 'J', ":m '>+1<CR>gv=gv", opts)
-
--- Insert mode remaps:
-
--- Command mode remaps:
-
--- Archived remaps:
+-- Plugin: Lazygit remaps
+vim.keymap.set('n', '<leader>lg', ':LazyGit<CR>', opts)
