@@ -83,7 +83,7 @@ function install_neovim() {
 }
 
 # --- Packages ---
-APT_PACKAGES=(
+PACKAGES=(
     i3
     git
     jq
@@ -101,6 +101,7 @@ STOW_CONFIGS=(
 
 
 # --- Install packages ---
+install_packages "${PACKAGES[@]}"
 
-# --- Stow packages ---
+# --- Stow config files ---
 stow_configs "${STOW_CONFIGS[@]}"
