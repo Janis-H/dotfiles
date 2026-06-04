@@ -4,7 +4,7 @@ DOTFILES_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 function stow_packages() {
 	local pkg
-	# go to dotfiles directory
+	# cd to dotfiles directory
 	cd "$DOTFILES_DIR" || return 1
 	# attempt to stow each argument
 	for pkg in "$@"; do
