@@ -7,7 +7,7 @@ function is_installed() {
     dpkg -s "$1" &>/dev/null
 }
 
-function install_packages() {
+function install_apt_packages() {
     local to_install=()
     local pkg
 
@@ -47,11 +47,21 @@ function stow_configs() {
 	done
 }
 
+function install_fzf() {
+    # clone fzf github repo
+    git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+
+    # run install script
+    ~/.fzf/install
+}
+
 function install_lazygit() {
+    # get latest lazygit release
     LAZYGIT_VERSION=$(
         curl -s "https://api.github.com/repos/jesseduffield/lazygit/releases/latest" | \
         grep -Po '"tag_name": *"v\K[^"]*'
     )
+    # get cpu architecture
     LAZYGIT_ARCH=$(
         uname -m | sed -e 's/aarch64/arm64/'
     )
@@ -66,11 +76,6 @@ function install_lazygit() {
     sudo install lazygit -D -t /usr/local/bin/
 }
 
-function install_zoxide() {
-    # download install script and run
-    curl -sSfL https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | sh
-}
-
 function install_neovim() {
     # download neovim tarball
     curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux-x86_64.tar.gz
@@ -80,6 +85,11 @@ function install_neovim() {
 
     # extract the downloaded archive
     sudo tar -C /opt -xzf nvim-linux-x86_64.tar.gz
+}
+
+function install_zoxide() {
+    # download install script and run
+    curl -sSfL https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | sh
 }
 
 # --- Packages ---
@@ -101,7 +111,13 @@ STOW_CONFIGS=(
 
 
 # --- Install packages ---
-install_packages "${PACKAGES[@]}"
+install_apt_packages "${PACKAGES[@]}"
+
+# install non-apt packages
+install_fzf
+install_lazygit
+install_neovim
+install_zoxide
 
 # --- Stow config files ---
 stow_configs "${STOW_CONFIGS[@]}"
