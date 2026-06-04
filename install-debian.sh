@@ -19,7 +19,7 @@ function stow_packages() {
 
 # --- Stow packages ---
 STOW_PACKAGES=(
-	i3 i3status bat lazygit nvim picom zsh
+	i3 bat lazygit nvim picom zsh
 )
 
 # call stow_packages function
