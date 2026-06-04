@@ -52,3 +52,4 @@ alias -g -- --help='--help 2>&1 | bat --language=help --style=plain'
 
 # PATH
 export PATH="$PATH:$SCRIPT_BIN"
+export PATH="$PATH:/opt/nvim-linux-x86_64/bin"
