@@ -163,12 +163,23 @@ function install_zoxide() {
     curl -sSfL https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | sh
 }
 
+function install_oh_my_zsh() {
+    if [[ -f "$HOME/.oh-my-zsh/oh-my-zsh.sh" ]]; then
+        echo "Oh My Zsh is installed"
+        return
+    fi
+
+    # intsall oh-my-zsh via curl
+    sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+}
+
 # --- Install packages ---
 install_apt_packages "${PACKAGES[@]}"
 
 # --- Install non-apt packages ---
 install_fzf
 install_lazygit
+install_oh_my_zsh
 install_neovim
 install_zoxide
 
