@@ -133,8 +133,8 @@ function install_lazygit() {
 
 function install_neovim() {
     # check if installed
-    if command -v neovim &>/dev/null; then
-        echo "neovim already installed"
+    if is_command_available nvim; then
+        echo "nvim already installed"
         return
     fi
 
