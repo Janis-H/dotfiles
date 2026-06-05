@@ -45,6 +45,24 @@ STOW_CONFIGS=(
 	i3 bat lazygit nvim picom zsh
 )
 
+# --- ---
+local GREEN = '\033[0;32'
+local YELLOW = '\033[1;33'
+local RED = '\033[0;31'
+local NO_COLOR = ''
+
+function info() {
+    echo -e "${GREEN} INFO:${NO_COLOR} $*"
+}
+
+function warn() {
+    echo -e "${YELLOW} WARN:${NO_COLOR} $*"
+}
+
+function error() {
+    echo -e "${RED} ERROR:${NO_COLOR} $*"
+}
+
 # --- Helper Functions ---
 function is_installed() {
     dpkg -s "$1" &>/dev/null
@@ -62,7 +80,7 @@ function install_apt_packages() {
     for pkg in "$@"; do
         # check if package installed
         if is_installed "$pkg"; then
-            echo -e "$pkg already installed"
+            info "$pkg already installed"
         #else add package to install array
         else
             to_install+=("$pkg")
@@ -72,7 +90,7 @@ function install_apt_packages() {
     # if number of to_install is greater than 0
     if [[ ${#to_install[@]} -gt 0  ]]; then
         # notify user about each package being installed
-        echo -e "Installing: ${to_install[*]}"
+        info "Installing: ${to_install[*]}"
     
         # install all packages in to_install array
         sudo apt-get install -y "${to_install[@]}"
@@ -81,15 +99,17 @@ function install_apt_packages() {
 
 function stow_configs() {
 	local pkg
+
 	# cd to dotfiles directory
 	cd "$DOTFILES_DIR" || return 1
+
 	# attempt to stow each argument; else, notify the user
 	for pkg in "$@"; do
 		if [[ -d "$pkg" ]]; then
-			echo -e "Stowing: $pkg"
+			info "Stowing: $pkg"
 			stow -R "$pkg" 2>/dev/null
 		else
-			echo -e "Package directory not found: $pkg"
+			error "Package directory not found: $pkg"
 		fi
 	done
 }
@@ -97,7 +117,7 @@ function stow_configs() {
 function install_fzf() {
     # check if installed
     if is_command_available fzf; then
-        echo "fzf already installed"
+        info "fzf already installed"
         return
     fi
 
@@ -111,9 +131,11 @@ function install_fzf() {
 function install_lazygit() {
     # check if installed
     if is_command_available lazygit; then
-        echo "lazygit already installed"
+        info "lazygit already installed"
         return
     fi
+
+    info "Installing lazygit"
 
     # get latest lazygit release
     LAZYGIT_VERSION=$(
@@ -138,9 +160,11 @@ function install_lazygit() {
 function install_neovim() {
     # check if installed
     if is_command_available nvim; then
-        echo "nvim already installed"
+        info "nvim already installed"
         return
     fi
+
+    info "Installing nvim"
 
     # download neovim tarball
     curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux-x86_64.tar.gz
@@ -155,9 +179,11 @@ function install_neovim() {
 function install_zoxide() {
     # check if installed
     if is_command_available zoxide; then
-        echo "zoxide already installed"
+        info "zoxide already installed"
         return
     fi
+
+    info "Installing zoxide"
 
     # download install script and run
     curl -sSfL https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | sh
@@ -165,9 +191,11 @@ function install_zoxide() {
 
 function install_oh_my_zsh() {
     if [[ -f "$HOME/.oh-my-zsh/oh-my-zsh.sh" ]]; then
-        echo "Oh My Zsh is installed"
+        info "Oh My Zsh is installed"
         return
     fi
+
+    info "Installing oh-my-zsh"
 
     # intsall oh-my-zsh via curl
     sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
