@@ -50,6 +50,10 @@ function is_installed() {
     dpkg -s "$1" &>/dev/null
 }
 
+function is_command_available(){
+    command -v "$1" &>/dev/null
+}
+
 function install_apt_packages() {
     local to_install=()
     local pkg
@@ -92,7 +96,7 @@ function stow_configs() {
 
 function install_fzf() {
     # check if installed
-    if command -v fzf &>/dev/null; then
+    if is_command_available fzf; then
         echo "fzf already installed"
         return
     fi
@@ -106,7 +110,7 @@ function install_fzf() {
 
 function install_lazygit() {
     # check if installed
-    if command -v lazygit &>/dev/null; then
+    if is_command_available lazygit; then
         echo "lazygit already installed"
         return
     fi
@@ -150,7 +154,7 @@ function install_neovim() {
 
 function install_zoxide() {
     # check if installed
-    if command -v zoxide &>/dev/null; then
+    if is_command_available zoxide; then
         echo "zoxide already installed"
         return
     fi
