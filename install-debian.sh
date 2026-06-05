@@ -46,10 +46,10 @@ STOW_CONFIGS=(
 )
 
 # --- ---
-local GREEN = '\033[0;32'
-local YELLOW = '\033[1;33'
-local RED = '\033[0;31'
-local NO_COLOR = ''
+GREEN = '\033[0;32'
+YELLOW = '\033[1;33'
+RED = '\033[0;31'
+NO_COLOR = ''
 
 function info() {
     echo -e "${GREEN} INFO:${NO_COLOR} $*"
