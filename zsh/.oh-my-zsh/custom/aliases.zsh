@@ -25,11 +25,16 @@ alias cnotes='cd "$NOTES"'
 alias cdot='cd "$DOTFILES"'
 
 # config file paths
-export DOT_CONFIG="$HOME/dotfiles/.config"
-export I3_CONFIG="$DOT_CONFIG/i3/config"
-export NVIM_CONFIG="$DOT_CONFIG/nvim/init.lua"
-export ZSH_CONFIG="$DOT_CONFIG/.zshrc"
-export ZSH_ALIASES_CONFIG="$ZSH_CUSTOM/aliases.zsh"
+export DOTFILES_DIR="$HOME/dotfiles"
+
+export I3_DIR="$DOTFILES_DIR/i3/.config/i3"
+export NVIM_DIR="$DOTFILES_DIR/nvim/.config/nvim"
+export ZSH_DIR="$DOTFILES_DIR/zsh"
+
+export I3_CONFIG="$I3_DIR/config"
+export NVIM_CONFIG="$NVIM_DIR/init.lua"
+export ZSH_CONFIG="$ZSH_DIR/.zshrc"
+export ZSH_ALIASES_CONFIG="$ZSH_DIR/zsh/aliases.zsh"
 
 # nvim config edits
 alias ni3config='nvim "$I3_CONFIG"'
@@ -52,3 +57,4 @@ alias -g -- --help='--help 2>&1 | bat --language=help --style=plain'
 
 # PATH
 export PATH="$PATH:$SCRIPT_BIN"
+export PATH="$PATH:/opt/nvim-linux-x86_64/bin"
