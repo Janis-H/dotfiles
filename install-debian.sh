@@ -2,6 +2,49 @@
 
 DOTFILES_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
+# --- Packages ---
+PACKAGES=(
+    # window tiling manager
+    i3
+
+    # improved "find"
+    fd-find
+
+    # terminal
+    ghostty
+
+    # version control
+    git
+
+    # json formatter
+    jq
+
+    # standalone compositor for x11 (i3)
+    picom
+
+    # improved "grep"
+    ripgrep
+
+    # application launcher
+    rofi
+
+    # file / content search
+    silversearcher-ag
+
+    # symlink manager
+    stow
+
+    # terminal file manager
+    yazi
+
+    # enhanced version of bash
+    zsh 
+)
+
+STOW_CONFIGS=(
+	i3 bat lazygit nvim picom zsh
+)
+
 # --- Helper Functions ---
 function is_installed() {
     dpkg -s "$1" &>/dev/null
@@ -48,6 +91,12 @@ function stow_configs() {
 }
 
 function install_fzf() {
+    # check if installed
+    if command -v fzf &>/dev/null; then
+        echo "fzf already installed"
+        return
+    fi
+
     # clone fzf github repo
     git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 
@@ -56,6 +105,12 @@ function install_fzf() {
 }
 
 function install_lazygit() {
+    # check if installed
+    if command -v lazygit &>/dev/null; then
+        echo "lazygit already installed"
+        return
+    fi
+
     # get latest lazygit release
     LAZYGIT_VERSION=$(
         curl -s "https://api.github.com/repos/jesseduffield/lazygit/releases/latest" | \
@@ -77,6 +132,12 @@ function install_lazygit() {
 }
 
 function install_neovim() {
+    # check if installed
+    if command -v neovim &>/dev/null; then
+        echo "neovim already installed"
+        return
+    fi
+
     # download neovim tarball
     curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux-x86_64.tar.gz
 
@@ -88,32 +149,20 @@ function install_neovim() {
 }
 
 function install_zoxide() {
+    # check if installed
+    if command -v zoxide &>/dev/null; then
+        echo "zoxide already installed"
+        return
+    fi
+
     # download install script and run
     curl -sSfL https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | sh
 }
 
-# --- Packages ---
-PACKAGES=(
-    i3
-    git
-    jq
-    ripgrep
-    rofi
-    silversearcher-ag
-    stow
-    zoxide
-    zsh 
-)
-
-STOW_CONFIGS=(
-	i3 bat lazygit nvim picom zsh
-)
-
-
 # --- Install packages ---
 install_apt_packages "${PACKAGES[@]}"
 
-# install non-apt packages
+# --- Install non-apt packages ---
 install_fzf
 install_lazygit
 install_neovim
