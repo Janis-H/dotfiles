@@ -1,98 +1,11 @@
 #!/usr/bin/env bash
 
-DOTFILES_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-
-# --- Packages ---
-PACKAGES=(
-    # window tiling manager
-    i3
-
-    # improved "find"
-    fd-find
-
-    # terminal
-    ghostty
-
-    # version control
-    git
-
-    # json formatter
-    jq
-
-    # standalone compositor for x11 (i3)
-    picom
-
-    # improved "grep"
-    ripgrep
-
-    # application launcher
-    rofi
-
-    # file / content search
-    silversearcher-ag
-
-    # symlink manager
-    stow
-
-    # terminal file manager
-    yazi
-
-    # enhanced version of bash
-    zsh 
-)
-
-# --- Message helper functions ---
-GREEN='\033[0;32m'
-YELLOW='\033[1;33m'
-RED='\033[0;31m'
-NO_COLOR='\033[0m'
-
-function info() {
-    echo -e "${GREEN} INFO:${NO_COLOR} $*"
-}
-
-function warn() {
-    echo -e "${YELLOW} WARN:${NO_COLOR} $*"
-}
-
-function error() {
-    echo -e "${RED} ERROR:${NO_COLOR} $*"
-}
-
-# --- Helper Functions ---
-function is_installed() {
-    dpkg -s "$1" &>/dev/null
-}
-
+# -- Helper functions ---
 function is_command_available(){
     command -v "$1" &>/dev/null
 }
 
-function install_apt_packages() {
-    local to_install=()
-    local pkg
-
-    # for each argument
-    for pkg in "$@"; do
-        # check if package installed
-        if is_installed "$pkg"; then
-            info "$pkg already installed"
-        #else add package to install array
-        else
-            to_install+=("$pkg")
-        fi
-    done
-
-    # if number of to_install is greater than 0
-    if [[ ${#to_install[@]} -gt 0  ]]; then
-        # notify user about each package being installed
-        info "Installing: ${to_install[*]}"
-    
-        # install all packages in to_install array
-        sudo apt-get install -y "${to_install[@]}"
-    fi
-}
-
+# --- External installers ---
 function install_fzf() {
     # check if installed
     if is_command_available fzf; then
@@ -180,12 +93,14 @@ function install_oh_my_zsh() {
     sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 }
 
-# --- Install packages ---
-install_apt_packages "${PACKAGES[@]}"
+# --- Wrapper function ---
+function install_external_tools() {
+    # apt version updates too slowly
+    install_fzf
+    install_neovim
 
-# --- Install non-apt packages ---
-install_fzf
-install_lazygit
-install_oh_my_zsh
-install_neovim
-install_zoxide
+    # not available in apt
+    install_lazygit
+    install_oh_my_zsh
+    install_zoxide
+}
