@@ -6,14 +6,14 @@ YELLOW='\033[1;33m'
 RED='\033[0;31m'
 NO_COLOR='\033[0m'
 
-function info() {
+info() {
     echo -e "${GREEN} INFO:${NO_COLOR} $*"
 }
 
-function warn() {
+warn() {
     echo -e "${YELLOW} WARN:${NO_COLOR} $*"
 }
 
-function error() {
+error() {
     echo -e "${RED} ERROR:${NO_COLOR} $*"
 }

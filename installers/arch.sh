@@ -36,11 +36,11 @@ ARCH_PACKAGES=(
 )
 
 # --- Helper Functions ---
-function is_installed() {
+is_installed() {
     pacman -Qi "$1" &>/dev/null
 }
 
-function install_system_packages() {
+install_system_packages() {
     local to_install=()
     local pkg
 
@@ -66,7 +66,7 @@ function install_system_packages() {
 }
 
 # --- Install packages ---
-function install_arch() {
+install_arch() {
     install_system_packages "${ARCH_PACKAGES[@]}"
     install_external_tools
 }

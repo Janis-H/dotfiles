@@ -1,12 +1,12 @@
 #!/usr/bin/env bash
 
 # -- Helper functions ---
-function is_command_available(){
+is_command_available(){
     command -v "$1" &>/dev/null
 }
 
 # --- External installers ---
-function install_fzf() {
+install_fzf() {
     # check if installed
     if is_command_available fzf; then
         info "fzf already installed"
@@ -20,7 +20,7 @@ function install_fzf() {
     ~/.fzf/install
 }
 
-function install_lazygit() {
+install_lazygit() {
     # check if installed
     if is_command_available lazygit; then
         info "lazygit already installed"
@@ -49,7 +49,7 @@ function install_lazygit() {
     sudo install lazygit -D -t /usr/local/bin/
 }
 
-function install_neovim() {
+install_neovim() {
     # check if installed
     if is_command_available nvim; then
         info "nvim already installed"
@@ -68,7 +68,7 @@ function install_neovim() {
     sudo tar -C /opt -xzf nvim-linux-x86_64.tar.gz
 }
 
-function install_zoxide() {
+install_zoxide() {
     # check if installed
     if is_command_available zoxide; then
         info "zoxide already installed"
@@ -81,7 +81,7 @@ function install_zoxide() {
     curl -sSfL https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | sh
 }
 
-function install_oh_my_zsh() {
+install_oh_my_zsh() {
     if [[ -f "$HOME/.oh-my-zsh/oh-my-zsh.sh" ]]; then
         info "Oh My Zsh is installed"
         return
@@ -93,8 +93,8 @@ function install_oh_my_zsh() {
     sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 }
 
-# --- Wrapper function ---
-function install_external_tools() {
+# --- Wrapper ---
+install_external_tools() {
     # apt version updates too slowly
     install_fzf
     install_neovim

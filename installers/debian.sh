@@ -40,11 +40,11 @@ DEBIAN_PACKAGES=(
 )
 
 # --- Helper Functions ---
-function is_installed() {
+is_installed() {
     dpkg -s "$1" &>/dev/null
 }
 
-function install_system_packages() {
+install_system_packages() {
     local to_install=()
     local pkg
 
@@ -70,7 +70,7 @@ function install_system_packages() {
 }
 
 # --- Install packages ---
-function install_debian() {
+install_debian() {
     install_system_packages "${DEBIAN_PACKAGES[@]}"
     install_external_tools
 }
