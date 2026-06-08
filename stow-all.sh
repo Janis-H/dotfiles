@@ -75,18 +75,18 @@ stow_all_modules() {
 case "$os" in
     debian)
         stow_all_modules \
-            "${COMMON_MODULES}" \
-            "${DEBIAN_MODULES}"
+            "${COMMON_MODULES[@]}" \
+            "${DEBIAN_MODULES[@]}"
         ;;
     arch)
         stow_all_modules \
-            "${COMMON_MODULES}" \
-            "${ARCH_MODULES}"
+            "${COMMON_MODULES[@]}" \
+            "${ARCH_MODULES[@]}"
         ;;
     macos)
         stow_all_modules \
-            "${COMMON_MODULES}" \
-            "${MACOS_MODULES}"
+            "${COMMON_MODULES[@]}" \
+            "${MACOS_MODULES[@]}"
         ;;
     *)
         error "Unsupported OS: $os"
