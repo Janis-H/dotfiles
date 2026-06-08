@@ -8,56 +8,12 @@ DOTFILES_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 # --- Source helper functions ---
 source "${DOTFILES_DIR}/lib/log.sh"
 source "${DOTFILES_DIR}/lib/detect-os.sh"
+source "${DOTFILES_DIR}/lib/stow-modules.sh"
+source "${DOTFILES_DIR}/lib/stow-actions.sh"
 
 # --- OS info ---
 os="$(detect_os)"
 info "OS: $os"
-
-# --- Source default stow modules ---
-source "${DOTFILES_DIR}/lib/stow-modules.sh"
-
-# --- Helper functions ---
-run_stow(){
-    local module="$1"
-    local modules_dir="$DOTFILES_DIR/modules"
-
-    stow \
-        -R \
-        --dir "$modules_dir" \
-        --target "$HOME" \
-        "$module" \
-        >/dev/null 2>&1
-}
-
-stow_module() {
-    local module="$1"
-    local modules_dir="$DOTFILES_DIR/modules"
-
-    # check if module directory exists
-    if [[ ! -d "$modules_dir/$module" ]]; then
-        # display error if does not
-        error "Module not found: $modules_dir/$module"
-        return 1
-    fi
-
-    info "Stowing: $module"
-
-    # run stow command
-    # if stow exits with a non-zero status, display error
-    if ! run_stow "$module"; then
-        error "Failed to stow: $module"
-        return 1
-    fi
-}
-
-stow_all_modules() {
-	local module
-
-	# TODO: seperate stow logic by os
-	for module in "$@"; do
-        stow_module "$module"
-	done
-}
 
 # --- Stow config files ---
 case "$os" in
