@@ -13,22 +13,8 @@ source "${DOTFILES_DIR}/lib/detect-os.sh"
 os="$(detect_os)"
 info "OS: $os"
 
-# --- Stow modules ---
-COMMON_MODULES=(
-	bat 
-    lazygit 
-    nvim 
-    zsh
-)
-
-ARCH_MODULES=()
-
-DEBIAN_MODULES=(
-    i3
-    picom 
-)
-
-MACOS_MODULES=()
+# --- Source default stow modules ---
+source "${DOTFILES_DIR}/lib/stow-modules.sh"
 
 # --- Helper functions ---
 run_stow(){
