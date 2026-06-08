@@ -61,7 +61,7 @@ install_system_packages() {
         info "Installing: ${to_install[*]}"
     
         # install all packages in to_install array
-        sudo pacman -Sy "${to_install[@]}"
+        sudo pacman -Sy --needed "${to_install[@]}"
     fi
 }
 
