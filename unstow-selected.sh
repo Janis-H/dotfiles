@@ -16,4 +16,4 @@ if [[ $# -eq 0 ]]; then
     exit 1
 fi
 
-unstow_modules "$@"
+unstow_all_modules "$@"

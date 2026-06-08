@@ -17,4 +17,4 @@ if [[ $# -eq 0 ]]; then
     exit 1
 fi
 
-stow_modules "$@"
+stow_all_modules "$@"
