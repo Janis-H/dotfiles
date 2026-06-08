@@ -1,4 +1,6 @@
 #!/usr/bin/env bash
+# Installs system packages and external tools for the detected OS
+
 set -euo pipefail
 
 DOTFILES_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"

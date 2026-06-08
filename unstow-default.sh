@@ -1,4 +1,6 @@
 #!/usr/bin/env bash
+# Unstows the default OS-specific set of dotfile modules from $HOME
+
 set -euo pipefail
 
 DOTFILES_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"

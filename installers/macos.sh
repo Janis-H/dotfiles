@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+# Defines macOS package installation logic
 
 # --- Packages ---
 MACOS_PACKAGES=(

@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+# Defines Debian-family package installtion logic
 
 # --- Packages ---
 DEBIAN_PACKAGES=(

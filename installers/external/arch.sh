@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+# Defines Arch-family external tool installs not handled by pacman
 
 # -- Helper functions ---
 is_command_available(){

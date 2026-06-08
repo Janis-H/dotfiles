@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+# Defines macOS external tool installs not handled by Homebrew
 
 # -- Helper functions ---
 is_command_available(){

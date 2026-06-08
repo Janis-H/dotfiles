@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+# Defines shared logging helpers for consistent info and error messages
  
 # --- Log helper functions ---
 GREEN='\033[0;32m'

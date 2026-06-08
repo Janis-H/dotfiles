@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+# Defines Debian-family external tool installs not handled by apt
 
 # -- Helper functions ---
 is_command_available(){

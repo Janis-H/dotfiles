@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+# Defines the OS detection helpers used to select the correct install and stow behavior
 
 detect_os() {
     local kernel_name="$(uname -s)"

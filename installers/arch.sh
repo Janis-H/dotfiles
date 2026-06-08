@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+# Defines Arch-family package installation logic
 
 # --- Packages ---
 # TODO: add hyprland and/or sway
