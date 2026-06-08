@@ -27,7 +27,7 @@ git clone git@github.com:Janis-H/dotfiles.git
 cd dotfiles
 ```
 
-then use the `./stow-default.sh` script to stow the default modules for your OS
+then use the `./stow-default` script to stow the default modules for your OS
 
 ## Scripts
 
