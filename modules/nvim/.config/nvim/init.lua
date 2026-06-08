@@ -103,8 +103,6 @@ vim.g.mapleader = " " -- Space as the leader key
 vim.keymap.set('n', '<leader><leader>', ':w<CR>', opts)
 -- source vim file
 vim.keymap.set('n', '<leader><CR>', ':so ~/.config/nvim/init.lua<CR>', opts)
--- quit nvim
-vim.keymap.set('n', '<leader>q', ':q<CR>', opts)
 -- vertical explorer
 vim.keymap.set('n', '<leader>v', ':Vex<CR>', opts)
 -- horizontal explorer  
@@ -117,8 +115,6 @@ vim.keymap.set('n', '<C-k>', ':cprev<CR>', opts)
 vim.keymap.set('n', '<leader>cl', ':nohls<CR>', opts)
 -- create new line and paste copied text 
 vim.keymap.set('n', '<leader>p', 'o<ESC>Pk<CR>', opts)
--- enter select window mode
-vim.keymap.set('n', '<leader>w', '<C-w>', opts)
 -- yank into system clipboard (need to use motions afterwards)
 vim.keymap.set('n', '<leader>y', '"+y', opts)
 -- yank entire file into system clipboard
