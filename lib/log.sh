@@ -16,4 +16,4 @@ function warn() {
 
 function error() {
     echo -e "${RED} ERROR:${NO_COLOR} $*"
-
+}

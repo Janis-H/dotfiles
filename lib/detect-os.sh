@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 function detect_os() {
-    local kernel_name = "$(uname -s)"
+    local kernel_name="$(uname -s)"
 
     case "$kernel_name" in
     Darwin)
