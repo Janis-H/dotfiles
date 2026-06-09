@@ -5,34 +5,15 @@
 # TODO: add hyprland and/or sway
 # TODO: double check pacman package names
 ARCH_PACKAGES=(
-    # improved "find"
     fd
-
-    # terminal
     ghostty
-
-    # version control
     git
-
-    # tool for processing json data
     jq
-
-    # improved "grep"
     ripgrep
-
-    # application launcher
     rofi
-
-    # file / content search
     silver_searcher_ag
-
-    # symlink manager
     stow
-
-    # terminal file manager
     yazi
-
-    # enhanced version of bash
     zsh 
 )
 
@@ -70,4 +51,6 @@ install_system_packages() {
 install_arch() {
     install_system_packages "${ARCH_PACKAGES[@]}"
     install_external_tools
+    # TODO: create post-install-script
+    # - set zsh as default shell
 }

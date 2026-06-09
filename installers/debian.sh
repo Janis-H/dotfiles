@@ -3,40 +3,17 @@
 
 # --- Packages ---
 DEBIAN_PACKAGES=(
-    # window tiling manager
-    i3
-
-    # improved "find"
     fd-find
-
-    # terminal
     ghostty
-
-    # version control
     git
-
-    # json formatter
+    i3
     jq
-
-    # standalone compositor for x11 (i3)
     picom
-
-    # improved "grep"
     ripgrep
-
-    # application launcher
     rofi
-
-    # file / content search
     silversearcher-ag
-
-    # symlink manager
     stow
-
-    # terminal file manager
     yazi
-
-    # enhanced version of bash
     zsh 
 )
 
