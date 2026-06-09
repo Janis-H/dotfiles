@@ -14,8 +14,10 @@ source "$DOTFILES_DIR/installers/post-install.sh"
 
 os="$(detect_os)"
 
+info "\n\t--- Script Info ---\n"
 info "OS: $os"
 
+info "\n\t--- Starting Package Install ---\n"
 case "$os" in
     debian)
         source "$DOTFILES_DIR/installers/debian.sh"

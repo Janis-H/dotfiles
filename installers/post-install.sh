@@ -23,18 +23,24 @@ install_zsh_plugins() {
 
     mkdir -p "$zsh_plugins_dir"
 
+    # Install zsh-autosuggestions
     if [[ ! -d "$zsh_plugins_dir/zsh-autosuggestions" ]]; then
         info "Installing zsh-autosuggestions"
 
         git clone https://github.com/zsh-users/zsh-autosuggestions \
             "$zsh_plugins_dir/zsh-autosuggestions"
+    else
+        info "zsh-autosuggestions already installed"
     fi
 
+    # Install zsh-syntax-highlighting
     if [[ ! -d "$zsh_plugins_dir/zsh-syntax-highlighting" ]]; then
         info "Installing zsh-syntax-highlighting"
 
         git clone https://github.com/zsh-users/zsh-syntax-highlighting.git \
             "$zsh_plugins_dir/zsh-syntax-highlighting"
+    else
+        info "zsh-syntax-highlighting already installed"
     fi
 }
 
@@ -43,25 +49,31 @@ install_tmux_plugins() {
 
     mkdir -p "$tmux_plugins_dir"
 
-    # install tmux plugin manager
+    # Install tmux plugin manager
     if [[ ! -d "$tmux_plugins_dir/tpm" ]]; then
         info "Installing tmux plugin manager"
 
         git clone https://github.com/tmux-plugins/tpm \
-            "$tmux_plugins/tpm"
+            "$tmux_plugins_dir/tpm"
+    else 
+        info "tmux plugin manager already installed"
     fi
 
-    # install vim-tmux-navigator
+    # Install vim-tmux-navigator
     if [[ ! -d "$tmux_plugins_dir/vim-tmux-navigator" ]]; then
         info "Installing vim tmux navigator"
 
         git clone git@github.com:christoomey/vim-tmux-navigator.git \
-            "$tmux_plugins/vim-tmux-navigator"
+            "$tmux_plugins_dir/vim-tmux-navigator"
+    else
+        info "vim-tmux-navigator already installed"
     fi
 }
 
 # --- Post Install Function ---
 run_post_install() {
+    info "\n\t--- Starting Post-Install ---\n"
+
     # configuration
     set_default_shell_to_zsh
 
