@@ -9,6 +9,9 @@ DOTFILES_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 source "$DOTFILES_DIR/lib/detect-os.sh"
 source "$DOTFILES_DIR/lib/log.sh"
 
+# source installers
+source "$DOTFILES_DIR/installers/post-install.sh"
+
 os="$(detect_os)"
 
 info "OS: $os"
@@ -34,3 +37,6 @@ case "$os" in
         exit 1
         ;;
 esac
+
+# post-install setup after package and external tool instalation
+run_post_install
