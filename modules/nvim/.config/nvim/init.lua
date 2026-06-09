@@ -33,6 +33,9 @@ vim.call('plug#begin')
 -- provides immediate navigation to important files
 Plug('cbochs/grapple.nvim') 
 
+-- tmux navigator
+Plug('christoomey/vim-tmux-navigator')
+
 -- fuzzy finder
 Plug('junegunn/fzf', { ['do'] = function () 
     vim.fn['fzf#install']()
