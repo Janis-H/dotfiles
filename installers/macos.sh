@@ -3,7 +3,9 @@
 
 # --- Packages ---
 MACOS_PACKAGES=(
-    # install packages here (WIP)
+    nvim
+    tmux
+    yazi
 )
 
 # --- Helper Functions ---

@@ -13,6 +13,7 @@ DEBIAN_PACKAGES=(
     rofi
     silversearcher-ag
     stow
+    tmux
     yazi
     zsh 
 )

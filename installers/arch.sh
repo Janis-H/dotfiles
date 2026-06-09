@@ -3,7 +3,6 @@
 
 # --- Packages ---
 # TODO: add hyprland and/or sway
-# TODO: double check pacman package names
 ARCH_PACKAGES=(
     fd
     ghostty
@@ -13,6 +12,7 @@ ARCH_PACKAGES=(
     rofi
     silver_searcher_ag
     stow
+    tmux
     yazi
     zsh 
 )
