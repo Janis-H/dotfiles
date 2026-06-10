@@ -50,7 +50,7 @@ install_zsh_plugins() {
     fi
 }
 
-install_tmux_plugins() {
+install_tmux_plugin_manager() {
     local tmux_plugins_dir="$HOME/.tmux/plugins"
 
     mkdir -p "$tmux_plugins_dir"
@@ -64,28 +64,19 @@ install_tmux_plugins() {
     else 
         info "tmux plugin manager already installed"
     fi
-
-    # Install vim-tmux-navigator
-    if [[ ! -d "$tmux_plugins_dir/vim-tmux-navigator" ]]; then
-        info "Installing vim tmux navigator"
-
-        git clone git@github.com:christoomey/vim-tmux-navigator.git \
-            "$tmux_plugins_dir/vim-tmux-navigator"
-    else
-        info "vim-tmux-navigator already installed"
-    fi
 }
 
 # --- Post Install Function ---
 run_post_install() {
     info "\n\t--- Starting Post-Install ---\n"
 
+    # script args
     use_omz=true
 
     # configuration
     set_default_shell_to_zsh
 
     # install plugins
-    install_tmux_plugins
+    install_tmux_plugin_manager
     install_zsh_plugins "$use_omz"
 }
