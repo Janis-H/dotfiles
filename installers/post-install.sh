@@ -19,9 +19,9 @@ set_default_shell_to_zsh() {
 }
 
 install_zsh_plugins() {
-    local useOmz="$1"
+    local use_omz="$1"
 
-    if [[ "$useOmz" = true ]]; then
+    if [[ "$use_omz" = true ]]; then
         local zsh_plugins_dir="$HOME/.oh-my-zsh/plugins"
     else
         local zsh_plugins_dir="$HOME/.zsh/plugins"
@@ -80,10 +80,12 @@ install_tmux_plugins() {
 run_post_install() {
     info "\n\t--- Starting Post-Install ---\n"
 
+    use_omz=true
+
     # configuration
     set_default_shell_to_zsh
 
     # install plugins
     install_tmux_plugins
-    install_zsh_plugins true
+    install_zsh_plugins "$use_omz"
 }
