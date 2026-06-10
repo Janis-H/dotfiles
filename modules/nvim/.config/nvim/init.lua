@@ -1,3 +1,6 @@
+-- TODO: seperate nvim init.lua into modules
+-- TODO: consider swapping from Plug to LazyNvim for plugin management
+
 -- Basic settings:
 vim.opt.background = dark
 vim.opt.cursorline = true
@@ -110,10 +113,13 @@ vim.keymap.set('n', '<leader><CR>', ':so ~/.config/nvim/init.lua<CR>', opts)
 vim.keymap.set('n', '<leader>v', ':Vex<CR>', opts)
 -- horizontal explorer  
 vim.keymap.set('n', '<leader>s', ':Sex<CR>', opts)
+
+-- TODO: Replace C-j and C-k for next and prev in quickfix list
 -- next in quickfix list
-vim.keymap.set('n', '<C-j>', ':cnext<CR>', opts)
+-- vim.keymap.set('n', '<C-j>', ':cnext<CR>', opts)
 -- prev in quickfix list
-vim.keymap.set('n', '<C-k>', ':cprev<CR>', opts)
+-- vim.keymap.set('n', '<C-k>', ':cprev<CR>', opts)
+
 -- clear highlighted search
 vim.keymap.set('n', '<leader>cl', ':nohls<CR>', opts)
 -- create new line and paste copied text 
