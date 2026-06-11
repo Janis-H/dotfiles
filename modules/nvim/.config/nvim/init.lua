@@ -138,10 +138,6 @@ vim.keymap.set('v', 'K', ":m '<-2<CR>gv=gv", opts)
 vim.keymap.set('v', 'J', ":m '>+1<CR>gv=gv", opts)
 
 -- Plugin: Telescope remaps
--- telescope git_files - fuzzy search git ls-files
-vim.keymap.set('n', '<C-p>', ':Telescope git_files<CR>', opts)
--- telescope find_files - list files in current directory
-vim.keymap.set('n', '<M-p>', ':Telescope find_files<CR>', opts)
 -- telescope plugin find_files - list files in current directory
 vim.keymap.set('n', '<leader>ff', ':Telescope find_files<CR>', opts)
 -- telescope git files - fuzzy seach git ls-files
