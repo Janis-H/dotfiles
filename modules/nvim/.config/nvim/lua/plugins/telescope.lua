@@ -1,11 +1,23 @@
-require('telescope').setup{
+local telescope = require("telescope")
+
+telescope.setup({
     defaults = {
+        layout_strategy = "horizontal",
+        layout_config = {
+            horizontal = {
+                preview_width = 0.55,
+                preview_cutoff = 1,
+            },
+        },
+
         -- configure to use ripgrep
         vimgrep_arguments = {
             'rg',
+            '--color=never', -- Disable ANSI color codes so Telescope can parse ripgrep output
+            '--column', -- Include the match column number; Telescope uses this for result locations
+            '--no-heading', -- Don't group matches by each file
             '--follow', -- Follow symbolic links
             '--hidden', -- Search for hidden files
-            '--no-heading', -- Don't gropu matches by each file
             '--with-filename', -- Print the file path with the matched lines
             '--line-number', -- Show line numbers
             '--smart-case', -- Smart case search
@@ -18,7 +30,7 @@ require('telescope').setup{
             "--glob=!**/dist/*",
             "--glob=!**/yarn.lock",
             "--glob=!**/package-lock.json",
-        }
+        },
     },
     pickers = {
         find_files = {
@@ -37,10 +49,10 @@ require('telescope').setup{
                 "--glob=!**/dist/*",
                 "--glob=!**/yarn.lock",
                 "--glob=!**/package-lock.json",
-            }
+            },
         },
         live_grep = {
-            additional_args = function(_ts)
+            additional_args = function(opts)
                 return {"--hidden"}
             end
         },
@@ -48,5 +60,7 @@ require('telescope').setup{
     -- default filter ignore pattern
     file_ignore_patterns = {
         "node_modules", "build", "dist", "package-lock.json", "yarn.lock"
-    }
-}
+    },
+})
+
+telescope.load_extension("fzf")
