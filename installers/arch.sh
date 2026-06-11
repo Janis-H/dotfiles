@@ -5,6 +5,7 @@
 # TODO: add hyprland and/or sway
 ARCH_PACKAGES=(
     fd
+    fzf
     ghostty
     git
     jq
