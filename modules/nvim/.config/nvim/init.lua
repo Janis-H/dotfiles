@@ -1,6 +1,11 @@
 -- TODO: seperate nvim init.lua into modules
 -- TODO: consider swapping from Plug to LazyNvim for plugin management
 
+-- Leader keys
+-- Must be set before any keymaps or plugins define mappings
+vim.g.mapleader = " " -- Space as the leader key
+vim.g.maplocalleader = "\\"
+
 -- Basic settings:
 vim.opt.background = dark
 vim.opt.cursorline = true
@@ -96,9 +101,6 @@ local function opts(desc)
         desc = desc,
     }
 end
-
--- leader key
-vim.g.mapleader = " " -- Space as the leader key
 
 -- Basic Remaps:
 vim.keymap.set('n', '<leader><leader>', ':w<CR>', opts('Write to file'))
