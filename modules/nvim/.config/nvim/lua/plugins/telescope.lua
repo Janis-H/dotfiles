@@ -2,6 +2,7 @@ local telescope = require("telescope")
 
 telescope.setup({
     defaults = {
+        -- configure preview
         layout_strategy = "horizontal",
         layout_config = {
             horizontal = {
@@ -10,11 +11,20 @@ telescope.setup({
             },
         },
 
+        -- default filter ignore pattern
+        file_ignore_patterns = {
+            "node_modules",
+            "build",
+            "dist",
+            "package-lock.json",
+            "yarn.lock",
+        },
+
         -- configure to use ripgrep
         vimgrep_arguments = {
             'rg',
-            '--color=never', -- Disable ANSI color codes so Telescope can parse ripgrep output
-            '--column', -- Include the match column number; Telescope uses this for result locations
+            '--color=never', -- Disable ANSI color codes
+            '--column', -- Include the match column number
             '--no-heading', -- Don't group matches by each file
             '--follow', -- Follow symbolic links
             '--hidden', -- Search for hidden files
@@ -26,6 +36,7 @@ telescope.setup({
             "--glob=!**/.git/*",
             "--glob=!**/.idea/*",
             "--glob=!**/.vscode/*",
+            "--glob=!**/node_modules/*",
             "--glob=!**/build/*",
             "--glob=!**/dist/*",
             "--glob=!**/yarn.lock",
@@ -51,15 +62,6 @@ telescope.setup({
                 "--glob=!**/package-lock.json",
             },
         },
-        live_grep = {
-            additional_args = function(opts)
-                return {"--hidden"}
-            end
-        },
-    },
-    -- default filter ignore pattern
-    file_ignore_patterns = {
-        "node_modules", "build", "dist", "package-lock.json", "yarn.lock"
     },
 })
 
