@@ -157,7 +157,9 @@ vim.keymap.set('n', '<leader>gc', ':Git co "', opts)
 -- Plugin: Lazygit remaps
 vim.keymap.set('n', '<leader>lg', ':LazyGit<CR>', opts)
 
--- Script: tmux-sessionizer keybinds
+-- tmux-sessionizer
+-- Ctrl-f opens the project picker
+-- Alt bindings run TS_SESSION_COMMANDS by index in the active project session.
 vim.keymap.set("n", "<C-f>", "<cmd>silent !tmux neww tmux-sessionizer<CR>")
 vim.keymap.set("n", "<M-1>", "<cmd>silent !tmux neww tmux-sessionizer -s 0<CR>")
 vim.keymap.set("n", "<M-2>", "<cmd>silent !tmux neww tmux-sessionizer -s 1<CR>")
