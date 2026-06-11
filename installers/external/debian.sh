@@ -90,7 +90,7 @@ install_oh_my_zsh() {
 
     info "Installing oh-my-zsh"
 
-    # intsall oh-my-zsh via curl
+    # install oh-my-zsh via curl
     sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 }
 

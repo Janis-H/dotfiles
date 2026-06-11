@@ -3,20 +3,28 @@
 
 # --- Packages ---
 DEBIAN_PACKAGES=(
+    # Desktop (GUI)
+    i3
+    picom
+    rofi
+
+    # Terminal (Server)
     fd-find
     ghostty
     git
-    i3
     jq
-    picom
     ripgrep
-    rofi
     silversearcher-ag
     stow
     tmux
     yazi
-    zsh 
+    zsh
 )
+
+# Available in apt, but Debian versions tend to lag behind.
+# Installed externally instead. 
+# - nvim
+# - fzf
 
 # --- Helper Functions ---
 is_installed() {
