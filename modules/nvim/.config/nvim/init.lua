@@ -56,9 +56,6 @@ Plug('hrsh7th/nvim-cmp')
 -- lazygit for nvim
 Plug("kdheepak/lazygit.nvim")
 
--- colorscheme
-Plug('loctvl842/monokai-pro.nvim') 
-
 -- autocomplete
 Plug('neoclide/coc.nvim', { ['branch'] = 'release'} )
 
@@ -96,10 +93,6 @@ require("plugins.telescope")
 
 -- Color Scheme: 
 vim.cmd.colorscheme("gruvbox")
-
--- Color Scheme: monokai-pro
--- vim.cmd.colorscheme("monokai-pro")
--- vim.cmd.colorscheme("monokai-pro-octagon")
 
 -- Basic remaps:
 local opts = { noremap = true }
