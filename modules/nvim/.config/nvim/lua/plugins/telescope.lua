@@ -2,9 +2,12 @@ local telescope = require("telescope")
 
 telescope.setup({
     defaults = {
-        -- configure preview
+        -- configure telescope window + preview
         layout_strategy = "horizontal",
         layout_config = {
+            width = 0.9,
+            height = 0.9,
+
             horizontal = {
                 preview_width = 0.55,
                 preview_cutoff = 1,
