@@ -85,10 +85,6 @@ Plug('tpope/vim-surround')
 -- end Plug plugin declaration
 vim.call('plug#end')
 
--- Plugin setup:
-require("plugins.grapple")
-require("plugins.telescope")
-
 -- Color Scheme: 
 vim.cmd.colorscheme("gruvbox")
 
@@ -170,3 +166,8 @@ vim.keymap.set(
     "<cmd>silent !tmux neww tmux-sessionizer -s 3<CR>",
     opts('Runs TS_SESSION_COMMANDS[3]')
 )
+
+-- Plugin setup:
+require("plugins.grapple")
+require("plugins.telescope")
+
