@@ -46,6 +46,17 @@ export MANPAGER="sh -c \"col -bx | $BAT_CMD -l man -p\""
 export MANROFFOPT="-c"
 
 #############################################
+# KEY-BINDINGS
+#############################################
+
+# tmux-sessionizer keybindings
+bindkey -s '^f' 'tmux-sessionizer\n' # <C-f>
+bindkey -s '\e1' 'tmux-sessionizer -s 0\n' # Alt-1 or Option-1
+bindkey -s '\e2' 'tmux-sessionizer -s 1\n' # Alt-2 or Option-2
+bindkey -s '\e3' 'tmux-sessionizer -s 2\n' # Alt-3 or Option-3
+bindkey -s '\e4' 'tmux-sessionizer -s 3\n' # Alt-4 or Option-4
+
+#############################################
 # Oh My Zsh setup
 #############################################
 export ZSH="$HOME/.oh-my-zsh"

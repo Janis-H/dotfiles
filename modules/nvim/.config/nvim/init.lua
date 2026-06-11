@@ -156,3 +156,10 @@ vim.keymap.set('n', '<leader>gc', ':Git co "', opts)
 
 -- Plugin: Lazygit remaps
 vim.keymap.set('n', '<leader>lg', ':LazyGit<CR>', opts)
+
+-- Script: tmux-sessionizer keybinds
+vim.keymap.set("n", "<C-f>", "<cmd>silent !tmux neww tmux-sessionizer<CR>")
+vim.keymap.set("n", "<M-1>", "<cmd>silent !tmux neww tmux-sessionizer -s 0")
+vim.keymap.set("n", "<M-2>", "<cmd>silent !tmux neww tmux-sessionizer -s 1")
+vim.keymap.set("n", "<M-3>", "<cmd>silent !tmux neww tmux-sessionizer -s 2")
+vim.keymap.set("n", "<M-4>", "<cmd>silent !tmux neww tmux-sessionizer -s 3")
