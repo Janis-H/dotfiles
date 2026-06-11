@@ -69,7 +69,9 @@ Plug('nvim-lua/plenary.nvim')
 Plug('nvim-telescope/telescope.nvim') 
 
 -- improved sorting for telescope
-Plug('nvim-telescope/telescope-fzf-native.nvim') 
+Plug("nvim-telescope/telescope-fzf-native.nvim", {
+  ["do"] = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release --target install"
+})
 
 -- project specific commands
 Plug('ThePrimeagen/harpoon', { ['branch'] = 'harpoon2' }) 
