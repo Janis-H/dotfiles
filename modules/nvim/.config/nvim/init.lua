@@ -70,6 +70,9 @@ Plug("nvim-telescope/telescope-fzf-native.nvim", {
   ["do"] = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release --target install"
 })
 
+-- icons
+Plug('nvim-tree/nvim-web-devicons')
+
 -- project specific commands
 Plug('ThePrimeagen/harpoon', { ['branch'] = 'harpoon2' }) 
 
@@ -86,6 +89,7 @@ Plug('tpope/vim-surround')
 vim.call('plug#end')
 
 -- Plugin setup
+require("plugins.grapple")
 require("plugins.telescope")
 
 -- TODO: setup harpoon
@@ -150,6 +154,7 @@ vim.keymap.set('n', '<leader>gi', ':Git ' , opts)
 vim.keymap.set('n', '<leader>ga', ':Git add .<CR>'  , opts)
 -- git commit -m
 vim.keymap.set('n', '<leader>gc', ':Git co "', opts)
+
 
 -- Plugin: Lazygit remaps
 vim.keymap.set('n', '<leader>lg', ':LazyGit<CR>', opts)
