@@ -73,9 +73,6 @@ Plug("nvim-telescope/telescope-fzf-native.nvim", {
 -- icons
 Plug('nvim-tree/nvim-web-devicons')
 
--- project specific commands
-Plug('ThePrimeagen/harpoon', { ['branch'] = 'harpoon2' }) 
-
 -- comment stuff out with gcc
 Plug('tpope/vim-commentary') 
 
