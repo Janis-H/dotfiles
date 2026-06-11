@@ -3,7 +3,11 @@
 
 # --- Packages ---
 MACOS_PACKAGES=(
+    fd
+    fzf
     nvim
+    ripgrep
+    silver_searcher_ag
     tmux
     yazi
 )
