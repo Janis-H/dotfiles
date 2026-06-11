@@ -97,10 +97,14 @@ vim.cmd.colorscheme("gruvbox")
 local function opts(desc)
     return {
         noremap = true,
-        silent = true,
+        -- silent = true,
         desc = desc,
     }
 end
+
+-- Plugin setup:
+require("plugins.grapple")
+require("plugins.telescope")
 
 -- Basic Remaps:
 vim.keymap.set('n', '<leader><leader>', ':w<CR>', opts('Write to file'))
@@ -166,8 +170,3 @@ vim.keymap.set(
     "<cmd>silent !tmux neww tmux-sessionizer -s 3<CR>",
     opts('Runs TS_SESSION_COMMANDS[3]')
 )
-
--- Plugin setup:
-require("plugins.grapple")
-require("plugins.telescope")
-
