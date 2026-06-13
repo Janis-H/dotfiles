@@ -41,6 +41,7 @@ vim.keymap.set("x", '<leader>r', '"_d"+P', opts('Paste clipboard over selection'
 -- Entire file actions
 vim.keymap.set('n', '<leader>Y', 'gg"+yG', opts('Yank entire file into system clipboard'))
 vim.keymap.set('n', '<leader>D', 'gg"_dG', opts('Delete entire file without yanking it'))
+vim.keymap.set('n', '<leader>R', 'gg"_dG"+p', opts('Replace entire file with system clipboard'))
 
 -- Move selected lines
 vim.keymap.set('v', 'K', ":m '<-2<cr>gv=gv", opts('Move line up'))
