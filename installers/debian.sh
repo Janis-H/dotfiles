@@ -9,20 +9,27 @@ DEBIAN_PACKAGES=(
     rofi
 
     # Terminal (Server)
+    curl
     fd-find
     ghostty
     git
+    gzip
     jq
+    python3
+    python3-pip
+    python3-venv
     ripgrep
     silversearcher-ag
     stow
+    tar
     tmux
+    unzip
     yazi
     zsh
 )
 
 # Available in apt, but Debian versions tend to lag behind.
-# Installed externally instead. 
+# Installed externally instead.
 # - nvim
 # - fzf
 
@@ -50,7 +57,7 @@ install_system_packages() {
     if [[ ${#to_install[@]} -gt 0  ]]; then
         # notify user about each package being installed
         info "Installing: ${to_install[*]}"
-    
+
         # install all packages in to_install array
         sudo apt-get install -y "${to_install[@]}"
     fi
