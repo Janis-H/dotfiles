@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 PACKAGES=(
     # Desktop (GUI)
     i3
@@ -5,6 +6,7 @@ PACKAGES=(
     rofi
 
     # Terminal (Server)
+    build-essential
     curl
     fd-find
     ghostty

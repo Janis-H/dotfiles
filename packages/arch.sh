@@ -2,6 +2,7 @@
 # TODO: add hyprland and/or sway
 ARCH_PACKAGES=(
     bat
+    base-devel
     curl
     diffutils
     fd
