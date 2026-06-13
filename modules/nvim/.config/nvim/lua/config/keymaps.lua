@@ -34,8 +34,8 @@ vim.keymap.set('v', '<leader>p', '"_dp', opts('Delete current selection, yank in
 
 -- System clipboard
 vim.keymap.set({ 'n', 'v'}, '<leader>y', '"+y', opts('Yank into system clipboard'))
-vim.keymap.set('n', '<leader>p', '"+p', opts('Past from system keyboard'))
-vim.keymap.set('n', '<leader>P', '"+p', opts('Past from system keyboard'))
+vim.keymap.set('n', '<leader>p', '"+p', opts('Paste from system keyboard below'))
+vim.keymap.set('n', '<leader>P', '"+P', opts('Paste from system keyboard above'))
 
 -- Entire file actions
 vim.keymap.set('n', '<leader>Y', 'gg"+yG', opts('Yank entire file into system clipboard'))
@@ -44,6 +44,9 @@ vim.keymap.set('n', '<leader>D', 'gg"_dG', opts('Delete entire file without yank
 -- Move selected lines
 vim.keymap.set('v', 'K', ":m '<-2<cr>gv=gv", opts('Move line up'))
 vim.keymap.set('v', 'J', ":m '>+1<cr>gv=gv", opts('Move line down'))
+vim.keymap.set("v", ">", ">gv", opts("Indent right"))
+vim.keymap.set("v", "<", "<gv", opts("Indent left"))
+
 
 -- tmux-sessionizer
 -- Ctrl-f opens the project picker
