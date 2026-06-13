@@ -14,6 +14,15 @@ create_dev_dirs() {
     mkdir -p "$HOME/.config"
 }
 
+setup_local_bin() {
+    mkdir -p "$HOME/.local/bin"
+
+    if [[ ":$PATH:" != *":$HOME/.local/bin:"* ]]; then
+        info "$HOME/.local/bin is not currently in PATH"
+        info "Make sure your shell config adds it"
+    fi
+}
+
 set_default_shell() {
     if [[ "$SHELL" == "$(command -v zsh)" ]]; then
         info "Default shell already set to zsh"
@@ -24,6 +33,7 @@ set_default_shell() {
 
     chsh -s "$(command -v zsh)"
 }
+
 setup_fzf() {
     if ! command -v fzf &>/dev/null; then
         info "fzf is not installed, skipping"
@@ -92,13 +102,16 @@ install_tmux_plugin_manager() {
     fi
 }
 
-setup_local_bin() {
-    mkdir -p "$HOME/.local/bin"
+install_tmux_plugins_from_config() {
+    local installer="$HOME/.tmux/plugins/tpm/bin/install_plugins"
 
-    if [[ ":$PATH:" != *":$HOME/.local/bin:"* ]]; then
-        info "$HOME/.local/bin is not currently in PATH"
-        info "Make sure your shell config adds it"
+    if [[ ! -x "$installer" ]]; then
+        info "TPM installer not found, skipping tmux plugin install"
+        return
     fi
+
+    info "Installing tmux plugins"
+    "$installer"
 }
 
 setup_git_defaults() {
@@ -114,19 +127,23 @@ setup_git_defaults() {
 run_post_install() {
     info "\n\t--- Starting Post-Install ---\n"
 
-    # script args
+    # function args
     use_omz=true
 
     # prepare directories
     create_dev_dirs
     setup_local_bin
 
-    # configuration
+    # configure shell and terminal workflow
     set_default_shell
+    install_zsh_plugins "$use_omz"
+    install_tmux_plugin_manager
+    install_tmux_plugins_from_config
+
+    # configure dev tools
     setup_fzf
     setup_git_defaults
 
-    # install plugins
-    install_tmux_plugin_manager
-    install_zsh_plugins "$use_omz"
+    # TODO: add check for missing tools
+    # TODO: consider adding a check script as a dotfiles directory sanity check
 }
