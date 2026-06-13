@@ -3,15 +3,15 @@ return {
     "nvim-telescope/telescope.nvim",
     dependencies = {
         'nvim-lua/plenary.nvim',
-        { 
+        {
             "nvim-telescope/telescope-live-grep-args.nvim" ,
             -- This will not install any breaking changes.
             -- For major updates, this must be adjusted manually.
             version = "^1.0.0",
         },
-        { 
+        {
             'nvim-telescope/telescope-fzf-native.nvim',
-            build = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release --target install' 
+            build = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release --target install'
         },
     },
     config = function()
@@ -93,6 +93,13 @@ return {
         -- File and text search.
         { "<leader>ff", "<cmd>Telescope find_files<cr>", desc = "Find files" },
         { "<leader>fg", "<cmd>Telescope live_grep<cr>", desc = "Search text" },
+        {
+            "<leader>/",
+            function()
+                require("telescope.builtin").current_buffer_fuzzy_find()
+            end,
+            desc = "Fuzzy find in current buffer",
+        },
 
         -- Git-aware file picker. Only shows git-tracked files.
         { "<leader>gg", "<cmd>Telescope git_files<cr>", desc = "Find git files" },
