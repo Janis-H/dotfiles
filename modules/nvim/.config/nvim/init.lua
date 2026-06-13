@@ -6,27 +6,8 @@
 vim.g.mapleader = " " -- Space as the leader key
 vim.g.maplocalleader = "\\"
 
--- Basic settings:
-vim.opt.background = dark
-vim.opt.cursorline = true
-vim.opt.expandtab = true
-vim.opt.guicursor = ""
-vim.opt.history = 1000
-vim.opt.ignorecase = true
-vim.opt.incsearch = true
-vim.opt.linebreak = true
-vim.opt.number = true
-vim.opt.relativenumber = true
-vim.opt.scrolloff = 10
-vim.opt.shiftwidth = 4
-vim.opt.smartcase = true
-vim.opt.smartindent = true
-vim.opt.softtabstop = 4
-vim.opt.tabstop = 4 
-vim.opt.termguicolors = true -- enable true colors support
-vim.opt.title = true
-vim.opt.wildmenu = true
-vim.opt.wrap = true
+-- Basic Settings
+require('config.options')
 
 -- Synax highlighting and filetype plugins
 vim.cmd('syntax enable')
