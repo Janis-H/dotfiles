@@ -42,8 +42,8 @@ vim.keymap.set('n', '<leader>Y', 'gg"+yG', opts('Yank entire file into system cl
 vim.keymap.set('n', '<leader>D', 'gg"_dG', opts('Delete entire file without yanking it'))
 
 -- Move selected lines
-vim.keymap.set('v', 'K', "<cmd>m '<-2<cr>gv=gv", opts('Move line up'))
-vim.keymap.set('v', 'J', "<cmd>m '>+1<cr>gv=gv", opts('Move line down'))
+vim.keymap.set('v', 'K', ":m '<-2<cr>gv=gv", opts('Move line up'))
+vim.keymap.set('v', 'J', ":m '>+1<cr>gv=gv", opts('Move line down'))
 
 -- tmux-sessionizer
 -- Ctrl-f opens the project picker
