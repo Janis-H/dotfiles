@@ -1,4 +1,4 @@
--- Basic settings:
+-- Core settings:
 vim.opt.background = dark
 vim.opt.cursorline = true
 vim.opt.expandtab = true
