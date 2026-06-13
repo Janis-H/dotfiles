@@ -38,3 +38,8 @@ vim.api.nvim_create_autocmd("BufWritePre", {
         vim.fn.winrestview(view)
     end,
 })
+
+-- Auto-realods file when they change when they change externally
+vim.api.nvim_create_autocmd({ "FocusGained", "BufEnter", "CursorHold", "CursorHoldI" }, {
+  command = "checktime",
+})
