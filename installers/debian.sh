@@ -4,7 +4,7 @@
 : "${DOTFILES_DIR:?DOTFILES_DIR must be set before sourcing debian.sh}"
 
 # --- Source packages ---
-source "$DOTFILES/packages/debian.sh"
+source "$DOTFILES_DIR/packages/debian.sh"
 
 # --- Helper Functions ---
 is_installed() {
