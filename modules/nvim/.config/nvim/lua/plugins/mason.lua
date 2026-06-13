@@ -21,6 +21,7 @@ return {
                 "bashls",
                 "pyright",
                 "ruff",
+                "marksman",
             },
             automatic_installation = true,
         },

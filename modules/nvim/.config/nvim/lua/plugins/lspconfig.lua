@@ -17,6 +17,7 @@ return {
             "bashls",
             "pyright",
             "ruff",
+            "marksman",
         }
 
         for _, server in ipairs(servers) do
