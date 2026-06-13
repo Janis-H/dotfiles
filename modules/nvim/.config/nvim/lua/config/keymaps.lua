@@ -7,22 +7,22 @@ local function opts(desc)
 end
 
 -- File actions
-vim.keymap.set('n', '<leader><leader>', ':w<CR>', opts('Write to file'))
-vim.keymap.set('n', '<leader><CR>', ':so ~/.config/nvim/init.lua<CR>', opts('Source init.lua'))
+vim.keymap.set('n', '<leader><leader>', '<cmd>w<cr>', opts('Write to file'))
+vim.keymap.set('n', '<leader><cr>', '<cmd>ReloadConfig<cr>', opts('Source init.lua'))
 
 -- File explorer
-vim.keymap.set('n', '<leader>e', ':Ex<CR>', opts('open Explorer'))
-vim.keymap.set('n', '<leader>v', ':Vex<CR>', opts('Vertical explorer'))
-vim.keymap.set('n', '<leader>s', ':Sex<CR>', opts('Horizontal explorer'))
+vim.keymap.set('n', '<leader>e', '<cmd>Ex<cr>', opts('open Explorer'))
+vim.keymap.set('n', '<leader>v', '<cmd>Vex<cr>', opts('Vertical explorer'))
+vim.keymap.set('n', '<leader>s', '<cmd>Sex<cr>', opts('Horizontal explorer'))
 
 -- Quickfix
 vim.keymap.set('n', '<leader>co', '<cmd>copen<cr>', opts('Open quickfix'))
 vim.keymap.set('n', '<leader>cn', "<cmd>cnext<cr>", opts('Next quickfix item'))
 vim.keymap.set('n', '<leader>cp', "<cmd>cprev<cr>", opts('Previous quickfix item'))
-vim.keymap.set('n', '<leader>cq', '<cmd>cexpr []<cr><cmd>cclose<cr>', opts('Clear quickfix'))
+vim.keymap.set('n', '<leader>cq', '<cmd>ClearQuickfix<cr>', opts('Clear quickfix'))
 
 -- Search
-vim.keymap.set('n', '<leader>cl', ':nohls<CR>', opts('Clear highlighted search'))
+vim.keymap.set('n', '<leader>cl', '<cmd>ClearSearch<cr>', opts('Clear highlighted search'))
 
 -- Yank behavior
 vim.keymap.set('n', 'Y', 'y$', opts('Yank to end of line'))
@@ -41,34 +41,34 @@ vim.keymap.set('n', '<leader>Y', 'gg"+yG', opts('Yank entire file into system cl
 vim.keymap.set('n', '<leader>D', 'gg"_dG', opts('Delete entire file without yanking it'))
 
 -- Move selected lines
-vim.keymap.set('v', 'K', ":m '<-2<CR>gv=gv", opts('Move line up'))
-vim.keymap.set('v', 'J', ":m '>+1<CR>gv=gv", opts('Move line down'))
+vim.keymap.set('v', 'K', "<cmd>m '<-2<cr>gv=gv", opts('Move line up'))
+vim.keymap.set('v', 'J', "<cmd>m '>+1<cr>gv=gv", opts('Move line down'))
 
 -- tmux-sessionizer
 -- Ctrl-f opens the project picker
 -- Alt bindings run TS_SESSION_COMMANDS by index in the active project session.
-vim.keymap.set("n", "<C-f>", "<cmd>silent !tmux neww tmux-sessionizer<CR>", opts('Opens tmux-sessionizer project picker'))
+vim.keymap.set("n", "<C-f>", "<cmd>silent !tmux neww tmux-sessionizer<cr>", opts('Opens tmux-sessionizer project picker'))
 vim.keymap.set(
     "n", 
     "<M-1>", 
-    "<cmd>silent !tmux neww tmux-sessionizer -s 0<CR>",
+    "<cmd>silent !tmux neww tmux-sessionizer -s 0<cr>",
     opts('Runs TS_SESSION_COMMANDS[0]')
 )
 vim.keymap.set(
     "n", 
     "<M-2>", 
-    "<cmd>silent !tmux neww tmux-sessionizer -s 1<CR>",
+    "<cmd>silent !tmux neww tmux-sessionizer -s 1<cr>",
     opts('Runs TS_SESSION_COMMANDS[1]')
 )
 vim.keymap.set(
     "n", 
     "<M-3>", 
-    "<cmd>silent !tmux neww tmux-sessionizer -s 2<CR>",
+    "<cmd>silent !tmux neww tmux-sessionizer -s 2<cr>",
     opts('Runs TS_SESSION_COMMANDS[2]')
 )
 vim.keymap.set(
     "n", 
     "<M-4>", 
-    "<cmd>silent !tmux neww tmux-sessionizer -s 3<CR>",
+    "<cmd>silent !tmux neww tmux-sessionizer -s 3<cr>",
     opts('Runs TS_SESSION_COMMANDS[3]')
 )

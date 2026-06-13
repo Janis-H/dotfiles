@@ -5,7 +5,7 @@ return {
         opts = {},
     },
 
-    -- Connect Mason-installed LSP servers to nvim-lspconfig
+    -- Auto-install LSP servers listed by nvim-lspconfig name
     {
         "mason-org/mason-lspconfig.nvim",
         dependencies = {

@@ -10,7 +10,10 @@ require('config.options')
 require('config.lazy')
 
 -- Custom :Commands
--- require('config.commands')
+require('config.commands')
+
+-- Event-based behavior
+require('config.autocmds')
 
 -- General keymaps not owned by plugins
 require('config.keymaps')
