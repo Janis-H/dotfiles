@@ -34,8 +34,9 @@ vim.keymap.set('v', '<leader>p', '"_dp', opts('Delete current selection, yank in
 
 -- System clipboard
 vim.keymap.set({ 'n', 'v'}, '<leader>y', '"+y', opts('Yank into system clipboard'))
-vim.keymap.set('n', '<leader>p', '"+p', opts('Paste from system keyboard below'))
-vim.keymap.set('n', '<leader>P', '"+P', opts('Paste from system keyboard above'))
+vim.keymap.set('n', '<leader>p', '<cmd>put +<cr>', opts('Paste from system keyboard below'))
+vim.keymap.set('n', '<leader>P', '<cmd>-1put +<cr>', opts('Paste from system keyboard above'))
+vim.keymap.set("x", '<leader>r', '"_d"+P', opts('Paste clipboard over selection') )
 
 -- Entire file actions
 vim.keymap.set('n', '<leader>Y', 'gg"+yG', opts('Yank entire file into system clipboard'))
