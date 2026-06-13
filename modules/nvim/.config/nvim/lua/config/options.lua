@@ -11,11 +11,17 @@ vim.opt.number = true
 vim.opt.relativenumber = true
 vim.opt.scrolloff = 10
 vim.opt.shiftwidth = 4
+vim.opt.signcolumn = "yes"
 vim.opt.smartcase = true
 vim.opt.smartindent = true
 vim.opt.softtabstop = 4
 vim.opt.tabstop = 4 
 vim.opt.termguicolors = true -- enable true colors support
 vim.opt.title = true
+vim.opt.updatetime = 300
 vim.opt.wildmenu = true
 vim.opt.wrap = true
+
+vim.cmd('syntax enable')
+vim.cmd('filetype plugin indent on')
+

@@ -6,15 +6,8 @@
 vim.g.mapleader = " " -- Space as the leader key
 vim.g.maplocalleader = "\\"
 
--- Basic Settings
 require('config.options')
-
--- Synax highlighting and filetype plugins
-vim.cmd('syntax enable')
-vim.cmd('filetype plugin indent on')
-
--- Color Scheme: 
-vim.cmd.colorscheme("gruvbox")
+require('config.lazy')
 
 -- Basic remaps:
 local function opts(desc)
