@@ -4,6 +4,7 @@
 set -euo pipefail
 
 DOTFILES_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+STOW_SETS_DIR="$DOTFILES_DIR/stow-sets"
 
 # --- Source helper functions ---
 source "${DOTFILES_DIR}/lib/log.sh"
@@ -15,8 +16,8 @@ os="$(detect_os)"
 info "OS: $os"
 
 # --- Source OS-specific stow modules ---
-source "$STOW_MODULES_DIR/common.sh"
-source "$STOW_MODULES_DIR/$os.sh"
+source "$STOW_SETS_DIR/common.sh"
+source "$STOW_SETS_DIR/$os.sh"
 
 # --- Stow config files ---
 unstow_all_modules \
