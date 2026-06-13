@@ -30,7 +30,7 @@ vim.keymap.set('n', 'Y', 'y$', opts('Yank to end of line'))
 -- Delete / paste behavior
 vim.keymap.set("v", "<leader>d", '"_d', opts("Delete selection without yanking it"))
 vim.keymap.set('v', '<leader>p', '"_dp', opts('Delete current selection, yank into void register (to avoid replacing prev yank)'))
-vim.
+
 
 -- System clipboard
 vim.keymap.set({ 'n', 'v'}, '<leader>y', '"+y', opts('Yank into system clipboard'))

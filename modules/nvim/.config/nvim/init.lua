@@ -9,6 +9,8 @@ require('config.options')
 -- Imports lua/plugins/*.lua through lazy.nvim
 require('config.lazy')
 
+-- Custom :Commands
+-- require('config.commands')
+
 -- General keymaps not owned by plugins
 require('config.keymaps')
-

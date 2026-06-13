@@ -22,6 +22,7 @@ return {
                 "pyright",
                 "ruff",
             },
+            automatic_installation = true,
         },
     },
 }

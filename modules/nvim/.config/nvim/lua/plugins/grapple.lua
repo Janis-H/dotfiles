@@ -1,17 +1,11 @@
--- provides immediate navigation to important files
 return {
-    'cbochs/grapple.nvim',
-    dependencies = {
-        {
-            'nvim-tree/nvim-web-devicons',
-            lazy = true
-         },
-    },
+    "cbochs/grapple.nvim",
     opts = {
-        -- Decides which tag list grapple use
-        -- "git" shares one tag list across all branches in a repo
-        -- "git_branch" keeps seperate tag lists per repo + branch
+        -- Decides which tag list Grapple uses.
+        -- "git" shares one tag list across all branches in a repo.
+        -- "git_branch" keeps separate tag lists per repo + branch.
         scope = "git_branch",
+
         -- Grapple popup window size/position.
         win_opts = {
             width = 80,
@@ -28,15 +22,27 @@ return {
             title_pos = "center",
         },
     },
-    keys = {
-        { '<leader>m', grapple.toggle, desc = 'add/remove current file' },
-        { '<leader>M', grapple.toggle_tags, desc = 'open/close tag list') },
+    config = function(_, opts)
+        local grapple = require("grapple")
 
-        -- jump to Grapple tags by index
-        { '<leader>1', '<CMD>Grapple select index=1<CR>', desc = '') },
-        { '<leader>2', '<CMD>Grapple select index=2<CR>', desc = '') },
-        { '<leader>3', '<CMD>Grapple select index=3<CR>', desc = '') },
-        { '<leader>4', '<CMD>Grapple select index=4<CR>', desc = '') },
-        { '<leader>5', '<CMD>Grapple select index=5<CR>', desc = '') },
-    },
+        grapple.setup(opts)
+
+        local keymap_opts = {
+            noremap = true,
+            silent = true,
+        }
+
+        -- Add/remove current file.
+        vim.keymap.set("n", "<leader>m", grapple.toggle, keymap_opts)
+
+        -- Open/close tag list.
+        vim.keymap.set("n", "<leader>M", grapple.toggle_tags, keymap_opts)
+
+        -- Jump to Grapple tags by index.
+        vim.keymap.set("n", "<leader>1", "<cmd>Grapple select index=1<cr>", keymap_opts)
+        vim.keymap.set("n", "<leader>2", "<cmd>Grapple select index=2<cr>", keymap_opts)
+        vim.keymap.set("n", "<leader>3", "<cmd>Grapple select index=3<cr>", keymap_opts)
+        vim.keymap.set("n", "<leader>4", "<cmd>Grapple select index=4<cr>", keymap_opts)
+        vim.keymap.set("n", "<leader>5", "<cmd>Grapple select index=5<cr>", keymap_opts)
+    end,
 }
