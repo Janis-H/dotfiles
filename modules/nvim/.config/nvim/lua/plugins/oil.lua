@@ -23,7 +23,13 @@ return {
 
             ["<leader>v"] = "actions.select_vsplit",
             ["<leader>s"] = "actions.select_split",
-            ["<leader>p"] = "actions.preview",
+            ["<leader>p"] = {
+                'actions.preview',
+                opts = {
+                    vertical = true,
+                    split = 'belowright'
+                },
+            },
             ["<leader>r"] = "actions.refresh",
             ["<leader>."] = "actions.toggle_hidden",
         },
@@ -33,7 +39,7 @@ return {
     lazy = false,
     keys = {
         { '-', '<cmd>Oil<cr>', desc = 'Open parent directory' },
-        { '<leader>e', '<cmd>Oil .<cr>', desc = 'Open oil at cwd' },
+        { '<M-->', '<cmd>Oil .<cr>', desc = 'Open oil at cwd' },
 
          -- Like :Sex
         { "<leader>se", "<cmd>split | Oil<CR>", desc = "Open Oil in horizontal split" },
