@@ -10,10 +10,10 @@ end
 vim.keymap.set('n', '<leader><leader>', '<cmd>w<cr>', opts('Write to file'))
 vim.keymap.set('n', '<leader><cr>', '<cmd>ReloadConfig<cr>', opts('Source init.lua'))
 
--- File explorer
-vim.keymap.set('n', '<leader>e', '<cmd>Ex<cr>', opts('open Explorer'))
-vim.keymap.set('n', '<leader>v', '<cmd>Vex<cr>', opts('Vertical explorer'))
-vim.keymap.set('n', '<leader>s', '<cmd>Sex<cr>', opts('Horizontal explorer'))
+-- File explorer (Replaced by Oil.nvim)
+-- vim.keymap.set('n', '<leader>e', '<cmd>Ex<cr>', opts('open Explorer'))
+-- vim.keymap.set('n', '<leader>v', '<cmd>Vex<cr>', opts('Vertical explorer'))
+-- vim.keymap.set('n', '<leader>s', '<cmd>Sex<cr>', opts('Horizontal explorer'))
 
 -- Quickfix
 vim.keymap.set('n', '<leader>co', '<cmd>copen<cr>', opts('Open quickfix'))
