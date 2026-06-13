@@ -34,6 +34,7 @@ vim.keymap.set('v', '<leader>p', '"_dp', opts('Delete current selection, yank in
 
 -- System clipboard
 vim.keymap.set({ 'n', 'v'}, '<leader>y', '"+y', opts('Yank into system clipboard'))
+vim.keymap.set('n', '<leader>p', '"+p', opts('Past from system keyboard'))
 vim.keymap.set('n', '<leader>P', '"+p', opts('Past from system keyboard'))
 
 -- Entire file actions
@@ -49,26 +50,26 @@ vim.keymap.set('v', 'J', "<cmd>m '>+1<cr>gv=gv", opts('Move line down'))
 -- Alt bindings run TS_SESSION_COMMANDS by index in the active project session.
 vim.keymap.set("n", "<C-f>", "<cmd>silent !tmux neww tmux-sessionizer<cr>", opts('Opens tmux-sessionizer project picker'))
 vim.keymap.set(
-    "n", 
-    "<M-1>", 
+    "n",
+    "<M-1>",
     "<cmd>silent !tmux neww tmux-sessionizer -s 0<cr>",
     opts('Runs TS_SESSION_COMMANDS[0]')
 )
 vim.keymap.set(
-    "n", 
-    "<M-2>", 
+    "n",
+    "<M-2>",
     "<cmd>silent !tmux neww tmux-sessionizer -s 1<cr>",
     opts('Runs TS_SESSION_COMMANDS[1]')
 )
 vim.keymap.set(
-    "n", 
-    "<M-3>", 
+    "n",
+    "<M-3>",
     "<cmd>silent !tmux neww tmux-sessionizer -s 2<cr>",
     opts('Runs TS_SESSION_COMMANDS[2]')
 )
 vim.keymap.set(
-    "n", 
-    "<M-4>", 
+    "n",
+    "<M-4>",
     "<cmd>silent !tmux neww tmux-sessionizer -s 3<cr>",
     opts('Runs TS_SESSION_COMMANDS[3]')
 )
