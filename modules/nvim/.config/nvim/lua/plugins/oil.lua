@@ -15,7 +15,18 @@ return {
             },
         },
 
-        keymaps = {},
+        keymaps = {
+            ["<C-h>"] = false,
+            ["<C-l>"] = false,
+            ["<C-k>"] = false,
+            ["<C-j>"] = false,
+
+            ["<leader>v"] = "actions.select_vsplit",
+            ["<leader>s"] = "actions.select_split",
+            ["<leader>p"] = "actions.preview",
+            ["<leader>r"] = "actions.refresh",
+            ["<leader>."] = "actions.toggle_hidden",
+        },
     },
     -- Optional dependencies
     dependencies = { "nvim-tree/nvim-web-devicons" }, -- use if you prefer nvim-web-devicons
