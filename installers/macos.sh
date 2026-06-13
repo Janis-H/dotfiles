@@ -2,50 +2,74 @@
 # Defines macOS package installation logic
 
 # --- Packages ---
-MACOS_PACKAGES=(
+MACOS_BREW_PACKAGES=(
     fd
-    fzf
-    nvim
+    git
+    jq
+    python3
     ripgrep
-    silver_searcher_ag
+    the_silver_searcher
+    stow
     tmux
     yazi
 )
 
+MACOS_BREW_CASKS=(
+    ghostty
+    zed
+)
+
 # --- Helper Functions ---
-is_installed() {
-    brew info "$1" &>/dev/null
+is_formula_installed() {
+    brew list --formula "$1" &>/dev/null
 }
 
-install_system_packages() {
+is_cask_installed() {
+    brew list --cask "$1" &>/dev/null
+}
+
+install_brew_packages() {
     local to_install=()
     local pkg
 
-    # for each argument
     for pkg in "$@"; do
-        # check if package installed
-        if is_installed "$pkg"; then
+        if is_formula_installed "$pkg"; then
             info "$pkg already installed"
-        #else add package to install array
         else
             to_install+=("$pkg")
         fi
     done
 
-    # if number of to_install is greater than 0
     if [[ ${#to_install[@]} -gt 0  ]]; then
-        # notify user about each package being installed
-        info "Installing: ${to_install[*]}"
-    
-        # TODO: find way to brew install without interaction
-        # install all packages in to_install array
+        info "Installing packages: ${to_install[*]}"
+
         brew install "${to_install[@]}"
+    fi
+}
+
+install_brew_casks() {
+    local to_install=()
+    local cask
+
+    for cask in "$@"; do
+        if is_cask_installed "$cask"; then
+            info "$cask already installed"
+        else
+            to_install+=("$cask")
+        fi
+    done
+
+    if [[ ${#to_install[@]} -gt 0  ]]; then
+        info "Installing casks: ${to_install[*]}"
+
+        brew install --cask "${to_install[@]}"
     fi
 }
 
 # --- Install packages ---
 install_macos() {
     # TODO: install homebrew (for installing command-line software)
-    install_system_packages "${MACOS_PACKAGES[@]}"
+    install_brew_packages "${MACOS_BREW_PACKAGES[@]}"
+    install_brew_casks "${MACOS_BREW_CASKS[@]}"
     install_external_tools
 }

@@ -4,18 +4,22 @@
 # --- Packages ---
 # TODO: add hyprland and/or sway
 ARCH_PACKAGES=(
+    curl
     fd
-    fzf
     ghostty
     git
+    gzip
     jq
+    python
+    python-pip
     ripgrep
-    rofi
-    silver_searcher_ag
+    the_silver_searcher
     stow
+    tar
     tmux
+    unzip
     yazi
-    zsh 
+    zsh
 )
 
 # --- Helper Functions ---
@@ -42,7 +46,7 @@ install_system_packages() {
     if [[ ${#to_install[@]} -gt 0  ]]; then
         # notify user about each package being installed
         info "Installing: ${to_install[*]}"
-    
+
         # install all packages in to_install array
         sudo pacman -Sy --needed "${to_install[@]}"
     fi
