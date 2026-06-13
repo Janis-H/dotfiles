@@ -28,6 +28,16 @@ is_cask_installed() {
     brew list --cask "$1" &>/dev/null
 }
 
+ensure_homebrew() {
+    if command -v brew &>/dev/null; then
+        info "Homebrew already installed"
+        return
+    fi
+
+    info "Installing Homebrew"
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+}
+
 install_brew_packages() {
     local to_install=()
     local pkg
@@ -69,7 +79,10 @@ install_brew_casks() {
 # --- Install packages ---
 install_macos() {
     # TODO: install homebrew (for installing command-line software)
+    ensure_homebrew
+
     install_brew_packages "${MACOS_BREW_PACKAGES[@]}"
     install_brew_casks "${MACOS_BREW_CASKS[@]}"
+
     install_external_tools
 }
