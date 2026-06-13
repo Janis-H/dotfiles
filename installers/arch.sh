@@ -4,21 +4,29 @@
 # --- Packages ---
 # TODO: add hyprland and/or sway
 ARCH_PACKAGES=(
+    bat
     curl
+    diffutils
     fd
+    fzf
     ghostty
     git
     gzip
     jq
+    lazygit
+    neovim
     python
     python-pip
     ripgrep
-    the_silver_searcher
+    shellcheck
+    shfmt
     stow
     tar
+    the_silver_searcher
     tmux
     unzip
     yazi
+    zoxide
     zsh
 )
 
@@ -56,6 +64,4 @@ install_system_packages() {
 install_arch() {
     install_system_packages "${ARCH_PACKAGES[@]}"
     install_external_tools
-    # TODO: create post-install-script
-    # - set zsh as default shell
 }

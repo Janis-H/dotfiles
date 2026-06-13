@@ -3,15 +3,34 @@
 
 # --- Packages ---
 MACOS_BREW_PACKAGES=(
+    bat
+    coreutils
+    curl
+    diffutils
     fd
+    findutils
+    fzf
+    gawk
     git
+    gnu-sed
+    grep
+    gzip
     jq
+    lazygit
+    neovim
     python3
     ripgrep
-    the_silver_searcher
+    shellcheck
+    shfmt
     stow
+    the_silver_searcher
     tmux
+    tree
+    unzip
+    wget
     yazi
+    zoxide
+    zsh
 )
 
 MACOS_BREW_CASKS=(
@@ -26,6 +45,19 @@ is_formula_installed() {
 
 is_cask_installed() {
     brew list --cask "$1" &>/dev/null
+}
+
+ensure_xcode_tools() {
+    if -pkgutil --pkg-info=com.apple.pkg.CLTools_Executables &>/dev/null; then
+        info "Xcode Command Line Tools already installed"
+        return
+    fi
+
+    info "Installing Xcode Command Line Tools"
+    xcode-select --install
+
+    info "Finish the macOS install prompt, then rerun this script"
+    exit 1
 }
 
 ensure_homebrew() {
@@ -78,7 +110,7 @@ install_brew_casks() {
 
 # --- Install packages ---
 install_macos() {
-    # TODO: install homebrew (for installing command-line software)
+    ensure_xcode_tools
     ensure_homebrew
 
     install_brew_packages "${MACOS_BREW_PACKAGES[@]}"
