@@ -7,7 +7,13 @@
 source "$DOTFILES_DIR/lib/log.sh"
 
 # --- Setup functions ---
-set_default_shell_to_zsh() {
+create_dev_dirs() {
+    mkdir -p "$HOME/dev"
+    mkdir -p "$HOME/dev/scripts"
+    mkdir -p "$HOME/.local/bin"
+}
+
+set_default_shell() {
     if [[ "$SHELL" == "$(command -v zsh)" ]]; then
         info "Default shell already set to zsh"
         return 0
@@ -61,9 +67,18 @@ install_tmux_plugin_manager() {
 
         git clone https://github.com/tmux-plugins/tpm \
             "$tmux_plugins_dir/tpm"
-    else 
+    else
         info "tmux plugin manager already installed"
     fi
+}
+
+setup_git_defaults() {
+    git config --global init.defaultBranch main
+    git config --global core.editor nvim
+    git config --global push.autoSetupRemote true
+    git config --global fetch.prune true
+
+    git config --global diff.coloredMoved zebra
 }
 
 # --- Post Install Function ---
@@ -73,10 +88,15 @@ run_post_install() {
     # script args
     use_omz=true
 
+    # prepare directories
+    create_dev_dirs
+
     # configuration
-    set_default_shell_to_zsh
+    set_default_shell
+    setup_git_defaults
 
     # install plugins
     install_tmux_plugin_manager
     install_zsh_plugins "$use_omz"
+
 }
