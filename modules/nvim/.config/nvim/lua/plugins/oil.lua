@@ -22,7 +22,7 @@ return {
     lazy = false,
     keys = {
         { '-', '<cmd>Oil<cr>', desc = 'Open parent directory' },
-        { '<leader>e', '<cmd>Oil<cr>', desc = 'Open file explorer' },
+        { '<leader>e', '<cmd>Oil .<cr>', desc = 'Open oil at cwd' },
 
          -- Like :Sex
         { "<leader>se", "<cmd>split | Oil<CR>", desc = "Open Oil in horizontal split" },
