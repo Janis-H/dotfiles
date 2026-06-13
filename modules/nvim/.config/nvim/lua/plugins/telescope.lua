@@ -23,11 +23,21 @@ return {
                 -- configure telescope window + preview
                 layout_strategy = "horizontal",
                 layout_config = {
-                    width = 0.9,
+                    width = 0.95,
                     height = 0.9,
                     horizontal = {
                         preview_width = 0.55,
                         preview_cutoff = 1,
+                    },
+                },
+
+                -- close telescope window with C-c
+                mappings = {
+                    i = {
+                        ['C-c'] = require('telescope.actions').close,
+                    },
+                    n = {
+                        ['C-c'] = require('telescope.actions').close,
                     },
                 },
 
