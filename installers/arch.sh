@@ -1,34 +1,10 @@
 #!/usr/bin/env bash
 # Defines Arch-family package installation logic
 
-# --- Packages ---
-# TODO: add hyprland and/or sway
-ARCH_PACKAGES=(
-    bat
-    curl
-    diffutils
-    fd
-    fzf
-    ghostty
-    git
-    gzip
-    jq
-    lazygit
-    neovim
-    python
-    python-pip
-    ripgrep
-    shellcheck
-    shfmt
-    stow
-    tar
-    the_silver_searcher
-    tmux
-    unzip
-    yazi
-    zoxide
-    zsh
-)
+: "${DOTFILES_DIR:?DOTFILES_DIR must be set before sourcing installers/arch.sh}"
+
+# --- Source packages ---
+source "$DOTFILES_DIR/packages/arch.sh"
 
 # --- Helper Functions ---
 is_installed() {
@@ -62,6 +38,6 @@ install_system_packages() {
 
 # --- Install packages ---
 install_arch() {
-    install_system_packages "${ARCH_PACKAGES[@]}"
+    install_system_packages "${PACKAGES[@]}"
     install_external_tools
 }

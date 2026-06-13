@@ -8,33 +8,17 @@ DOTFILES_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 # --- Source helper functions ---
 source "${DOTFILES_DIR}/lib/log.sh"
 source "${DOTFILES_DIR}/lib/detect-os.sh"
-source "${DOTFILES_DIR}/lib/stow-modules.sh"
 source "${DOTFILES_DIR}/lib/stow-actions.sh"
-
 
 # --- OS info ---
 os="$(detect_os)"
 info "OS: $os"
 
-# --- Unstow config files ---
-case "$os" in
-    debian)
-        unstow_all_modules \
-            "${COMMON_MODULES[@]}" \
-            "${DEBIAN_MODULES[@]}"
-        ;;
-    arch)
-        unstow_all_modules \
-            "${COMMON_MODULES[@]}" \
-            "${ARCH_MODULES[@]}"
-        ;;
-    macos)
-        unstow_all_modules \
-            "${COMMON_MODULES[@]}" \
-            "${MACOS_MODULES[@]}"
-        ;;
-    *)
-        error "Unsupported OS: $os"
-        exit 1
-        ;;
-esac
+# --- Source OS-specific stow modules ---
+source "$STOW_MODULES_DIR/common.sh"
+source "$STOW_MODULES_DIR/$os.sh"
+
+# --- Stow config files ---
+unstow_all_modules \
+    "${COMMON_MODULES[@]}" \
+    "${OS_MODULES[@]}"

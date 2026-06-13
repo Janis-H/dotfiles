@@ -4,6 +4,7 @@
 set -euo pipefail
 
 DOTFILES_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+STOW_MODULES_DIR="$DOTFILES_DIR/stow-modules"
 
 # --- Source helper functions ---
 source "${DOTFILES_DIR}/lib/log.sh"
@@ -15,25 +16,11 @@ source "${DOTFILES_DIR}/lib/stow-actions.sh"
 os="$(detect_os)"
 info "OS: $os"
 
+# --- Source OS-specific stow modules ---
+source "$STOW_MODULES_DIR/common.sh"
+source "$STOW_MODULES_DIR/$os.sh"
+
 # --- Stow config files ---
-case "$os" in
-    debian)
-        stow_all_modules \
-            "${COMMON_MODULES[@]}" \
-            "${DEBIAN_MODULES[@]}"
-        ;;
-    arch)
-        stow_all_modules \
-            "${COMMON_MODULES[@]}" \
-            "${ARCH_MODULES[@]}"
-        ;;
-    macos)
-        stow_all_modules \
-            "${COMMON_MODULES[@]}" \
-            "${MACOS_MODULES[@]}"
-        ;;
-    *)
-        error "Unsupported OS: $os"
-        exit 1
-        ;;
-esac
+stow_all_modules \
+    "${COMMON_MODULES[@]}" \
+    "${OS_MODULES[@]}"

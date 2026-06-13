@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Defines shared post-install setup after package and external tool installation
 
-: "${DOTFILES_DIR:?DOTFILES_DIR must be set before sourcing post-install.sh}"
+: "${DOTFILES_DIR:?DOTFILES_DIR must be set before sourcing installers/post-install.sh}"
 
 # --- Source helper functions ---
 source "$DOTFILES_DIR/lib/log.sh"

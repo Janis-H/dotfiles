@@ -1,40 +1,10 @@
 #!/usr/bin/env bash
 # Defines Debian-family package installtion logic
 
-# --- Packages ---
-DEBIAN_PACKAGES=(
-    # Desktop (GUI)
-    i3
-    picom
-    rofi
+: "${DOTFILES_DIR:?DOTFILES_DIR must be set before sourcing debian.sh}"
 
-    # Terminal (Server)
-    curl
-    fd-find
-    ghostty
-    git
-    gzip
-    jq
-    python3
-    python3-pip
-    python3-venv
-    ripgrep
-    shellcheck
-    shfmt
-    silversearcher-ag
-    stow
-    tar
-    tmux
-    unzip
-    yazi
-    zoxide
-    zsh
-)
-
-# Available in apt, but Debian versions tend to lag behind.
-# Installed externally instead.
-# - nvim
-# - fzf
+# --- Source packages ---
+source "$DOTFILES/packages/debian.sh"
 
 # --- Helper Functions ---
 is_installed() {
@@ -68,6 +38,6 @@ install_system_packages() {
 
 # --- Install packages ---
 install_debian() {
-    install_system_packages "${DEBIAN_PACKAGES[@]}"
+    install_system_packages "${PACKAGES[@]}"
     install_external_tools
 }

@@ -1,42 +1,10 @@
 #!/usr/bin/env bash
 # Defines macOS package installation logic
 
-# --- Packages ---
-MACOS_BREW_PACKAGES=(
-    bat
-    coreutils
-    curl
-    diffutils
-    fd
-    findutils
-    fzf
-    gawk
-    git
-    gnu-sed
-    grep
-    gzip
-    jq
-    lazygit
-    neovim
-    python3
-    ripgrep
-    shellcheck
-    shfmt
-    stow
-    the_silver_searcher
-    tmux
-    tree
-    unzip
-    wget
-    yazi
-    zoxide
-    zsh
-)
+: "${DOTFILES_DIR:?DOTFILES_DIR must be set before sourcing installers/macos.sh}"
 
-MACOS_BREW_CASKS=(
-    ghostty
-    zed
-)
+# --- Source packages ---
+source "$DOTFILES_DIR/packages/macos.sh"
 
 # --- Helper Functions ---
 is_formula_installed() {
@@ -113,8 +81,8 @@ install_macos() {
     ensure_xcode_tools
     ensure_homebrew
 
-    install_brew_packages "${MACOS_BREW_PACKAGES[@]}"
-    install_brew_casks "${MACOS_BREW_CASKS[@]}"
+    install_brew_packages "${PACKAGES[@]}"
+    install_brew_casks "${CASKS[@]}"
 
     install_external_tools
 }

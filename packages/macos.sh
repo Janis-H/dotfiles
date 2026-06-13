@@ -1,0 +1,36 @@
+#!/usr/bin/env bash
+PACKAGES=(
+    bat
+    coreutils
+    curl
+    diffutils
+    fd
+    findutils
+    fzf
+    gawk
+    git
+    gnu-sed
+    grep
+    gzip
+    jq
+    lazygit
+    neovim
+    python3
+    ripgrep
+    shellcheck
+    shfmt
+    stow
+    the_silver_searcher
+    tmux
+    tree
+    unzip
+    wget
+    yazi
+    zoxide
+    zsh
+)
+
+CASKS=(
+    ghostty
+    zed
+)

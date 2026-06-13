@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 # Defines the OS detection helpers used to select the correct install and stow behavior
+: "${DOTFILES_DIR:?DOTFILES_DIR must be set before sourcing detect-os.sh}"
 
 detect_os() {
     local kernel_name="$(uname -s)"
@@ -17,7 +18,7 @@ detect_os() {
           echo "linux-unknown"
         fi
         ;;
-    *) 
+    *)
         echo "unsupported"
         ;;
     esac
