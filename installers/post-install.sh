@@ -11,6 +11,7 @@ create_dev_dirs() {
     mkdir -p "$HOME/dev"
     mkdir -p "$HOME/dev/scripts"
     mkdir -p "$HOME/.local/bin"
+    mkdir -p "$HOME/.config"
 }
 
 set_default_shell() {
@@ -22,6 +23,25 @@ set_default_shell() {
     info "Setting default shell to zsh"
 
     chsh -s "$(command -v zsh)"
+}
+setup_fzf() {
+    if ! command -v fzf &>/dev/null; then
+        info "fzf is not installed, skipping"
+        return
+    fi
+
+    info "fzf installed"
+
+    # fzf shell integration should be handled by .zshrc.
+    # This function only exists as a post-install sanity check.
+
+    if fzf --zsh &>/dev/null; then
+        info "fzf installed with built-in zsh integration"
+        return
+    fi
+
+    info "fzf installed, but fzf --zsh is not supported"
+    info "Make sure .zshrc has fallback paths for fzf keybindings/completion"
 }
 
 install_zsh_plugins() {
@@ -72,6 +92,15 @@ install_tmux_plugin_manager() {
     fi
 }
 
+setup_local_bin() {
+    mkdir -p "$HOME/.local/bin"
+
+    if [[ ":$PATH:" != *":$HOME/.local/bin:"* ]]; then
+        info "$HOME/.local/bin is not currently in PATH"
+        info "Make sure your shell config adds it"
+    fi
+}
+
 setup_git_defaults() {
     git config --global init.defaultBranch main
     git config --global core.editor nvim
@@ -90,13 +119,14 @@ run_post_install() {
 
     # prepare directories
     create_dev_dirs
+    setup_local_bin
 
     # configuration
     set_default_shell
+    setup_fzf
     setup_git_defaults
 
     # install plugins
     install_tmux_plugin_manager
     install_zsh_plugins "$use_omz"
-
 }
