@@ -1,3 +1,4 @@
+-- Open LazyGit from inside Neovim
 return {
     'kdheepak/lazygit.nvim',
     lazy = true,

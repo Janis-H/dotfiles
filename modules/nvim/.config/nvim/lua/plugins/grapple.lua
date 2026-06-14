@@ -1,3 +1,4 @@
+-- Bookmark and jump between project files
 return {
     'cbochs/grapple.nvim',
     opts = {

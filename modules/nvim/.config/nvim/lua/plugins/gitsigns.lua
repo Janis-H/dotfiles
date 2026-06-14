@@ -1,4 +1,4 @@
--- buffer integration for git
+-- Show Git changes in the sign column
 return {
     'lewis6991/gitsigns.nvim',
     event = { 'BufReadPre', 'BufNewFile'},

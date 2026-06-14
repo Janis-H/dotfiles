@@ -1,4 +1,4 @@
--- Configure and enable Neovim LSP servers.
+-- Configure and enable Neovim language servers.
 return {
     "neovim/nvim-lspconfig",
     dependencies = {
@@ -8,7 +8,7 @@ return {
     config = function()
         local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
-        -- servers are installed via Mason
+        -- servers are installed via Mason.lua
         local servers = {
             "lua_ls",
             "ts_ls",

@@ -1,3 +1,4 @@
+-- Render Markdown with better visual formatting
 return {
     "MeanderingProgrammer/render-markdown.nvim",
     dependencies = {

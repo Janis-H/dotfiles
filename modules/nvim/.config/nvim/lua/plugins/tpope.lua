@@ -1,11 +1,11 @@
 return {
-    -- comment stuff out with gcc
+    -- Comment and uncomment code quickly
     -- gcc      comment/uncomment current line
     -- gc       comment/uncomment visual selection or motion
-    -- gcap     comment/uncomment paragraphlug() 
+    -- gcap     comment/uncomment paragraphlug()
     'tpope/vim-commentary',
 
-    -- mappings for easy deleting, changing and adding surrounding pairs
+    -- Add, change, and delete surrounding characters
     -- ysiw"    surround word with quotes
     -- cs"'     change surrounding " to '
     -- ds"      delete surrounding "

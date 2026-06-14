@@ -1,4 +1,4 @@
--- completion engine for neovim
+-- Configure autocomplete
 return {
     "hrsh7th/nvim-cmp",
     dependencies = {

@@ -1,3 +1,4 @@
+-- Use telescope for vim.ui.select prompts
 return {
     "nvim-telescope/telescope-ui-select.nvim",
     dependencies = {

@@ -1,3 +1,4 @@
+-- Edit directories like normal buffers
 return {
     'stevearc/oil.nvim',
     opts = {

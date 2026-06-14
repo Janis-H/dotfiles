@@ -1,3 +1,4 @@
+-- Set the editor colorscheme
 return {
     {
         'ellisonleao/gruvbox.nvim',

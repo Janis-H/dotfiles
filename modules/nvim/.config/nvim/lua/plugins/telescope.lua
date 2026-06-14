@@ -1,4 +1,4 @@
--- fuzzy finder over lists
+-- Fuzzy find files, text, buffers, help, and more
 return {
     "nvim-telescope/telescope.nvim",
     dependencies = {

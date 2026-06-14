@@ -1,4 +1,4 @@
--- tmux navigator
+-- Navigate seamlessly between Neovim and tmux panes
 return {
   "christoomey/vim-tmux-navigator",
   cmd = {
