@@ -41,10 +41,10 @@ return {
         },
 
         -- Jump to Grapple tags by index.
-        { '<leader>1', '<cmd>Grapple select index=1<cr>', desc = '' },
-        { '<leader>2', '<cmd>Grapple select index=2<cr>', desc = '' },
-        { '<leader>3', '<cmd>Grapple select index=3<cr>', desc = '' },
-        { '<leader>4', '<cmd>Grapple select index=4<cr>', desc = '' },
-        { '<leader>5', '<cmd>Grapple select index=5<cr>', desc = '' },
+        { '<leader>1', '<cmd>Grapple select index=1<cr>', desc = 'Jump to grapple index 1' },
+        { '<leader>2', '<cmd>Grapple select index=2<cr>', desc = 'Jump to grapple index 2' },
+        { '<leader>3', '<cmd>Grapple select index=3<cr>', desc = 'Jump to grapple index 3' },
+        { '<leader>4', '<cmd>Grapple select index=4<cr>', desc = 'Jump to grapple index 4' },
+        { '<leader>5', '<cmd>Grapple select index=5<cr>', desc = 'Jump to grapple index 5' },
     },
 }
