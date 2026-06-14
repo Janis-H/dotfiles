@@ -13,7 +13,7 @@ require('config.lazy')
 require('config.commands')
 
 -- Event-based behavior
-require('config.autocmds')
+require('config.autocommands')
 
 -- General keymaps not owned by plugins
 require('config.keymaps')
