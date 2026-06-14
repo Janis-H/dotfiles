@@ -8,7 +8,7 @@ end
 
 -- File actions
 vim.keymap.set('n', '<leader><leader>', '<cmd>w<cr>', opts('Write to file'))
-vim.keymap.set('n', '<leader><cr>', '<cmd>ReloadConfig<cr>', opts('Source init.lua'))
+vim.keymap.set('n', '<leader><cr>', '<cmd>ReloadLazyPlugin<cr>', opts('Reload Lazy Plugin'))
 
 -- File explorer (Replaced by Oil.nvim)
 -- vim.keymap.set('n', '<leader>e', '<cmd>Ex<cr>', opts('open Explorer'))
