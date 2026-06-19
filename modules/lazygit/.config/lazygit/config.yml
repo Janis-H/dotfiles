@@ -1,0 +1,12 @@
+gui:
+  commandLogSize: 8
+  scrollHeight: 4
+  scrollPastBottom: false
+  showFileTree: true
+os:
+  editPreset: "nvim"
+keybinding:
+  universal:
+    quit: "q"
+    quit-alt1: "<disabled>"
+    return: "<c-c>"
