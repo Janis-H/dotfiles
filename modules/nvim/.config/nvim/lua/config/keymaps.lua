@@ -10,6 +10,10 @@ end
 vim.keymap.set('n', '<leader><leader>', '<cmd>w<cr>', opts('Write to file'))
 vim.keymap.set('n', '<leader><cr>', '<cmd>ReloadLazyPlugin<cr>', opts('Reload Lazy Plugin'))
 
+-- Navigation
+vim.keymap.set('n', '<C-d>', '<C-d>zz', opts('Move half-page down'))
+vim.keymap.set('n', '<C-u>', '<C-u>zz', opts('Move half-page up'))
+
 -- File explorer (Replaced by Oil.nvim)
 -- vim.keymap.set('n', '<leader>e', '<cmd>Ex<cr>', opts('open Explorer'))
 -- vim.keymap.set('n', '<leader>v', '<cmd>Vex<cr>', opts('Vertical explorer'))
@@ -30,7 +34,6 @@ vim.keymap.set('n', 'Y', 'y$', opts('Yank to end of line'))
 -- Delete / paste behavior
 vim.keymap.set("v", "<leader>d", '"_d', opts("Delete selection without yanking it"))
 vim.keymap.set('v', '<leader>p', '"_dp', opts('Delete current selection, yank into void register (to avoid replacing prev yank)'))
-
 
 -- System clipboard
 vim.keymap.set({ 'n', 'v'}, '<leader>y', '"+y', opts('Yank into system clipboard'))
