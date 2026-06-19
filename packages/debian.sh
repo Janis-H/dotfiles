@@ -2,6 +2,7 @@
 PACKAGES=(
     # Desktop (GUI)
     i3
+    ghostty
     picom
     rofi
 
@@ -9,7 +10,6 @@ PACKAGES=(
     build-essential
     curl
     fd-find
-    ghostty
     git
     gzip
     jq
