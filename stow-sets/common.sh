@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
-COMMON_MODULES={
+COMMON_MODULES=(
     bat
     lazygit
     nvim
     scripts
     tmux
     zsh
-}
+)
