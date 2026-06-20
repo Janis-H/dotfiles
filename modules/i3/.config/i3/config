@@ -444,7 +444,7 @@ assign [class=$teleprompter_class] workspace number $ws_left
 assign [class=$qprompt_class] workspace number $ws_left
 assign [class=$zoom_class] workspace number $ws_left
 
-# Assign applications to workspace 1 (center_monitor)
+# Assign applications to numbered workspaces (center_monitor)
 assign [class=$librewolf_class] workspace number $ws1
 assign [class=$steam_class] workspace number $ws1
 assign [class=$zen_browser_class] workspace number $ws1
