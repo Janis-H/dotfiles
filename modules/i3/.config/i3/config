@@ -319,9 +319,6 @@ set $calibre_class "calibre"
 set $discord_cmd "flatpak run com.discordapp.Discord"
 set $discord_class "discord"
 
-set $freetube_cmd "flatpak run io.freetubeapp.FreeTube"
-set $freetube_class "FreeTube"
-
 set $gnome_parted_cmd "gnome-parted"
 set $gnome_parted_class "Gnome-parted"
 
@@ -453,7 +450,6 @@ assign [class=$zen_browser_class] workspace number $ws1
 assign [class=$1password_class] workspace number $ws_right
 assign [class=$calibre_class] workspace number $ws_right
 assign [class=$discord_class] workspace number $ws_right
-assign [class=$freetube_class] workspace number $ws_right
 assign [class=$lotion_class] workspace number $ws_right
 assign [class=$proton_mail_class] workspace number $ws_right
 assign [class=$proton_pass_class] workspace number $ws_right
