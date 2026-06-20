@@ -233,9 +233,9 @@ client.urgent           $u-bgcolor      $u-bgcolor      $text           $u-bgcol
 # there is one window
 smart_gaps on
 # Inner gaps for all windows: space between two adjacent windows (or split containers)
-gaps inner 15
+gaps inner 20
 # Outer gaps for all windws: space along the screen edges
-gaps outer 5
+gaps outer 10
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
