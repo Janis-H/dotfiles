@@ -128,7 +128,7 @@ run_post_install() {
     info "\n\t--- Starting Post-Install ---\n"
 
     # function args
-    use_omz=true
+    use_omz=false
 
     # prepare directories
     create_dev_dirs
