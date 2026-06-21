@@ -1,8 +1,9 @@
 #!/usr/bin/env bash
-COMMON_MODULES=(
+export COMMON_MODULES=(
     bat
     lazygit
     nvim
+    ohmyposh
     scripts
     tmux
     zsh
