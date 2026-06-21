@@ -3,38 +3,11 @@ ZSH_CONFIG_DIR="$HOME/.config/zsh"
 # Environment variables and PATH setup
 source "$ZSH_CONFIG_DIR/env.zsh"
 
+# Shell aliases
+source "$ZSH_CONFIG_DIR/aliases.zsh"
+
 # Shell keybindings
 source "$ZSH_CONFIG_DIR/keybindings.zsh"
-
-#############################################
-# Oh My Zsh setup
-#############################################
-# export ZSH="$HOME/.oh-my-zsh"
-
-# ZSH_THEME="robbyrussell"
-
-# plugins=(
-#   git
-#   fzf
-#   # zsh-autosuggestions
-#   zsh-syntax-highlighting
-# )
-
-# # Load Oh My Zsh
-# source "$ZSH/oh-my-zsh.sh"
-
-#############################################
-# Custom Zsh configuration
-#############################################
-
-# Custom Oh My Zsh folder (optional override)
-# export ZSH_CUSTOM="$HOME/.oh-my-zsh/custom"
-
-# Load user aliases (keep aliases separate from env vars)
-if [ -f "$ZSH_CUSTOM/aliases.zsh" ]; then
-  source "$ZSH_CUSTOM/aliases.zsh"
-fi
-
 
 #############################################
 # Optional / commented settings (reference only)
