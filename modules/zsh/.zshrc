@@ -2,6 +2,7 @@
 # PATH (put early so everything can use it)
 #############################################
 export PATH="$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH"
+export PATH="$HOME/.fzf/bin:$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH"
 
 # Neovim (manual installation)
 export PATH="/opt/nvim-linux-x86_64/bin:$PATH"
