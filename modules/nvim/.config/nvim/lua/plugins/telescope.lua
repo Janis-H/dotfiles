@@ -108,10 +108,13 @@ return {
         -- File and text search.
         { "<leader>ff", "<cmd>Telescope find_files<cr>", desc = "Find files" },
         { "<leader>fg", "<cmd>Telescope live_grep<cr>", desc = "Search text" },
+        { "<leader>fs", "<cmd>Telescope lsp_document_symbols<cr>", desc = "LSP document symbols" },
         {
             "<leader>/",
             function()
-                require("telescope.builtin").current_buffer_fuzzy_find()
+                local builtin = require("telescope.builtin")
+
+                builtin.current_buffer_fuzzy_find()
             end,
             desc = "Fuzzy find in current buffer",
         },
