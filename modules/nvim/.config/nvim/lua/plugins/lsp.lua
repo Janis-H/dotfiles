@@ -23,7 +23,7 @@ local function get_server_configs()
         lua_ls = {
             settings = {
                 Lua = {
-                    diagnositics = {
+                    diagnostics = {
                         globals = { "vim" },
                     },
                 },
@@ -40,7 +40,7 @@ local function get_server_configs()
         yamlls = {
             settings = {
                 yaml = {
-                    schmeStore = {
+                    schemaStore = {
                         enable = false,
                         url = "",
                     },
@@ -75,7 +75,6 @@ return {
         "mason-org/mason-lspconfig.nvim",
         dependencies = {
             "mason-org/mason.nvim",
-            "neovim/nvim-lspconfig",
         },
         opts = {
             ensure_installed = server_names,
