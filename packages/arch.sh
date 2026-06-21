@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # TODO: add hyprland and/or sway
-ARCH_PACKAGES=(
+export ARCH_PACKAGES=(
     bat
     base-devel
     curl

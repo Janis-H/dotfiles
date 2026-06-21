@@ -94,6 +94,10 @@ install_oh_my_zsh() {
     sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 }
 
+install_oh_my_posh() {
+    curl -s https://ohmyposh.dev/install.sh | bash -s
+}
+
 # --- Wrapper ---
 install_external_tools() {
     # apt version updates too slowly
@@ -102,6 +106,9 @@ install_external_tools() {
 
     # not available in apt
     install_lazygit
-    install_oh_my_zsh
+    install_oh_my_posh
     install_zoxide
+
+    # TODO: delete once migration is done
+    # install_oh_my_zsh
 }

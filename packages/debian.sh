@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-PACKAGES=(
+export PACKAGES=(
     # Desktop (GUI)
     i3
     ghostty
