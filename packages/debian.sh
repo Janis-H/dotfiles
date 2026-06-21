@@ -24,7 +24,6 @@ export PACKAGES=(
     tar
     tmux
     unzip
-    yazi
     zoxide
     zsh
 )
