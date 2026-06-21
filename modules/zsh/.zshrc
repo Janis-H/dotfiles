@@ -109,6 +109,12 @@ fi
 # Enable fzf key bindings and autocompletion
 # [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
+# TODO: install oh-my-posh and add it to install_zsh_plugins function
+# oh-my-posh
+# if command -v oh-my-posh >/dev/null 2>&1; then
+#     eval "$(oh-my-posh init zsh --config "$HOME/.config/ohmyposh/config.toml")"
+# fi
+
 # Source other plugins
 # source "$PLUGINS_DIR/zsh-autosuggestions"
 # source "$PLUGINS_DIR/zsh-syntax-highlighting"
