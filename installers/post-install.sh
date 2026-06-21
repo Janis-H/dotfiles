@@ -89,13 +89,13 @@ install_zsh_plugins() {
         info "Installing fzf-tab"
         install_zsh_plugin \
             "https://github.com/Aloxaf/fzf-tab" \
-            "$zsh_plugins_dir/Aloxaf/fzf-tab"
+            "$zsh_plugins_dir/fzf-tab"
 
     # Install zsh-completions
     info "Installing zsh-completions"
         install_zsh_plugin \
             "https://github.com/zsh-users/zsh-completions" \
-            "$zsh_plugins_dir/zsh-users/zsh-completions"
+            "$zsh_plugins_dir/zsh-completions"
 }
 
 install_tmux_plugin_manager() {
