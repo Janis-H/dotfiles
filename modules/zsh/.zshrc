@@ -10,6 +10,9 @@ export PATH="/opt/nvim-linux-x86_64/bin:$PATH"
 # Environment variables
 #############################################
 
+#Oh My Posh themes
+export POSH_THEMES_PATH="$HOME/ohmyposh/themes"
+
 # Preferred editor (SSH-safe)
 if [[ -n $SSH_CONNECTION ]]; then
   export EDITOR="vim"
@@ -105,9 +108,6 @@ fi
 #############################################
 
 PLUGINS_DIR="$HOME/.zsh/plugins"
-
-#Oh My Posh themes
-export POSH_THEMES_PATH="$HOME/ohmyposh/themes"
 
 # Enable fzf key bindings and autocompletion
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
