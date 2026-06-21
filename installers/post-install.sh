@@ -54,30 +54,48 @@ setup_fzf() {
     info "Make sure .zshrc has fallback paths for fzf keybindings/completion"
 }
 
+install_zsh_plugin() {
+    local repo="$1"
+    local dest="$2"
+
+    # update repo or clone
+    if [[ -d "$dest/.git" ]]; then
+        info "Updating $dest"
+        git -C "$dest" pull --ff-only
+    else
+        info "Cloning $repo"
+        git clone "$repo" "$dest"
+    fi
+}
+
 install_zsh_plugins() {
     local zsh_plugins_dir="$HOME/.zsh/plugins"
 
     mkdir -p "$zsh_plugins_dir"
 
     # Install zsh-autosuggestions
-    if [[ ! -d "$zsh_plugins_dir/zsh-autosuggestions" ]]; then
-        info "Installing zsh-autosuggestions"
-
-        git clone https://github.com/zsh-users/zsh-autosuggestions \
-            "$zsh_plugins_dir/zsh-autosuggestions"
-    else
-        info "zsh-autosuggestions already installed"
-    fi
+    info "Installing zsh-autosuggestions"
+    install_zsh_plugin \
+        "https://github.com/zsh-users/zsh-autosuggestions" \
+        "$zsh_plugins_dir/zsh-autosuggestions"
 
     # Install zsh-syntax-highlighting
-    if [[ ! -d "$zsh_plugins_dir/zsh-syntax-highlighting" ]]; then
         info "Installing zsh-syntax-highlighting"
-
-        git clone https://github.com/zsh-users/zsh-syntax-highlighting.git \
+        install_zsh_plugin \
+            "https://github.com/zsh-users/zsh-syntax-highlighting.git" \
             "$zsh_plugins_dir/zsh-syntax-highlighting"
-    else
-        info "zsh-syntax-highlighting already installed"
-    fi
+
+    # Install fzf-tab
+        info "Installing fzf-tab"
+        install_zsh_plugin \
+            "https://github.com/Aloxaf/fzf-tab" \
+            "$zsh_plugins_dir/Aloxaf/fzf-tab"
+
+    # Install zsh-completions
+    info "Installing zsh-completions"
+        install_zsh_plugin \
+            "https://github.com/zsh-users/zsh-completions" \
+            "$zsh_plugins_dir/zsh-users/zsh-completions"
 }
 
 install_tmux_plugin_manager() {
