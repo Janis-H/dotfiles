@@ -8,10 +8,10 @@ ZSH_PLUGINS_DIR="$HOME/.zsh/plugins"
 source <(fzf --zsh)
 
 # fzf-tab, loaded after compinit and before autosuggestions/syntax-highlighting
-source "$ZSH_PLUGINS_DIR/fzf-tab"
+source "$ZSH_PLUGINS_DIR/fzf-tab/fzf-tab.plugin.zsh"
 
 # autosuggestions
-source "$ZSH_PLUGINS_DIR/zsh-autosuggestions"
+source "$ZSH_PLUGINS_DIR/zsh-autosuggestions/zsh-autosuggestions.zsh"
 
 # syntax highlighting must be sourced last
-source "$ZSH_PLUGINS_DIR/zsh-syntax-highlighting"
+source "$ZSH_PLUGINS_DIR/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
