@@ -11,7 +11,7 @@ export PATH="/opt/nvim-linux-x86_64/bin:$PATH"
 #############################################
 
 #Oh My Posh themes
-export POSH_THEMES_PATH="$HOME/ohmyposh/themes"
+export POSH_THEMES_PATH="$HOME/.config/ohmyposh/themes"
 
 # Preferred editor (SSH-safe)
 if [[ -n $SSH_CONNECTION ]]; then
@@ -119,6 +119,7 @@ if command -v oh-my-posh >/dev/null 2>&1; then
     gruvbox_theme="${POSH_THEMES_PATH:-$HOME/.cache/oh-my-posh/themes}/gruvbox.omp.json"
     material_theme="${POSH_THEMES_PATH:-$HOME/.cache/oh-my-posh/themes}/material.omp.json"
     pararussel_theme="${POSH_THEMES_PATH:-$HOME/.cache/oh-my-posh/themes}/pararussel.omp.json"
+    pure_theme="${POSH_THEMES_PATH:-$HOME/.cache/oh-my-posh/themes}/pure.omp.json"
     robbyrussel_theme="${POSH_THEMES_PATH:-$HOME/.cache/oh-my-posh/themes}/robbyrussell.omp.json"
 
     # apply theme
