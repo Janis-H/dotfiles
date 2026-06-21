@@ -16,6 +16,7 @@ return {
     },
     config = function()
         local telescope = require("telescope")
+        local actions = require("telescope.actions")
 
         -- first setup telescope
         telescope.setup({
@@ -34,10 +35,14 @@ return {
                 -- close telescope window with C-c
                 mappings = {
                     i = {
-                        ['C-c'] = require('telescope.actions').close,
+                        ['C-c'] = function()
+                            vim.cmd("stopinsert")
+                        end,
+                        ['<M-d>'] = actions.delete_buffer,
                     },
                     n = {
-                        ['C-c'] = require('telescope.actions').close,
+                        ['C-c'] = actions.close,
+                        ['dd'] = actions.delete_buffer,
                     },
                 },
 
