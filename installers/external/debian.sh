@@ -95,6 +95,13 @@ install_oh_my_zsh() {
 }
 
 install_oh_my_posh() {
+    if is_command_available oh-my-posh; then
+        info "Oh-my-posh is Installed"
+    fi
+
+    info "Installing oh-my-posh"
+
+    # install oh-my-posh via curl
     curl -s https://ohmyposh.dev/install.sh | bash -s
 }
 
