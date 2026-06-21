@@ -17,6 +17,7 @@ return {
     config = function()
         local telescope = require("telescope")
         local actions = require("telescope.actions")
+        local lga_actions  = require("telescope-live-grep-args.actions")
 
         -- first setup telescope
         telescope.setup({
@@ -95,6 +96,20 @@ return {
                         "--glob=!**/dist/*",
                         "--glob=!**/yarn.lock",
                         "--glob=!**/package-lock.json",
+                    },
+                },
+            },
+            extensions = {
+                live_grep_args = {
+                    auto_quoting = true, -- enable/disable auto-quoting
+                    -- define mappings
+                    mappings = { -- extend mappings
+                        i = {
+                            ["<C-k>"] = lga_actions.quote_prompt(),
+                            ["<C-i>"] = lga_actions.quote_prompt({ postfix = "--iglob " }),
+                            -- freeze the current list and start a fuzzy search in the frozen list
+                            ["<C-space>"] = lga_actions.to_fuzzy_refine,
+                        }
                     },
                 },
             },
