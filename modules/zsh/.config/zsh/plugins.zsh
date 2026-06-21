@@ -5,7 +5,7 @@
 ZSH_PLUGINS_DIR="$HOME/.zsh/plugins"
 
 # Enable fzf key bindings and autocompletion
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+source <(fzf --zsh)
 
 # fzf-tab, loaded after compinit and before autosuggestions/syntax-highlighting
 source "$PLUGINS_DIR/fzf-tab"

@@ -6,6 +6,9 @@ source "$ZSH_CONFIG_DIR/env.zsh"
 # zsh options and history behavior
 source "$ZSH_CONFIG_DIR/options.zsh"
 
+# completion setup and styling
+source "$ZSH_CONFIG_DIR/completion.zsh"
+
 # aliases and command shortcuts
 source "$ZSH_CONFIG_DIR/aliases.zsh"
 
