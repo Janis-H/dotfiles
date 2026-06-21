@@ -1,3 +1,4 @@
+-- Statusline showing mode, file, Git, diagnostics, and position
 return {
     'nvim-lualine/lualine.nvim',
     dependencies = { 'nvim-tree/nvim-web-devicons' },

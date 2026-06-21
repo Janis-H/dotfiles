@@ -1,3 +1,4 @@
+-- Fast buffer switching iwth a compact jump menu
 return {
     "leath-dub/snipe.nvim",
     keys = {
