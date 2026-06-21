@@ -61,19 +61,19 @@ bindkey -s '\e4' 'tmux-sessionizer -s 3\n' # Alt-4 or Option-4
 #############################################
 # Oh My Zsh setup
 #############################################
-export ZSH="$HOME/.oh-my-zsh"
+# export ZSH="$HOME/.oh-my-zsh"
 
-ZSH_THEME="robbyrussell"
+# ZSH_THEME="robbyrussell"
 
-plugins=(
-  git
-  fzf
-  # zsh-autosuggestions
-  zsh-syntax-highlighting
-)
+# plugins=(
+#   git
+#   fzf
+#   # zsh-autosuggestions
+#   zsh-syntax-highlighting
+# )
 
-# Load Oh My Zsh
-source "$ZSH/oh-my-zsh.sh"
+# # Load Oh My Zsh
+# source "$ZSH/oh-my-zsh.sh"
 
 #############################################
 # Custom Zsh configuration
