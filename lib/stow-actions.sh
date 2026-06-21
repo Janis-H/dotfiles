@@ -79,7 +79,7 @@ unstow_module() {
     fi
 }
 
-unstow_modules() {
+unstow_all_modules() {
     local module
 
     for module in "$@"; do
