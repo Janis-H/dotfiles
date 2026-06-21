@@ -21,8 +21,8 @@ return {
             -- for config options
             ---@type vim.api.keyset.win_config
             open_win_override = {
-            -- title = "My Window Title",
-            border = "single", -- use "rounded" for rounded border
+                -- title = "My Window Title",
+                border = "single", -- use "rounded" for rounded border
             },
 
             -- Preselect the currently open buffer
