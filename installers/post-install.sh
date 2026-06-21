@@ -55,13 +55,7 @@ setup_fzf() {
 }
 
 install_zsh_plugins() {
-    local use_omz="$1"
-
-    if [[ "$use_omz" = true ]]; then
-        local zsh_plugins_dir="$HOME/.oh-my-zsh/plugins"
-    else
-        local zsh_plugins_dir="$HOME/.zsh/plugins"
-    fi
+    local zsh_plugins_dir="$HOME/.zsh/plugins"
 
     mkdir -p "$zsh_plugins_dir"
 
@@ -127,16 +121,13 @@ setup_git_defaults() {
 run_post_install() {
     info "\n\t--- Starting Post-Install ---\n"
 
-    # function args
-    use_omz=false
-
     # prepare directories
     create_dev_dirs
     setup_local_bin
 
     # configure shell and terminal workflow
     set_default_shell
-    install_zsh_plugins "$use_omz"
+    install_zsh_plugins
     install_tmux_plugin_manager
     install_tmux_plugins_from_config
 
