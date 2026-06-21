@@ -106,13 +106,23 @@ fi
 
 PLUGINS_DIR="$HOME/.zsh/plugins"
 
+#Oh My Posh themes
+export POSH_THEMES_PATH="$HOME/ohmyposh/themes"
+
 # Enable fzf key bindings and autocompletion
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-# TODO: install oh-my-posh and add it to install_zsh_plugins function
-# oh-my-posh
+# oh-my-posh shell themes
 if command -v oh-my-posh >/dev/null 2>&1; then
-    eval "$(oh-my-posh init zsh --config "$HOME/.config/ohmyposh/config.toml")"
+    # themes
+    catppuccin_theme="${POSH_THEMES_PATH:-$HOME/.cache/oh-my-posh/themes}/catppuccin.omp.json"
+    gruvbox_theme="${POSH_THEMES_PATH:-$HOME/.cache/oh-my-posh/themes}/gruvbox.omp.json"
+    material_theme="${POSH_THEMES_PATH:-$HOME/.cache/oh-my-posh/themes}/material.omp.json"
+    pararussel_theme="${POSH_THEMES_PATH:-$HOME/.cache/oh-my-posh/themes}/pararussel.omp.json"
+    robbyrussel_theme="${POSH_THEMES_PATH:-$HOME/.cache/oh-my-posh/themes}/robbyrussell.omp.json"
+
+    # apply theme
+    eval "$(oh-my-posh init zsh --config "$material_theme")"
 fi
 
 # Source other plugins
