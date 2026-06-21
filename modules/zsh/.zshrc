@@ -104,23 +104,23 @@ fi
 # Plugins
 #############################################
 
-# PLUGINS_DIR="$HOME/.zsh/plugins"
+PLUGINS_DIR="$HOME/.zsh/plugins"
 
 # Enable fzf key bindings and autocompletion
-# [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # TODO: install oh-my-posh and add it to install_zsh_plugins function
 # oh-my-posh
-# if command -v oh-my-posh >/dev/null 2>&1; then
-#     eval "$(oh-my-posh init zsh --config "$HOME/.config/ohmyposh/config.toml")"
-# fi
+if command -v oh-my-posh >/dev/null 2>&1; then
+    eval "$(oh-my-posh init zsh --config "$HOME/.config/ohmyposh/config.toml")"
+fi
 
 # Source other plugins
-# source "$PLUGINS_DIR/zsh-autosuggestions"
-# source "$PLUGINS_DIR/zsh-syntax-highlighting"
+source "$PLUGINS_DIR/zsh-autosuggestions"
+source "$PLUGINS_DIR/zsh-syntax-highlighting"
 
 # TODO: Transitioning to custom .zshrc file.
 #       Remove the oh-my-zsh sections above when finished
 #       moving over plugins.
 
-# HIST_STAMPS="yyyy-mm-dd"
+HIST_STAMPS="yyyy-mm-dd"
