@@ -41,11 +41,5 @@ return {
     keys = {
         { '-', '<cmd>Oil<cr>', desc = 'Open parent directory' },
         { '<M-->', '<cmd>Oil .<cr>', desc = 'Open oil at cwd' },
-
-         -- Like :Sex
-        { "<leader>se", "<cmd>split | Oil<CR>", desc = "Open Oil in horizontal split" },
-
-        -- Like :Vex
-        { "<leader>ve", "<cmd>vsplit | Oil<CR>", desc = "Open Oil in vertical split" },
     },
 }
