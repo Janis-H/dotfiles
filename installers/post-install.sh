@@ -96,7 +96,14 @@ install_zsh_plugins() {
         install_zsh_plugin \
             "https://github.com/zsh-users/zsh-completions" \
             "$zsh_plugins_dir/zsh-completions"
+
+    # Install zsh-history-substring-search
+    info "Installing zsh-history-substring-search"
+        install_zsh_plugin \
+            "https://github.com/zsh-users/zsh-history-substring-search.git" \
+            "$zsh_plugins_dir/zsh-history-substring-search"
 }
+
 
 install_tmux_plugin_manager() {
     local tmux_plugins_dir="$HOME/.tmux/plugins"
@@ -137,7 +144,7 @@ setup_git_defaults() {
 
 # --- Post Install Function ---
 run_post_install() {
-    info "\n\t--- Starting Post-Install ---\n"
+    title "Starting Post-Install"
 
     # prepare directories
     create_dev_dirs
