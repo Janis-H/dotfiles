@@ -25,3 +25,17 @@ fzf-insert-file() {
 
 zle -N fzf-insert-file
 bindkey '^[f' fzf-insert-file # Alt-f
+
+# zsh-history-substring-search
+#
+# bind arrow keys to
+bindkey "$terminfo[kcuu1]" history-substring-search-up
+bindkey "$terminfo[kcud1]" history-substring-search-down
+
+# bind '^P' and '^N' keys for use in EMACS mode
+bindkey -M emacs '^P' history-substring-search-up
+bindkey -M emacs '^N' history-substring-search-down
+
+# bind 'j' and 'k' keys for use in VI mode
+bindkey -M vicmd 'k' history-substring-search-up
+bindkey -M vicmd 'j' history-substring-search-down
