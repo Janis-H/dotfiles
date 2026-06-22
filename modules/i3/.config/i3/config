@@ -430,9 +430,6 @@ bindsym $mod+F12 \
             $proton_pass_cmd \
             $proton_pass_class
 
-# TODO: create event listening script to default to workspace 4
-#       if not listed below
-
 # Assign applications to workspace_left (left_monitor)
 assign [class=$calculator_class] $ws_left
 assign [class=$kde_connect_sms_class] $ws_left
