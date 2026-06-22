@@ -36,13 +36,13 @@ return {
                 -- close telescope window with C-c
                 mappings = {
                     i = {
-                        ['C-c'] = function()
+                        ['<C-c>'] = function()
                             vim.cmd("stopinsert")
                         end,
                         ['<M-d>'] = actions.delete_buffer,
                     },
                     n = {
-                        ['C-c'] = actions.close,
+                        ['<C-c>'] = actions.close,
                         ['dd'] = actions.delete_buffer,
                     },
                 },
@@ -105,10 +105,10 @@ return {
                     -- define mappings
                     mappings = { -- extend mappings
                         i = {
-                            ["<C-k>"] = lga_actions.quote_prompt(),
-                            ["<C-i>"] = lga_actions.quote_prompt({ postfix = "--iglob " }),
+                            ["<M-k>"] = lga_actions.quote_prompt(),
+                            ["<M-i>"] = lga_actions.quote_prompt({ postfix = " --iglob " }),
                             -- freeze the current list and start a fuzzy search in the frozen list
-                            ["<C-space>"] = lga_actions.to_fuzzy_refine,
+                            ["<M-space>"] = lga_actions.to_fuzzy_refine,
                         }
                     },
                 },
@@ -122,8 +122,18 @@ return {
     keys = {
         -- File and text search.
         { "<leader>ff", "<cmd>Telescope find_files<cr>", desc = "Find files" },
-        { "<leader>fg", "<cmd>Telescope live_grep<cr>", desc = "Search text" },
-        { "<leader>fs", "<cmd>Telescope lsp_document_symbols<cr>", desc = "LSP document symbols" },
+        {
+            "<leader>fl",
+            function()
+                require("telescope").extensions.live_grep_args.live_grep_args()
+            end,
+            desc = "Live grep with args"
+        },
+        {
+            "<leader>fs",
+            "<cmd>Telescope lsp_document_symbols<cr>",
+            desc = "LSP document symbols"
+        },
         {
             "<leader>/",
             function()
@@ -135,7 +145,7 @@ return {
         },
 
         -- Git-aware file picker. Only shows git-tracked files.
-        { "<leader>gg", "<cmd>Telescope git_files<cr>", desc = "Find git files" },
+        { "<leader>fg", "<cmd>Telescope git_files<cr>", desc = "Find git files" },
 
         -- Recently opened files and buffers.
         { "<leader>fo", "<cmd>Telescope oldfiles<cr>", desc = "Find recent files" },
