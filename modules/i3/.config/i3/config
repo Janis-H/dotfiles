@@ -434,12 +434,12 @@ bindsym $mod+F12 \
 #       if not listed below
 
 # Assign applications to workspace_left (left_monitor)
-assign [class=$calculator_class] workspace number $ws_left
-assign [class=$kde_connect_sms_class] workspace number $ws_left
-assign [class=$proton_vpn_class] workspace number $ws_left
-assign [class=$teleprompter_class] workspace number $ws_left
-assign [class=$qprompt_class] workspace number $ws_left
-assign [class=$zoom_class] workspace number $ws_left
+assign [class=$calculator_class] $ws_left
+assign [class=$kde_connect_sms_class] $ws_left
+assign [class=$proton_vpn_class] $ws_left
+assign [class=$teleprompter_class] $ws_left
+assign [class=$qprompt_class] $ws_left
+assign [class=$zoom_class] $ws_left
 
 # Assign applications to numbered workspaces (center_monitor)
 assign [class=$librewolf_class] workspace number $ws1
@@ -447,13 +447,13 @@ assign [class=$steam_class] workspace number $ws1
 assign [class=$zen_browser_class] workspace number $ws1
 
 # Assign applications to workspace_right (right_monitor)
-assign [class=$1password_class] workspace number $ws_right
-assign [class=$calibre_class] workspace number $ws_right
-assign [class=$discord_class] workspace number $ws_right
-assign [class=$lotion_class] workspace number $ws_right
-assign [class=$proton_mail_class] workspace number $ws_right
-assign [class=$proton_pass_class] workspace number $ws_right
-assign [class=$youtube_class] workspace number $ws_right
+assign [class=$1password_class] $ws_right
+assign [class=$calibre_class] $ws_right
+assign [class=$discord_class] $ws_right
+assign [class=$lotion_class] $ws_right
+assign [class=$proton_mail_class] $ws_right
+assign [class=$proton_pass_class] $ws_right
+assign [class=$youtube_class] $ws_right
 
 # For_Window applications
 for_window [class=".*"] border normal 3
