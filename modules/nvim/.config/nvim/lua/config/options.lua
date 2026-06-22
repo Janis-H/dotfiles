@@ -1,4 +1,5 @@
 -- Core settings:
+
 vim.opt.autoread = true
 vim.opt.background = dark
 vim.opt.cursorline = true
@@ -16,12 +17,17 @@ vim.opt.signcolumn = "yes"
 vim.opt.smartcase = true
 vim.opt.smartindent = true
 vim.opt.softtabstop = 4
+vim.opt.swapfile = false
 vim.opt.tabstop = 4
 vim.opt.termguicolors = true -- enable true colors support
 vim.opt.title = true
 vim.opt.updatetime = 300
 vim.opt.wildmenu = true
 vim.opt.wrap = true
+
+-- Configure how new splits should be opened
+vim.opt.splitright = true
+vim.opt.splitbelow = true
 
 vim.cmd('syntax enable')
 vim.cmd('filetype plugin indent on')
