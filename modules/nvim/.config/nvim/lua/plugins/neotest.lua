@@ -7,19 +7,7 @@ return {
             "nvim-neotest/nvim-nio",
             "nvim-lua/plenary.nvim",
             "antoinemadec/FixCursorHold.nvim",
-
-            -- treesitter setup
-            {
-                "nvim-treesitter/nvim-treesitter",
-                build = ":TSUpdate",
-                opts = {
-                    ensure_installed = {
-                        "javascript",
-                        "typescript",
-                        "tsx",
-                    },
-                },
-            },
+            "nvim-treesitter/nvim-treesitter",
 
             -- adapters
             "nvim-neotest/neotest-jest",
