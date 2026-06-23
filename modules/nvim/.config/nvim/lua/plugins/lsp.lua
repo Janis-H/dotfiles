@@ -10,6 +10,9 @@ local server_names = {
     "cssls",
     "jsonls",
 
+    -- Grammar / prose linting
+    "harper_ls",
+
     -- Config / docs
     "yamlls",
     "marksman",
