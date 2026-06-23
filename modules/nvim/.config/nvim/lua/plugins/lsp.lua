@@ -14,6 +14,9 @@ local server_names = {
     "yamlls",
     "marksman",
 
+    -- TOML files
+    "taplo",
+
     -- Shell
     "bashls",
 
@@ -28,8 +31,17 @@ local server_names = {
     "dockerls",
     "docker_compose_language_service",
 
-    -- TOML files
-    "taplo",
+    -- Go
+    "gopls",
+
+    -- Java
+    "jdtls",
+
+    -- Rust
+    "rust_analyzer",
+
+    -- C / C++
+    "clangd",
 }
 
 local function get_server_configs()
