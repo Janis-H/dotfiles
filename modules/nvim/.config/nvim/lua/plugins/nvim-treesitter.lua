@@ -1,10 +1,17 @@
 -- Adds Tree-sitter parsers for better syntax highlighting, indentation, and plugin integrations
 return {
     "nvim-treesitter/nvim-treesitter",
+    branch = "main",
     build = ":TSUpdate",
     event = { "BufReadPost", "BufNewFile" },
-    opts = {
-        ensure_installed = {
+    config = function()
+        local treesitter = require("nvim-treesitter")
+
+        treesitter.setup({
+            install_dir = vim.fn.stdpath("data") .. "/site",
+        })
+
+        local ensure_installed = {
             -- Neovim / Lua
             "lua",
             "vim",
@@ -40,17 +47,26 @@ return {
             -- Config formats
             "toml",
             "ini",
-        },
 
-        highlight = {
-            enable = true,
-        },
+            -- Go / Java
+            "go",
+            "gomod",
+            "gosum",
+            "gowork",
+            "java",
 
-        indent = {
-            enable = true,
-        },
-    },
-    config = function(_, opts)
-        require("nvim-treesitter.configs").setup(opts)
+            -- Other common languages
+            "rust",
+            "c",
+            "cpp",
+        }
+
+        treesitter.install(ensure_installed)
+
+        vim.api.nvim_create_autocmd("FileType", {
+            callback = function(args)
+                pcall(vim.treesitter.start, args.buf)
+            end,
+        })
     end,
 }
