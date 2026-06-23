@@ -49,8 +49,8 @@ vim.keymap.set("v", "<", "<gv", opts("Indent left"))
 -- Diagnostic keymaps
 vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, opts("Go to previous [D]iagnostic message"))
 vim.keymap.set("n", "]d", vim.diagnostic.goto_next, opts("Go to next [D]iagnostic message"))
-vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, opts("Show diagnostic [E]rror messages"))
-vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, opts("Open diagnostic quickfix list"))
+vim.keymap.set("n", "<leader>de", vim.diagnostic.open_float, opts("Show diagnostic [E]rror messages"))
+vim.keymap.set("n", "<leader>dq", vim.diagnostic.setloclist, opts("Open diagnostic quickfix list"))
 
 -- tmux-sessionizer
 -- Ctrl-f opens the project picker
