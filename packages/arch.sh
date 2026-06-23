@@ -21,6 +21,7 @@ export ARCH_PACKAGES=(
     stow
     tar
     the_silver_searcher
+    tree-sitter-cli
     tmux
     unzip
     yazi

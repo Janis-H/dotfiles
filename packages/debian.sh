@@ -22,6 +22,7 @@ export PACKAGES=(
     silversearcher-ag
     stow
     tar
+    tree-sitter-cli
     tmux
     unzip
     zoxide
