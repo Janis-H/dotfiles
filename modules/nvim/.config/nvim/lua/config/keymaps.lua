@@ -8,16 +8,10 @@ end
 
 -- File actions
 vim.keymap.set('n', '<leader><leader>', '<cmd>w<cr>', opts('Write to file'))
-vim.keymap.set('n', '<leader><cr>', '<cmd>ReloadLazyPlugin<cr>', opts('Reload Lazy Plugin'))
 
 -- Navigation
 vim.keymap.set('n', '<C-d>', '<C-d>zz', opts('Move half-page down'))
 vim.keymap.set('n', '<C-u>', '<C-u>zz', opts('Move half-page up'))
-
--- File explorer (Replaced by Oil.nvim)
--- vim.keymap.set('n', '<leader>e', '<cmd>Ex<cr>', opts('open Explorer'))
--- vim.keymap.set('n', '<leader>v', '<cmd>Vex<cr>', opts('Vertical explorer'))
--- vim.keymap.set('n', '<leader>s', '<cmd>Sex<cr>', opts('Horizontal explorer'))
 
 -- Quickfix
 vim.keymap.set('n', '<leader>co', '<cmd>copen<cr>', opts('Open quickfix'))
@@ -39,7 +33,6 @@ vim.keymap.set('v', '<leader>p', '"_dp', opts('Delete current selection, yank in
 vim.keymap.set({ 'n', 'v'}, '<leader>y', '"+y', opts('Yank into system clipboard'))
 vim.keymap.set('n', '<leader>p', '<cmd>put +<cr>', opts('Paste from system keyboard below'))
 vim.keymap.set('n', '<leader>P', '<cmd>-1put +<cr>', opts('Paste from system keyboard above'))
-vim.keymap.set("x", "<leader>r", '"+P', opts("Paste clipboard over selection"))
 
 -- Entire file actions
 vim.keymap.set('n', '<leader>Y', 'gg"+yG', opts('Yank entire file into system clipboard'))
