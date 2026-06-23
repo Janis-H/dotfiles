@@ -1,4 +1,13 @@
 -- Adds Tree-sitter parsers for better syntax highlighting, indentation, and plugin integrations
+
+-- Use vim syntax for shell files
+-- because treesitter highlighting looks worse
+local disabled = {
+    bash = true,
+    sh = true,
+    zsh = true,
+}
+
 return {
     "nvim-treesitter/nvim-treesitter",
     branch = "main",
@@ -65,6 +74,16 @@ return {
 
         vim.api.nvim_create_autocmd("FileType", {
             callback = function(args)
+                local ft = vim.bo[args.buf].filetype
+
+
+                -- Fall back to Vim syntax for filetypes where Tree-sitter is disabled
+                if disabled[ft] then
+                    vim.cmd("syntax enable")
+                    vim.cmd("setlocal syntax=" .. ft)
+                    return
+                end
+
                 pcall(vim.treesitter.start, args.buf)
             end,
         })
