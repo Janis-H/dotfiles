@@ -24,6 +24,7 @@ export PACKAGES=(
     the_silver_searcher
     tmux
     tree
+    tree-sitter-cli
     unzip
     wget
     yazi

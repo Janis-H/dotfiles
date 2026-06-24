@@ -1,19 +1,50 @@
 -- Installs, configures, and enables language servers
 local server_names = {
+    -- Lua / Neovim
     "lua_ls",
+
+    -- Web / TypeScript
     "ts_ls",
     "eslint",
     "html",
     "cssls",
     "jsonls",
+
+    -- Grammar / prose linting
+    "harper_ls",
+
+    -- Config / docs
     "yamlls",
+    "marksman",
+
+    -- TOML files
+    "taplo",
+
+    -- Shell
     "bashls",
+
+    -- Python
     "pyright",
     "ruff",
-    "marksman",
+
+    -- SQL
     "sqlls",
+
+    -- Docker
     "dockerls",
     "docker_compose_language_service",
+
+    -- Go
+    "gopls",
+
+    -- Java
+    "jdtls",
+
+    -- Rust
+    "rust_analyzer",
+
+    -- C / C++
+    "clangd",
 }
 
 local function get_server_configs()

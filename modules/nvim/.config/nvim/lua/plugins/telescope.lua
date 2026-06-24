@@ -1,4 +1,13 @@
 -- Fuzzy find files, text, buffers, help, and more
+
+local function telescope_width(_, max_columns)
+    if max_columns < 140 then
+        return math.floor(max_columns * 0.95)
+    end
+
+    return math.floor(max_columns * 0.80)
+end
+
 return {
     "nvim-telescope/telescope.nvim",
     dependencies = {
@@ -25,7 +34,7 @@ return {
                 -- configure telescope window + preview
                 layout_strategy = "horizontal",
                 layout_config = {
-                    width = 0.95,
+                    width = telescope_width,
                     height = 0.9,
                     horizontal = {
                         preview_width = 0.55,

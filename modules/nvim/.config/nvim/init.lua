@@ -5,6 +5,9 @@ vim.g.maplocalleader = "\\"
 -- Core settings
 require('config.options')
 
+-- Custom filetypes
+require('config.filetypes')
+
 -- Plugin manager
 -- Imports lua/plugins/*.lua through lazy.nvim
 require('config.lazy')

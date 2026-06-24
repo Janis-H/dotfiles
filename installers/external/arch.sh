@@ -11,4 +11,5 @@ is_command_available(){
 # --- Wrapper ---
 install_external_tools() {
     # add functions here
+    true
 }
