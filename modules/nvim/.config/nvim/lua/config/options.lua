@@ -41,7 +41,7 @@ vim.opt.listchars = {           -- customize how whitespace characters are shown
 -- undo and history
 vim.opt.undolevels = 1000       -- number of undo levels
 vim.opt.undofile = true         -- persists undo history to disk
-vim.opt.undodir = vim.fn.stdpath("state") .. '/undo'
+vim.opt.undodir = vim.fn.stdpath("data") .. '/undo'
 
 -- buffers and files
 vim.opt.autoread = true         -- auto-reload changed file
