@@ -11,21 +11,6 @@ bindkey -s '\e2' 'tmux-sessionizer -s 1\n' # Alt-2 or Option-2
 bindkey -s '\e3' 'tmux-sessionizer -s 2\n' # Alt-3 or Option-3
 bindkey -s '\e4' 'tmux-sessionizer -s 3\n' # Alt-4 or Option-4
 
-# Fuzzy find a file recursively and insert the path into the command line
-fzf-insert-file() {
-  local file
-  file="$(
-    fd --type f --hidden --follow --exclude .git |
-      fzf --height 40% --reverse
-  )" || return
-
-  LBUFFER+="${(q)file}"
-  zle reset-prompt
-}
-
-zle -N fzf-insert-file
-bindkey '^[f' fzf-insert-file # Alt-f
-
 # zsh-history-substring-search
 #
 # bind arrow keys to
