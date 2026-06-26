@@ -1,3 +1,4 @@
+-- Highlight and search for todo comments like TODO, HACK, BUG in your code base
 return {
   "folke/todo-comments.nvim",
   dependencies = { "nvim-lua/plenary.nvim" },

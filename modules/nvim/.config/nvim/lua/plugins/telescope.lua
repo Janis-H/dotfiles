@@ -1,5 +1,4 @@
 -- Fuzzy find files, text, buffers, help, and more
-
 local function telescope_width(_, max_columns)
     if max_columns < 140 then
         return math.floor(max_columns * 0.95)

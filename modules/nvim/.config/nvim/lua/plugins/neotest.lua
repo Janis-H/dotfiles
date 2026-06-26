@@ -1,4 +1,4 @@
--- currently disabled
+-- Framework for interacting with tests within NeoVim
 return {
     {
         "nvim-neotest/neotest",

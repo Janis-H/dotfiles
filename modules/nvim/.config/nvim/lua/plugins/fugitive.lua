@@ -1,4 +1,4 @@
--- git commands with :Git or :G
+-- Git commands with :Git or :G
 return {
     'tpope/vim-fugitive',
     keys = {
