@@ -4,7 +4,6 @@ export COMMON_MODULES=(
     lazygit
     nvim
     ohmyposh
-    # scripts
     tmux
     zsh
 )

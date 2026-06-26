@@ -1,2 +1,4 @@
 #!/usr/bin/env bash
-export OS_MODULES=()
+export OS_MODULES=(
+    linux-scripts
+)
