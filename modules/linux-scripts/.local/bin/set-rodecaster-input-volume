@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+
+# inputs
+RODE_STEREO_SOURCE="alsa_input.usb-R__DE_RODECaster_Duo_IT0004494-00.pro-input-0"
+RODE_PRO_SOURCE="alsa_input.usb-R__DE_RODECaster_Duo_IT0004494-00.pro-input-1"
+
+INPUT_VOLUME="115%"
+STARTUP_DELAY="2"
+
+# allow system to settle
+sleep "$STARTUP_DELAY"
+
+# set default
+pactl set-default-source "$RODE_PRO_SOURCE"
+
+# set input volume
+pactl set-source-volume "$RODE_STEREO_SOURCE" "$INPUT_VOLUME"
+pactl set-source-volume "$RODE_PRO_SOURCE" "$INPUT_VOLUME"
+
+# TODO: create set-rodecaster-output-volume
+# OUTPUT_VOLUME="100%"

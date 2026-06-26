@@ -1,0 +1,62 @@
+#!/usr/bin/env bash
+
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+LIB_PATH="$SCRIPT_DIR/lib"
+
+# import zenity message functions
+# shellcheck source="lib/display_info_message.sh"
+source "${LIB_PATH}/display_info_message.sh"
+# shellcheck source="lib/display_info_message.sh"
+source "${LIB_PATH}/display_error_message.sh"
+
+# if first argument is "--new"
+if [[ "$1" == "--new" ]]; then
+    # set force_new to true
+    force_new=true
+
+    # remove first argument
+    shift
+# else set force_new to false
+else
+    force_new=false
+fi
+
+# if number of script arguments is not equal 2, display error and exit script
+if [[ $# -ne 2 ]]; then
+    # display zenity error message for desktop use
+    display_error_message "Usage: focus-or-open [--new] <command> <window-title>"
+    exit 1
+fi
+
+# declare script inputs
+cmd="$1"
+title="$2"
+
+# if command or title are empty strings, display an error
+if [[ -z "$cmd" || -z "$title" ]]; then
+    # display zenity error message for desktop use
+    display_error_message "Error: command and window title cannot be empty."
+    display_error_message "Usage: focus-or-open [--new] <command> <window-title>"
+
+    exit 1
+fi
+
+# if force_new is true,
+if [[ "$force_new" == true ]]; then
+    # send desktop notification
+    notify-send -e "opening new window for $title"
+
+    # run command
+    bash -c "$cmd"
+# if a window with the title exists, focus it,
+elif i3-msg -t get_tree | grep -q "\"title\":\"$title\""; then
+    # send desktop notification
+    notify-send -e  "found matching window"
+
+    # focus window
+    i3-msg "[title=\"$title\"] focus"
+# else open window
+else
+    bash -c "$cmd"
+fi
+

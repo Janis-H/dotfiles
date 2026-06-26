@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+# wait
+sleep 0.5
+
+# setup auto redshift
+exec redshift -m randr -l 33.6:-117.9 -t 6500:2500
