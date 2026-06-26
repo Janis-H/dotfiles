@@ -11,7 +11,7 @@ local server_names = {
     "jsonls",
 
     -- Grammar / prose linting
-    "harper_ls",
+    -- "harper_ls",
 
     -- Config / docs
     "yamlls",
