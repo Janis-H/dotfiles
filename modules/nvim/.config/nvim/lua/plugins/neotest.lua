@@ -80,7 +80,10 @@ return {
                         -- Returns if a given file path is a test file.
                         -- NB: This function is called a lot so don't perform any heavy tasks within it.
                         is_test_file = function(file_path)
-                            -- TODO: find configuration for this function
+                            local filename = vim.fn.fnamemodify(file_path, ":t")
+
+                            return filename:match("^test_.*%.py$") ~= nil
+                            or filename:match(".*_test%.py$") ~= nil
                         end,
                         -- !!EXPERIMENTAL!! Enable shelling out to `pytest` to discover test
                         -- instances for files containing a parametrize mark (default: false)
