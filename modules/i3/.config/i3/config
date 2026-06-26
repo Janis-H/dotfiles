@@ -63,12 +63,12 @@ tiling_drag modifier titlebar
 bindsym $mod+Return exec i3-sensible-terminal
 
 # kill focused window
-bindsym $mod+Shift+q kill
+bindsym $mod+q kill
 
 # kill focused app
-bindsym $mod+x exec --no-startup-id ~/dev/scripts/bin/i3-kill-focused-app-windows
+bindsym $mod+Shift+q exec --no-startup-id ~/dev/scripts/bin/i3-kill-focused-app-windows
 
-# kill all focused app windows
+# kill all app windows
 bindsym $mod+Shift+x exec --no-startup-id  i3-msg '[class=".*"] kill'
 
 # start dmenu (a program launcher)
