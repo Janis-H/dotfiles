@@ -114,6 +114,7 @@ set number
 " Show relative numbers
 set relativenumber
 
+
 " ------------------------------------------------------------------------------
 
 " :mark mark /full/directory/path [filename]
@@ -143,6 +144,18 @@ command! make !!make %a
 command! mkcd :mkdir %a | cd %a
 command! vgrep vim "+grep %a"
 command! reload :write | restart full
+
+" -----------------------------------------------------------------------------
+
+" fzf search
+command! FZFfind :set noquickview
+                \| let $FZF_PICK = term('$HOME/.local/bin/fd --hidden --exclude .git . | $HOME/.fzf/bin/fzf --height 10 2>/dev/tty')
+                \| if $FZF_PICK != ''
+                \|     execute 'goto' fnameescape($FZF_PICK)
+                \| endif
+                \| redraw
+
+nnoremap <c-f> :FZFfind<cr>
 
 " ------------------------------------------------------------------------------
 
