@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+# TODO: separate into core, server, personal, and desktop packages
 export PACKAGES=(
     # Desktop (GUI)
     i3
@@ -22,8 +23,8 @@ export PACKAGES=(
     silversearcher-ag
     stow
     tar
-    tree-sitter-cli
     tmux
+    tree-sitter-cli
     unzip
     zoxide
     zsh

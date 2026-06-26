@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 # TODO: add hyprland and/or sway
 export ARCH_PACKAGES=(
-    bat
     base-devel
+    bat
     curl
     diffutils
     fd
@@ -21,8 +21,8 @@ export ARCH_PACKAGES=(
     stow
     tar
     the_silver_searcher
-    tree-sitter-cli
     tmux
+    tree-sitter-cli
     unzip
     yazi
     zoxide
