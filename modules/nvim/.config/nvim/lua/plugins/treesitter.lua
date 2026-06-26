@@ -3,9 +3,9 @@
 -- Use vim syntax for shell files
 -- because treesitter highlighting looks worse
 local disabled = {
-    bash = true,
-    sh = true,
-    zsh = true,
+    -- bash = false,
+    -- sh = false,
+    -- zsh = false,
 }
 
 return {
