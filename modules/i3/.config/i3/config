@@ -39,7 +39,7 @@ exec --no-startup-id nm-applet
 exec --no-startup-id ~/.local/bin/redshift-on.sh
 
 # Set rodecaster input volume
-exec_always --no-startup-id ~/dev/scripts/bin/set-rodecaster-input-volume
+exec_always --no-startup-id ~/.local/bin/set-rodecaster-input-volume
 
 # Use pactl to adjust volume in PulseAudio.
 set $refresh_i3status killall -SIGUSR1 i3status
@@ -66,7 +66,7 @@ bindsym $mod+Return exec i3-sensible-terminal
 bindsym $mod+q kill
 
 # kill focused app
-bindsym $mod+Shift+q exec --no-startup-id ~/dev/scripts/bin/i3-kill-focused-app-windows
+bindsym $mod+Shift+q exec --no-startup-id ~/.local/bin/i3-kill-focused-app-windows
 
 # kill all app windows
 bindsym $mod+Shift+x exec --no-startup-id  i3-msg '[class=".*"] kill'
@@ -289,8 +289,6 @@ mode "settings" {
     # turn on Redshift night-light mode
     bindsym $mod+r exec --no-startup-id ~/.local/bin/redshift-on.sh
 
-    # TODO: edit redshift-off to just reset the color. No need to kill the program
-    # turn off Redshift and reset screen color
     bindsym $mod+Shift+r exec --no-startup-id ~/.local/bin/redshift-off.sh
 
 	# back to normal: Enter or Escape or $mod+s
@@ -302,8 +300,8 @@ mode "settings" {
 bindsym $mod+Shift+s mode "settings"
 
 # Scripts
-set $focus_or_open_by_class ~/dev/scripts/bin/focus-or-open-by-window-class
-set $focus_or_open_by_title ~/dev/scripts/bin/focus-or-open-by-window-title
+set $focus_or_open_by_class ~/.local/bin/focus-or-open-by-window-class
+set $focus_or_open_by_title ~/.local/bin/focus-or-open-by-window-title
 
 # Application Command and Window Class Variables
 #   * Note: find window class via wmctrl or xprop
