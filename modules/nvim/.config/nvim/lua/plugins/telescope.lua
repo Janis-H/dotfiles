@@ -146,7 +146,6 @@ return {
             "<leader>/",
             function()
                 local builtin = require("telescope.builtin")
-
                 builtin.current_buffer_fuzzy_find()
             end,
             desc = "Fuzzy find in current buffer",
@@ -166,5 +165,8 @@ return {
 
         -- Quickfix.
         { "<leader>fq", "<cmd>Telescope quickfix<cr>", desc = "Find quickfix" },
+
+        -- Resume previous search
+        { "<leader>fr", "<cmd>Telescope resume<cr>", desc = "Find quickfix" },
     },
 }
