@@ -106,7 +106,7 @@ endif
 set statusline="  Hint: %z%= %A %10u:%-7g %15s %20d  "
 
 " Show hidden files
-normal! zo
+" normal! zo
 
 " Show line numbers
 set number
