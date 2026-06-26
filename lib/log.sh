@@ -7,7 +7,6 @@ YELLOW='\033[1;33m'
 RED='\033[0;31m'
 NO_COLOR='\033[0m'
 
-# TODO: create title function to allow for separation between sections
 title() {
     echo -e "$GREEN \n\t--- $* ---\n"
 }

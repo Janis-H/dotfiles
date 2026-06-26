@@ -115,7 +115,4 @@ install_external_tools() {
     install_lazygit
     install_oh_my_posh
     install_zoxide
-
-    # TODO: delete once migration is done
-    # install_oh_my_zsh
 }
