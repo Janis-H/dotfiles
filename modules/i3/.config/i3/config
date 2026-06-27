@@ -36,7 +36,7 @@ exec --no-startup-id nm-applet
 # Automatically adjust screen color temperature based on time of day and location:
 # Daytime = 6500K (normal), nighttime = 4500K (warmer/reduced blue light)
 # Automatically adjust screen color temperature based on time of day and location
-exec --no-startup-id ~/.local/bin/redshift-on.sh
+exec --no-startup-id ~/.local/bin/redshift-on
 
 # Set rodecaster input volume
 exec_always --no-startup-id ~/.local/bin/set-rodecaster-input-volume
@@ -287,9 +287,9 @@ mode "settings" {
     bindsym $mod+Shift+p exec --no-startup-id poweroff
 
     # turn on Redshift night-light mode
-    bindsym $mod+r exec --no-startup-id ~/.local/bin/redshift-on.sh
+    bindsym $mod+r exec --no-startup-id ~/.local/bin/redshift-on
 
-    bindsym $mod+Shift+r exec --no-startup-id ~/.local/bin/redshift-off.sh
+    bindsym $mod+Shift+r exec --no-startup-id ~/.local/bin/redshift-off
 
 	# back to normal: Enter or Escape or $mod+s
 	bindsym Return mode "default"
@@ -438,8 +438,9 @@ assign [class=$zoom_class] $ws_left
 
 # Assign applications to numbered workspaces (center_monitor)
 assign [class=$librewolf_class] workspace number $ws1
-assign [class=$steam_class] workspace number $ws1
 assign [class=$zen_browser_class] workspace number $ws1
+
+assign [class=$steam_class] workspace number $ws10
 
 # Assign applications to workspace_right (right_monitor)
 assign [class=$1password_class] $ws_right
