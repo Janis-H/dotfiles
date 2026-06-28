@@ -7,6 +7,14 @@ is_command_available(){
 }
 
 # --- External installers ---
+setup_rodecaster_via_pipewire() {
+    info "Configuring Rodecaster Pro 2 / Rodecaseter Duo"
+
+    # run installer
+    # NOTE: installer detects the connected device automatically and selects the matching template for supported Pro II and Duo models.
+    curl -sfL https://parzival-space.github.io/rodecaster-pro-2-virtual-devices-pipewire/configure.sh | sh -s - --install
+}
+
 install_fzf() {
     # check if installed
     if is_command_available fzf; then
@@ -107,6 +115,8 @@ install_oh_my_posh() {
 
 # --- Wrapper ---
 install_external_tools() {
+    setup_rodecaster_via_pipewire
+
     # apt version updates too slowly
     install_fzf
     install_neovim
