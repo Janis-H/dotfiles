@@ -1,9 +1,8 @@
-alias vim=nvim
 alias lg=lazygit
 
 # fdfind is debian specific
 if  command -v fdfind >/dev/null 2>&1; then
-    alias fd=fdfind
+    alias fd='fdfind'
 fi
 
 # batcat is debian specific

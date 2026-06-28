@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+# wait
+sleep 0.5
+
+# kill redshift
+pkill -x redshift 2>/dev/null

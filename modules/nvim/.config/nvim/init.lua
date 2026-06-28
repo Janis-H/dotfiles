@@ -5,9 +5,8 @@ vim.g.maplocalleader = "\\"
 -- Core settings
 require('config.options')
 
--- Plugin manager
--- Imports lua/plugins/*.lua through lazy.nvim
-require('config.lazy')
+-- Custom filetypes
+require('config.filetypes')
 
 -- Custom :Commands
 require('config.commands')
@@ -17,3 +16,7 @@ require('config.autocommands')
 
 -- General keymaps not owned by plugins
 require('config.keymaps')
+
+-- Plugin manager
+-- Imports lua/plugins/*.lua through lazy.nvim
+require('config.lazy')

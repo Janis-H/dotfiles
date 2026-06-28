@@ -22,5 +22,5 @@ install_oh_my_zsh() {
 # --- Wrapper ---
 install_external_tools() {
     # not available in homebrew
-    install_oh_my_zsh
+    true
 }

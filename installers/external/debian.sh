@@ -7,6 +7,14 @@ is_command_available(){
 }
 
 # --- External installers ---
+setup_rodecaster_via_pipewire() {
+    info "Configuring Rodecaster Pro 2 / Rodecaseter Duo"
+
+    # run installer
+    # NOTE: installer detects the connected device automatically and selects the matching template for supported Pro II and Duo models.
+    curl -sfL https://parzival-space.github.io/rodecaster-pro-2-virtual-devices-pipewire/configure.sh | sh -s - --install
+}
+
 install_fzf() {
     # check if installed
     if is_command_available fzf; then
@@ -94,14 +102,27 @@ install_oh_my_zsh() {
     sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 }
 
+install_oh_my_posh() {
+    if is_command_available oh-my-posh; then
+        info "Oh-my-posh is Installed"
+    fi
+
+    info "Installing oh-my-posh"
+
+    # install oh-my-posh via curl
+    curl -s https://ohmyposh.dev/install.sh | bash -s
+}
+
 # --- Wrapper ---
 install_external_tools() {
+    setup_rodecaster_via_pipewire
+
     # apt version updates too slowly
     install_fzf
     install_neovim
 
     # not available in apt
     install_lazygit
-    install_oh_my_zsh
+    install_oh_my_posh
     install_zoxide
 }

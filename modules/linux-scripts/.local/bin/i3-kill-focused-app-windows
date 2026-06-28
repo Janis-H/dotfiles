@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+
+SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
+LIB_DIR="$SCRIPT_DIR/lib"
+
+# shellcheck source="lib/display_error_message.sh"
+source "$LIB_DIR/display_error_message.sh"
+
+class="$(
+    xprop -id "$(xdotool getwindowfocus)" WM_CLASS 2>/dev/null |
+        awk -F '"' '{ print $(NF-1) }'
+)"
+
+if [[ -z "$class" ]]; then
+    display_error_message "Could not get focused window class"
+    exit 1
+fi
+
+i3-msg "[class=\"$class\"] kill"

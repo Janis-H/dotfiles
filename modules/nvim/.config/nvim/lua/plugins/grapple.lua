@@ -5,7 +5,8 @@ return {
         -- Decides which tag list Grapple uses.
         -- "git" shares one tag list across all branches in a repo.
         -- "git_branch" keeps separate tag lists per repo + branch.
-        scope = 'git_branch',
+        ---@type 'git' | 'git_branch'
+        scope = 'git',
 
         -- Grapple popup window size/position.
         win_opts = {

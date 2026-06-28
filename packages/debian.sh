@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
-PACKAGES=(
+# TODO: separate into core, server, personal, and desktop packages
+export PACKAGES=(
     # Desktop (GUI)
     i3
     ghostty
@@ -23,8 +24,8 @@ PACKAGES=(
     stow
     tar
     tmux
+    tree-sitter-cli
     unzip
-    yazi
     zoxide
     zsh
 )

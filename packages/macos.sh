@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-PACKAGES=(
+export PACKAGES=(
     bat
     coreutils
     curl
@@ -12,6 +12,7 @@ PACKAGES=(
     gnu-sed
     grep
     gzip
+    jandedobbeleer/oh-my-posh/oh-my-posh
     jq
     lazygit
     neovim
@@ -23,6 +24,7 @@ PACKAGES=(
     the_silver_searcher
     tmux
     tree
+    tree-sitter-cli
     unzip
     wget
     yazi
@@ -30,7 +32,7 @@ PACKAGES=(
     zsh
 )
 
-CASKS=(
+export CASKS=(
     ghostty
     zed
 )

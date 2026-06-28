@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+
+setup_script_dir="$(cd -- "$( dirname -- "${BASH_SOURCE[0]}")" && pwd)"
+
+# /.local/bin files
+fix_monitors_script="$setup_script_dir/script-files/fix-monitors.sh"
+desktop_file="$setup_script_dir/script-files/fix-monitors.desktop"
+
+# root files
+sleep_hook_file="$setup_script_dir/script-files/fix-monitors.sleep-hook.sh"
+
+# Local Directories
+local_dir="$HOME/.local/bin/"
+desktop_config_dir="$HOME/.config/autostart/"
+
+# Root Directories
+sleep_dir="/lib/systemd/system-sleep/"
+
+# Setup startup script
+mkdir -p "$local_dir" && cp "$fix_monitors_script" "$local_dir"
+mkdir -p "$desktop_config_dir" && cp "$desktop_file" "$desktop_config_dir"
+
+# Setup sleep-hook
+install -m 755 "$sleep_hook_file" "${sleep_dir}/fix-monitors"

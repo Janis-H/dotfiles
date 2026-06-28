@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
-STOW_MODULES=(
+export STOW_MODULES=(
     i3
+    linux-scripts
     picom
 )

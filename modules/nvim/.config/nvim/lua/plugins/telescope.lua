@@ -1,4 +1,12 @@
 -- Fuzzy find files, text, buffers, help, and more
+local function telescope_width(_, max_columns)
+    if max_columns < 140 then
+        return math.floor(max_columns * 0.95)
+    end
+
+    return math.floor(max_columns * 0.80)
+end
+
 return {
     "nvim-telescope/telescope.nvim",
     dependencies = {
@@ -16,6 +24,8 @@ return {
     },
     config = function()
         local telescope = require("telescope")
+        local actions = require("telescope.actions")
+        local lga_actions  = require("telescope-live-grep-args.actions")
 
         -- first setup telescope
         telescope.setup({
@@ -23,7 +33,7 @@ return {
                 -- configure telescope window + preview
                 layout_strategy = "horizontal",
                 layout_config = {
-                    width = 0.95,
+                    width = telescope_width,
                     height = 0.9,
                     horizontal = {
                         preview_width = 0.55,
@@ -34,10 +44,14 @@ return {
                 -- close telescope window with C-c
                 mappings = {
                     i = {
-                        ['C-c'] = require('telescope.actions').close,
+                        ['<C-c>'] = function()
+                            vim.cmd("stopinsert")
+                        end,
+                        ['<M-d>'] = actions.delete_buffer,
                     },
                     n = {
-                        ['C-c'] = require('telescope.actions').close,
+                        ['<C-c>'] = actions.close,
+                        ['dd'] = actions.delete_buffer,
                     },
                 },
 
@@ -93,6 +107,20 @@ return {
                     },
                 },
             },
+            extensions = {
+                live_grep_args = {
+                    auto_quoting = true, -- enable/disable auto-quoting
+                    -- define mappings
+                    mappings = { -- extend mappings
+                        i = {
+                            ["<M-k>"] = lga_actions.quote_prompt(),
+                            ["<M-i>"] = lga_actions.quote_prompt({ postfix = " --iglob " }),
+                            -- freeze the current list and start a fuzzy search in the frozen list
+                            ["<M-space>"] = lga_actions.to_fuzzy_refine,
+                        }
+                    },
+                },
+            },
         })
 
         -- then load the extension
@@ -102,17 +130,29 @@ return {
     keys = {
         -- File and text search.
         { "<leader>ff", "<cmd>Telescope find_files<cr>", desc = "Find files" },
-        { "<leader>fg", "<cmd>Telescope live_grep<cr>", desc = "Search text" },
+        {
+            "<leader>fl",
+            function()
+                require("telescope").extensions.live_grep_args.live_grep_args()
+            end,
+            desc = "Live grep with args"
+        },
+        {
+            "<leader>fs",
+            "<cmd>Telescope lsp_document_symbols<cr>",
+            desc = "LSP document symbols"
+        },
         {
             "<leader>/",
             function()
-                require("telescope.builtin").current_buffer_fuzzy_find()
+                local builtin = require("telescope.builtin")
+                builtin.current_buffer_fuzzy_find()
             end,
             desc = "Fuzzy find in current buffer",
         },
 
         -- Git-aware file picker. Only shows git-tracked files.
-        { "<leader>gg", "<cmd>Telescope git_files<cr>", desc = "Find git files" },
+        { "<leader>fg", "<cmd>Telescope git_files<cr>", desc = "Find git files" },
 
         -- Recently opened files and buffers.
         { "<leader>fo", "<cmd>Telescope oldfiles<cr>", desc = "Find recent files" },
@@ -125,5 +165,8 @@ return {
 
         -- Quickfix.
         { "<leader>fq", "<cmd>Telescope quickfix<cr>", desc = "Find quickfix" },
+
+        -- Resume previous search
+        { "<leader>fr", "<cmd>Telescope resume<cr>", desc = "Find quickfix" },
     },
 }

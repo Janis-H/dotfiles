@@ -14,11 +14,11 @@ set $alt Mod1
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
-font pango:monospace 8
+font pango:monospace 12
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
-#font pango:DejaVu Sans Mono 8
+# font pango:DejaVu Sans Mono 10
 
 # Start XDG autostart .desktop files using dex. See also
 # https://wiki.archlinux.org/index.php/XDG_Autostart
@@ -36,10 +36,10 @@ exec --no-startup-id nm-applet
 # Automatically adjust screen color temperature based on time of day and location:
 # Daytime = 6500K (normal), nighttime = 4500K (warmer/reduced blue light)
 # Automatically adjust screen color temperature based on time of day and location
-exec --no-startup-id ~/.local/bin/redshift-on.sh
+exec --no-startup-id ~/.local/bin/redshift-on
 
 # Set rodecaster input volume
-exec_always --no-startup-id ~/dev/scripts/bin/set-rodecaster-input-volume
+exec_always --no-startup-id ~/.local/bin/set-rodecaster-input-volume
 
 # Use pactl to adjust volume in PulseAudio.
 set $refresh_i3status killall -SIGUSR1 i3status
@@ -63,12 +63,12 @@ tiling_drag modifier titlebar
 bindsym $mod+Return exec i3-sensible-terminal
 
 # kill focused window
-bindsym $mod+Shift+q kill
+bindsym $mod+q kill
 
 # kill focused app
-bindsym $mod+x exec --no-startup-id ~/dev/scripts/bin/i3-kill-focused-app-windows
+bindsym $mod+Shift+q exec --no-startup-id ~/.local/bin/i3-kill-focused-app-windows
 
-# kill all focused app windows 
+# kill all app windows
 bindsym $mod+Shift+x exec --no-startup-id  i3-msg '[class=".*"] kill'
 
 # start dmenu (a program launcher)
@@ -79,7 +79,7 @@ bindcode $mod+40 exec "rofi -modi drun,run -show drun"
 # .desktop file. It is a wrapper around dmenu, so you need that installed.
 # bindcode $mod+40 exec --no-startup-id i3-dmenu-desktop
 
-# Launch rofi in window switching mode 
+# Launch rofi in window switching mode
 bindsym $mod+Shift+d exec "rofi -show window"
 
 # change focus
@@ -132,6 +132,11 @@ bindsym $mod+a focus parent
 # focus the child container
 #bindsym $mod+d focus child
 
+# Monitor aliases
+set $left_monitor "HDMI-A-0"
+set $center_monitor "DisplayPort-1"
+set $right_monitor "DisplayPort-0"
+
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
 set $ws1 "1"
@@ -145,12 +150,19 @@ set $ws8 "8"
 set $ws9 "9"
 set $ws10 "10"
 
-# Define Workspaces
-workspace $ws1 output "HDMI-A-0" 
-workspace $ws2 output "DisplayPort-1" 
-workspace $ws3 output "DisplayPort-0" 
+# Define workspaces
+workspace $ws1 output $center_monitor
+workspace $ws2 output $center_monitor
+workspace $ws3 output $center_monitor
+workspace $ws4 output $center_monitor
+workspace $ws5 output $center_monitor
+workspace $ws6 output $center_monitor
+workspace $ws7 output $center_monitor
+workspace $ws8 output $center_monitor
+workspace $ws9 output $center_monitor
+workspace $ws10 output $center_monitor
 
-# switch to workspace
+# Switch to workspace
 bindsym $mod+1 workspace number $ws1
 bindsym $mod+2 workspace number $ws2
 bindsym $mod+3 workspace number $ws3
@@ -162,7 +174,7 @@ bindsym $mod+8 workspace number $ws8
 bindsym $mod+9 workspace number $ws9
 bindsym $mod+0 workspace number $ws10
 
-# move focused container to workspace
+# Move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace number $ws1
 bindsym $mod+Shift+2 move container to workspace number $ws2
 bindsym $mod+Shift+3 move container to workspace number $ws3
@@ -174,12 +186,28 @@ bindsym $mod+Shift+8 move container to workspace number $ws8
 bindsym $mod+Shift+9 move container to workspace number $ws9
 bindsym $mod+Shift+0 move container to workspace number $ws10
 
-# workspace 1 and 3 starts stacked, but I can override it later
-exec --no-startup-id i3-msg 'workspace $ws1; layout stacked'
-exec --no-startup-id i3-msg 'workspace $ws3; layout stacked'
+# Define names for non-numbered side workspaces
+set $ws_left "left"
+set $ws_right "right"
+
+# Define side workspaces
+workspace $ws_left output $left_monitor
+workspace $ws_right output $right_monitor
+
+# Switch to side workspace
+bindsym $mod+grave workspace $ws_left
+bindsym $mod+equal workspace $ws_right
+
+# Move focused container to side workspace
+bindsym $mod+Shift+grave move container to workspace $ws_left
+bindsym $mod+Shift+equal move container to workspace $ws_right
+
+# Workspace left and right start stacked, but I can override it later
+exec --no-startup-id i3-msg 'workspace $ws_left; layout stacked'
+exec --no-startup-id i3-msg 'workspace $ws_right; layout stacked'
 
 # Color schemes for windows
-#   - alter transparency via this guide: 
+#   - alter transparency via this guide:
 #     https://gist.github.com/lopspower/03fb1cc0ac9f32ef38f4?ref=itsfoss.com
 set $text        #e3eaf2
 set $bar-color   #171a2199
@@ -195,19 +223,19 @@ set $in-text     #9099a666
 set $u-bgcolor   #d95f5f
 set $indicator   #4a5568
 
-#                       border          background      text            indicator (a line which shows where the next window will be placed)     
+#                       border          background      text            indicator (a line which shows where the next window will be placed)
 client.focused          $focused-co     $focused-co     $text           $indicator
 client.unfocused        $in-bgcolor     $in-bgcolor     $in-text        $in-bgcolor
 client.focused_inactive $in-bgcolor     $in-bgcolor     $in-text        $in-bgcolor
-client.urgent           $u-bgcolor      $u-bgcolor      $text           $u-bgcolor 
+client.urgent           $u-bgcolor      $u-bgcolor      $text           $u-bgcolor
 
 # Enabling "Smart Gaps" means no gaps will be shown where
 # there is one window
 smart_gaps on
 # Inner gaps for all windows: space between two adjacent windows (or split containers)
-gaps inner 15
+gaps inner 20
 # Outer gaps for all windws: space along the screen edges
-gaps outer 5
+gaps outer 10
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
@@ -253,17 +281,15 @@ bindsym $mod+r mode "resize"
 # settings mode
 mode "settings" {
 	# open PulseAudio
-	bindsym $mod+s exec pavucontrol 
+	bindsym $mod+s exec pavucontrol
 
     # poweroff
     bindsym $mod+Shift+p exec --no-startup-id poweroff
 
     # turn on Redshift night-light mode
-    bindsym $mod+r exec --no-startup-id ~/.local/bin/redshift-on.sh
+    bindsym $mod+r exec --no-startup-id ~/.local/bin/redshift-on
 
-    # TODO: edit redshift-off to just reset the color. No need to kill the program
-    # turn off Redshift and reset screen color
-    bindsym $mod+Shift+r exec --no-startup-id ~/.local/bin/redshift-off.sh
+    bindsym $mod+Shift+r exec --no-startup-id ~/.local/bin/redshift-off
 
 	# back to normal: Enter or Escape or $mod+s
 	bindsym Return mode "default"
@@ -271,11 +297,11 @@ mode "settings" {
 	bindsym $mod+Shift+c mode "default"
 }
 
-bindsym $mod+Shift+s mode "settings" 
+bindsym $mod+Shift+s mode "settings"
 
 # Scripts
-set $focus_or_open_by_class ~/dev/scripts/bin/focus-or-open-by-window-class
-set $focus_or_open_by_title ~/dev/scripts/bin/focus-or-open-by-window-title
+set $focus_or_open_by_class ~/.local/bin/focus-or-open-by-window-class
+set $focus_or_open_by_title ~/.local/bin/focus-or-open-by-window-title
 
 # Application Command and Window Class Variables
 #   * Note: find window class via wmctrl or xprop
@@ -290,9 +316,6 @@ set $calibre_class "calibre"
 
 set $discord_cmd "flatpak run com.discordapp.Discord"
 set $discord_class "discord"
-
-set $freetube_cmd "flatpak run io.freetubeapp.FreeTube"
-set $freetube_class "FreeTube"
 
 set $gnome_parted_cmd "gnome-parted"
 set $gnome_parted_class "Gnome-parted"
@@ -405,31 +428,28 @@ bindsym $mod+F12 \
             $proton_pass_cmd \
             $proton_pass_class
 
-# TODO: create event listening script to default to workspace 4
-#       if not listed below
+# Assign applications to workspace_left (left_monitor)
+assign [class=$calculator_class] $ws_left
+assign [class=$kde_connect_sms_class] $ws_left
+assign [class=$proton_vpn_class] $ws_left
+assign [class=$teleprompter_class] $ws_left
+assign [class=$qprompt_class] $ws_left
+assign [class=$zoom_class] $ws_left
 
-# Assign applications to workspace 1
-assign [class=$calculator_class] workspace number $ws1
-assign [class=$kde_connect_sms_class] workspace number $ws1
-assign [class=$proton_vpn_class] workspace number $ws1
-assign [class=$teleprompter_class] workspace number $ws1
-assign [class=$qprompt_class] workspace number $ws1
-assign [class=$zoom_class] workspace number $ws1
+# Assign applications to numbered workspaces (center_monitor)
+assign [class=$librewolf_class] workspace number $ws1
+assign [class=$zen_browser_class] workspace number $ws1
 
-# Assign applications to workspace 2
-assign [class=$librewolf_class] workspace number $ws2
-assign [class=$steam_class] workspace number $ws2
-assign [class=$zen_browser_class] workspace number $ws2
+assign [class=$steam_class] workspace number $ws10
 
-# Assign applications to workspace 3
-assign [class=$1password_class] workspace number $ws3
-assign [class=$calibre_class] workspace number $ws3
-assign [class=$discord_class] workspace number $ws3
-assign [class=$freetube_class] workspace number $ws3
-assign [class=$lotion_class] workspace number $ws3
-assign [class=$proton_mail_class] workspace number $ws3
-assign [class=$proton_pass_class] workspace number $ws3
-assign [class=$youtube_class] workspace number $ws3
+# Assign applications to workspace_right (right_monitor)
+assign [class=$1password_class] $ws_right
+assign [class=$calibre_class] $ws_right
+assign [class=$discord_class] $ws_right
+assign [class=$lotion_class] $ws_right
+assign [class=$proton_mail_class] $ws_right
+assign [class=$proton_pass_class] $ws_right
+assign [class=$youtube_class] $ws_right
 
 # For_Window applications
 for_window [class=".*"] border normal 3
@@ -446,7 +466,7 @@ bar {
                 #                       border          background      text
                 focused_workspace       $focused-ws     $focused-ws     $text
                 inactive_workspace      $in-bgcolor     $in-bgcolor     $text
-                urgent_workspace        $u-bgcolor      $u-bgcolor      $text   
+                urgent_workspace        $u-bgcolor      $u-bgcolor      $text
         }
         i3bar_command i3bar --transparency
         tray_output none
