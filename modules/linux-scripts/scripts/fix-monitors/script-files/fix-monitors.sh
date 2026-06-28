@@ -1,0 +1,28 @@
+#!/usr/bin/env bash
+
+sleep 3
+
+hdmi_output="$(xrandr --query | awk '/^HDMI.* connected/ {print $1; exit}')"
+
+# Primary monitor
+xrandr --output DisplayPort-1 \
+  --primary \
+  --mode 2560x1440 \
+  --rate 144.00 \
+  --rotate normal
+
+# Right portrait monitor
+xrandr --output DisplayPort-0 \
+  --mode 2560x1440 \
+  --rate 60.00 \
+  --rotate right \
+  --right-of DisplayPort-1
+
+# Left HDMI monitor
+if [ -n "$hdmi_output" ]; then
+  xrandr --output "$hdmi_output" \
+    --mode 1024x576 \
+    --rate 60.00 \
+    --reflect y \
+    --left-of DisplayPort-1
+fi
