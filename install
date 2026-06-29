@@ -3,7 +3,7 @@
 
 set -euo pipefail
 
-DOTFILES_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+DOTFILES_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
 
 # source helper functions
 source "$DOTFILES_DIR/lib/detect-os.sh"
@@ -17,7 +17,15 @@ os="$(detect_os)"
 title "Script Info"
 info "OS: $os"
 
+
 title "Starting Package Install"
+
+# TODO: replace switch case with an import of each of the functions using the OS
+#       - Example:
+#           - source "$DOTFILES_DIR/installers/$os.sh"
+#           - source "$DOTFILES_DIR/installers/external/$os.sh"
+#
+# TODO: rename install_${os} functions to something more generic, like install_packages (so the switch case won't be necessary)
 case "$os" in
     debian)
         source "$DOTFILES_DIR/installers/debian.sh"
@@ -39,6 +47,8 @@ case "$os" in
         exit 1
         ;;
 esac
+
+# TODO: look into if there are different post-installers needed for each OS
 
 # post-install setup after package and external tool instalation
 run_post_install
