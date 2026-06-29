@@ -1,0 +1,69 @@
+#!/usr/bin/env bash
+# Stows the default OS-specific set of dotfiles modules into $HOME
+
+set -euo pipefail
+
+DOTFILES_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+STOW_SETS_DIR="$DOTFILES_DIR/stow-sets"
+
+# --- Sources ---
+source "${DOTFILES_DIR}/lib/log.sh"
+source "${DOTFILES_DIR}/lib/detect-os.sh"
+source "${DOTFILES_DIR}/lib/stow-actions.sh"
+
+# --- Parse Arguments ---
+# TODO: add argument parsing
+# defaults:
+#   - by default, stows and unstows default packages
+# argument types
+#   - "--selected" : accepts list of modules to stow
+#   - "--unstow" : unstows default or if --selected flag is included, unstows selected
+#
+# default values
+stow_or_unstow="stow"
+default_or_selected_modules="default_modules"
+
+modules_to_stow=()
+
+# iterate over arguments
+for arg in "$@"; do
+    case "$arg" in
+        --selected|-s)
+            default_or_selected_modules="selected_modules"
+            shift
+            ;;
+        --unstow|-u)
+            stow_or_unstow="unstow"
+            shift
+            ;;
+        *)
+            echo "in default case"
+            # do nothing
+            # erroring out would not work, since I want --selected to be able to handle arguments that wouldn't fit into either of the cases above
+            #
+            # potentially do --selected argument parsing here? maybe later?
+            # TODO: look into getopts function for parsing --selected flag's arguments
+            ;;
+    esac
+done
+
+echo "arguments left over: ${*}"
+
+# stow module flow
+
+
+# ---------------------------------------------------------------------
+# NOTE: below is the older script flow. Being kept here for reference
+#
+# --- OS info ---
+# os="$(detect_os)"
+# info "OS: $os"
+
+# --- Source OS-specific stow modules ---
+# source "$STOW_SETS_DIR/common.sh"
+# source "$STOW_SETS_DIR/$os.sh"
+
+# --- Stow config files ---
+# stow_all_modules \
+#     "${COMMON_MODULES[@]}" \
+#     "${OS_MODULES[@]}"
