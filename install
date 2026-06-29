@@ -24,7 +24,6 @@ title "Starting Package Install"
 case "$os" in
     debian|arch|macos)
         source "$DOTFILES_DIR/installers/$os.sh"
-        source "$DOTFILES_DIR/installers/external/$os.sh"
         install_packages
         ;;
     *)

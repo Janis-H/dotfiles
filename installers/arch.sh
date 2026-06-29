@@ -6,6 +6,9 @@
 # --- Source packages ---
 source "$DOTFILES_DIR/packages/arch.sh"
 
+# --- Source external tool installer ---
+source "$DOTFILES_DIR/installers/external/arch.sh"
+
 # --- Helper Functions ---
 is_installed() {
     pacman -Qi "$1" &>/dev/null

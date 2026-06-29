@@ -6,6 +6,9 @@
 # --- Source packages ---
 source "$DOTFILES_DIR/packages/macos.sh"
 
+# --- Source external tool installer ---
+source "$DOTFILES_DIR/installers/external/macos.sh"
+
 # --- Helper Functions ---
 is_formula_installed() {
     brew list --formula "$1" &>/dev/null

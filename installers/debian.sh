@@ -6,6 +6,9 @@
 # --- Source packages ---
 source "$DOTFILES_DIR/packages/debian.sh"
 
+# --- Source external tool installer ---
+source "$DOTFILES_DIR/installers/external/debian.sh"
+
 # --- Helper Functions ---
 is_installed() {
     dpkg -s "$1" &>/dev/null
