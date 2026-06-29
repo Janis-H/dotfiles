@@ -1,12 +1,16 @@
 #!/usr/bin/env bash
 # Defines macOS external tool installs not handled by Homebrew
 
-# -- Helper functions ---
+: "$DOTFILES_DIR:?DOTFILES_DIR must be set before sourcing installers/external/macos.sh"
+
+# --- Sources ---
+
+# --- Helper functions ---
 is_command_available(){
     command -v "$1" &>/dev/null
 }
 
-# --- External installers ---
+# --- External tool installers ---
 install_oh_my_zsh() {
     if [[ -f "$HOME/.oh-my-zsh/oh-my-zsh.sh" ]]; then
         info "Oh My Zsh is installed"
@@ -19,7 +23,7 @@ install_oh_my_zsh() {
     sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 }
 
-# --- Wrapper ---
+# --- Public entrypoint ---
 install_external_tools() {
     # not available in homebrew
     true

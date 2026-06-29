@@ -1,13 +1,17 @@
 #!/usr/bin/env bash
 # Defines Debian-family external tool installs not handled by apt
 
-# -- Helper functions ---
+: "$DOTFILES_DIR:?DOTFILES_DIR must be set before sourcing installers/external/debian.sh"
+
+# --- Sources ---
+
+# --- Helper functions ---
 is_command_available(){
     command -v "$1" &>/dev/null
 }
 
-# --- External installers ---
-setup_rodecaster_via_pipewire() {
+# --- External tool installers ---
+install_rodecaster_pipewire_setup() {
     info "Configuring Rodecaster Pro 2 / Rodecaseter Duo"
 
     # run installer
@@ -21,6 +25,8 @@ install_fzf() {
         info "fzf already installed"
         return
     fi
+
+    info "Installing fzf"
 
     # clone fzf github repo
     git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
@@ -113,10 +119,8 @@ install_oh_my_posh() {
     curl -s https://ohmyposh.dev/install.sh | bash -s
 }
 
-# --- Wrapper ---
+# --- Public entrypoint ---
 install_external_tools() {
-    setup_rodecaster_via_pipewire
-
     # apt version updates too slowly
     install_fzf
     install_neovim
@@ -125,4 +129,5 @@ install_external_tools() {
     install_lazygit
     install_oh_my_posh
     install_zoxide
+    install_rodecaster_pipewire_setup
 }
