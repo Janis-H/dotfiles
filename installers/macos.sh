@@ -3,13 +3,12 @@
 
 : "${DOTFILES_DIR:?DOTFILES_DIR must be set before sourcing installers/macos.sh}"
 
-# --- Source packages ---
+# --- Sources ---
+source "$DOTFILES_DIR/lib/log.sh"
 source "$DOTFILES_DIR/packages/macos.sh"
-
-# --- Source external tool installer ---
 source "$DOTFILES_DIR/installers/external/macos.sh"
 
-# --- Helper Functions ---
+# --- Homebrew helpers ---
 is_formula_installed() {
     brew list --formula "$1" &>/dev/null
 }
@@ -41,6 +40,7 @@ ensure_homebrew() {
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 }
 
+# --- Install Steps ---
 install_brew_packages() {
     local to_install=()
     local pkg
@@ -84,7 +84,7 @@ install_system_packages() {
     install_brew_casks "${CASKS[@]}"
 }
 
-# --- Install packages ---
+# --- Public entrypoint ---
 install_packages() {
     # install os prerequisites
     ensure_xcode_tools

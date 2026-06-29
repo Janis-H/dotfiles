@@ -3,17 +3,17 @@
 
 : "${DOTFILES_DIR:?DOTFILES_DIR must be set before sourcing debian.sh}"
 
-# --- Source packages ---
+# --- Sources ---
+source "$DOTFILES_DIR/lib/log.sh"
 source "$DOTFILES_DIR/packages/debian.sh"
-
-# --- Source external tool installer ---
 source "$DOTFILES_DIR/installers/external/debian.sh"
 
-# --- Helper Functions ---
+# --- APT helpers ---
 is_installed() {
     dpkg -s "$1" &>/dev/null
 }
 
+# --- Install steps ---
 install_system_packages() {
     local to_install=()
     local pkg
@@ -39,7 +39,7 @@ install_system_packages() {
     fi
 }
 
-# --- Install packages ---
+# --- Public entrypoint ---
 install_packages() {
     install_system_packages "${PACKAGES[@]}"
     install_external_tools
