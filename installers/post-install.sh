@@ -144,8 +144,6 @@ setup_git_defaults() {
 
 # --- Post Install Function ---
 run_post_install() {
-    title "Starting Post-Install"
-
     # prepare directories
     create_dev_dirs
     setup_local_bin
