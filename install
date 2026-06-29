@@ -10,12 +10,18 @@ source "$DOTFILES_DIR/lib/detect-os.sh"
 source "$DOTFILES_DIR/lib/log.sh"
 
 # detect os
-os="$(detect_os)"
+OS="$(detect_os)"
 
 title "Script Info"
-info "OS: $os"
+info "OS: $OS"
 
-# source installers
+# TODO: uncomment below once install functions have been renamed
+#
+# source OS-specific installers
+# source "$DOTFILES_DIR/installers/$os.sh"
+# source "$DOTFILES_DIR/installers/external/$os.sh"
+
+# source post-install
 source "$DOTFILES_DIR/installers/post-install.sh"
 
 # start install
@@ -27,7 +33,7 @@ title "Starting Package Install"
 #           - source "$DOTFILES_DIR/installers/external/$os.sh"
 #
 # TODO: rename install_${os} functions to something more generic, like install_packages (so the switch case won't be necessary)
-case "$os" in
+case "$OS" in
     debian)
         source "$DOTFILES_DIR/installers/debian.sh"
         source "$DOTFILES_DIR/installers/external/debian.sh"
@@ -44,7 +50,7 @@ case "$os" in
         install_macos
         ;;
     *)
-        info "Unsupported OS: $os" >&2
+        info "Unsupported OS: $OS" >&2
         exit 1
         ;;
 esac
