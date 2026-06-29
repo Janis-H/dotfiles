@@ -37,7 +37,7 @@ install_system_packages() {
 }
 
 # --- Install packages ---
-install_debian() {
+install_packages() {
     install_system_packages "${PACKAGES[@]}"
     install_external_tools
 }

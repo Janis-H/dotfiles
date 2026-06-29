@@ -76,13 +76,18 @@ install_brew_casks() {
     fi
 }
 
+install_system_packages() {
+    install_brew_packages "${PACKAGES[@]}"
+    install_brew_casks "${CASKS[@]}"
+}
+
 # --- Install packages ---
-install_macos() {
+install_packages() {
+    # install os prerequisites
     ensure_xcode_tools
     ensure_homebrew
 
-    install_brew_packages "${PACKAGES[@]}"
-    install_brew_casks "${CASKS[@]}"
-
+    # install packages
+    install_system_packages
     install_external_tools
 }
