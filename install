@@ -9,15 +9,16 @@ DOTFILES_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
 source "$DOTFILES_DIR/lib/detect-os.sh"
 source "$DOTFILES_DIR/lib/log.sh"
 
-# source installers
-source "$DOTFILES_DIR/installers/post-install.sh"
-
+# detect os
 os="$(detect_os)"
 
 title "Script Info"
 info "OS: $os"
 
+# source installers
+source "$DOTFILES_DIR/installers/post-install.sh"
 
+# start install
 title "Starting Package Install"
 
 # TODO: replace switch case with an import of each of the functions using the OS
