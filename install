@@ -13,7 +13,7 @@ source "$DOTFILES_DIR/installers/post-install.sh"
 # --- Detect OS ---
 os="$(detect_os)"
 
-# --- Installer Selection ---
+# --- Installer selection ---
 case "$os" in
     debian|arch|macos)
         source "$DOTFILES_DIR/installers/$os.sh"
