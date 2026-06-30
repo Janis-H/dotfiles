@@ -29,14 +29,14 @@ print_usage() {
 #       behavior will probably need to be added to the stow function instead of here
 
 # --- Parse Arguments ---
-stow_or_unstow="stow"
+stow_action="stow"
 modules_to_stow=()
 
 # iterate over arguments
 for arg in "$@"; do
     case "$arg" in
         -u)
-            stow_or_unstow="unstow"
+            stow_action="unstow"
             ;;
         -h)
             print_usage
