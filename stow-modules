@@ -25,45 +25,63 @@ print_usage() {
     echo "  -h    Show this help message"
 }
 
+run_stow_action() {
+    local stow_action="$1"
+    shift
+
+    case "$stow_action" in
+        stow)
+            stow_all_modules "$@"
+            ;;
+        unstow)
+            unstow_all_modules "$@"
+            ;;
+        *)
+            error "Invalid stow action: $stow_action"
+            ;;
+    esac
+}
+
 # TODO: add function to make backups of files if they already exist (before stowing)
 #       behavior will probably need to be added to the stow function instead of here
 
 # --- Parse Arguments ---
 stow_action="stow"
-modules_to_stow=()
 
+# TODO: look into replacing for-loop with getopts function with while loop
 # iterate over arguments
 for arg in "$@"; do
     case "$arg" in
         -u)
             stow_action="unstow"
+            shift
             ;;
         -h)
             print_usage
+            exit 0
             ;;
         *)
-            modules_to_stow+=( "$arg" )
             ;;
     esac
 done
 
-echo "arguments left over: ${*}"
+# --- Detect os ---
+os="$(detect_os)"
+info "OS: $os"
 
-# stow module flow
+# --- Source os-specific modules ---
+source "$STOW_SETS_DIR/common.sh"
+source "$STOW_SETS_DIR/$os.sh"
 
+# --- Select modules ---
+if [[ "$#" -gt 0 ]]; then
+    target_modules=("$@")
+else
+    target_modules=(
+        "${COMMON_MODULES[@]}"
+        "${OS_MODULES[@]}"
+    )
+fi
 
-# ---------------------------------------------------------------------
-# NOTE: below is the older script flow. Being kept here for reference
-#
-# --- OS info ---
-# os="$(detect_os)"
-# info "OS: $os"
-
-# --- Source OS-specific stow modules ---
-# source "$STOW_SETS_DIR/common.sh"
-# source "$STOW_SETS_DIR/$os.sh"
-
-# --- Stow config files ---
-# stow_all_modules \
-#     "${COMMON_MODULES[@]}" \
-#     "${OS_MODULES[@]}"
+# --- Stow / unstow modules ---
+run_stow_action "$stow_action" "${target_modules[@]}"
