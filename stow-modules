@@ -13,6 +13,7 @@ source "${DOTFILES_DIR}/lib/stow-actions.sh"
 
 # --- Helpers ---
 print_usage() {
+    # TODO: add debug flag
     # TODO: consider adding an option to delete orphans
     echo "Usage:"
     echo "  $0                  Stow default modules"
