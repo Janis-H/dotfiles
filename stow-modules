@@ -27,27 +27,23 @@ modules_to_stow=()
 
 print_usage() {
     echo "Usage:"
-    echo "  $0                 Stow default modules"
-    echo "  $0 -u              Unstow default modules"
-    echo "  $0 -s modules...   Stow selected modules"
-    echo "  $0 -u -s modules... Unstow selected modules"
+    echo "  $0                  Stow default modules"
+    echo "  $0 -u               Unstow default modules"
+    echo "  $0 modules...       Stow selected modules"
+    echo "  $0 -u modules...    Unstow selected modules"
     echo ""
     echo "Options:"
     echo "  -u    Unstow instead of stow"
-    echo "  -s    Use selected modules instead of default modules"
     echo "  -h    Show this help message"
 }
 
 # iterate over arguments
 for arg in "$@"; do
     case "$arg" in
-        --selected|-s)
-            default_or_selected_modules="selected"
-            ;;
-        --unstow|-u)
+        -u)
             stow_or_unstow="unstow"
             ;;
-        --help|-h)
+        -h)
             print_usage
             ;;
         *)
