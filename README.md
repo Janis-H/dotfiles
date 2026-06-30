@@ -27,7 +27,7 @@ git clone git@github.com:Janis-H/dotfiles.git
 cd dotfiles
 ```
 
-then use the `./stow-default` script to stow the default modules for your OS
+then use the `./stow-modules` script to stow the default modules for your OS
 
 ## Scripts
 
@@ -53,56 +53,58 @@ External installs that are not handled by the system package manager are kept un
 installers/external/
 ```
 
-### `stow-default`
+### stow-modules
 
-Stows the default OS-specific set of dotfile modules into `$HOME`.
+Stow or unstows dotfiles modules using GNU Stow.
 
 ```bash
-./stow-default
+./stow-modules
 ```
 
-The default module lists are defined in:
+With no arguments, the script stows the default module set:
 
 ```text
-lib/stow-modules.sh
+stow-sets/common.sh
+stow-sets/<detected-os>.sh
 ```
 
-Example module groups:
+The script detects the current system and sources the matching OS module set:
+
+```
+stow-sets/debian.sh
+stow-sets/arch.sh
+stow-sets/macos.sh
+```
+
+To stow selected modules, pass the module names directly:
 
 ```bash
-COMMON_MODULES=(...)
-DEBIAN_MODULES=(...)
-ARCH_MODULES=(...)
-MACOS_MODULES=(...)
+./stow-modules nvim zsh tmux
+
 ```
-
-### `stow-selected`
-
-Stows only the modules passed as command-line arguments.
+To unstow modules, pass `-u`:
 
 ```bash
-./stow-selected zsh nvim bat
+./stow-modules -u
 ```
 
-Use this when adding or testing a specific module without editing `stow-default`.
-
-### `unstow-default`
-
-Unstows the default OS-specific set of dotfile modules from `$HOME`.
+With `-u` and no module names, the script unstows the default module set.
 
 ```bash
-./unstow-default
+./stow-modules -u
 ```
 
-### `unstow-selected`
-
-Unstows only the modules passed as command-line arguments.
+With `-u` and module names, the script unstows only the selected modules:
 
 ```bash
-./unstow-selected zsh nvim bat
+./stow-modules -u nvim zsh tmux
 ```
 
-Use this when removing or testing a specific module without unstowing the full default set.
+The examples above cover the common workflows. To see all available flags and options, run:
+
+```bash
+./stow-modules -h
+```
 
 ## Stow layout
 
@@ -151,7 +153,7 @@ So they do not need to `cd` into the `modules/` folder.
 Only entry-point scripts need execute permission:
 
 ```bash
-chmod +x install stow-default stow-selected unstow-default unstow-selected
+chmod +x install stow-modules
 ```
 
 Files under `lib/` and `installers/` are sourced by the entry scripts and do not need execute permission.
@@ -207,5 +209,5 @@ Remove only old symlinks after confirming they are symlinks:
 Then rerun:
 
 ```bash
-./stow-default
+./stow-modules
 ```
