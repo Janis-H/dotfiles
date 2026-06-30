@@ -11,19 +11,7 @@ source "${DOTFILES_DIR}/lib/log.sh"
 source "${DOTFILES_DIR}/lib/detect-os.sh"
 source "${DOTFILES_DIR}/lib/stow-actions.sh"
 
-# --- Parse Arguments ---
-# TODO: add argument parsing
-# defaults:
-#   - by default, stows and unstows default packages
-# argument types
-#   - "--selected" : accepts list of modules to stow
-#   - "--unstow" : unstows default or if --selected flag is included, unstows selected
-#
-# default values
-stow_or_unstow="stow"
-
-modules_to_stow=()
-
+# --- Helpers ---
 print_usage() {
     echo "Usage:"
     echo "  $0                  Stow default modules"
@@ -35,6 +23,10 @@ print_usage() {
     echo "  -u    Unstow instead of stow"
     echo "  -h    Show this help message"
 }
+
+# --- Parse Arguments ---
+stow_or_unstow="stow"
+modules_to_stow=()
 
 # iterate over arguments
 for arg in "$@"; do
