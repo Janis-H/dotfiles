@@ -21,7 +21,6 @@ source "${DOTFILES_DIR}/lib/stow-actions.sh"
 #
 # default values
 stow_or_unstow="stow"
-default_or_selected_modules="default"
 
 modules_to_stow=()
 
