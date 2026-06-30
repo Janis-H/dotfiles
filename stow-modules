@@ -83,5 +83,8 @@ else
     )
 fi
 
+# --- Debug ---
+# printf '%s\n' "${target_modules[@]}"
+
 # --- Stow / unstow modules ---
 run_stow_action "$stow_action" "${target_modules[@]}"
