@@ -45,7 +45,7 @@ run_stow_action() {
 # TODO: add function to make backups of files if they already exist (before stowing)
 #       behavior will probably need to be added to the stow function instead of here
 
-# --- Parse Arguments ---
+# --- Parse arguments ---
 stow_action="stow"
 
 # TODO: look into replacing for-loop with getopts function with while loop
@@ -73,7 +73,7 @@ info "OS: $os"
 source "$STOW_SETS_DIR/common.sh"
 source "$STOW_SETS_DIR/$os.sh"
 
-# --- Select modules ---
+# --- Select target modules ---
 if [[ "$#" -gt 0 ]]; then
     target_modules=("$@")
 else
