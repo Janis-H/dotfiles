@@ -13,6 +13,7 @@ source "${DOTFILES_DIR}/lib/stow-actions.sh"
 
 # --- Helpers ---
 print_usage() {
+    # TODO: consider adding an option to delete orphans
     echo "Usage:"
     echo "  $0                  Stow default modules"
     echo "  $0 -u               Unstow default modules"
@@ -23,6 +24,9 @@ print_usage() {
     echo "  -u    Unstow instead of stow"
     echo "  -h    Show this help message"
 }
+
+# TODO: add function to make backups of files if they already exist (before stowing)
+#       behavior will probably need to be added to the stow function instead of here
 
 # --- Parse Arguments ---
 stow_or_unstow="stow"
