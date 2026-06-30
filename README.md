@@ -1,6 +1,6 @@
 # My dotfiles
 
-This directory contains the dotfiles for my system
+Personal dotfiles managed with GNU Stow, with scripts for OS-specific setup and module selection.
 
 ## Requirements
 
