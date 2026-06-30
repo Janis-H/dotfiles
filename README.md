@@ -1,10 +1,10 @@
 # My dotfiles
 
-This directory contains the dofiles for my system
+This directory contains the dotfiles for my system
 
 ## Requirements
 
-Ensure you have the following installed on your system
+Ensure you have the following installed on your system:
 
 ### Git
 
@@ -18,16 +18,20 @@ sudo apt install git
 sudo apt install stow
 ```
 
-## installation
+## Installation
 
-First, check out the dotfiles repo in your $HOME directory 
+First, check out the dotfiles repo in your $HOME directory.
 
 ```bash
 git clone git@github.com:Janis-H/dotfiles.git
 cd dotfiles
 ```
 
-then use the `./stow-modules` script to stow the default modules for your OS
+then use the `./stow-modules` script to stow the default modules for your OS:
+
+```bash
+./stow-modules
+```
 
 ## Scripts
 
@@ -47,15 +51,15 @@ installers/arch.sh
 installers/macos.sh
 ```
 
-External installs that are not handled by the system package manager are kept under:
+When a tool is not installed through the system package manager, the matching OS installer calls the relevant script under:
 
 ```text
 installers/external/
 ```
 
-### stow-modules
+### `stow-modules`
 
-Stow or unstows dotfiles modules using GNU Stow.
+Stows or unstows dotfiles modules using GNU Stow.
 
 ```bash
 ./stow-modules
@@ -70,7 +74,7 @@ stow-sets/<detected-os>.sh
 
 The script detects the current system and sources the matching OS module set:
 
-```
+```text
 stow-sets/debian.sh
 stow-sets/arch.sh
 stow-sets/macos.sh
@@ -82,11 +86,7 @@ To stow selected modules, pass the module names directly:
 ./stow-modules nvim zsh tmux
 
 ```
-To unstow modules, pass `-u`:
-
-```bash
-./stow-modules -u
-```
+To unstow modules, pass `-u`. 
 
 With `-u` and no module names, the script unstows the default module set.
 
