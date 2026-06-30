@@ -8,14 +8,42 @@ Ensure you have the following installed on your system:
 
 ### Git
 
+Arch:
+
 ```bash
-sudo apt install git
+sudo pacman -S git
+```
+
+Debian:
+
+```bash
+sudo apt install -y git
+```
+
+Macos:
+
+```bash
+brew install git
 ```
 
 ### Stow
 
+Arch:
+
 ```bash
-sudo apt install stow
+sudo pacman -S stow
+```
+
+Debian:
+
+```bash
+sudo apt install -y stow
+```
+
+Macos:
+
+```bash
+brew install stow
 ```
 
 ## Installation
