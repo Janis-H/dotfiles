@@ -10,7 +10,7 @@ source "$DOTFILES_DIR/lib/detect-os.sh"
 source "$DOTFILES_DIR/lib/log.sh"
 source "$DOTFILES_DIR/installers/post-install.sh"
 
-# --- Detect OS ---
+# --- Detect os ---
 os="$(detect_os)"
 
 # --- Installer selection ---
