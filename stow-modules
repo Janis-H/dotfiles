@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Stows the default OS-specific set of dotfiles modules into $HOME
+# Stows or unstows selected or default dotfile modules for the detected OS
 
 set -euo pipefail
 
@@ -15,6 +15,7 @@ source "${DOTFILES_DIR}/lib/stow-actions.sh"
 print_usage() {
     # TODO: add debug flag
     # TODO: consider adding an option to delete orphans
+    # TODO: consider adding profile flags later for core, server and desktop
     echo "Usage:"
     echo "  $0                  Stow default modules"
     echo "  $0 -u               Unstow default modules"
