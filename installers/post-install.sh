@@ -8,8 +8,10 @@ source "$DOTFILES_DIR/lib/log.sh"
 
 # --- Setup functions ---
 create_dev_dirs() {
+    # TODO: look over what directories to add or remove from this function
     mkdir -p "$HOME/dev"
     mkdir -p "$HOME/dev/scripts"
+    mkdir -p "$HOME/scripts"
     mkdir -p "$HOME/.local/bin"
     mkdir -p "$HOME/.config"
 }
