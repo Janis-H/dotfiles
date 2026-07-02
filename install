@@ -15,20 +15,28 @@ print_usage() {
     local script_name
     script_name="./$( basename "$0")"
 
-    # TODO: add description
-    # TODO: add profile to options
-    # TODO: add examples
+    # TODO: look into adding dry run option
     cat <<EOF
 Usage:
     $script_name [options]
 
 Description:
+    Install core packages and external tools for the detected OS.
+    Core tools are always installed. Use a profile to add server or desktop tools.
 
 Options:
-    -h          Show this help message
+    -p PROFILE      Install additional tools for a profile: server or desktop
+    -h              Show this help message
 
 Examples:
     $script_name
+        Install core tools only
+
+    $script_name -p server
+        Install core tools plus server tools
+
+    $script_name -p desktop
+        Install core tools plus desktop tools
 EOF
 }
 
@@ -46,7 +54,6 @@ validate_profile() {
 }
 
 # --- Parse arguments ---
-# TODO: consider adding profile flags later for core, server and desktop
 while getopts ":p:h" option; do
     case "$option" in
         p)
@@ -85,8 +92,8 @@ esac
 title "Script Info"
 info "OS: $os"
 
-title "Installing packages"
-install_packages
+# title "Installing packages"
+# install_packages
 
-title "Running Post Install"
-run_post_install
+# title "Running Post Install"
+# run_post_install
