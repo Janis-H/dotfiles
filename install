@@ -15,6 +15,9 @@ print_usage() {
     local script_name
     script_name="./$( basename "$0")"
 
+    # TODO: add description
+    # TODO: add profile to options
+    # TODO: add examples
     cat <<EOF
 Usage:
     $script_name [options]
@@ -22,17 +25,34 @@ Usage:
 Description:
 
 Options:
-    -h    Show this help message
+    -h          Show this help message
 
 Examples:
-    $script_name                    # Install
+    $script_name
 EOF
+}
+
+validate_profile() {
+    local profile="$1"
+
+    case "$profile" in
+        core|server|desktop)
+            ;;
+        *)
+            error "Invalid profile option: $profile"
+            print_usage
+            exit 1
+    esac
 }
 
 # --- Parse arguments ---
 # TODO: consider adding profile flags later for core, server and desktop
-while getopts ":h" option; do
+while getopts ":p:h" option; do
     case "$option" in
+        p)
+            validate_profile "$OPTARG"
+            PROFILE="$OPTARG"
+            ;;
         h)
             print_usage
             exit 0
@@ -47,7 +67,6 @@ done
 
 shift $((OPTIND - 1))
 
-
 # --- Detect os ---
 os="$(detect_os)"
 
@@ -57,7 +76,7 @@ case "$os" in
         source "$DOTFILES_DIR/installers/$os.sh"
         ;;
     *)
-        info "Unsupported OS: $os" >&2
+        error "Unsupported OS: $os"
         exit 1
         ;;
 esac
