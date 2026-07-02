@@ -26,7 +26,7 @@ Description:
 
 Options:
     -p PROFILE  Install package profile: server or desktop
-                Default: core
+                Default: desktop
 
                 Profiles:
                     server   core + tools for machines I control
@@ -60,7 +60,7 @@ validate_profile() {
 }
 
 # --- Parse arguments ---
-PROFILE="core"
+PROFILE="desktop"
 
 while getopts ":p:h" option; do
     case "$option" in
