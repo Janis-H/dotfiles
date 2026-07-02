@@ -31,7 +31,7 @@ EOF
 
 # --- Parse arguments ---
 # TODO: consider adding profile flags later for core, server and desktop
-while getopts ":uh" option; do
+while getopts ":h" option; do
     case "$option" in
         h)
             print_usage
