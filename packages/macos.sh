@@ -1,4 +1,11 @@
 #!/usr/bin/env bash
+
+# TODO: separate into core, server, dev_packages, and desktop packages
+export CORE_PACKAGES=()
+export DEV_PACKAGES=()
+export SERVER_PACKAGES=()
+export DESKTOP_PACKAGES=()
+
 export PACKAGES=(
     bat
     coreutils
