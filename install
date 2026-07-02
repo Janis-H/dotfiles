@@ -10,6 +10,44 @@ source "$DOTFILES_DIR/lib/detect-os.sh"
 source "$DOTFILES_DIR/lib/log.sh"
 source "$DOTFILES_DIR/installers/post-install.sh"
 
+# --- Helpers ---
+print_usage() {
+    local script_name
+    script_name="./$( basename "$0")"
+
+    cat <<EOF
+Usage:
+    $script_name [options]
+
+Description:
+
+Options:
+    -h    Show this help message
+
+Examples:
+    $script_name                    # Install
+EOF
+}
+
+# --- Parse arguments ---
+# TODO: consider adding profile flags later for core, server and desktop
+while getopts ":uh" option; do
+    case "$option" in
+        h)
+            print_usage
+            exit 0
+            ;;
+        *)
+            error "Invalid option: $OPTARG"
+            print_usage
+            exit 1
+            ;;
+    esac
+done
+
+shift $((OPTIND - 1))
+
+
 # --- Detect os ---
 os="$(detect_os)"
 
