@@ -16,6 +16,9 @@ vim.opt.background = "dark"     -- colorschemes that can be made light or dark w
 vim.opt.termguicolors = true    -- enable true colors support
 
 -- indentation
+vim.cmd('syntax on')            -- syntax highlight
+vim.cmd('filetype plugin indent on') --
+
 vim.opt.autoindent = true       -- copy indent from current line
 vim.opt.smartindent = true      -- smart-indenting for C-like code
 vim.opt.expandtab = true        -- pressing <Tab> inserts spaces instead of tabs
