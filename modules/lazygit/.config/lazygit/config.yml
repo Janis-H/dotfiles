@@ -5,9 +5,9 @@ gui:
   showFileTree: true
   theme:
     selectedLineBgColor:
-      - '#3c3836'
+      - '#3f4754'
     inactiveViewSelectedLineBgColor:
-      - '#32302f'
+      - '#303844'
 os:
   editPreset: "nvim"
 keybinding:
