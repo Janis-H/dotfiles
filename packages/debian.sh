@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# TODO: separate into core, server, personal, and desktop packages
+# TODO: separate into core, server, dev_packages, and desktop packages
 export PACKAGES=(
     # Desktop (GUI)
     i3
