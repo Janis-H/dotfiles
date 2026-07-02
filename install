@@ -44,7 +44,7 @@ validate_profile() {
     local profile="$1"
 
     case "$profile" in
-        core|server|desktop)
+        server|desktop)
             ;;
         *)
             error "Invalid profile option: $profile"
