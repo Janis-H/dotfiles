@@ -8,6 +8,11 @@ gui:
       - '#3f4754'
     inactiveViewSelectedLineBgColor:
       - '#303844'
+
+    cherryPickedCommitFgColor:
+      - '#e5e7eb'
+    cherryPickedCommitBgColor:
+      - '#263241'
 os:
   editPreset: "nvim"
 keybinding:
