@@ -25,8 +25,15 @@ Description:
     Core tools are always installed. Use a profile to add server or desktop tools.
 
 Options:
-    -p PROFILE      Install additional tools for a profile: server or desktop
-    -h              Show this help message
+    -p PROFILE  Install package profile: server or desktop
+                Default: core
+
+                Profiles:
+                    core     Baseline CLI tools
+                    server   core + tools for machines I control
+                    desktop  core + server + GUI/workstation tools
+
+    -h          Show this help message
 
 Examples:
     $script_name
@@ -54,6 +61,8 @@ validate_profile() {
 }
 
 # --- Parse arguments ---
+PROFILE="core"
+
 while getopts ":p:h" option; do
     case "$option" in
         p)
