@@ -3,6 +3,11 @@ gui:
   scrollHeight: 4
   scrollPastBottom: false
   showFileTree: true
+  theme:
+    selectedLineBgColor:
+      - '#3c3836'
+    inactiveViewSelectedLineBgColor:
+      - '#32302f'
 os:
   editPreset: "nvim"
 keybinding:
