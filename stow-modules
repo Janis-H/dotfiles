@@ -13,18 +13,31 @@ source "${DOTFILES_DIR}/lib/stow-actions.sh"
 
 # --- Helpers ---
 print_usage() {
+    local script_name
+    script_name="./$( basename "$0")"
+
     # TODO: add debug flag
     # TODO: consider adding an option to delete orphans
     # TODO: consider adding profile flags later for core, server and desktop
-    echo "Usage:"
-    echo "  $0                  Stow default modules"
-    echo "  $0 -u               Unstow default modules"
-    echo "  $0 modules...       Stow selected modules"
-    echo "  $0 -u modules...    Unstow selected modules"
-    echo ""
-    echo "Options:"
-    echo "  -u    Unstow instead of stow"
-    echo "  -h    Show this help message"
+    cat <<EOF
+Usage:
+    $script_name [options] [modules...]
+
+Description:
+    Stow modules by default.
+    If no modules are provided, the default module set is used.
+    If modules are provided, only those modules are used.
+
+Options:
+    -u    Unstow instead of stow
+    -h    Show this help message
+
+Examples:
+    $script_name                    # Stow default modules
+    $script_name nvim zsh tmux      # Stow selected modules
+    $script_name -u                 # Unstow default modules
+    $script_name -u nvim            # Unstow selected module
+EOF
 }
 
 run_stow_action() {
@@ -50,22 +63,24 @@ run_stow_action() {
 # --- Parse arguments ---
 stow_action="stow"
 
-# TODO: look into replacing for-loop with getopts function with while loop
-# iterate over arguments
-for arg in "$@"; do
-    case "$arg" in
-        -u)
+while getopts ":uh" option; do
+    case "$option" in
+        u)
             stow_action="unstow"
-            shift
             ;;
-        -h)
+        h)
             print_usage
             exit 0
             ;;
         *)
+            error "Invalid option: $OPTARG"
+            print_usage
+            exit 1
             ;;
     esac
 done
+
+shift $((OPTIND - 1))
 
 # --- Detect os ---
 os="$(detect_os)"

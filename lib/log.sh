@@ -20,5 +20,5 @@ warn() {
 }
 
 error() {
-    echo -e "${RED} ERROR:${NO_COLOR} $*"
+    echo -e "${RED} ERROR:${NO_COLOR} $*" >&2
 }
