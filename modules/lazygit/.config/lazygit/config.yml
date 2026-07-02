@@ -5,18 +5,18 @@ gui:
   showFileTree: true
   theme:
     activeBorderColor:
-      - '#9da866'
+      - '#a9b665'
       - bold
     inactiveBorderColor:
-      - '#665c54'
+      - '#7c6f64'
     searchingActiveBorderColor:
-      - '#c8954f'
+      - '#d8a657'
       - bold
 
     optionsTextColor:
-      - '#c8954f'
+      - '#d8a657'
     defaultFgColor:
-      - '#c7b58a'
+      - '#d4be98'
 
     selectedLineBgColor:
       - '#3f4754'
@@ -29,12 +29,13 @@ gui:
       - '#263241'
 
     markedBaseCommitFgColor:
-      - '#ebdbb2'
+      - '#f9f5d7'
     markedBaseCommitBgColor:
-      - '#3d3324'
+      - '#473c29'
 
     unstagedChangesColor:
-      - '#d85f59'
+      - '#ea6962'
+
 os:
   editPreset: "nvim"
 keybinding:
