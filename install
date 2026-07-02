@@ -29,7 +29,6 @@ Options:
                 Default: core
 
                 Profiles:
-                    core     Baseline CLI tools
                     server   core + tools for machines I control
                     desktop  core + server + GUI/workstation tools
 
