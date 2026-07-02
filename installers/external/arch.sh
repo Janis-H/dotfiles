@@ -14,6 +14,5 @@ is_command_available(){
 
 # --- Public entrypoint ---
 install_external_tools() {
-    # add functions here
-    true
+    : # nothing distro-specific yet
 }
