@@ -97,6 +97,8 @@ info "OS: $os"
 
 title "Installing packages..."
 install_packages "${PACKAGES[@]}"
+
+title "Installing external tools..."
 # TODO: add install_external_packages function call here
 # TODO: refactor installers/external to support profiles
 
