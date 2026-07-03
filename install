@@ -6,8 +6,11 @@ set -euo pipefail
 DOTFILES_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
 
 # --- Sources ---
-source "$DOTFILES_DIR/lib/detect-os.sh"
 source "$DOTFILES_DIR/lib/log.sh"
+source "$DOTFILES_DIR/lib/detect-os.sh"
+source "$DOTFILES_DIR/lib/validate-profile.sh"
+source "$DOTFILES_DIR/lib/validate-os.sh"
+source "$DOTFILES_DIR/lib/build-packages-list.sh"
 source "$DOTFILES_DIR/installers/post-install.sh"
 
 # --- Helpers ---
@@ -42,19 +45,6 @@ Examples:
 EOF
 }
 
-validate_profile() {
-    local profile="$1"
-
-    case "$profile" in
-        core|server|desktop)
-            ;;
-        *)
-            error "Invalid profile option: $profile"
-            print_usage
-            exit 1
-    esac
-}
-
 # --- Parse arguments ---
 PROFILE="core"
 
@@ -86,19 +76,19 @@ shift $((OPTIND - 1))
 # --- Detect os ---
 os="$(detect_os)"
 
+validate_os "$os"
+
+# --- Build packages list ---
+source "$DOTFILES_DIR/manifests/$os.sh"
+
+build_packages_list
+
 # --- Installer selection ---
-case "$os" in
-    debian|arch|macos)
-        source "$DOTFILES_DIR/installers/$os.sh"
-        ;;
-    *)
-        error "Unsupported OS: $os"
-        exit 1
-        ;;
-esac
+source "$DOTFILES_DIR/installers/$os.sh"
 
 # --- Install flow ---
 title "Script Info"
+info "PROFILE: $PROFILE"
 info "OS: $os"
 
 # title "Installing packages"
