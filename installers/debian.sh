@@ -40,7 +40,7 @@ install_system_packages() {
 
 # --- Public entrypoint ---
 install_packages() {
-    install_system_packages "${PACKAGES[@]}"
+    install_system_packages "$@"
 
     # TODO: move install_external_tools back into install script
     # install_external_tools

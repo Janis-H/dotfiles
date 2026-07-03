@@ -100,7 +100,7 @@ install_packages "${PACKAGES[@]}"
 
 if [[ $os == "macos" && "${#CASKS[@]}" -gt 0 ]]; then
     title "Installling casks..."
-    install_casks
+    install_casks "${CASKS[@]}"
 fi
 
 # title "Running Post Install"

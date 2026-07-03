@@ -88,7 +88,7 @@ install_packages() {
     install_os_prerequisites
 
     # install packages
-    install_brew_packages "${PACKAGES[@]}"
+    install_brew_packages "$@"
 
     # TODO: move install_external_tools back into install script
     # install_external_tools
@@ -96,5 +96,5 @@ install_packages() {
 
 install_casks() {
     # install packages
-    install_brew_casks "${CASKS[@]}"
+    install_brew_casks "$@"
 }
