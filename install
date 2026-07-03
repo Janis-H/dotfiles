@@ -25,13 +25,13 @@ Description:
     Core tools are always installed. Use a profile to add server or desktop tools.
 
 Options:
-    -p PROFILE  Install package profile: server or desktop
+    -p PROFILE  Install package profile: core, server, or desktop
                 Default: core
 
                 Profiles:
                     core     Bare terminal/dotfiles setup
-                    server   core + development/build tools
-                    desktop  core + server + GUI/workstation tools
+                    server   Core + development/build tools
+                    desktop  Server + GUI/workstation tools
 
     -h          Show this help message
 
@@ -40,10 +40,10 @@ Examples:
         Install core tools only
 
     $script_name -p server
-        Install core tools plus server tools
+        Install core tools + server tools
 
     $script_name -p desktop
-        Install core tools plus desktop tools
+        Install core tools + server tools + desktop tools
 EOF
 }
 
@@ -68,6 +68,9 @@ while getopts ":p:h" option; do
         p)
             validate_profile "$OPTARG"
             PROFILE="$OPTARG"
+            ;;
+        :)
+            error "$OPTARG"
             ;;
         h)
             print_usage
