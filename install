@@ -92,7 +92,7 @@ info "PROFILE: $PROFILE"
 info "OS: $os"
 
 # title "Installing packages"
-# install_packages
+# install_packages "${PACKAGES[@]}"
 
 # title "Running Post Install"
 # run_post_install
