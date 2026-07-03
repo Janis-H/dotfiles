@@ -4,16 +4,55 @@
 
 # bare terminal/dotfiles setup:
 # - shell, editor, search, navigation, archive, and dotfile tools
-export CORE_PACKAGES=()
+export CORE_PACKAGES=(
+    bat
+    coreutils
+    curl
+    diffutils
+    fd
+    findutils
+    fzf
+    gawk
+    git
+    gnu-sed
+    grep
+    gzip
+    jandedobbeleer/oh-my-posh/oh-my-posh
+    jq
+    neovim
+    ripgrep
+    stow
+    the_silver_searcher
+    tmux
+    tree
+    unzip
+    wget
+    yazi
+    zoxide
+    zsh
+)
 
 # development/build tools; used by the server profile;
 # - compilers, runtimes, linters, formatters, and project workflow tools
-export DEV_BUILD_PACKAGES=()
+export DEV_BUILD_PACKAGES=(
+    lazygit
+    python3
+    shellcheck
+    shfmt
+    tree-sitter-cli
+)
 
 # GUI/workstation additions; desktop includes core + dev/build + desktop
 # - window managers, launchers, graphical terminals, editors, and GUI apps
 export DESKTOP_PACKAGES=()
 
+# GUI/workstation casks
+export DESKTOP_CASKS=(
+    ghostty
+    zed
+)
+
+# TODO: DELETE BELOW ONCE TRANSITION IS DONE
 export PACKAGES=(
     bat
     coreutils
