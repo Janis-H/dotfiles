@@ -83,16 +83,20 @@ install_brew_casks() {
     fi
 }
 
-install_system_packages() {
-    install_brew_packages "${PACKAGES[@]}"
-    install_brew_casks "${CASKS[@]}"
-}
-
 # --- Public entrypoint ---
 install_packages() {
     install_os_prerequisites
 
     # install packages
-    install_system_packages
-    install_external_tools
+    install_brew_packages "${PACKAGES[@]}"
+
+    # TODO: move install_external_tools back into install script
+    # install_external_tools
+}
+
+install_casks() {
+    install_os_prerequisites
+
+    # install packages
+    install_brew_casks "${CASKS[@]}"
 }
