@@ -11,7 +11,7 @@ export CORE_PACKAGES=()
 export DEV_BUILD_PACKAGES=()
 
 # GUI/workstation additions; desktop includes core + dev/build + desktop
-# - desktop session tools, terminals, browsers, editors, and GUI apps
+# - window managers, launchers, graphical terminals, editors, and GUI apps
 export DESKTOP_PACKAGES=()
 
 export PACKAGES=(
