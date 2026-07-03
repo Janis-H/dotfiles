@@ -95,8 +95,6 @@ install_packages() {
 }
 
 install_casks() {
-    install_os_prerequisites
-
     # install packages
     install_brew_casks "${CASKS[@]}"
 }
