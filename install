@@ -10,7 +10,7 @@ source "$DOTFILES_DIR/lib/log.sh"
 source "$DOTFILES_DIR/lib/detect-os.sh"
 source "$DOTFILES_DIR/lib/validate-profile.sh"
 source "$DOTFILES_DIR/lib/validate-os.sh"
-source "$DOTFILES_DIR/lib/build-packages-list.sh"
+source "$DOTFILES_DIR/lib/build-packages-for-profile.sh"
 source "$DOTFILES_DIR/installers/post-install.sh"
 
 # --- Helpers ---
@@ -81,7 +81,7 @@ validate_os "$os"
 # --- Build packages list ---
 source "$DOTFILES_DIR/manifests/$os.sh"
 
-build_packages_list
+build_packages_for_profile
 
 # --- Installer selection ---
 source "$DOTFILES_DIR/installers/$os.sh"

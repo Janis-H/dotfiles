@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-build_packages_list() {
+build_packages_for_profile() {
     PACKAGES=("${CORE_PACKAGES[@]}")
 
     case "$PROFILE" in
