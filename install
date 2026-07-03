@@ -81,6 +81,8 @@ validate_os "$os" || exit 1
 # --- Build packages list ---
 source "$DOTFILES_DIR/manifests/$os.sh"
 
+# TODO: add manifest validator
+
 build_packages_for_profile
 
 # --- Installer selection ---
@@ -93,6 +95,7 @@ info "OS: $os"
 
 title "Installing packages"
 install_packages "${PACKAGES[@]}"
+# TODO: install_casks function
 
 # title "Running Post Install"
 # run_post_install
