@@ -5,7 +5,6 @@
 
 # --- Sources ---
 source "$DOTFILES_DIR/lib/log.sh"
-source "$DOTFILES_DIR/packages/macos.sh"
 source "$DOTFILES_DIR/installers/external/macos.sh"
 
 # --- Homebrew helpers ---
@@ -38,6 +37,11 @@ ensure_homebrew() {
 
     info "Installing Homebrew"
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+}
+
+install_os_prerequisites() {
+    ensure_xcode_tools
+    ensure_homebrew
 }
 
 # --- Install Steps ---
@@ -86,9 +90,7 @@ install_system_packages() {
 
 # --- Public entrypoint ---
 install_packages() {
-    # install os prerequisites
-    ensure_xcode_tools
-    ensure_homebrew
+    install_os_prerequisites
 
     # install packages
     install_system_packages

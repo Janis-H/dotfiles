@@ -5,7 +5,6 @@
 
 # --- Sources ---
 source "$DOTFILES_DIR/lib/log.sh"
-source "$DOTFILES_DIR/packages/debian.sh"
 source "$DOTFILES_DIR/installers/external/debian.sh"
 
 # --- APT helpers ---

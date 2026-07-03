@@ -5,7 +5,6 @@
 
 # --- Sources ---
 source "$DOTFILES_DIR/lib/log.sh"
-source "$DOTFILES_DIR/packages/arch.sh"
 source "$DOTFILES_DIR/installers/external/arch.sh"
 
 # --- Pacman helpers ---
