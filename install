@@ -8,10 +8,14 @@ DOTFILES_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
 # --- Sources ---
 source "$DOTFILES_DIR/lib/log.sh"
 source "$DOTFILES_DIR/lib/detect-os.sh"
+
 source "$DOTFILES_DIR/lib/validate-profile.sh"
 source "$DOTFILES_DIR/lib/validate-os.sh"
+
 source "$DOTFILES_DIR/lib/build-casks-for-profile.sh"
 source "$DOTFILES_DIR/lib/build-packages-for-profile.sh"
+source "$DOTFILES_DIR/lib/build-external-tools-for-profile.sh"
+
 source "$DOTFILES_DIR/installers/post-install.sh"
 
 # --- Helpers ---
@@ -41,6 +45,7 @@ Options:
 
 Examples:
     $script_name                # Install core
+    $script_name -p core        # Install core + server
     $script_name -p server      # Install core + server
     $script_name -p desktop     # Install core + server + desktop
 EOF
