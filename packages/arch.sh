@@ -2,17 +2,20 @@
 
 # TODO: separate into core, server, and desktop packages
 
-# always install
+# bare terminal/dotfiles setup:
+# - shell, editor, search, navigation, archive, and dotfile tools
 export CORE_PACKAGES=()
 
-# server profile additions
-export SERVER_PACKAGES=()
+# development/build tools; used by the server profile;
+# - compilers, runtimes, linters, formatters, and project workflow tools
+export DEV_BUILD_PACKAGES=()
 
-# desktop profile additions
+# GUI/workstation additions; desktop includes core + dev/build + desktop
+# - desktop session tools, terminals, browsers, editors, and GUI apps
 export DESKTOP_PACKAGES=()
 
 # TODO: add hyprland and/or sway
-export ARCH_PACKAGES=(
+export PACKAGES=(
     base-devel
     bat
     curl
