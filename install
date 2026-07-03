@@ -97,6 +97,8 @@ info "OS: $os"
 
 title "Installing packages..."
 install_packages "${PACKAGES[@]}"
+# TODO: add install_external_packages function call here
+# TODO: refactor installers/external to support profiles
 
 if [[ $os == "macos" && "${#CASKS[@]}" -gt 0 ]]; then
     title "Installling casks..."
