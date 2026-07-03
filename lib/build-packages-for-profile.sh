@@ -18,7 +18,7 @@ build_packages_for_profile() {
         *)
             echo "Unsupported profile: $PROFILE" >&2
             print_usage >&2
-            exit 1
+            return 1
             ;;
     esac
 }

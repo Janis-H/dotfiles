@@ -83,7 +83,7 @@ source "$DOTFILES_DIR/manifests/$os.sh"
 
 # TODO: add manifest validator
 
-build_packages_for_profile
+build_packages_for_profile || exit 1
 
 # --- Installer selection ---
 source "$DOTFILES_DIR/installers/$os.sh"
