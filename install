@@ -10,6 +10,7 @@ source "$DOTFILES_DIR/lib/log.sh"
 source "$DOTFILES_DIR/lib/detect-os.sh"
 source "$DOTFILES_DIR/lib/validate-profile.sh"
 source "$DOTFILES_DIR/lib/validate-os.sh"
+source "$DOTFILES_DIR/lib/build-casks-for-profile.sh"
 source "$DOTFILES_DIR/lib/build-packages-for-profile.sh"
 source "$DOTFILES_DIR/installers/post-install.sh"
 
@@ -84,6 +85,7 @@ source "$DOTFILES_DIR/manifests/$os.sh"
 # TODO: add manifest validator
 
 build_packages_for_profile || exit 1
+build_casks_for_profile || exit 1
 
 # --- Installer selection ---
 source "$DOTFILES_DIR/installers/$os.sh"
@@ -96,6 +98,7 @@ info "OS: $os"
 title "Installing packages"
 install_packages "${PACKAGES[@]}"
 # TODO: install_casks function
+
 
 # title "Running Post Install"
 # run_post_install
