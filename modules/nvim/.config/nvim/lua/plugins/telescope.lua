@@ -57,9 +57,18 @@ return {
 
                 -- default filter ignore pattern
                 file_ignore_patterns = {
-                    "node_modules",
-                    "build",
-                    "dist",
+                    "^node_modules/",
+                    "/node_modules/",
+
+                    "^build/",
+                    "/build/",
+
+                    "^dist/",
+                    "/dist/",
+
+                    "^.git/",
+                    "/.git/",
+
                     "package-lock.json",
                     "yarn.lock",
                 },
