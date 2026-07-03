@@ -163,10 +163,13 @@ return {
         { "<leader>fk", "<cmd>Telescope keymaps<cr>", desc = "Find keymaps" },
         { "<leader>fc", "<cmd>Telescope commands<cr>", desc = "Find commands" },
 
+        -- Registers
+        { "<leader>fp", "<cmd>Telescope registers<cr>", desc = "Find register" },
+
         -- Quickfix.
         { "<leader>fq", "<cmd>Telescope quickfix<cr>", desc = "Find quickfix" },
 
         -- Resume previous search
-        { "<leader>fr", "<cmd>Telescope resume<cr>", desc = "Find quickfix" },
+        { "<leader>fr", "<cmd>Telescope resume<cr>", desc = "Resume previous search" },
     },
 }
