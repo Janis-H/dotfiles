@@ -36,14 +36,9 @@ Options:
     -h          Show this help message
 
 Examples:
-    $script_name
-        Install core tools only
-
-    $script_name -p server
-        Install core tools + server tools
-
-    $script_name -p desktop
-        Install core tools + server tools + desktop tools
+    $script_name                # Install core
+    $script_name -p server      # Install core + server
+    $script_name -p desktop     # Install core + server + desktop
 EOF
 }
 
@@ -70,7 +65,9 @@ while getopts ":p:h" option; do
             PROFILE="$OPTARG"
             ;;
         :)
-            error "$OPTARG"
+            error "Missing argument"
+            print_usage
+            exit 1
             ;;
         h)
             print_usage
