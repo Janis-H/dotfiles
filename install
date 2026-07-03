@@ -51,7 +51,7 @@ PROFILE="core"
 while getopts ":p:h" option; do
     case "$option" in
         p)
-            validate_profile "$OPTARG"
+            validate_profile "$OPTARG" || exit 1
             PROFILE="$OPTARG"
             ;;
         :)
@@ -76,7 +76,7 @@ shift $((OPTIND - 1))
 # --- Detect os ---
 os="$(detect_os)"
 
-validate_os "$os"
+validate_os "$os" || exit 1
 
 # --- Build packages list ---
 source "$DOTFILES_DIR/manifests/$os.sh"
@@ -91,8 +91,8 @@ title "Script Info"
 info "PROFILE: $PROFILE"
 info "OS: $os"
 
-# title "Installing packages"
-# install_packages "${PACKAGES[@]}"
+title "Installing packages"
+install_packages "${PACKAGES[@]}"
 
 # title "Running Post Install"
 # run_post_install

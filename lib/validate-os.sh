@@ -3,10 +3,11 @@
 validate_os() {
     case "$os" in
         debian|arch|macos)
+            return 0
             ;;
         *)
             error "Unsupported OS: $os"
-            exit 1
+            return 1
             ;;
     esac
 }

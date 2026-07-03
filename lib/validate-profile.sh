@@ -5,10 +5,11 @@ validate_profile() {
 
     case "$profile" in
         core|server|desktop)
+            return 0
             ;;
         *)
             error "Invalid profile option: $profile"
             print_usage
-            exit 1
+            return 1
     esac
 }
