@@ -65,7 +65,7 @@ while getopts ":p:h" option; do
             PROFILE="$OPTARG"
             ;;
         :)
-            error "Missing argument"
+            error "option missing argument"
             print_usage
             exit 1
             ;;
