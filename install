@@ -79,10 +79,14 @@ os="$(detect_os)"
 
 validate_os "$os" || exit 1
 
-# --- Build packages list ---
+# --- Build package lists ---
 source "$DOTFILES_DIR/manifests/$os.sh"
 
 # TODO: add manifest validator
+
+PACKAGES=()
+CASKS=()
+# EXTERNAL_TOOLS=()
 
 build_packages_for_profile || exit 1
 build_casks_for_profile || exit 1
