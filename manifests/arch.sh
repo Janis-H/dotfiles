@@ -48,11 +48,9 @@ export DESKTOP_PACKAGES=(
 # ─────────────────────────────────────────────────────────────
 # Stow module manifests
 # ─────────────────────────────────────────────────────────────
-# TODO: sort into proper stow_modules arrays
-
 # dotfile modules for the bare terminal setup
-export CORE_STOW_MODULES=( bat
-    lazygit
+export CORE_STOW_MODULES=(
+    bat
     nvim
     ohmyposh
     tmux
@@ -61,7 +59,9 @@ export CORE_STOW_MODULES=( bat
 )
 
 # dotfile modules for development/build tooling
-export DEV_BUILD_STOW_MODULES=()
+export DEV_BUILD_STOW_MODULES=(
+    lazygit
+)
 
 # dotfile modules for GUI/workstation setup
 export DESKTOP_STOW_MODULES=()
