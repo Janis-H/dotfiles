@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+# shellcheck disable=SC2034
 
 # ─────────────────────────────────────────────────────────────
 # Package manifests
@@ -6,7 +7,7 @@
 
 # bare terminal/dotfiles setup:
 # - shell, editor, search, navigation, archive, and dotfile tools
-export CORE_PACKAGES=(
+CORE_PACKAGES=(
     curl
     fd-find
     git
@@ -23,7 +24,7 @@ export CORE_PACKAGES=(
 
 # development/build tools:
 # - compilers, runtimes, linters, formatters, and project workflow tools
-export DEV_BUILD_PACKAGES=(
+DEV_BUILD_PACKAGES=(
     build-essential
     python3
     python3-pip
@@ -35,7 +36,7 @@ export DEV_BUILD_PACKAGES=(
 
 # GUI/workstation additions:
 # - window managers, launchers, graphical terminals, editors, and GUI apps
-export DESKTOP_PACKAGES=(
+DESKTOP_PACKAGES=(
     ghostty
     i3
     picom
@@ -49,7 +50,7 @@ export DESKTOP_PACKAGES=(
 # NOTE:
 # External installer IDs.
 # Each value maps to a function named install_external_<id>.
-export EXTERNAL_CORE=(
+EXTERNAL_CORE=(
     # apt version updates too slowly
     fzf
     neovim
@@ -59,11 +60,11 @@ export EXTERNAL_CORE=(
     zoxide
 )
 
-export EXTERNAL_DEV_BUILD=(
+EXTERNAL_DEV_BUILD=(
     lazygit
 )
 
-export EXTERNAL_DESKTOP=(
+EXTERNAL_DESKTOP=(
     rodecaster_pipewire_setup
 )
 
@@ -72,7 +73,7 @@ export EXTERNAL_DESKTOP=(
 # ─────────────────────────────────────────────────────────────
 
 # dotfile modules for the bare terminal setup
-export CORE_STOW_MODULES=(
+CORE_STOW_MODULES=(
     bat
     nvim
     ohmyposh
@@ -82,12 +83,12 @@ export CORE_STOW_MODULES=(
 )
 
 # dotfile modules for development/build tooling
-export DEV_BUILD_STOW_MODULES=(
+DEV_BUILD_STOW_MODULES=(
     lazygit
 )
 
 # dotfile modules for GUI/workstation setup
-export DESKTOP_STOW_MODULES=(
+DESKTOP_STOW_MODULES=(
     i3
     picom
 )

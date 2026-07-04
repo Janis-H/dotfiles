@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+# shellcheck disable=SC2034
 
 # ─────────────────────────────────────────────────────────────
 # Package manifests
@@ -6,7 +7,7 @@
 
 # bare terminal/dotfiles setup:
 # - shell, editor, search, navigation, archive, and dotfile tools
-export CORE_PACKAGES=(
+CORE_PACKAGES=(
     bat
     curl
     diffutils
@@ -28,7 +29,7 @@ export CORE_PACKAGES=(
 
 # development/build tools:
 # - compilers, runtimes, linters, formatters, and project workflow tools
-export DEV_BUILD_PACKAGES=(
+DEV_BUILD_PACKAGES=(
     base-devel
     lazygit
     python
@@ -41,7 +42,7 @@ export DEV_BUILD_PACKAGES=(
 # GUI/workstation additions:
 # - window managers, launchers, graphical terminals, editors, and GUI apps
 # TODO: add hyprland and/or sway
-export DESKTOP_PACKAGES=(
+DESKTOP_PACKAGES=(
     ghostty
 )
 
@@ -52,11 +53,11 @@ export DESKTOP_PACKAGES=(
 # NOTE:
 # External installer IDs.
 # Each value maps to a function named install_external_<id>.
-export EXTERNAL_CORE=()
+EXTERNAL_CORE=()
 
-export EXTERNAL_DEV_BUILD=()
+EXTERNAL_DEV_BUILD=()
 
-export EXTERNAL_DESKTOP=(
+EXTERNAL_DESKTOP=(
     rodecaster_pipewire_setup
 )
 
@@ -64,7 +65,7 @@ export EXTERNAL_DESKTOP=(
 # Stow module manifests
 # ─────────────────────────────────────────────────────────────
 # dotfile modules for the bare terminal setup
-export CORE_STOW_MODULES=(
+CORE_STOW_MODULES=(
     bat
     nvim
     ohmyposh
@@ -74,9 +75,9 @@ export CORE_STOW_MODULES=(
 )
 
 # dotfile modules for development/build tooling
-export DEV_BUILD_STOW_MODULES=(
+DEV_BUILD_STOW_MODULES=(
     lazygit
 )
 
 # dotfile modules for GUI/workstation setup
-export DESKTOP_STOW_MODULES=()
+DESKTOP_STOW_MODULES=()
