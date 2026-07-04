@@ -11,6 +11,7 @@ source "$DOTFILES_DIR/lib/detect-os.sh"
 
 source "$DOTFILES_DIR/lib/validate-profile.sh"
 source "$DOTFILES_DIR/lib/validate-os.sh"
+source "$DOTFILES_DIR/lib/validate-manifest.sh"
 
 source "$DOTFILES_DIR/lib/build-casks-for-profile.sh"
 source "$DOTFILES_DIR/lib/build-packages-for-profile.sh"
@@ -87,7 +88,7 @@ validate_os "$os" || exit 1
 # --- Build package lists ---
 source "$DOTFILES_DIR/manifests/$os.sh"
 
-# TODO: add manifest validator
+validate_manifest || exit 1
 
 PACKAGES=()
 CASKS=()
