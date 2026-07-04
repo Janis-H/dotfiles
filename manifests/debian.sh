@@ -18,7 +18,6 @@ export CORE_PACKAGES=(
     tar
     tmux
     unzip
-    zoxide
     zsh
 )
 
@@ -41,6 +40,31 @@ export DESKTOP_PACKAGES=(
     i3
     picom
     rofi
+)
+
+# ─────────────────────────────────────────────────────────────
+# External tools manifests
+# ─────────────────────────────────────────────────────────────
+
+# NOTE:
+# External installer IDs.
+# Each value maps to a function named install_external_<id>.
+export EXTERNAL_CORE=(
+    # apt version updates too slowly
+    fzf
+    neovim
+
+    # not available in apt
+    oh_my_posh
+    zoxide
+)
+
+export EXTERNAL_DEV_BUILD=(
+    lazygit
+)
+
+export EXTERNAL_DESKTOP=(
+    rodecaster_pipewire_setup
 )
 
 # ─────────────────────────────────────────────────────────────

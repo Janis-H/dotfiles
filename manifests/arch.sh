@@ -46,6 +46,21 @@ export DESKTOP_PACKAGES=(
 )
 
 # ─────────────────────────────────────────────────────────────
+# External tools manifests
+# ─────────────────────────────────────────────────────────────
+
+# NOTE:
+# External installer IDs.
+# Each value maps to a function named install_external_<id>.
+export EXTERNAL_CORE=()
+
+export EXTERNAL_DEV_BUILD=()
+
+export EXTERNAL_DESKTOP=(
+    rodecaster_pipewire_setup
+)
+
+# ─────────────────────────────────────────────────────────────
 # Stow module manifests
 # ─────────────────────────────────────────────────────────────
 # dotfile modules for the bare terminal setup

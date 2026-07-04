@@ -59,6 +59,19 @@ export DESKTOP_CASKS=(
 )
 
 # ─────────────────────────────────────────────────────────────
+# External tools manifests
+# ─────────────────────────────────────────────────────────────
+
+# NOTE:
+# External installer IDs.
+# Each value maps to a function named install_external_<id>.
+export EXTERNAL_CORE=()
+
+export EXTERNAL_DEV_BUILD=()
+
+export EXTERNAL_DESKTOP=()
+
+# ─────────────────────────────────────────────────────────────
 # Stow module manifests
 # ─────────────────────────────────────────────────────────────
 
