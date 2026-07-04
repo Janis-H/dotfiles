@@ -1,9 +1,10 @@
 #!/usr/bin/env bash
 
 build_packages_for_profile() {
+    local profile="$1:-core"
     PACKAGES=("${CORE_PACKAGES[@]}")
 
-    case "$PROFILE" in
+    case "$profile" in
         core)
             ;;
         server)
@@ -16,7 +17,7 @@ build_packages_for_profile() {
             )
             ;;
         *)
-            echo "Unsupported profile: $PROFILE" >&2
+            echo "Unsupported profile: $profile" >&2
             print_usage >&2
             return 1
             ;;

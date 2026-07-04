@@ -12,7 +12,7 @@ install_external_tools() {
     for tool in "$@"; do
         install_func="install_external_${tool}"
 
-        # TODO: add shared lib install_function for validating functions
+        # TODO: add shared lib validate_function for validating functions
 
         # validate that install_function exists
         if ! declare -F "$install_func" >/dev/null; then

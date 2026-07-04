@@ -17,6 +17,7 @@ source "$DOTFILES_DIR/lib/build-casks-for-profile.sh"
 source "$DOTFILES_DIR/lib/build-packages-for-profile.sh"
 source "$DOTFILES_DIR/lib/build-external-tools-for-profile.sh"
 
+source "$DOTFILES_DIR/installers/external/runner.sh"
 source "$DOTFILES_DIR/installers/post-install.sh"
 
 # --- Helpers ---
@@ -94,12 +95,13 @@ PACKAGES=()
 CASKS=()
 EXTERNAL_TOOLS=()
 
-build_packages_for_profile || exit 1
-build_casks_for_profile || exit 1
-build_external_tools_for_profile || exit 1
+build_packages_for_profile "$PROFILE" || exit 1
+build_casks_for_profile "$PROFILE" || exit 1
+build_external_tools_for_profile "$PROFILE"|| exit 1
 
 # --- Installer selection ---
 source "$DOTFILES_DIR/installers/$os.sh"
+source "$DOTFILES_DIR/installers/external/$os.sh"
 
 # --- Install flow ---
 title "Script Info"
@@ -110,8 +112,7 @@ title "Installing packages..."
 install_packages "${PACKAGES[@]}"
 
 title "Installing external tools..."
-# TODO: add install_external_packages function call here
-# TODO: refactor installers/external to support profiles
+install_external_tools "${EXTERNAL_TOOLS[@]}"
 
 if [[ $os == "macos" && "${#CASKS[@]}" -gt 0 ]]; then
     title "Installling casks..."

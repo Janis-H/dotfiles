@@ -1,13 +1,15 @@
 #!/usr/bin/env bash
 
 build_casks_for_profile() {
+    local profile="$1:-core"
+
     CASKS=()
 
     if [[ "$os" != "macos" ]]; then
         return 0
     fi
 
-    case "$PROFILE" in
+    case "$profile" in
         core|server)
             ;;
         desktop)
@@ -16,7 +18,7 @@ build_casks_for_profile() {
             )
             ;;
         *)
-            echo "Unsupported profile: $PROFILE" >&2
+            echo "Unsupported profile: $profile" >&2
             print_usage >&2
             return 1
             ;;
