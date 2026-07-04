@@ -3,15 +3,13 @@
 
 : "$DOTFILES_DIR:?DOTFILES_DIR must be set before sourcing installers/external/debian.sh"
 
-# --- Sources ---
-
 # --- Helper functions ---
 is_command_available(){
     command -v "$1" &>/dev/null
 }
 
 # --- External tool installers ---
-install_rodecaster_pipewire_setup() {
+install_external_rodecaster_pipewire_setup() {
     info "Configuring Rodecaster Pro 2 / Rodecaseter Duo"
 
     # run installer
@@ -19,7 +17,7 @@ install_rodecaster_pipewire_setup() {
     curl -sfL https://parzival-space.github.io/rodecaster-pro-2-virtual-devices-pipewire/configure.sh | sh -s - --install
 }
 
-install_fzf() {
+install_external_fzf() {
     # check if installed
     if is_command_available fzf; then
         info "fzf already installed"
@@ -35,7 +33,7 @@ install_fzf() {
     ~/.fzf/install
 }
 
-install_lazygit() {
+install_external_lazygit() {
     # check if installed
     if is_command_available lazygit; then
         info "lazygit already installed"
@@ -64,7 +62,7 @@ install_lazygit() {
     sudo install lazygit -D -t /usr/local/bin/
 }
 
-install_neovim() {
+install_external_neovim() {
     # check if installed
     if is_command_available nvim; then
         info "nvim already installed"
@@ -83,7 +81,7 @@ install_neovim() {
     sudo tar -C /opt -xzf nvim-linux-x86_64.tar.gz
 }
 
-install_zoxide() {
+install_external_zoxide() {
     # check if installed
     if is_command_available zoxide; then
         info "zoxide already installed"
@@ -96,7 +94,7 @@ install_zoxide() {
     curl -sSfL https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | sh
 }
 
-install_oh_my_posh() {
+install_external_oh_my_posh() {
     if is_command_available oh-my-posh; then
         info "Oh-my-posh is Installed"
     fi
@@ -105,17 +103,4 @@ install_oh_my_posh() {
 
     # install oh-my-posh via curl
     curl -s https://ohmyposh.dev/install.sh | bash -s
-}
-
-# --- Public entrypoint ---
-install_external_tools() {
-    # apt version updates too slowly
-    install_fzf
-    install_neovim
-
-    # not available in apt
-    install_lazygit
-    install_oh_my_posh
-    install_zoxide
-    install_rodecaster_pipewire_setup
 }
