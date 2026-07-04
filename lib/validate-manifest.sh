@@ -17,4 +17,8 @@ validate_manifest() {
     require_array CORE_STOW_MODULES || return 1
     require_array DEV_BUILD_STOW_MODULES || return 1
     require_array DESKTOP_STOW_MODULES || return 1
+
+    # TODO: add validation for EXTERNAL array values
+    #       - each value should have an existing function in
+    #         installers/external/<detected-os>.sh)
 }
