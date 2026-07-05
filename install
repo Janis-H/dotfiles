@@ -13,8 +13,8 @@ source "$DOTFILES_DIR/lib/validate-profile.sh"
 source "$DOTFILES_DIR/lib/validate-os.sh"
 source "$DOTFILES_DIR/lib/validate-manifest.sh"
 
-source "$DOTFILES_DIR/lib/build-casks-for-profile.sh"
-source "$DOTFILES_DIR/lib/build-packages-for-profile.sh"
+source "$DOTFILES_DIR/lib/build-system-casks-for-profile.sh"
+source "$DOTFILES_DIR/lib/build-system-packages-for-profile.sh"
 source "$DOTFILES_DIR/lib/build-external-tools-for-profile.sh"
 
 source "$DOTFILES_DIR/installers/post-install.sh"
@@ -33,8 +33,7 @@ Description:
     Install core packages and external tools for the detected OS.
     Core tools are always installed. Use a profile to add server or desktop tools.
 
-Options:
-    -p PROFILE  Install package profile: core, server, or desktop
+Options: -p PROFILE  Install package profile: core, server, or desktop
                 Default: core
 
                 Profiles:
@@ -90,13 +89,13 @@ source "$DOTFILES_DIR/manifests/$OS.sh"
 
 validate_manifest || exit 1
 
-PACKAGES=()
-CASKS=()
+SYSTEM_PACKAGES=()
+SYSTEM_CASKS=()
 EXTERNAL_TOOLS=()
 
-build_packages_for_profile "$PROFILE" || exit 1
-build_casks_for_profile "$PROFILE" || exit 1
-build_external_tools_for_profile "$PROFILE"|| exit 1
+build_system_packages_for_profile "$PROFILE" || exit 1
+build_system_casks_for_profile "$PROFILE" || exit 1
+build_external_tools_for_profile "$PROFILE" || exit 1
 
 # --- Installer selection ---
 
@@ -112,16 +111,16 @@ title "Script Info"
 info "PROFILE: $PROFILE"
 info "OS: $OS"
 
-title "Installing packages..."
-install_system_packages "${PACKAGES[@]}"
+title "Installing system packages..."
+install_system_packages "${SYSTEM_PACKAGES[@]}"
+
+if [[ "$OS" == "macos" && "${#SYSTEM_CASKS[@]}" -gt 0 ]]; then
+    title "Installing system casks..."
+    install_system_casks "${SYSTEM_CASKS[@]}"
+fi
 
 title "Installing external tools..."
 install_external_tools "${EXTERNAL_TOOLS[@]}"
-
-if [[ "$OS" == "macos" && "${#CASKS[@]}" -gt 0 ]]; then
-    title "Installling casks..."
-    install_system_casks "${CASKS[@]}"
-fi
 
 # title "Running Post Install"
 # run_post_install

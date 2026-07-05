@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 
-build_casks_for_profile() {
+build_system_casks_for_profile() {
     local profile="$1:-core"
 
-    CASKS=()
+    SYSTEM_CASKS=()
 
     if [[ "$OS" != "macos" ]]; then
         return 0
@@ -13,7 +13,7 @@ build_casks_for_profile() {
         core|server)
             ;;
         desktop)
-            CASKS+=(
+            SYSTEM_CASKS+=(
                 "${DESKTOP_CASKS[@]}"
             )
             ;;

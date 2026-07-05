@@ -1,17 +1,18 @@
 #!/usr/bin/env bash
 
-build_packages_for_profile() {
+build_system_packages_for_profile() {
     local profile="$1:-core"
-    PACKAGES=("${CORE_PACKAGES[@]}")
+
+    SYSTEM_PACKAGES=("${CORE_PACKAGES[@]}")
 
     case "$profile" in
         core)
             ;;
         server)
-            PACKAGES+=("${DEV_BUILD_PACKAGES[@]}")
+            SYSTEM_PACKAGES+=("${DEV_BUILD_PACKAGES[@]}")
             ;;
         desktop)
-            PACKAGES+=(
+            SYSTEM_PACKAGES+=(
                 "${DEV_BUILD_PACKAGES[@]}"
                 "${DESKTOP_PACKAGES[@]}"
             )
