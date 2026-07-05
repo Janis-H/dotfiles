@@ -5,7 +5,6 @@
 
 # --- Sources ---
 source "$DOTFILES_DIR/lib/log.sh"
-source "$DOTFILES_DIR/installers/external/macos.sh"
 
 # --- Homebrew helpers ---
 is_formula_installed() {
@@ -84,17 +83,14 @@ install_brew_casks() {
 }
 
 # --- Public entrypoint ---
-install_packages() {
+install_system_packages() {
     install_os_prerequisites
 
-    # install packages
+    # install brew packages
     install_brew_packages "$@"
-
-    # TODO: move install_external_tools back into install script
-    # install_external_tools
 }
 
-install_casks() {
-    # install packages
+install_system_casks() {
+    # install casks packages
     install_brew_casks "$@"
 }

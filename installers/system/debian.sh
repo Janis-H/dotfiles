@@ -1,18 +1,17 @@
 #!/usr/bin/env bash
-# Defines Arch-family package installation logic
+# Defines Debian-family package installtion logic
 
-: "${DOTFILES_DIR:?DOTFILES_DIR must be set before sourcing installers/arch.sh}"
+: "${DOTFILES_DIR:?DOTFILES_DIR must be set before sourcing debian.sh}"
 
 # --- Sources ---
 source "$DOTFILES_DIR/lib/log.sh"
-source "$DOTFILES_DIR/installers/external/arch.sh"
 
-# --- Pacman helpers ---
+# --- APT helpers ---
 is_installed() {
-    pacman -Qi "$1" &>/dev/null
+    dpkg -s "$1" &>/dev/null
 }
 
-# --- Install steps ---
+# --- Public entrypoint ---
 install_system_packages() {
     local to_install=()
     local pkg
@@ -34,14 +33,6 @@ install_system_packages() {
         info "Installing: ${to_install[*]}"
 
         # install all packages in to_install array
-        sudo pacman -Sy --needed "${to_install[@]}"
+        sudo apt-get install -y "${to_install[@]}"
     fi
-}
-
-# --- Public entrypoint ---
-install_packages() {
-    install_system_packages "$@"
-
-    # TODO: move install_external_tools back into install script
-    # install_external_tools
 }
