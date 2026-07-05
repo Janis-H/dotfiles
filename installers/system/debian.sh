@@ -5,6 +5,7 @@
 
 # --- Sources ---
 source "$DOTFILES_DIR/lib/log.sh"
+source "$DOTFILES_DIR/lib/run-command.sh"
 
 # --- APT helpers ---
 is_installed() {
@@ -33,6 +34,6 @@ install_system_packages() {
         info "Installing: ${to_install[*]}"
 
         # install all packages in to_install array
-        sudo apt-get install -y "${to_install[@]}"
+        run_cmd sudo apt-get install -y "${to_install[@]}"
     fi
 }

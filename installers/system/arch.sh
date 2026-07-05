@@ -5,7 +5,7 @@
 
 # --- Sources ---
 source "$DOTFILES_DIR/lib/log.sh"
-source "$DOTFILES_DIR/installers/external/arch.sh"
+source "$DOTFILES_DIR/lib/run-command.sh"
 
 # --- Pacman helpers ---
 is_installed() {
@@ -34,6 +34,6 @@ install_system_packages() {
         info "Installing: ${to_install[*]}"
 
         # install all packages in to_install array
-        sudo pacman -Sy --needed "${to_install[@]}"
+        run_cmd sudo pacman -Sy --needed "${to_install[@]}"
     fi
 }
