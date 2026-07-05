@@ -16,7 +16,7 @@ is_cask_installed() {
 }
 
 ensure_xcode_tools() {
-    if -pkgutil --pkg-info=com.apple.pkg.CLTools_Executables &>/dev/null; then
+    if pkgutil --pkg-info=com.apple.pkg.CLTools_Executables >/dev/null 2>&1; then
         info "Xcode Command Line Tools already installed"
         return
     fi
