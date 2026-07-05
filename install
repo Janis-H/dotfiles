@@ -10,6 +10,7 @@ DOTFILES_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
 # --- Sources ---
 source "$DOTFILES_DIR/lib/log.sh"
 source "$DOTFILES_DIR/lib/detect-os.sh"
+source "$DOTFILES_DIR/lib/run-command.sh"
 
 source "$DOTFILES_DIR/lib/validate-profile.sh"
 source "$DOTFILES_DIR/lib/validate-os.sh"

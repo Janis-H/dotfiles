@@ -40,9 +40,9 @@ ensure_homebrew() {
 
     info "Installing Homebrew"
 
-    # WARNING:
-    # Do not wrap this in run_cmd.
-    # Command substitution would run curl before run_cmd can check DRY_RUN.
+    # NOTE:
+    # Do not use run_cmd here
+    # Dry-run is checked before command substitution so curl does not run during dry-run.
     if [[ "${DRY_RUN:-false}" == true ]]; then
         # shellcheck disable=SC2016
          printf '+ /bin/bash -c "$(curl -fsSL %q)"\n' "$install_url"

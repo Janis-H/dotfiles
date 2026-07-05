@@ -10,14 +10,27 @@ is_command_available(){
 
 # --- External tool installers ---
 install_external_rodecaster_pipewire_setup() {
+    install_url="https://parzival-space.github.io/rodecaster-pro-2-virtual-devices-pipewire/configure.sh"
+
     info "Configuring Rodecaster Pro 2 / Rodecaseter Duo"
+
+    # NOTE:
+    # Do not use run_cmd here
+    # Dry-run is checked before this pipeline so curl does not run
+    if [[ "${DRY_RUN:-false}" == true ]]; then
+        # shellcheck disable=SC2016
+        printf '+ curl -sfL %q | sh -s - --install\n' "$install_url"
+        return 0
+    fi
 
     # run installer
     # NOTE: installer detects the connected device automatically and selects the matching template for supported Pro II and Duo models.
-    curl -sfL https://parzival-space.github.io/rodecaster-pro-2-virtual-devices-pipewire/configure.sh | sh -s - --install
+    curl -sfL "$install_url" | sh -s - --install
 }
 
 install_external_fzf() {
+    install_dir="$HOME/.fzf"
+
     # check if installed
     if is_command_available fzf; then
         info "fzf already installed"
@@ -27,80 +40,126 @@ install_external_fzf() {
     info "Installing fzf"
 
     # clone fzf github repo
-    git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
-
+    run_cmd git clone --depth 1 https://github.com/junegunn/fzf.git "$install_dir"
     # run install script
-    ~/.fzf/install
+    run_cmd "$install_dir/install" --bin
 }
 
 install_external_lazygit() {
+    local api_url="https://api.github.com/repos/jesseduffield/lazygit/releases/latest"
+    local install_dir="/usr/local/bin"
+    local version arch tarball_url
+
     # check if installed
     if is_command_available lazygit; then
         info "lazygit already installed"
-        return
+        return 0
     fi
 
     info "Installing lazygit"
 
-    # get latest lazygit release
-    LAZYGIT_VERSION=$(
-        curl -s "https://api.github.com/repos/jesseduffield/lazygit/releases/latest" | \
-        grep -Po '"tag_name": *"v\K[^"]*'
-    )
-    # get cpu architecture
-    LAZYGIT_ARCH=$(
+    arch=$(
         uname -m | sed -e 's/aarch64/arm64/'
     )
 
+    # NOTE:
+    # Do not use run_cmd here
+    # Dry-run is checked before resolving the latest release so no network lookup runs.
+    if [[ "${DRY_RUN:-false}" == true ]]; then
+        printf '+ curl -fsSL %q\n' "$api_url"
+        printf '+ curl -fsSL -o lazygit.tar.gz %q\n' \
+            "https://github.com/jesseduffield/lazygit/releases/latest/download/lazygit_<VERSION>_Linux_${arch}.tar.gz"
+        printf '+ tar xf lazygit.tar.gz lazygit\n'
+        printf '+ sudo install lazygit -D -t %q\n' "$install_dir"
+        return 0
+    fi
+
+
+    # get latest lazygit release
+    version="$(
+        curl -fsSL "$api_url" |
+            grep -Po '"tag_name": *"v\K[^"]*'
+    )"
+
+    if [[ -z "$version" ]]; then
+        echo "Failed to resolve lazygit version." >&2
+        return 1
+    fi
+
+    tarball_url="https://github.com/jesseduffield/lazygit/releases/latest/download/lazygit_${version}_Linux_${arch}.tar.gz"
+
     # download lazygit tarball
-    curl -Lo lazygit.tar.gz "https://github.com/jesseduffield/lazygit/releases/download/v${LAZYGIT_VERSION}/lazygit_${LAZYGIT_VERSION}_Linux_${LAZYGIT_ARCH}.tar.gz"
-
+    run_cmd curl -fsSL lazygit.tar.gz "$tarball_url"
     # open lazygit tarball
-    tar xf lazygit.tar.gz lazygit
-
+    run_cmd tar xf lazygit.tar.gz lazygit
     # install lazygit
-    sudo install lazygit -D -t /usr/local/bin/
+    run_cmd sudo install lazygit -D -t /usr/local/bin/
 }
 
 install_external_neovim() {
+    local tarball_url="https://github.com/neovim/neovim/releases/latest/download/nvim-linux-x86_64.tar.gz"
+    local tarball_name="nvim-linux-x86_64.tar.gz"
+    local tarball_dir="/opt/nvim-linux-x86_64"
+
     # check if installed
     if is_command_available nvim; then
         info "nvim already installed"
-        return
+        return 0
     fi
 
     info "Installing nvim"
 
     # download neovim tarball
-    curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux-x86_64.tar.gz
-
+    run_cmd curl -fSLO "$tarball_url"
     # remove any existing installation
-    sudo rm -rf /opt/nvim-linux-x86_64
-
+    run_cmd sudo rm -rf "$tarball_dir"
     # extract the downloaded archive
-    sudo tar -C /opt -xzf nvim-linux-x86_64.tar.gz
+    run_cmd sudo tar -C /opt -xzf "$tarball_name"
+    # create symlink
+    run_cmd sudo ln -sf "$install_dir/bin/nvim" /usr/local/bin/nvim
 }
 
 install_external_zoxide() {
+    local install_url="https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh"
+
     # check if installed
     if is_command_available zoxide; then
         info "zoxide already installed"
-        return
+        return 0
     fi
 
     info "Installing zoxide"
 
+    # NOTE:
+    # Do not use run_cmd here
+    # Dry-run must be checked before the pipeline so curl does not run
+    if [[ "${DRY_RUN:-false}" == true ]]; then
+        printf '+ curl -fsSL %q | sh\n' "$install_url"
+        return 0
+    fi
+
     # download install script and run
-    curl -sSfL https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | sh
+    curl -fsSL "$install_url" | sh
 }
 
 install_external_oh_my_posh() {
+    local install_url="https://ohmyposh.dev/install.sh"
+
     if is_command_available oh-my-posh; then
-        info "Oh-my-posh is Installed"
+        info "oh-my-posh already installed"
+        return 0
     fi
 
     info "Installing oh-my-posh"
 
+    # NOTE:
+    # Do not wrap this in run_cmd.
+    # Dry run must be checked before the pipeline so curl does not run
+    if [[ "${DRY_RUN:-false}" == true ]]; then
+        printf '+ curl -fsSL %q | bash -s\n' "$install_url"
+        return 0
+    fi
+
     # install oh-my-posh via curl
-    curl -s https://ohmyposh.dev/install.sh | bash -s
+    curl -fsSL "$install_url" | bash -s
 }
