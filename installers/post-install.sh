@@ -3,15 +3,13 @@
 
 : "${DOTFILES_DIR:?DOTFILES_DIR must be set before sourcing installers/post-install.sh}"
 
-# --- Source helper functions ---
-source "$DOTFILES_DIR/lib/log.sh"
-
 # --- Setup functions ---
 create_dev_dirs() {
     # TODO: look over what directories to add or remove from this function
     mkdir -p "$HOME/dev"
     mkdir -p "$HOME/dev/scripts"
     mkdir -p "$HOME/scripts"
+    mkdir -p "$HOME/projects"
     mkdir -p "$HOME/.local/bin"
     mkdir -p "$HOME/.config"
 }
@@ -60,7 +58,6 @@ install_zsh_plugin() {
     local repo="$1"
     local dest="$2"
 
-    # update repo or clone
     if [[ -d "$dest/.git" ]]; then
         info "Updating $dest"
         git -C "$dest" pull --ff-only
@@ -75,35 +72,30 @@ install_zsh_plugins() {
 
     mkdir -p "$zsh_plugins_dir"
 
-    # Install zsh-autosuggestions
     info "Installing zsh-autosuggestions"
     install_zsh_plugin \
         "https://github.com/zsh-users/zsh-autosuggestions" \
         "$zsh_plugins_dir/zsh-autosuggestions"
 
-    # Install zsh-syntax-highlighting
-        info "Installing zsh-syntax-highlighting"
-        install_zsh_plugin \
-            "https://github.com/zsh-users/zsh-syntax-highlighting.git" \
-            "$zsh_plugins_dir/zsh-syntax-highlighting"
+    info "Installing zsh-syntax-highlighting"
+    install_zsh_plugin \
+        "https://github.com/zsh-users/zsh-syntax-highlighting.git" \
+        "$zsh_plugins_dir/zsh-syntax-highlighting"
 
-    # Install fzf-tab
-        info "Installing fzf-tab"
-        install_zsh_plugin \
-            "https://github.com/Aloxaf/fzf-tab" \
-            "$zsh_plugins_dir/fzf-tab"
+    info "Installing fzf-tab"
+    install_zsh_plugin \
+        "https://github.com/Aloxaf/fzf-tab" \
+        "$zsh_plugins_dir/fzf-tab"
 
-    # Install zsh-completions
     info "Installing zsh-completions"
-        install_zsh_plugin \
-            "https://github.com/zsh-users/zsh-completions" \
-            "$zsh_plugins_dir/zsh-completions"
+    install_zsh_plugin \
+        "https://github.com/zsh-users/zsh-completions" \
+        "$zsh_plugins_dir/zsh-completions"
 
-    # Install zsh-history-substring-search
     info "Installing zsh-history-substring-search"
-        install_zsh_plugin \
-            "https://github.com/zsh-users/zsh-history-substring-search.git" \
-            "$zsh_plugins_dir/zsh-history-substring-search"
+    install_zsh_plugin \
+        "https://github.com/zsh-users/zsh-history-substring-search.git" \
+        "$zsh_plugins_dir/zsh-history-substring-search"
 }
 
 
@@ -112,7 +104,6 @@ install_tmux_plugin_manager() {
 
     mkdir -p "$tmux_plugins_dir"
 
-    # Install tmux plugin manager
     if [[ ! -d "$tmux_plugins_dir/tpm" ]]; then
         info "Installing tmux plugin manager"
 
@@ -146,17 +137,14 @@ setup_git_defaults() {
 
 # --- Post Install Function ---
 run_post_install() {
-    # prepare directories
     create_dev_dirs
     setup_local_bin
 
-    # configure shell and terminal workflow
     set_default_shell
     install_zsh_plugins
     install_tmux_plugin_manager
     install_tmux_plugins_from_config
 
-    # configure dev tools
     setup_fzf
     setup_git_defaults
 

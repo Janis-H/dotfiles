@@ -98,12 +98,9 @@ install_brew_casks() {
 # --- Public entrypoint ---
 install_system_packages() {
     install_os_prerequisites
-
-    # install brew packages
     install_brew_packages "$@"
 }
 
 install_system_casks() {
-    # install casks packages
     install_brew_casks "$@"
 }

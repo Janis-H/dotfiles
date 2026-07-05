@@ -23,7 +23,6 @@ install_external_rodecaster_pipewire_setup() {
         return 0
     fi
 
-    # run installer
     # NOTE: installer detects the connected device automatically and selects the matching template for supported Pro II and Duo models.
     curl -sfL "$install_url" | sh -s - --install
 }
@@ -31,7 +30,6 @@ install_external_rodecaster_pipewire_setup() {
 install_external_fzf() {
     install_dir="$HOME/.fzf"
 
-    # check if installed
     if is_command_available fzf; then
         info "fzf already installed"
         return
@@ -39,9 +37,7 @@ install_external_fzf() {
 
     info "Installing fzf"
 
-    # clone fzf github repo
     run_cmd git clone --depth 1 https://github.com/junegunn/fzf.git "$install_dir"
-    # run install script
     run_cmd "$install_dir/install" --bin
 }
 
@@ -50,7 +46,6 @@ install_external_lazygit() {
     local install_dir="/usr/local/bin"
     local version arch tarball_url
 
-    # check if installed
     if is_command_available lazygit; then
         info "lazygit already installed"
         return 0
@@ -75,7 +70,6 @@ install_external_lazygit() {
     fi
 
 
-    # get latest lazygit release
     version="$(
         curl -fsSL "$api_url" |
             grep -Po '"tag_name": *"v\K[^"]*'
@@ -88,11 +82,8 @@ install_external_lazygit() {
 
     tarball_url="https://github.com/jesseduffield/lazygit/releases/latest/download/lazygit_${version}_Linux_${arch}.tar.gz"
 
-    # download lazygit tarball
     run_cmd curl -fsSL lazygit.tar.gz "$tarball_url"
-    # open lazygit tarball
     run_cmd tar xf lazygit.tar.gz lazygit
-    # install lazygit
     run_cmd sudo install lazygit -D -t /usr/local/bin/
 }
 
@@ -101,7 +92,6 @@ install_external_neovim() {
     local tarball_name="nvim-linux-x86_64.tar.gz"
     local tarball_dir="/opt/nvim-linux-x86_64"
 
-    # check if installed
     if is_command_available nvim; then
         info "nvim already installed"
         return 0
@@ -109,20 +99,15 @@ install_external_neovim() {
 
     info "Installing nvim"
 
-    # download neovim tarball
     run_cmd curl -fSLO "$tarball_url"
-    # remove any existing installation
     run_cmd sudo rm -rf "$tarball_dir"
-    # extract the downloaded archive
     run_cmd sudo tar -C /opt -xzf "$tarball_name"
-    # create symlink
     run_cmd sudo ln -sf "$install_dir/bin/nvim" /usr/local/bin/nvim
 }
 
 install_external_zoxide() {
     local install_url="https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh"
 
-    # check if installed
     if is_command_available zoxide; then
         info "zoxide already installed"
         return 0
@@ -138,7 +123,6 @@ install_external_zoxide() {
         return 0
     fi
 
-    # download install script and run
     curl -fsSL "$install_url" | sh
 }
 
@@ -160,6 +144,5 @@ install_external_oh_my_posh() {
         return 0
     fi
 
-    # install oh-my-posh via curl
     curl -fsSL "$install_url" | bash -s
 }
