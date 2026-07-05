@@ -17,7 +17,6 @@ source "$DOTFILES_DIR/lib/build-casks-for-profile.sh"
 source "$DOTFILES_DIR/lib/build-packages-for-profile.sh"
 source "$DOTFILES_DIR/lib/build-external-tools-for-profile.sh"
 
-source "$DOTFILES_DIR/installers/external/runner.sh"
 source "$DOTFILES_DIR/installers/post-install.sh"
 
 # --- Helpers ---
@@ -82,12 +81,12 @@ done
 shift $((OPTIND - 1))
 
 # --- Detect os ---
-os="$(detect_os)"
+OS="$(detect_os)"
 
-validate_os "$os" || exit 1
+validate_os "$OS" || exit 1
 
 # --- Build package lists ---
-source "$DOTFILES_DIR/manifests/$os.sh"
+source "$DOTFILES_DIR/manifests/$OS.sh"
 
 validate_manifest || exit 1
 
@@ -100,13 +99,18 @@ build_casks_for_profile "$PROFILE" || exit 1
 build_external_tools_for_profile "$PROFILE"|| exit 1
 
 # --- Installer selection ---
-source "$DOTFILES_DIR/installers/$os.sh"
-source "$DOTFILES_DIR/installers/external/$os.sh"
+
+# source OS-specific installers
+source "$DOTFILES_DIR/installers/$OS.sh"
+source "$DOTFILES_DIR/installers/external/$OS.sh"
+
+# source generic external installer runner
+source "$DOTFILES_DIR/installers/external/runner.sh"
 
 # --- Install flow ---
 title "Script Info"
 info "PROFILE: $PROFILE"
-info "OS: $os"
+info "OS: $OS"
 
 title "Installing packages..."
 install_packages "${PACKAGES[@]}"
@@ -114,7 +118,7 @@ install_packages "${PACKAGES[@]}"
 title "Installing external tools..."
 install_external_tools "${EXTERNAL_TOOLS[@]}"
 
-if [[ $os == "macos" && "${#CASKS[@]}" -gt 0 ]]; then
+if [[ "$OS" == "macos" && "${#CASKS[@]}" -gt 0 ]]; then
     title "Installling casks..."
     install_casks "${CASKS[@]}"
 fi

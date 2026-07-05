@@ -5,7 +5,7 @@ build_casks_for_profile() {
 
     CASKS=()
 
-    if [[ "$os" != "macos" ]]; then
+    if [[ "$OS" != "macos" ]]; then
         return 0
     fi
 
