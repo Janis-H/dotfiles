@@ -29,21 +29,22 @@ print_usage() {
     # TODO: look into adding dry run option
     cat <<EOF
 Usage:
-    $script_name [options]
+    $script_name [-n] [-p PROFILE]
 
 Description:
     Install core packages and external tools for the detected OS.
     Core tools are always installed. Use a profile to add server or desktop tools.
 
-Options: -p PROFILE  Install package profile: core, server, or desktop
-                Default: core
+Options:
+    -p PROFILE      Install profile. Default: core.
+    -n              Dry run. Print commands without running them.
+    -h              Show this help message
 
-                Profiles:
-                    core     Bare terminal/dotfiles setup
-                    server   Core + development/build tools
-                    desktop  Server + GUI/workstation tools
 
-    -h          Show this help message
+Profiles:
+    core     Bare terminal/dotfiles setup
+    server   Core + development/build tools
+    desktop  Server + GUI/workstation tools
 
 Examples:
     $script_name                # Install core
@@ -54,25 +55,30 @@ EOF
 }
 
 # --- Parse arguments ---
+DRY_RUN=false
 PROFILE="core"
 
-while getopts ":p:h" option; do
+while getopts ":np:h" option; do
     case "$option" in
+        n)
+            title "Dry run enabled. No system changes will be made."
+            DRY_RUN=true
+            ;;
         p)
             validate_profile "$OPTARG" || exit 1
             PROFILE="$OPTARG"
-            ;;
-        :)
-            error "option missing argument"
-            print_usage
-            exit 1
             ;;
         h)
             print_usage
             exit 0
             ;;
+        :)
+            error "Option -$OPTARG requires an argument"
+            print_usage
+            exit 1
+            ;;
         *)
-            error "Invalid option: $OPTARG"
+            error "Invalid option: -$OPTARG"
             print_usage
             exit 1
             ;;
