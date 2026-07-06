@@ -3,6 +3,10 @@
 
 : "${DOTFILES_DIR:?DOTFILES_DIR must be set before sourcing installers/post-install.sh}"
 
+# --- Sources ---
+source "$DOTFILES_DIR/lib/log.sh"
+source "$DOTFILES_DIR/lib/run-command.sh"
+
 # --- Setup functions ---
 create_dev_dirs() {
     # TODO: look over what directories to add or remove from this function

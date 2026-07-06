@@ -3,6 +3,10 @@
 
 : "$DOTFILES_DIR:?DOTFILES_DIR must be set before sourcing installers/external/debian.sh"
 
+# --- Sources ---
+source "$DOTFILES_DIR/lib/log.sh"
+source "$DOTFILES_DIR/lib/run-command.sh"
+
 # --- Helper functions ---
 is_command_available(){
     command -v "$1" &>/dev/null
