@@ -10,16 +10,16 @@ source "$DOTFILES_DIR/lib/run-command.sh"
 # --- Setup functions ---
 create_dev_dirs() {
     # TODO: look over what directories to add or remove from this function
-    mkdir -p "$HOME/dev"
-    mkdir -p "$HOME/dev/scripts"
-    mkdir -p "$HOME/scripts"
-    mkdir -p "$HOME/projects"
-    mkdir -p "$HOME/.local/bin"
-    mkdir -p "$HOME/.config"
+    run_cmd mkdir -p "$HOME/dev"
+    run_cmd mkdir -p "$HOME/dev/scripts"
+    run_cmd mkdir -p "$HOME/scripts"
+    run_cmd mkdir -p "$HOME/projects"
+    run_cmd mkdir -p "$HOME/.local/bin"
+    run_cmd mkdir -p "$HOME/.config"
 }
 
 setup_local_bin() {
-    mkdir -p "$HOME/.local/bin"
+    run_cmd mkdir -p "$HOME/.local/bin"
 
     if [[ ":$PATH:" != *":$HOME/.local/bin:"* ]]; then
         info "$HOME/.local/bin is not currently in PATH"
@@ -35,13 +35,21 @@ set_default_shell() {
 
     info "Setting default shell to zsh"
 
+    # NOTE:
+    # Do not use run_cmd here
+    # Dry-run is checked before command substitution so curl does not run during dry-run.
+    if [[ "${DRY_RUN:-false}" == true ]]; then
+        # shellcheck disable=SC2016
+        printf '+ chsh -s "$(command -v zsh)"\n'
+    fi
+
     chsh -s "$(command -v zsh)"
 }
 
 setup_fzf() {
     if ! command -v fzf &>/dev/null; then
         info "fzf is not installed, skipping"
-        return
+        return 0
     fi
 
     info "fzf installed"
@@ -51,7 +59,7 @@ setup_fzf() {
 
     if fzf --zsh &>/dev/null; then
         info "fzf installed with built-in zsh integration"
-        return
+        return 0
     fi
 
     info "fzf installed, but fzf --zsh is not supported"
@@ -64,17 +72,17 @@ install_zsh_plugin() {
 
     if [[ -d "$dest/.git" ]]; then
         info "Updating $dest"
-        git -C "$dest" pull --ff-only
+        run_cmd git -C "$dest" pull --ff-only
     else
         info "Cloning $repo"
-        git clone "$repo" "$dest"
+        run_cmd git clone "$repo" "$dest"
     fi
 }
 
 install_zsh_plugins() {
     local zsh_plugins_dir="$HOME/.zsh/plugins"
 
-    mkdir -p "$zsh_plugins_dir"
+    run_cmd mkdir -p "$zsh_plugins_dir"
 
     info "Installing zsh-autosuggestions"
     install_zsh_plugin \
@@ -106,12 +114,12 @@ install_zsh_plugins() {
 install_tmux_plugin_manager() {
     local tmux_plugins_dir="$HOME/.tmux/plugins"
 
-    mkdir -p "$tmux_plugins_dir"
+    run_cmd mkdir -p "$tmux_plugins_dir"
 
     if [[ ! -d "$tmux_plugins_dir/tpm" ]]; then
         info "Installing tmux plugin manager"
 
-        git clone https://github.com/tmux-plugins/tpm \
+        run_cmd git clone https://github.com/tmux-plugins/tpm \
             "$tmux_plugins_dir/tpm"
     else
         info "tmux plugin manager already installed"
@@ -123,20 +131,20 @@ install_tmux_plugins_from_config() {
 
     if [[ ! -x "$installer" ]]; then
         info "TPM installer not found, skipping tmux plugin install"
-        return
+        return 0
     fi
 
     info "Installing tmux plugins"
-    "$installer"
+    run_cmd "$installer"
 }
 
 setup_git_defaults() {
-    git config --global init.defaultBranch main
-    git config --global core.editor nvim
-    git config --global push.autoSetupRemote true
-    git config --global fetch.prune true
+    run_cmd git config --global init.defaultBranch main
+    run_cmd git config --global core.editor nvim
+    run_cmd git config --global push.autoSetupRemote true
+    run_cmd git config --global fetch.prune true
 
-    git config --global diff.coloredMoved zebra
+    run_cmd git config --global diff.coloredMoved zebra
 }
 
 # --- Post Install Function ---
