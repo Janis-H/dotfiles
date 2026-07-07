@@ -39,6 +39,7 @@ vim.keymap.set('n', '<leader>p', '<cmd>put +<cr>', opts('Paste from system keybo
 vim.keymap.set('n', '<leader>P', '<cmd>-1put +<cr>', opts('Paste from system keyboard above'))
 
 -- Entire file actions
+vim.keymap.set('n', '<leader>=', 'gg=G', opts('Indent entire file'))
 vim.keymap.set('n', '<leader>Y', 'gg"+yG', opts('Yank entire file into system clipboard'))
 vim.keymap.set('n', '<leader>D', 'gg"_dG', opts('Delete entire file without yanking it'))
 vim.keymap.set('n', '<leader>R', 'gg"_dG"+p', opts('Replace entire file with system clipboard'))
