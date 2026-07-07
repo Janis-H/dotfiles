@@ -120,15 +120,15 @@ title "Script Info"
 info "PROFILE: $PROFILE"
 info "OS: $OS"
 
-title "Installing system packages..."
+title "Installing system packages"
 install_system_packages "${SYSTEM_PACKAGES[@]}"
 
 if [[ "$OS" == "macos" && "${#SYSTEM_CASKS[@]}" -gt 0 ]]; then
-    title "Installing system casks..."
+    title "Installing system casks"
     install_system_casks "${SYSTEM_CASKS[@]}"
 fi
 
-title "Installing external tools..."
+title "Installing external tools"
 install_external_tools "${EXTERNAL_TOOLS[@]}"
 
 # title "Running Post Install"
