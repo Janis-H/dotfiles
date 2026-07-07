@@ -38,6 +38,8 @@ DEV_BUILD_PACKAGES=(
 # - window managers, launchers, graphical terminals, editors, and GUI apps
 DESKTOP_PACKAGES=(
     ghostty
+
+    # i3 window manager setup
     i3
     picom
     rofi
