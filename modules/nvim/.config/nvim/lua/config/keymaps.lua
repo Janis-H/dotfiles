@@ -15,6 +15,9 @@ vim.keymap.set('n', '<C-d>', '<C-d>zz', opts('Move half-page down'))
 vim.keymap.set('n', '<C-u>', '<C-u>zz', opts('Move half-page up'))
 
 -- Quickfix
+vim.keymap.set('n', '<M-j>', "<cmd>cnext<cr>", opts('Next quickfix item'))
+vim.keymap.set('n', '<M-k>', "<cmd>cprev<cr>", opts('Previous quickfix item'))
+
 vim.keymap.set('n', '<leader>co', '<cmd>copen<cr>', opts('Open quickfix'))
 vim.keymap.set('n', '<leader>cn', "<cmd>cnext<cr>", opts('Next quickfix item'))
 vim.keymap.set('n', '<leader>cp', "<cmd>cprev<cr>", opts('Previous quickfix item'))
