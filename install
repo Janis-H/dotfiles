@@ -131,5 +131,5 @@ fi
 title "Installing external tools"
 install_external_tools "${EXTERNAL_TOOLS[@]}"
 
-# title "Running Post Install"
+title "Running post install"
 run_post_install
