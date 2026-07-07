@@ -132,4 +132,4 @@ title "Installing external tools..."
 install_external_tools "${EXTERNAL_TOOLS[@]}"
 
 # title "Running Post Install"
-# run_post_install
+run_post_install
