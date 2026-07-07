@@ -55,6 +55,9 @@ DESKTOP_PACKAGES=()
 
 # GUI/workstation casks
 DESKTOP_CASKS=(
+    # TODO: add aerospace config
+    # - aerospace guide: https://nikitabobko.github.io/AeroSpace/guide
+    nikitabobko/tap/aerospace
     ghostty
     zed
 )
