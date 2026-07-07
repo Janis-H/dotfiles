@@ -22,8 +22,8 @@ setup_local_bin() {
     run_cmd mkdir -p "$HOME/.local/bin"
 
     if [[ ":$PATH:" != *":$HOME/.local/bin:"* ]]; then
-        info "$HOME/.local/bin is not currently in PATH"
-        info "Make sure your shell config adds it"
+        warn "$HOME/.local/bin is not currently in PATH"
+        warn "Make sure your shell config adds it"
     fi
 }
 
@@ -62,8 +62,8 @@ setup_fzf() {
         return 0
     fi
 
-    info "fzf installed, but fzf --zsh is not supported"
-    info "Make sure .zshrc has fallback paths for fzf keybindings/completion"
+    warn "fzf installed, but fzf --zsh is not supported"
+    warn "Make sure .zshrc has fallback paths for fzf keybindings/completion"
 }
 
 install_zsh_plugin() {
@@ -130,7 +130,7 @@ install_tmux_plugins_from_config() {
     local installer="$HOME/.tmux/plugins/tpm/bin/install_plugins"
 
     if [[ ! -x "$installer" ]]; then
-        info "TPM installer not found, skipping tmux plugin install"
+        warn "TPM installer not found, skipping tmux plugin install"
         return 0
     fi
 
