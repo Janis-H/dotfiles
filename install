@@ -37,8 +37,8 @@ Description:
     Core tools are always installed. Use a profile to add server or desktop tools.
 
 Options:
-    -p PROFILE      Install profile. Default: core.
     -n              Dry run. Print commands without running them.
+    -p PROFILE      Install profile. Default: core.
     -h              Show this help message
 
 
