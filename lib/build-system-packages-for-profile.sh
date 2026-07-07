@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 build_system_packages_for_profile() {
-    local profile="$1:-core"
+    local profile="${1:-core}"
 
     SYSTEM_PACKAGES=("${CORE_PACKAGES[@]}")
 
