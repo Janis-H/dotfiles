@@ -4,6 +4,8 @@
 : "$DOTFILES_DIR:?DOTFILES_DIR must be set before sourcing installers/external/macos.sh"
 
 # --- Sources ---
+source "$DOTFILES_DIR/lib/log.sh"
+source "$DOTFILES_DIR/lib/run-command.sh"
 
 # --- Helper functions ---
 is_command_available(){
@@ -11,20 +13,3 @@ is_command_available(){
 }
 
 # --- External tool installers ---
-install_oh_my_zsh() {
-    if [[ -f "$HOME/.oh-my-zsh/oh-my-zsh.sh" ]]; then
-        info "Oh My Zsh is installed"
-        return
-    fi
-
-    info "Installing oh-my-zsh"
-
-    # install oh-my-zsh via curl
-    sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-}
-
-# --- Public entrypoint ---
-install_external_tools() {
-    # not available in homebrew
-    true
-}

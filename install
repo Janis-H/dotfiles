@@ -1,35 +1,135 @@
 #!/usr/bin/env bash
 # Installs system packages and external tools for the detected OS
 
+# shellcheck disable=SC1090
+
 set -euo pipefail
 
 DOTFILES_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
 
 # --- Sources ---
-source "$DOTFILES_DIR/lib/detect-os.sh"
 source "$DOTFILES_DIR/lib/log.sh"
+source "$DOTFILES_DIR/lib/detect-os.sh"
+source "$DOTFILES_DIR/lib/run-command.sh"
+
+source "$DOTFILES_DIR/lib/validate-profile.sh"
+source "$DOTFILES_DIR/lib/validate-os.sh"
+source "$DOTFILES_DIR/lib/validate-manifest.sh"
+
+source "$DOTFILES_DIR/lib/build-system-casks-for-profile.sh"
+source "$DOTFILES_DIR/lib/build-system-packages-for-profile.sh"
+source "$DOTFILES_DIR/lib/build-external-tools-for-profile.sh"
+
 source "$DOTFILES_DIR/installers/post-install.sh"
 
+# --- Helpers ---
+print_usage() {
+    local script_name
+    script_name="./$( basename "$0")"
+
+    # TODO: look into adding dry run option
+    cat <<EOF
+Usage:
+    $script_name [-n] [-p PROFILE]
+
+Description:
+    Install core packages and external tools for the detected OS.
+    Core tools are always installed. Use a profile to add server or desktop tools.
+
+Options:
+    -n              Dry run. Print commands without running them.
+    -p PROFILE      Install profile. Default: core.
+    -h              Show this help message
+
+
+Profiles:
+    core     Bare terminal/dotfiles setup
+    server   Core + development/build tools
+    desktop  Server + GUI/workstation tools
+
+Examples:
+    $script_name                # Install core
+    $script_name -p core        # Install core + server
+    $script_name -p server      # Install core + server
+    $script_name -p desktop     # Install core + server + desktop
+EOF
+}
+
+# --- Parse arguments ---
+DRY_RUN=false
+PROFILE="core"
+
+while getopts ":np:h" option; do
+    case "$option" in
+        n)
+            title "Dry run enabled. No system changes will be made."
+            DRY_RUN=true
+            ;;
+        p)
+            validate_profile "$OPTARG" || exit 1
+            PROFILE="$OPTARG"
+            ;;
+        h)
+            print_usage
+            exit 0
+            ;;
+        :)
+            error "Option -$OPTARG requires an argument"
+            print_usage
+            exit 1
+            ;;
+        *)
+            error "Invalid option: -$OPTARG"
+            print_usage
+            exit 1
+            ;;
+    esac
+done
+
+shift $((OPTIND - 1))
+
 # --- Detect os ---
-os="$(detect_os)"
+OS="$(detect_os)"
+
+validate_os "$OS" || exit 1
+
+# --- Build package lists ---
+source "$DOTFILES_DIR/manifests/$OS.sh"
+
+validate_manifest || exit 1
+
+SYSTEM_PACKAGES=()
+SYSTEM_CASKS=()
+EXTERNAL_TOOLS=()
+
+build_system_packages_for_profile "$PROFILE" || exit 1
+build_system_casks_for_profile "$PROFILE" || exit 1
+build_external_tools_for_profile "$PROFILE" || exit 1
 
 # --- Installer selection ---
-case "$os" in
-    debian|arch|macos)
-        source "$DOTFILES_DIR/installers/$os.sh"
-        ;;
-    *)
-        info "Unsupported OS: $os" >&2
-        exit 1
-        ;;
-esac
+
+# source OS-specific installers
+source "$DOTFILES_DIR/installers/system/$OS.sh"
+source "$DOTFILES_DIR/installers/external/$OS.sh"
+
+# source generic external installer runner
+source "$DOTFILES_DIR/installers/external/runner.sh"
 
 # --- Install flow ---
 title "Script Info"
-info "OS: $os"
+info "PROFILE: $PROFILE"
+info "OS: $OS"
 
-title "Installing packages"
-install_packages
+title "Installing system packages"
+install_system_packages "${SYSTEM_PACKAGES[@]}"
 
-title "Running Post Install"
+if [[ "$OS" == "macos" && "${#SYSTEM_CASKS[@]}" -gt 0 ]]; then
+    title "Installing system casks"
+    install_system_casks "${SYSTEM_CASKS[@]}"
+fi
+
+title "Installing external tools"
+install_external_tools "${EXTERNAL_TOOLS[@]}"
+
+# title "Running Post Install"
 run_post_install

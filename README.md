@@ -85,6 +85,59 @@ When a tool is not installed through the system package manager, the matching OS
 installers/external/
 ```
 
+#### Install profiles
+
+The installer supports three package profiles:
+
+##### `core`
+
+Bare terminal and dotfiles setup.
+
+Use this for a minimal controlled machine where I only want the essentials needed for my shell environment.
+
+Examples:
+
+- shell tools
+- editor
+- search tools
+- navigation tools
+- archive tools
+- dotfile tooling
+
+##### `server`
+
+Core plus development/build tooling.
+
+Use this for controlled headless machines, servers, VMs, or machines where I need to build, lint, format, or work on code projects.
+
+Includes:
+
+- `core`
+- compilers/build tools
+- language runtimes
+- linters
+- formatters
+- project workflow tools
+
+This profile is intended for machines I own or administer. It is not intended for locked-down production or company-managed servers.
+
+##### `desktop`
+
+Server plus GUI/workstation tooling.
+
+Use this for a full personal workstation.
+
+Includes:
+
+- `core`
+- `server`
+- GUI apps
+- desktop session tools
+- window managers
+- launchers
+- graphical terminals
+- workstation-only tools
+
 ### `stow-modules`
 
 Stows or unstows dotfiles modules using GNU Stow.

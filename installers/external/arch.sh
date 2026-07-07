@@ -4,6 +4,8 @@
 : "$DOTFILES_DIR:?DOTFILES_DIR must be set before sourcing installers/external/arch.sh"
 
 # --- Sources ---
+source "$DOTFILES_DIR/lib/log.sh"
+source "$DOTFILES_DIR/lib/run-command.sh"
 
 # --- Helper functions ---
 is_command_available(){
@@ -11,9 +13,3 @@ is_command_available(){
 }
 
 # --- External tool installers ---
-
-# --- Public entrypoint ---
-install_external_tools() {
-    # add functions here
-    true
-}
