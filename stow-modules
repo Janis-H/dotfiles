@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 # Stows or unstows selected or default dotfile modules for the detected OS
 
+# shellcheck disable=SC1090
+
 set -euo pipefail
 
 DOTFILES_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
