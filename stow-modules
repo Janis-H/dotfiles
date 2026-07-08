@@ -27,6 +27,7 @@ print_usage() {
 
     # TODO: add debug flag
     # TODO: consider adding an option to delete orphans
+    # TODO: update examples
     cat <<EOF
 Usage:
     $script_name [options] [modules...]
