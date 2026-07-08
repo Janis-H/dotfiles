@@ -4,7 +4,6 @@
 set -euo pipefail
 
 DOTFILES_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-STOW_SETS_DIR="$DOTFILES_DIR/stow-sets"
 
 # --- Sources ---
 source "$DOTFILES_DIR/lib/log.sh"
@@ -144,4 +143,5 @@ title "Script Info"
 info "PROFILE: $PROFILE"
 info "OS: $OS"
 
+# TODO: add run_cmd to commands in run_stow_action function and stow-actions file
 run_stow_action "$stow_action" "${target_modules[@]}"
