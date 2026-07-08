@@ -64,9 +64,11 @@ run_stow_action() {
 
     case "$stow_action" in
         stow)
+            title "Stowing modules"
             stow_modules "$@"
             ;;
         unstow)
+            title "Unstowing modules"
             unstow_modules "$@"
             ;;
         *)
