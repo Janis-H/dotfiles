@@ -7,9 +7,17 @@ DOTFILES_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 STOW_SETS_DIR="$DOTFILES_DIR/stow-sets"
 
 # --- Sources ---
-source "${DOTFILES_DIR}/lib/log.sh"
-source "${DOTFILES_DIR}/lib/detect-os.sh"
-source "${DOTFILES_DIR}/lib/stow-actions.sh"
+source "$DOTFILES_DIR/lib/log.sh"
+source "$DOTFILES_DIR/lib/detect-os.sh"
+source "$DOTFILES_DIR/lib/run-command.sh"
+
+source "$DOTFILES_DIR/lib/validate-profile.sh"
+source "$DOTFILES_DIR/lib/validate-os.sh"
+source "$DOTFILES_DIR/lib/validate-manifest.sh"
+
+source "$DOTFILES_DIR/lib/build-default-modules-for-profile.sh"
+
+source "$DOTFILES_DIR/lib/stow-actions.sh"
 
 # --- Helpers ---
 print_usage() {
@@ -29,11 +37,20 @@ Description:
     If modules are provided, only those modules are used.
 
 Options:
-    -u    Unstow instead of stow
-    -h    Show this help message
+    -n              Dry run. Print commands without running them.
+    -u              Unstow instead of stow
+    -p PROFILE      Stow profile. Default: core.
+    -h              Show this help message
+
+Profiles:
+    core     Bare terminal/dotfiles setup
+    server   Core + development/build tools
+    desktop  Server + GUI/workstation tools
 
 Examples:
     $script_name                    # Stow default modules
+    $script_name -n                 # Stow default modules
+    $script_name -n nvim zsh tmux   # Stow selected modules
     $script_name nvim zsh tmux      # Stow selected modules
     $script_name -u                 # Unstow default modules
     $script_name -u nvim            # Unstow selected module
@@ -63,8 +80,19 @@ run_stow_action() {
 # --- Parse arguments ---
 stow_action="stow"
 
-while getopts ":uh" option; do
+DRY_RUN=false
+PROFILE="core"
+
+while getopts ":nup:h" option; do
     case "$option" in
+        n)
+            title "Dry run enabled. No system changes will be made."
+            DRY_RUN=true
+            ;;
+        p)
+            validate_profile "$OPTARG" || exit 1
+            PROFILE="$OPTARG"
+            ;;
         u)
             stow_action="unstow"
             ;;
@@ -72,8 +100,13 @@ while getopts ":uh" option; do
             print_usage
             exit 0
             ;;
+        :)
+            error "Option -$OPTARG requires an argument"
+            print_usage
+            exit 1
+            ;;
         *)
-            error "Invalid option: $OPTARG"
+            error "Invalid option: -$OPTARG"
             print_usage
             exit 1
             ;;
@@ -83,25 +116,32 @@ done
 shift $((OPTIND - 1))
 
 # --- Detect os ---
-os="$(detect_os)"
-info "OS: $os"
+OS="$(detect_os)"
 
-# --- Source os-specific modules ---
-source "$STOW_SETS_DIR/common.sh"
-source "$STOW_SETS_DIR/$os.sh"
+validate-os "$OS" || exit 1
+
+# --- Build default modules ---
+source "$DOTFILES_DIR/manifests/$OS.sh"
+
+validate_manifest || exit 1
+
+DEFAULT_MODULES=()
+
+build_default_modules_for_profile "$PROFILE" || exit 1
 
 # --- Select target modules ---
 if [[ "$#" -gt 0 ]]; then
     target_modules=("$@")
 else
-    target_modules=(
-        "${COMMON_MODULES[@]}"
-        "${OS_MODULES[@]}"
-    )
+    target_modules=("${DEFAULT_MODULES[@]}")
 fi
 
 # --- Debug ---
 # printf '%s\n' "${target_modules[@]}"
 
 # --- Stow / unstow modules ---
+title "Script Info"
+info "PROFILE: $PROFILE"
+info "OS: $OS"
+
 run_stow_action "$stow_action" "${target_modules[@]}"
