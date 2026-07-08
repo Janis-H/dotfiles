@@ -119,7 +119,7 @@ shift $((OPTIND - 1))
 # --- Detect os ---
 OS="$(detect_os)"
 
-validate-os "$OS" || exit 1
+validate_os "$OS" || exit 1
 
 # --- Build default modules ---
 source "$DOTFILES_DIR/manifests/$OS.sh"
