@@ -20,8 +20,6 @@ source "$DOTFILES_DIR/lib/build-system-casks-for-profile.sh"
 source "$DOTFILES_DIR/lib/build-system-packages-for-profile.sh"
 source "$DOTFILES_DIR/lib/build-external-tools-for-profile.sh"
 
-source "$DOTFILES_DIR/installers/post-install.sh"
-
 # --- Helpers ---
 print_usage() {
     local script_name
