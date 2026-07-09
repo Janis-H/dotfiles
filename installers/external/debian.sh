@@ -13,22 +13,34 @@ is_command_available(){
 }
 
 # --- External tool installers ---
+# FIXME: Harden external installs.
+# - Avoid curl | bash.
+# - Prefer package managers when available and recent enough.
+# - Pin release versions instead of installing "latest".
+# - For git installs, use pinned tags/commits instead of auto-pulling.
+# - For downloaded artifacts, verify checksums when available.
+
+# TODO: look through install script before adding to dotfiles
 install_external_rodecaster_pipewire_setup() {
-    install_url="https://parzival-space.github.io/rodecaster-pro-2-virtual-devices-pipewire/configure.sh"
+    # FIX: remove line below once I've verified script. Make sure to use a specific tag or version
+    warn "please review script before pulling install script"
+    return 1
 
-    info "Configuring Rodecaster Pro 2 / Rodecaseter Duo"
+    # install_url="https://parzival-space.github.io/rodecaster-pro-2-virtual-devices-pipewire/configure.sh"
 
-    # NOTE:
-    # Do not use run_cmd here
-    # Dry-run is checked before this pipeline so curl does not run
-    if [[ "${DRY_RUN:-false}" == true ]]; then
-        # shellcheck disable=SC2016
-        printf '+ curl -sfL %q | sh -s - --install\n' "$install_url"
-        return 0
-    fi
+    # info "Configuring Rodecaster Pro 2 / Rodecaseter Duo"
 
-    # NOTE: installer detects the connected device automatically and selects the matching template for supported Pro II and Duo models.
-    curl -sfL "$install_url" | sh -s - --install
+    # # NOTE:
+    # # Do not use run_cmd here
+    # # Dry-run is checked before this pipeline so curl does not run
+    # if [[ "${DRY_RUN:-false}" == true ]]; then
+    #     # shellcheck disable=SC2016
+    #     printf '+ curl -sfL %q | sh -s - --install\n' "$install_url"
+    #     return 0
+    # fi
+
+    # # NOTE: installer detects the connected device automatically and selects the matching template for supported Pro II and Duo models.
+    # curl -sfL "$install_url" | sh -s - --install
 }
 
 install_external_fzf() {
