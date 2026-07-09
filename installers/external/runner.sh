@@ -20,6 +20,18 @@ load_os_external_installers() {
     source "$external_file"
 }
 
+install_external_tool () {
+    local tool="$1"
+    local installer="install_external_${tool}"
+
+    if ! declare -F "$installer" >/dev/null; then
+        error "Missing external installer: $installer"
+        return 1
+    fi
+
+    "$installer"
+}
+
 # --- Public entrypoint ---
 
 # Runs external installer IDs by mapping each ID to install_external_<id>.
@@ -27,18 +39,11 @@ install_external_tools() {
     local os="$1"
     shift
 
-    local tool install_func
+    local tool
 
     load_os_external_installers "$os"
 
     for tool in "$@"; do
-        install_func="install_external_${tool}"
-
-        if ! declare -F "$install_func" >/dev/null; then
-            error "Missing external installer: $install_func"
-            return 1
-        fi
-
-        "$install_func"
+        install_external_tool "$tool"
     done
 }
