@@ -1,9 +1,8 @@
 #!/usr/bin/env bash
 
-LIB_DIR="$(cd -- "$(dirname -- ${BASH_SOURCE[0]})" && pwd)"
+: "${DOTFILES_DIR:?DOTFILES_DIR must be set before sourcing validate-manifest.sh}"
 
-# shellcheck source="lib/require-array.sh"
-source "$LIB_DIR/require-array.sh"
+source "$DOTFILES_DIR/lib/require-array.sh"
 
 validate_manifest() {
     local os="$1"

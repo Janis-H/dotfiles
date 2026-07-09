@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Defines shared stow helper functions used by stow and unstow scripts
+# Defines shared stow helper functions used by stow-modules script
 
 : "${DOTFILES_DIR:?DOTFILES_DIR must be set before sourcing stow-actions.sh}"
 
