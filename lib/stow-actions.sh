@@ -163,9 +163,10 @@ run_stow_action() {
 
     info "$action_label: $module"
 
+    # TODO: do backup_stow_conflicts here if stow_flag="-R"
+
     if [[ "$DRY_RUN" == true ]]; then
-        stow --simulate --verbose "${stow_args[@]}"
-        return 0
+        stow_args=( --simulate --verbose "${stow_args[@]}" )
     fi
 
     stow "${stow_args[@]}"
