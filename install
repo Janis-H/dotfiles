@@ -114,28 +114,24 @@ build_external_tools_for_profile "$PROFILE" || exit 1
 
 # --- Installer selection ---
 
-# source OS-specific installers
-source "$DOTFILES_DIR/installers/system/$OS.sh"
+# source generic system installer runner
+source "$DOTFILES_DIR/installers/system-runner.sh"
 
 # source generic external installer runner
-source "$DOTFILES_DIR/installers/external/runner.sh"
+source "$DOTFILES_DIR/installers/external-runner.sh"
 
 # source generic post installer runner
-source "$DOTFILES_DIR/installers/post-install/runner.sh"
+source "$DOTFILES_DIR/installers/post-install-runner.sh"
 
 # --- Install flow ---
 print_script_info
 
-title "System Packages"
-install_system_packages "${SYSTEM_PACKAGES[@]}"
+run_system_installs "$OS" "${SYSTEM_PACKAGES[@]}"
 
-if [[ "$OS" == "macos" && "${#SYSTEM_CASKS[@]}" -gt 0 ]]; then
-    title "System Casks"
-    install_system_casks "${SYSTEM_CASKS[@]}"
+if [[ "$OS" == "macos" ]]; then
+    install_system_casks "$OS" "${SYSTEM_CASKS[@]}"
 fi
 
-title "External Tools"
 run_external_installs "$OS" "${EXTERNAL_TOOLS[@]}"
 
-title "Post Install"
 run_post_install "$OS"

@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
+# shellcheck disable=SC1090
 
-: "${DOTFILES_DIR:?DOTFILES_DIR must be set before sourcing installers/post-install/runner.sh}"
+: "${DOTFILES_DIR:?DOTFILES_DIR must be set before sourcing installers/post-install-runner.sh}"
 
 source "$DOTFILES_DIR/lib/log.sh"
 source "$DOTFILES_DIR/installers/post-install/common.sh"
@@ -24,6 +25,8 @@ run_post_install() {
     local os="$1"
 
     load_os_post_install "$os"
+
+    title "Post Install"
 
     run_common_post_install
     run_os_post_install

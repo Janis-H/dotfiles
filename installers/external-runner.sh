@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
+# shellcheck disable=SC1090
 
-: "$DOTFILES_DIR:?DOTFILES_DIR must be set before sourcing installers/external/runner.sh"
+: "$DOTFILES_DIR:?DOTFILES_DIR must be set before sourcing installers/external-runner.sh"
 
 # --- Sources ---
 source "$DOTFILES_DIR/lib/log.sh"
@@ -43,6 +44,8 @@ run_external_installs() {
     local failed_tools=()
 
     load_os_external_installers "$os"
+
+    title "External Tools"
 
     for tool in "$@"; do
         if ! install_external_tool "$tool"; then
