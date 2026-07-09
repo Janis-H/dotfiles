@@ -34,7 +34,7 @@ run_system_cask_installs() {
     local os="$1"
     shift
 
-    if [[ "$os" == "macos" ]]; then
+    if [[ "$os" != "macos" ]]; then
         return 0
     fi
 
