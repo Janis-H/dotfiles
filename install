@@ -104,7 +104,7 @@ validate_os "$OS" || exit 1
 # --- Build package lists ---
 source "$DOTFILES_DIR/manifests/$OS.sh"
 
-validate_manifest || exit 1
+validate_manifest "$OS" || exit 1
 
 SYSTEM_PACKAGES=()
 SYSTEM_CASKS=()

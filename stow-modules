@@ -144,7 +144,7 @@ validate_os "$OS" || exit 1
 # --- Build default modules ---
 source "$DOTFILES_DIR/manifests/$OS.sh"
 
-validate_manifest || exit 1
+validate_manifest "$OS" || exit 1
 
 DEFAULT_MODULES=()
 
