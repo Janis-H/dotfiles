@@ -89,9 +89,23 @@ handle_stow_modules() {
     local action_label="$2"
     shift 2
 
+    local module
+    local failed_modules=()
+
     for module in "$@"; do
-        process_stow_module "$module" "$stow_flag" "$action_label"
+        if ! process_stow_module "$module" "$stow_flag" "$action_label"; then
+            failed_modules+=("$module")
+            continue
+        fi
     done
+
+    if (( "${#failed_modules[@]}" > 0)); then
+        error "The following modules failed:"
+        printf '    - %s \n' "${failed_modules[@]}" >&2
+        return 1
+    fi
+
+    return 0
 }
 
 # --- Public entrypoint ---
