@@ -72,12 +72,15 @@ setup_fzf() {
 install_zsh_plugin() {
     local repo="$1"
     local dest="$2"
+    local plugin_name
+
+    plugin_name="$(basename "$dest")"
 
     if [[ -d "$dest/.git" ]]; then
-        info "Updating $dest"
+        info "Updating $plugin_name"
         run_cmd git -C "$dest" pull --ff-only
     else
-        info "Cloning $repo"
+        info "Cloning $plugin_name"
         run_cmd git clone "$repo" "$dest"
     fi
 }
@@ -87,27 +90,22 @@ install_zsh_plugins() {
 
     run_cmd mkdir -p "$zsh_plugins_dir"
 
-    info "Installing zsh-autosuggestions"
     install_zsh_plugin \
         "https://github.com/zsh-users/zsh-autosuggestions" \
         "$zsh_plugins_dir/zsh-autosuggestions"
 
-    info "Installing zsh-syntax-highlighting"
     install_zsh_plugin \
         "https://github.com/zsh-users/zsh-syntax-highlighting.git" \
         "$zsh_plugins_dir/zsh-syntax-highlighting"
 
-    info "Installing fzf-tab"
     install_zsh_plugin \
         "https://github.com/Aloxaf/fzf-tab" \
         "$zsh_plugins_dir/fzf-tab"
 
-    info "Installing zsh-completions"
     install_zsh_plugin \
         "https://github.com/zsh-users/zsh-completions" \
         "$zsh_plugins_dir/zsh-completions"
 
-    info "Installing zsh-history-substring-search"
     install_zsh_plugin \
         "https://github.com/zsh-users/zsh-history-substring-search.git" \
         "$zsh_plugins_dir/zsh-history-substring-search"
