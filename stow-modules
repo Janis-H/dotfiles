@@ -25,36 +25,39 @@ print_usage() {
     local script_name
     script_name="./$( basename "$0")"
 
-    # TODO: add debug flag
     # TODO: consider adding an option to delete orphans
-    # TODO: update examples
     cat <<EOF
 Usage:
     $script_name [options] [modules...]
 
 Description:
     Stow modules by default.
-    If no modules are provided, the default module set is used.
+    If no modules are provided, modules are selected from the active profile
     If modules are provided, only those modules are used.
 
 Options:
-    -n              Dry run. Print commands without running them.
-    -u              Unstow instead of stow
-    -p PROFILE      Stow profile. Default: core.
+    -n              Dry run. Preview changes without modifying files.
+    -u              Unstow modules
+    -r              Restow modules
+    -p PROFILE      Select profile. Default: core.
     -h              Show this help message
 
 Profiles:
-    core     Bare terminal/dotfiles setup
-    server   Core + development/build tools
-    desktop  Server + GUI/workstation tools
+    core            Minimal terminal and dotfiles setup
+    server          Core + development/build tools
+    desktop         Server + GUI/workstation tools
+
+Notes:
+    -u and -r cannot be used together
+    -p only matters when no modules are provided
 
 Examples:
-    $script_name                    # Stow default modules
-    $script_name -n                 # Stow default modules
-    $script_name -n nvim zsh tmux   # Stow selected modules
-    $script_name nvim zsh tmux      # Stow selected modules
-    $script_name -u                 # Unstow default modules
-    $script_name -u nvim            # Unstow selected module
+    $script_name
+    $script_name -p desktop
+    $script_name nvim zsh tmux
+    $script_name -n -p desktop
+    $script_name -u nvim
+    $script_name -r -p desktop
 EOF
 }
 
@@ -71,6 +74,10 @@ run_stow_action() {
             title "Unstowing modules"
             unstow_modules "$@"
             ;;
+        restow)
+            title "Restowing modules"
+            restow_modules "$@"
+            ;;
         *)
             error "Invalid stow action: $stow_action"
             ;;
@@ -83,7 +90,7 @@ stow_action="stow"
 DRY_RUN=false
 PROFILE="core"
 
-while getopts ":nup:h" option; do
+while getopts ":nurp:h" option; do
     case "$option" in
         n)
             title "Dry run enabled. No system changes will be made."
@@ -95,6 +102,9 @@ while getopts ":nup:h" option; do
             ;;
         u)
             stow_action="unstow"
+            ;;
+        r)
+            stow_action="restow"
             ;;
         h)
             print_usage
