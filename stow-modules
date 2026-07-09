@@ -61,11 +61,19 @@ Examples:
 EOF
 }
 
+print_script_info() {
+    info "Script: $( basename "$0" )"
+    info "OS: $OS"
+    info "Profile: $PROFILE"
+    info "Action: $STOW_ACTION"
+    info "Dry run: $DRY_RUN"
+}
+
 run_stow_action() {
-    local stow_action="$1"
+    local STOW_ACTION="$1"
     shift
 
-    case "$stow_action" in
+    case "$STOW_ACTION" in
         stow)
             title "Stowing modules"
             stow_modules "$@"
@@ -79,13 +87,13 @@ run_stow_action() {
             restow_modules "$@"
             ;;
         *)
-            error "Invalid stow action: $stow_action"
+            error "Invalid stow action: $STOW_ACTION"
             ;;
     esac
 }
 
 # --- Parse arguments ---
-stow_action="stow"
+STOW_ACTION="stow"
 
 DRY_RUN=false
 PROFILE="desktop"
@@ -101,10 +109,10 @@ while getopts ":nurp:h" option; do
             PROFILE="$OPTARG"
             ;;
         u)
-            stow_action="unstow"
+            STOW_ACTION="unstow"
             ;;
         r)
-            stow_action="restow"
+            STOW_ACTION="restow"
             ;;
         h)
             print_usage
@@ -141,9 +149,9 @@ build_default_modules_for_profile "$PROFILE" || exit 1
 
 # --- Select target modules ---
 if [[ "$#" -gt 0 ]]; then
-    target_modules=("$@")
+    TARGET_MODULES=("$@")
 else
-    target_modules=("${DEFAULT_MODULES[@]}")
+    TARGET_MODULES=("${DEFAULT_MODULES[@]}")
 fi
 
 # --- Debug ---
@@ -151,7 +159,5 @@ fi
 
 # --- Stow / unstow modules ---
 title "Script Info"
-info "PROFILE: $PROFILE"
-info "OS: $OS"
 
-run_stow_action "$stow_action" "${target_modules[@]}"
+run_stow_action "$STOW_ACTION" "${TARGET_MODULES[@]}"
