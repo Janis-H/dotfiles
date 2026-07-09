@@ -67,6 +67,7 @@ print_script_info() {
     info "Profile: $PROFILE"
     info "Action: $STOW_ACTION"
     info "Dry run: $DRY_RUN"
+    info "Modules: $MODULES_SOURCE"
 }
 
 run_stow_action() {
@@ -149,8 +150,10 @@ build_default_modules_for_profile "$PROFILE" || exit 1
 
 # --- Select target modules ---
 if [[ "$#" -gt 0 ]]; then
+    MODULES_SOURCE="explicit arguments"
     TARGET_MODULES=("$@")
 else
+    MODULES_SOURCE="profile defaults"
     TARGET_MODULES=("${DEFAULT_MODULES[@]}")
 fi
 
@@ -159,5 +162,6 @@ fi
 
 # --- Stow / unstow modules ---
 title "Script Info"
+print_script_info
 
 run_stow_action "$STOW_ACTION" "${TARGET_MODULES[@]}"
