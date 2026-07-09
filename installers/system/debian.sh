@@ -20,9 +20,10 @@ install_system_packages() {
     for pkg in "$@"; do
         if is_installed "$pkg"; then
             info "$pkg already installed"
-        else
-            to_install+=("$pkg")
+            continue
         fi
+
+        to_install+=("$pkg")
     done
 
     if [[ ${#to_install[@]} -gt 0  ]]; then

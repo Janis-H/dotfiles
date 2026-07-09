@@ -64,9 +64,10 @@ install_brew_packages() {
     for pkg in "$@"; do
         if is_formula_installed "$pkg"; then
             info "$pkg already installed"
-        else
-            to_install+=("$pkg")
+            continue
         fi
+
+        to_install+=("$pkg")
     done
 
     if [[ ${#to_install[@]} -gt 0  ]]; then
@@ -83,9 +84,10 @@ install_brew_casks() {
     for cask in "$@"; do
         if is_cask_installed "$cask"; then
             info "$cask already installed"
-        else
-            to_install+=("$cask")
+            continue
         fi
+
+        to_install+=("$cask")
     done
 
     if [[ ${#to_install[@]} -gt 0  ]]; then
