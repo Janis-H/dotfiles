@@ -17,6 +17,11 @@ install_system_packages() {
     local to_install=()
     local pkg
 
+    if (( $# == 0 )); then
+        info "No packages to install"
+        return 0
+    fi
+
     for pkg in "$@"; do
         if is_installed "$pkg"; then
             info "$pkg already installed"
@@ -26,9 +31,11 @@ install_system_packages() {
         to_install+=("$pkg")
     done
 
-    if [[ ${#to_install[@]} -gt 0  ]]; then
-        info "Installing: ${to_install[*]}"
-
-        run_cmd sudo pacman -Sy --needed "${to_install[@]}"
+    if (( ${#to_install[@]} == 0 )); then
+        info "All packages already installed"
+        return 0
     fi
+
+    info "Installing: ${to_install[*]}"
+    run_cmd sudo pacman -Sy --needed "${to_install[@]}"
 }
