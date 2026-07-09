@@ -70,6 +70,12 @@ backup_stow_conflicts() {
     done < <(find "$module_dir" \( -type f -o -type l \) -print0)
 }
 
+should_backup_conflicts() {
+    local stow_flag="$1"
+
+    [[ "$stow_flag" == "-S" || "$stow_flag" == "-R" ]]
+}
+
 process_stow_module() {
     local module="$1"
     local stow_flag="$2"
@@ -91,9 +97,9 @@ process_stow_module() {
     info "$action_label: $module"
 
     # Backups should only happen when stowing or restowing
-    if [[ "$stow_flag" == "-S" || "$stow_flag" == "-R" ]]; then
+    if should_backup_conflicts "$stow_flag"; then
         if ! backup_stow_conflicts "$module"; then
-            error "Skipping stow because backup failed: $module"
+            error "Skipping $action_label because backup failed: $module"
             return 1
         fi
     fi
@@ -129,7 +135,7 @@ handle_stow_modules() {
 
     if (( "${#failed_modules[@]}" > 0)); then
         error "The following modules failed:"
-        printf '    - %s \n' "${failed_modules[@]}" >&2
+        printf '    - %s\n' "${failed_modules[@]}" >&2
         return 1
     fi
 
