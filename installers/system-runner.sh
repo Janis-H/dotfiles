@@ -40,7 +40,12 @@ run_system_cask_installs() {
 
     load_system_installer "$os"
 
-    title "System Casks"
+    if ! declare -F install_system_casks >/dev/null; then
+        warn "No system cask installer defined for OS: $os"
+        return 0
+    fi
+
+    title "Homebrew Casks"
 
     install_system_casks "$@"
 }
