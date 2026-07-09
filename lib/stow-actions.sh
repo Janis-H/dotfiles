@@ -25,6 +25,15 @@ create_backup() {
     run_cmd mv "$target" "$backup"
 }
 
+is_already_stowed_target() {
+    local source="$1"
+    local target="$2"
+
+    [[ -e "$target" || -L "$target" ]] || return 1
+
+    [[ "$(readlink -f "$target")" == "$(readlink -f "$source")" ]]
+}
+
 backup_stow_conflicts() {
     local module="$1"
     local modules_dir="$DOTFILES_DIR/modules"
@@ -42,13 +51,22 @@ backup_stow_conflicts() {
             continue
         fi
 
-        # Existing symlinks are usually already managed by stow.
-        # Leave them alone to avoid breaking restows.
-        if [[ -L "$target" ]]; then
+        # Target already resolves to this module file.
+        # Handles both file symlinks and parent-directory symlinks.
+        if is_already_stowed_target "$source" "$target"; then
             continue
         fi
 
-        create_backup "$target"
+        # Other symlink. Leave it alone for now.
+        if [[ -L "$target" ]]; then
+            warn "Skipping existing symlink: $target"
+            continue
+        fi
+
+        if ! create_backup "$target"; then
+            error "Failed to back up: $target"
+            return 1
+        fi
     done < <(find "$module_dir" \( -type f -o -type l \) -print0)
 }
 
