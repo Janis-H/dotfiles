@@ -77,9 +77,6 @@ run_stow_action() {
     esac
 }
 
-# TODO: add function to make backups of files if they already exist (before stowing)
-#       behavior will probably need to be added to the stow function instead of here
-
 # --- Parse arguments ---
 stow_action="stow"
 
