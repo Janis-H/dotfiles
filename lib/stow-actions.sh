@@ -56,7 +56,6 @@ run_stow_action() {
     local module="$1"
     local stow_flag="$2"
     local action_label="$3"
-
     local modules_dir="$DOTFILES_DIR/modules"
 
     local stow_args=(
@@ -77,7 +76,7 @@ run_stow_action() {
         backup_stow_conflicts "$module"
     fi
 
-    if [[ "$DRY_RUN" == true ]]; then
+    if [[ "${DRY_RUN:-false}" == true ]]; then
         stow_args=( --simulate --verbose "${stow_args[@]}" )
     fi
 
