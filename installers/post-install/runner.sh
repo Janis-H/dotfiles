@@ -1,0 +1,30 @@
+#!/usr/bin/env bash
+
+: "${DOTFILES_DIR:?DOTFILES_DIR must be set before sourcing installers/post-install/runner.sh}"
+
+source "$DOTFILES_DIR/lib/log.sh"
+source "$DOTFILES_DIR/installers/post-install/common.sh"
+
+# --- Helpers ---
+load_os_post_install() {
+    local os="$1"
+    local post_install_file="$DOTFILES_DIR/post-install/$os.sh"
+
+    if [[ ! -f "$post_install_file" ]]; then
+        warn "No OS-specific post-install file found for: $os"
+        run_os_post_install() { :; }
+        return 0
+    fi
+
+    source "$post_install_file"
+}
+
+# --- Public entrypoint ---
+run_post_install() {
+    local os="$1"
+
+    load_os_post_install "$os"
+
+    run_common_post_install
+    run_os_post_install
+}
