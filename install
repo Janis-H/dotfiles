@@ -37,19 +37,19 @@ Description:
 
 Options:
     -n              Dry run. Preview commands without running them.
-    -p PROFILE      Install profile. Default: core.
+    -p PROFILE      Select profile. Default: core.
     -h              Show this help message
 
 Profiles:
     core            Minimal terminal and dotfiles setup
-    server          Core + development/build tools
-    desktop         Core + development/build tools + GUI/workstation tools
+    headless        Core + non-GUI development/build tools
+    desktop         Headless + development/build tools + GUI/workstation tools
 
 Examples:
     $script_name
     $script_name -n
     $script_name -p core
-    $script_name -p server
+    $script_name -p headless
     $script_name -n -p desktop
 EOF
 }

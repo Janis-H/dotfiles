@@ -4,7 +4,7 @@ validate_profile() {
     local profile="$1"
 
     case "$profile" in
-        core|server|desktop)
+        core|headless|desktop)
             return 0
             ;;
         *)

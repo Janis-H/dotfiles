@@ -8,12 +8,12 @@ build_external_tools_for_profile() {
     case "$profile" in
         core)
             ;;
-        server)
-            EXTERNAL_TOOLS+=("${EXTERNAL_DEV_BUILD[@]}")
+        headless)
+            EXTERNAL_TOOLS+=("${EXTERNAL_HEADLESS[@]}")
             ;;
         desktop)
             EXTERNAL_TOOLS+=(
-                "${EXTERNAL_DEV_BUILD[@]}"
+                "${EXTERNAL_HEADLESS[@]}"
                 "${EXTERNAL_DESKTOP[@]}"
             )
             ;;

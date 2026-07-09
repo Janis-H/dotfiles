@@ -10,7 +10,7 @@ build_system_casks_for_profile() {
     fi
 
     case "$profile" in
-        core|server)
+        core|headless)
             ;;
         desktop)
             SYSTEM_CASKS+=(

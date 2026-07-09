@@ -11,16 +11,16 @@ build_default_modules_for_profile() {
                 "${CORE_STOW_MODULES[@]}"
             )
             ;;
-        server)
+        headless)
             DEFAULT_MODULES+=(
                 "${CORE_STOW_MODULES[@]}"
-                "${DEV_BUILD_STOW_MODULES[@]}"
+                "${HEADLESS_STOW_MODULES[@]}"
             )
             ;;
         desktop)
             DEFAULT_MODULES+=(
                 "${CORE_STOW_MODULES[@]}"
-                "${DEV_BUILD_STOW_MODULES[@]}"
+                "${HEADLESS_STOW_MODULES[@]}"
                 "${DESKTOP_STOW_MODULES[@]}"
             )
             ;;

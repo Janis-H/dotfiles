@@ -2,10 +2,10 @@
 # shellcheck disable=SC2034
 
 # ─────────────────────────────────────────────────────────────
-# Package manifests
+# Homebrew formula manifests
 # ─────────────────────────────────────────────────────────────
 
-# bare terminal/dotfiles setup:
+# minimal terminal/dotfiles setup:
 # - shell, editor, search, navigation, archive, and dotfile tools
 CORE_PACKAGES=(
     bat
@@ -35,9 +35,9 @@ CORE_PACKAGES=(
     zsh
 )
 
-# development/build tools:
+# headless development/build tools:
 # - compilers, runtimes, linters, formatters, and project workflow tools
-DEV_BUILD_PACKAGES=(
+HEADLESS_PACKAGES=(
     lazygit
     python3
     shellcheck
@@ -45,15 +45,15 @@ DEV_BUILD_PACKAGES=(
     tree-sitter-cli
 )
 
-# GUI/workstation additions:
-# - window managers, launchers, graphical terminals, editors, and GUI apps
+# Desktop formula additions
+# Most macOS GUI apps should usually go in DESKTOP_CASKS
 DESKTOP_PACKAGES=()
 
 # ─────────────────────────────────────────────────────────────
 # Homebrew cask manifests
 # ─────────────────────────────────────────────────────────────
 
-# GUI/workstation casks
+# Desktop GUI/workstation casks
 DESKTOP_CASKS=(
     # TODO: add aerospace config
     # - aerospace guide: https://nikitabobko.github.io/AeroSpace/guide
@@ -71,7 +71,7 @@ DESKTOP_CASKS=(
 # Each value maps to a function named install_external_<id>.
 EXTERNAL_CORE=()
 
-EXTERNAL_DEV_BUILD=()
+EXTERNAL_HEADLESS=()
 
 EXTERNAL_DESKTOP=()
 
@@ -79,7 +79,7 @@ EXTERNAL_DESKTOP=()
 # Stow module manifests
 # ─────────────────────────────────────────────────────────────
 
-# dotfile modules for the bare terminal setup
+# dotfile modules for the minimal terminal setup
 CORE_STOW_MODULES=(
     bat
     nvim
@@ -88,8 +88,8 @@ CORE_STOW_MODULES=(
     zsh
 )
 
-# dotfile modules for development/build tooling
-DEV_BUILD_STOW_MODULES=(
+# dotfile modules for headless development/build tooling
+HEADLESS_STOW_MODULES=(
     lazygit
 )
 

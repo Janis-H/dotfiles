@@ -5,7 +5,7 @@
 # Package manifests
 # ─────────────────────────────────────────────────────────────
 
-# bare terminal/dotfiles setup:
+# minimal terminal/dotfiles setup:
 # - shell, editor, search, navigation, archive, and dotfile tools
 CORE_PACKAGES=(
     bat
@@ -27,9 +27,9 @@ CORE_PACKAGES=(
     zsh
 )
 
-# development/build tools:
+# headless development/build tools:
 # - compilers, runtimes, linters, formatters, and project workflow tools
-DEV_BUILD_PACKAGES=(
+HEADLESS_PACKAGES=(
     base-devel
     lazygit
     python
@@ -55,7 +55,7 @@ DESKTOP_PACKAGES=(
 # Each value maps to a function named install_external_<id>.
 EXTERNAL_CORE=()
 
-EXTERNAL_DEV_BUILD=()
+EXTERNAL_HEADLESS=()
 
 EXTERNAL_DESKTOP=(
     rodecaster_pipewire_setup
@@ -64,7 +64,7 @@ EXTERNAL_DESKTOP=(
 # ─────────────────────────────────────────────────────────────
 # Stow module manifests
 # ─────────────────────────────────────────────────────────────
-# dotfile modules for the bare terminal setup
+# dotfile modules for the minimal terminal setup
 CORE_STOW_MODULES=(
     bat
     nvim
@@ -74,8 +74,8 @@ CORE_STOW_MODULES=(
     linux-scripts
 )
 
-# dotfile modules for development/build tooling
-DEV_BUILD_STOW_MODULES=(
+# dotfile modules for headless development/build tooling
+HEADLESS_STOW_MODULES=(
     lazygit
 )
 

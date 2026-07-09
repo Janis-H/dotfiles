@@ -8,12 +8,12 @@ build_system_packages_for_profile() {
     case "$profile" in
         core)
             ;;
-        server)
-            SYSTEM_PACKAGES+=("${DEV_BUILD_PACKAGES[@]}")
+        headless)
+            SYSTEM_PACKAGES+=("${HEADLESS_PACKAGES[@]}")
             ;;
         desktop)
             SYSTEM_PACKAGES+=(
-                "${DEV_BUILD_PACKAGES[@]}"
+                "${HEADLESS_PACKAGES[@]}"
                 "${DESKTOP_PACKAGES[@]}"
             )
             ;;

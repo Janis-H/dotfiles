@@ -44,8 +44,8 @@ Options:
 
 Profiles:
     core            Minimal terminal and dotfiles setup
-    server          Core + development/build tools
-    desktop         Server + GUI/workstation tools
+    headless        Core + non-GUI development/build tools
+    desktop         Headless + GUI/workstation tools
 
 Notes:
     -u and -r cannot be used together
