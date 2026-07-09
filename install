@@ -20,6 +20,11 @@ source "$DOTFILES_DIR/lib/build-system-casks-for-profile.sh"
 source "$DOTFILES_DIR/lib/build-system-packages-for-profile.sh"
 source "$DOTFILES_DIR/lib/build-external-tools-for-profile.sh"
 
+source "$DOTFILES_DIR/installers/system-runner.sh"
+source "$DOTFILES_DIR/installers/external-runner.sh"
+source "$DOTFILES_DIR/installers/post-install-runner.sh"
+
+
 # --- Helpers ---
 print_usage() {
     local script_name
@@ -111,17 +116,6 @@ EXTERNAL_TOOLS=()
 build_system_packages_for_profile "$PROFILE" || exit 1
 build_system_casks_for_profile "$PROFILE" || exit 1
 build_external_tools_for_profile "$PROFILE" || exit 1
-
-# --- Installer selection ---
-
-# source generic system installer runner
-source "$DOTFILES_DIR/installers/system-runner.sh"
-
-# source generic external installer runner
-source "$DOTFILES_DIR/installers/external-runner.sh"
-
-# source generic post installer runner
-source "$DOTFILES_DIR/installers/post-install-runner.sh"
 
 # --- Install flow ---
 print_script_info
