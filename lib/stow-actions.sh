@@ -52,7 +52,7 @@ backup_stow_conflicts() {
     done < <(find "$module_dir" \( -type f -o -type l \) -print0)
 }
 
-run_stow_action() {
+process_stow_module() {
     local module="$1"
     local stow_flag="$2"
     local action_label="$3"
@@ -72,6 +72,7 @@ run_stow_action() {
 
     info "$action_label: $module"
 
+    # Backups should only happen when stowing
     if [[ "$stow_flag" == "-R" ]]; then
         backup_stow_conflicts "$module"
     fi
@@ -89,7 +90,7 @@ handle_stow_modules() {
     shift 2
 
     for module in "$@"; do
-        run_stow_action "$module" "$stow_flag" "$action_label"
+        process_stow_module "$module" "$stow_flag" "$action_label"
     done
 }
 
