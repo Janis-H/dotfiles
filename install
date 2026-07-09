@@ -33,11 +33,11 @@ Usage:
 
 Description:
     Install core packages and external tools for the detected OS.
-    The core profile ils used by default
+    The desktop profile is used by default
 
 Options:
     -n              Dry run. Preview commands without running them.
-    -p PROFILE      Select profile. Default: core.
+    -p PROFILE      Select profile. Default: desktop.
     -h              Show this help message
 
 Profiles:
@@ -56,7 +56,7 @@ EOF
 
 # --- Parse arguments ---
 DRY_RUN=false
-PROFILE="core"
+PROFILE="desktop"
 
 while getopts ":np:h" option; do
     case "$option" in

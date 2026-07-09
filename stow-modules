@@ -32,14 +32,14 @@ Usage:
 
 Description:
     Stow modules by default.
-    If no modules are provided, modules are selected from the active profile
+    If no modules are provided, modules are selected from the active profile.
     If modules are provided, only those modules are used.
 
 Options:
     -n              Dry run. Preview changes without modifying files.
     -u              Unstow modules
     -r              Restow modules
-    -p PROFILE      Select profile. Default: core.
+    -p PROFILE      Select profile. Default: desktop.
     -h              Show this help message
 
 Profiles:
@@ -88,7 +88,7 @@ run_stow_action() {
 stow_action="stow"
 
 DRY_RUN=false
-PROFILE="core"
+PROFILE="desktop"
 
 while getopts ":nurp:h" option; do
     case "$option" in

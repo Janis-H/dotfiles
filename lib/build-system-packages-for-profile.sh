@@ -1,18 +1,25 @@
 #!/usr/bin/env bash
 
 build_system_packages_for_profile() {
-    local profile="${1:-core}"
+    local profile="${1:-desktop}"
 
-    SYSTEM_PACKAGES=("${CORE_PACKAGES[@]}")
+    SYSTEM_PACKAGES=()
 
     case "$profile" in
         core)
+            SYSTEM_PACKAGES=(
+                "${CORE_PACKAGES[@]}"
+            )
             ;;
         headless)
-            SYSTEM_PACKAGES+=("${HEADLESS_PACKAGES[@]}")
+            SYSTEM_PACKAGES+=(
+                "${CORE_PACKAGES[@]}"
+                "${HEADLESS_PACKAGES[@]}"
+            )
             ;;
         desktop)
             SYSTEM_PACKAGES+=(
+                "${CORE_PACKAGES[@]}"
                 "${HEADLESS_PACKAGES[@]}"
                 "${DESKTOP_PACKAGES[@]}"
             )

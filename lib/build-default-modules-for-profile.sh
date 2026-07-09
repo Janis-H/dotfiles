@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 build_default_modules_for_profile() {
-    local profile="${1:-core}"
+    local profile="${1:-desktop}"
 
     DEFAULT_MODULES=()
 
