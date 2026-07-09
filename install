@@ -128,15 +128,15 @@ source "$DOTFILES_DIR/installers/post-install/runner.sh"
 # --- Install flow ---
 print_script_info
 
-title "Installing system packages"
+title "System Packages"
 install_system_packages "${SYSTEM_PACKAGES[@]}"
 
 if [[ "$OS" == "macos" && "${#SYSTEM_CASKS[@]}" -gt 0 ]]; then
-    title "Installing system casks"
+    title "System Casks"
     install_system_casks "${SYSTEM_CASKS[@]}"
 fi
 
-title "Installing external tools"
+title "External Tools"
 run_external_installs "$OS" "${EXTERNAL_TOOLS[@]}"
 
 title "Post Install"
