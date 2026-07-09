@@ -4,19 +4,23 @@
 
 # --- Sources ---
 source "$DOTFILES_DIR/lib/log.sh"
+source "$DOTFILES_DIR/lib/install-or-update-repo.sh"
 source "$DOTFILES_DIR/lib/run-command.sh"
 
 # --- Setup functions ---
 create_dev_dirs() {
     info "Creating dev dirs"
 
-    # TODO: look over what directories to add or remove from this function
-    run_cmd mkdir -p "$HOME/dev"
-    run_cmd mkdir -p "$HOME/dev/scripts"
+    run_cmd mkdir -p "$HOME/dev/archived"
+    run_cmd mkdir -p "$HOME/dev/coursework"
+    run_cmd mkdir -p "$HOME/dev/notes"
+    run_cmd mkdir -p "$HOME/dev/personal"
+    run_cmd mkdir -p "$HOME/dev/work"
+    run_cmd mkdir -p "$HOME/dev/tools"
 
-    run_cmd mkdir -p "$HOME/scripts"
-
-    run_cmd mkdir -p "$HOME/projects"
+    run_cmd mkdir -p "$HOME/dev/scripts/archived"
+    run_cmd mkdir -p "$HOME/dev/scripts/bin"
+    run_cmd mkdir -p "$HOME/dev/scripts/lib"
 
     run_cmd mkdir -p "$HOME/.config"
     run_cmd mkdir -p "$HOME/.local/bin"
@@ -52,7 +56,7 @@ set_default_shell() {
     chsh -s "$(command -v zsh)"
 }
 
-setup_fzf() {
+verify_fzf() {
     if ! command -v fzf &>/dev/null; then
         info "fzf is not installed, skipping"
         return 0
@@ -112,15 +116,43 @@ setup_git_defaults() {
     run_cmd git config --global diff.coloredMoved zebra
 }
 
+# TODO: use antidote plugin manager instead of installing plugins manually
+install_zsh_plugins() {
+    local zsh_plugins_dir="$HOME/.zsh/plugins"
+
+    run_cmd mkdir -p "$zsh_plugins_dir"
+
+    install_or_update_repo \
+        "https://github.com/zsh-users/zsh-autosuggestions" \
+        "$zsh_plugins_dir/zsh-autosuggestions"
+
+    install_or_update_repo \
+        "https://github.com/zsh-users/zsh-syntax-highlighting.git" \
+        "$zsh_plugins_dir/zsh-syntax-highlighting"
+
+    install_or_update_repo \
+        "https://github.com/Aloxaf/fzf-tab" \
+        "$zsh_plugins_dir/fzf-tab"
+
+    install_or_update_repo \
+        "https://github.com/zsh-users/zsh-completions" \
+        "$zsh_plugins_dir/zsh-completions"
+
+    install_or_update_repo \
+        "https://github.com/zsh-users/zsh-history-substring-search.git" \
+        "$zsh_plugins_dir/zsh-history-substring-search"
+}
+
 # --- Public entrypoint ---
 run_common_post_install() {
     create_dev_dirs
     setup_local_bin
 
     set_default_shell
+    install_zsh_plugins
     install_tmux_plugin_manager
     install_tmux_plugins_from_config
 
-    setup_fzf
+    verify_fzf
     setup_git_defaults
 }

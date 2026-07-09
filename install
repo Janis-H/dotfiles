@@ -142,8 +142,7 @@ title "Installing external tools"
 install_external_tools "${EXTERNAL_TOOLS[@]}"
 
 title "Running common post-install"
-# run_common_post_install
+run_common_post_install
 
 title "Running os post-install"
-# run_os_post_install
-run_post_install
+run_os_post_install
