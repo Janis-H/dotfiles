@@ -123,7 +123,7 @@ print_script_info
 run_system_installs "$OS" "${SYSTEM_PACKAGES[@]}"
 
 if [[ "$OS" == "macos" ]]; then
-    install_system_casks "$OS" "${SYSTEM_CASKS[@]}"
+    run_system_cask_installs "$OS" "${SYSTEM_CASKS[@]}"
 fi
 
 run_external_installs "$OS" "${EXTERNAL_TOOLS[@]}"
