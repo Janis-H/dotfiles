@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-: "$DOTFILES_DIR:?DOTFILES_DIR must be set before sourcing installers/external/macos.sh"
+: "$DOTFILES_DIR:?DOTFILES_DIR must be set before sourcing installers/external/runner.sh"
 
 # --- Sources ---
 source "$DOTFILES_DIR/lib/log.sh"
