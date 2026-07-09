@@ -1,16 +1,15 @@
 #!/usr/bin/env bash
 
-run_cmd() {
-    # print intended command
-    printf '+'
-    printf ' %q' "$@"
-    printf '\n'
+: "${DOTFILES_DIR:?DOTFILES_DIR must be set before sourcing run-command.sh}"
 
-    # if DRY_RUN=true, exit without running
+source "$DOTFILES_DIR/lib/print-command.sh"
+
+run_cmd() {
+    print_command "$@"
+
     if [[ "${DRY_RUN:-false}" == true ]]; then
         return 0
     fi
 
-    # run command
     "$@"
 }
