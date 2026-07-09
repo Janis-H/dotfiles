@@ -123,6 +123,10 @@ source "$DOTFILES_DIR/installers/external/$OS.sh"
 # source generic external installer runner
 source "$DOTFILES_DIR/installers/external/runner.sh"
 
+# source OS-specific post-installers
+source "$DOTFILES_DIR/installers/post-install/common.sh"
+source "$DOTFILES_DIR/installers/post-install/$OS.sh"
+
 # --- Install flow ---
 print_script_info
 
@@ -137,5 +141,9 @@ fi
 title "Installing external tools"
 install_external_tools "${EXTERNAL_TOOLS[@]}"
 
-title "Running post install"
+title "Running common post-install"
+# run_common_post_install
+
+title "Running os post-install"
+# run_os_post_install
 run_post_install
