@@ -74,14 +74,20 @@ process_stow_module() {
 
     # Backups should only happen when stowing
     if [[ "$stow_flag" == "-R" ]]; then
-        backup_stow_conflicts "$module"
+        if ! backup_stow_conflicts "$module"; then
+            error "Skipping stow because backup failed: $module"
+            return 1
+        fi
     fi
 
     if [[ "${DRY_RUN:-false}" == true ]]; then
         stow_args=( --simulate --verbose "${stow_args[@]}" )
     fi
 
-    stow "${stow_args[@]}"
+    if ! stow "${stow_args[@]}"; then
+        error "Failed: $action_label $module"
+        return 1
+    fi
 }
 
 handle_stow_modules() {
