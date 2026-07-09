@@ -149,6 +149,13 @@ run_stow_action() {
 
     local modules_dir="$DOTFILES_DIR/modules"
 
+    local stow_args=(
+        "$stow_flag" \
+        --dir "$modules_dir" \
+        --target "$HOME" \
+        "$module"
+    )
+
     if [[ ! -d "$modules_dir/$module" ]]; then
         error "Module not found: $modules_dir/$module"
         return 1
@@ -157,21 +164,11 @@ run_stow_action() {
     info "$action_label: $module"
 
     if [[ "$DRY_RUN" == true ]]; then
-        stow \
-            --simulate \
-            --verbose \
-            "$stow_flag" \
-            --dir "$modules_dir" \
-            --target "$HOME" \
-            "$module"
-        return 1
+        stow --simulate --verbose "${stow_args[@]}"
+        return 0
     fi
 
-    stow \
-        "$stow_flag" \
-        --dir "$modules_dir" \
-        --target "$HOME" \
-        "$module"
+    stow "${stow_args[@]}"
 }
 
 handle_stow_modules() {
