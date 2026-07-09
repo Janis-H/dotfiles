@@ -35,7 +35,7 @@ install_external_tool () {
 # --- Public entrypoint ---
 
 # Runs external installer IDs by mapping each ID to install_external_<id>.
-install_external_tools() {
+run_external_installs() {
     local os="$1"
     shift
 

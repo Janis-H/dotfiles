@@ -137,7 +137,7 @@ if [[ "$OS" == "macos" && "${#SYSTEM_CASKS[@]}" -gt 0 ]]; then
 fi
 
 title "Installing external tools"
-install_external_tools "$OS" "${EXTERNAL_TOOLS[@]}"
+run_external_installs "$OS" "${EXTERNAL_TOOLS[@]}"
 
 title "Post Install"
 run_post_install "$OS"
