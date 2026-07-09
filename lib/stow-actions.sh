@@ -76,6 +76,23 @@ should_backup_conflicts() {
     [[ "$stow_flag" == "-S" || "$stow_flag" == "-R" ]]
 }
 
+run_stow_command() {
+    local stow_args=("$@")
+
+    if [[ "${DRY_RUN:-false}" == true ]]; then
+        stow_args=( --simulate --verbose "${stow_args[@]}" )
+    fi
+
+    print_command stow "${stow_args[@]}"
+
+    # FIXME: Remove after upgrading GNU Stow.
+    # Stow 2.3.x can emit a harmless "find_stowed_path" warning during restow.
+    # Filter only that known warning so real errors still print.
+    stow "${stow_args[@]}" \
+        2> >(grep -vF 'BUG in find_stowed_path? Absolute/relative mismatch' >&2)
+
+}
+
 process_stow_module() {
     local module="$1"
     local stow_flag="$2"
@@ -104,15 +121,7 @@ process_stow_module() {
         fi
     fi
 
-    if [[ "${DRY_RUN:-false}" == true ]]; then
-        stow_args=( --simulate --verbose "${stow_args[@]}" )
-    fi
-
-    # FIXME: Remove this stderr filter after upgrading GNU Stow.
-    # Stow <= 2.3.x can emit noisy "find_stowed_path" warnings during restow.
-    if ! stow "${stow_args[@]}" \
-        2> >(grep -vF 'BUG in find_stowed_path? Absolute/relative mismatch' >&2)
-    then
+    if ! run_stow_command "${stow_args[@]}" ; then
         error "Failed: $action_label $module"
         return 1
     fi
