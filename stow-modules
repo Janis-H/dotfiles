@@ -98,8 +98,8 @@ run_stow_action() {
 # --- Parse arguments ---
 STOW_ACTION="stow"
 
-DRY_RUN=false
 PROFILE="desktop"
+DRY_RUN=false
 
 while getopts ":nurp:h" option; do
     case "$option" in

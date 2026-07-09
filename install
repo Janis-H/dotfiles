@@ -64,8 +64,8 @@ print_script_info() {
 }
 
 # --- Parse arguments ---
-DRY_RUN=false
 PROFILE="desktop"
+DRY_RUN=false
 
 while getopts ":np:h" option; do
     case "$option" in
