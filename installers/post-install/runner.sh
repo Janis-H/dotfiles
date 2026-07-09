@@ -11,7 +11,7 @@ load_os_post_install() {
     local post_install_file="$DOTFILES_DIR/post-install/$os.sh"
 
     if [[ ! -f "$post_install_file" ]]; then
-        warn "No OS-specific post-install file found for: $os"
+        warn "No OS-specific post-install file found for OS: $os"
         run_os_post_install() { :; }
         return 0
     fi
