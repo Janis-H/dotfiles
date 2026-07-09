@@ -40,10 +40,19 @@ install_external_tools() {
     shift
 
     local tool
+    local failed_tools=()
 
     load_os_external_installers "$os"
 
     for tool in "$@"; do
-        install_external_tool "$tool"
+        if ! install_external_tool "$tool"; then
+            failed_tools+=("$tool")
+        fi
     done
+
+    if (( ${#failed_tools[@]} > 0 )); then
+        error "The following external tools failed:"
+        printf '  - %s\n' "${failed_tools[@]}" >&2
+        return 1
+    fi
 }
