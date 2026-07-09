@@ -44,6 +44,7 @@ set_default_shell() {
     if [[ "${DRY_RUN:-false}" == true ]]; then
         # shellcheck disable=SC2016
         printf '+ chsh -s "$(command -v zsh)"\n'
+        return 0
     fi
 
     chsh -s "$(command -v zsh)"
