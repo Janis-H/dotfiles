@@ -9,6 +9,8 @@ source "$DOTFILES_DIR/lib/run-command.sh"
 
 # --- Setup functions ---
 create_dev_dirs() {
+    info "Creating dev dirs"
+
     # TODO: look over what directories to add or remove from this function
     run_cmd mkdir -p "$HOME/dev"
     run_cmd mkdir -p "$HOME/dev/scripts"
@@ -19,6 +21,7 @@ create_dev_dirs() {
 }
 
 setup_local_bin() {
+    info "Setting up .local/bin"
     run_cmd mkdir -p "$HOME/.local/bin"
 
     if [[ ":$PATH:" != *":$HOME/.local/bin:"* ]]; then
@@ -114,6 +117,8 @@ install_zsh_plugins() {
 install_tmux_plugin_manager() {
     local tmux_plugins_dir="$HOME/.tmux/plugins"
 
+    info "Creating tmux plugins dir"
+
     run_cmd mkdir -p "$tmux_plugins_dir"
 
     if [[ ! -d "$tmux_plugins_dir/tpm" ]]; then
@@ -139,6 +144,8 @@ install_tmux_plugins_from_config() {
 }
 
 setup_git_defaults() {
+    info "Setting git defaults"
+
     run_cmd git config --global init.defaultBranch main
     run_cmd git config --global core.editor nvim
     run_cmd git config --global push.autoSetupRemote true
