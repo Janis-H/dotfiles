@@ -90,8 +90,8 @@ process_stow_module() {
 
     info "$action_label: $module"
 
-    # Backups should only happen when stowing
-    if [[ "$stow_flag" == "-S" ]]; then
+    # Backups should only happen when stowing or restowing
+    if [[ "$stow_flag" == "-S" || "$stow_flag" == "-R" ]]; then
         if ! backup_stow_conflicts "$module"; then
             error "Skipping stow because backup failed: $module"
             return 1
@@ -143,4 +143,8 @@ stow_modules() {
 
 unstow_modules() {
     handle_stow_modules "-D" "Unstowing" "$@"
+}
+
+restow_modules() {
+    handle_stow_modules "-R" "Restowing" "$@"
 }
