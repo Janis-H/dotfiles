@@ -8,7 +8,7 @@ source "$DOTFILES_DIR/installers/post-install/common.sh"
 # --- Helpers ---
 load_os_post_install() {
     local os="$1"
-    local post_install_file="$DOTFILES_DIR/post-install/$os.sh"
+    local post_install_file="$DOTFILES_DIR/installers/post-install/$os.sh"
 
     if [[ ! -f "$post_install_file" ]]; then
         warn "No OS-specific post-install file found for OS: $os"

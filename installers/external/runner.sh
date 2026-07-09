@@ -9,7 +9,7 @@ source "$DOTFILES_DIR/lib/run-command.sh"
 # --- Helpers ---
 load_os_external_installers() {
     local os="$1"
-    local external_file="$DOTFILES_DIR/external/$os.sh"
+    local external_file="$DOTFILES_DIR/installers/external/$os.sh"
 
     if [[ ! -f "$external_file" ]]; then
         warn "No OS-specific external installer file found for OS: $os"
