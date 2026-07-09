@@ -60,9 +60,9 @@ run_stow_action() {
     local modules_dir="$DOTFILES_DIR/modules"
 
     local stow_args=(
-        "$stow_flag" \
-        --dir "$modules_dir" \
-        --target "$HOME" \
+        "$stow_flag"
+        --dir "$modules_dir"
+        --target "$HOME"
         "$module"
     )
 
