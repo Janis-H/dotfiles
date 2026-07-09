@@ -24,6 +24,7 @@ install_zsh_plugin() {
     fi
 }
 
+# TODO: move some of these installs to packages array and external array
 install_zsh_plugins() {
     local zsh_plugins_dir="$HOME/.zsh/plugins"
 
@@ -49,8 +50,6 @@ install_zsh_plugins() {
         "https://github.com/zsh-users/zsh-history-substring-search.git" \
         "$zsh_plugins_dir/zsh-history-substring-search"
 }
-
-
 
 # --- Post Install Function ---
 run_post_install() {

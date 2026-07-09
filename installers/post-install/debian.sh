@@ -6,6 +6,8 @@
 source "$DOTFILES_DIR/lib/log.sh"
 source "$DOTFILES_DIR/lib/run-command.sh"
 
+# --- Setup functions ---
+
 # --- Public entrypoint ---
 run_os_post_install() {
     : # no os-specific yet
