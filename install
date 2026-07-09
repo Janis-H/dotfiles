@@ -55,10 +55,12 @@ EOF
 }
 
 print_script_info() {
+    title "Script Info"
+
     info "Script: $( basename "$0" )"
     info "OS: $OS"
     info "Profile: $PROFILE"
-    info "Dry run: $DRY_RUN"
+    info "Dry run: ${DRY_RUN:-false}"
 }
 
 # --- Parse arguments ---
@@ -122,7 +124,6 @@ source "$DOTFILES_DIR/installers/external/$OS.sh"
 source "$DOTFILES_DIR/installers/external/runner.sh"
 
 # --- Install flow ---
-title "Script Info"
 print_script_info
 
 title "Installing system packages"

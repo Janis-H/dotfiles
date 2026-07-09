@@ -62,11 +62,13 @@ EOF
 }
 
 print_script_info() {
+    title "Script Info"
+
     info "Script: $( basename "$0" )"
     info "OS: $OS"
     info "Profile: $PROFILE"
     info "Action: $STOW_ACTION"
-    info "Dry run: $DRY_RUN"
+    info "Dry run: ${DRY_RUN:-false}"
     info "Modules: $MODULES_SOURCE"
 }
 
@@ -161,7 +163,6 @@ fi
 # printf '%s\n' "${target_modules[@]}"
 
 # --- Stow / unstow modules ---
-title "Script Info"
 print_script_info
 
 run_stow_action "$STOW_ACTION" "${TARGET_MODULES[@]}"
