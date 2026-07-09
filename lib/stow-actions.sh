@@ -102,7 +102,11 @@ process_stow_module() {
         stow_args=( --simulate --verbose "${stow_args[@]}" )
     fi
 
-    if ! stow "${stow_args[@]}"; then
+    # FIXME: Remove this stderr filter after upgrading GNU Stow.
+    # Stow <= 2.3.x can emit noisy "find_stowed_path" warnings during restow.
+    if ! stow "${stow_args[@]}" \
+        2> >(grep -vF 'BUG in find_stowed_path? Absolute/relative mismatch' >&2)
+    then
         error "Failed: $action_label $module"
         return 1
     fi
