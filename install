@@ -103,6 +103,7 @@ OS="$(detect_os)"
 validate_os "$OS" || exit 1
 
 # --- Load manifest ---
+# TODO: check that manifest file exists before sourcing and validating
 source "$DOTFILES_DIR/manifests/$OS.sh"
 
 validate_manifest "$OS" || exit 1
