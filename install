@@ -24,8 +24,7 @@ source "$DOTFILES_DIR/installers/system-runner.sh"
 source "$DOTFILES_DIR/installers/external-runner.sh"
 source "$DOTFILES_DIR/installers/post-install-runner.sh"
 
-
-# --- Helpers ---
+# --- Output helpers ---
 print_usage() {
     local script_name
     script_name="./$( basename "$0")"
@@ -103,11 +102,12 @@ OS="$(detect_os)"
 
 validate_os "$OS" || exit 1
 
-# --- Build install lists ---
+# --- Load manifest ---
 source "$DOTFILES_DIR/manifests/$OS.sh"
 
 validate_manifest "$OS" || exit 1
 
+# --- Build install lists ---
 SYSTEM_PACKAGES=()
 SYSTEM_CASKS=()
 EXTERNAL_TOOLS=()

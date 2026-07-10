@@ -20,7 +20,7 @@ source "$DOTFILES_DIR/lib/build-default-modules-for-profile.sh"
 
 source "$DOTFILES_DIR/lib/stow-actions.sh"
 
-# --- Helpers ---
+# --- Output helpers ---
 print_usage() {
     local script_name
     script_name="./$( basename "$0")"
@@ -69,14 +69,15 @@ print_script_info() {
     info "Profile: $PROFILE"
     info "Action: $STOW_ACTION"
     info "Dry run: ${DRY_RUN:-false}"
-    info "Modules: $MODULES_SOURCE"
+    info "Module source: $MODULES_SOURCE"
 }
 
+# --- Action helpers ---
 run_stow_action() {
-    local STOW_ACTION="$1"
+    local action="$1"
     shift
 
-    case "$STOW_ACTION" in
+    case "$action" in
         stow)
             title "Stowing modules"
             stow_modules "$@"
@@ -91,20 +92,19 @@ run_stow_action() {
             ;;
         *)
             error "Invalid stow action: $STOW_ACTION"
+            return 1
             ;;
     esac
 }
 
 # --- Parse arguments ---
 STOW_ACTION="stow"
-
 PROFILE="desktop"
 DRY_RUN=false
 
 while getopts ":nurp:h" option; do
     case "$option" in
         n)
-            title "Dry run enabled. No system changes will be made."
             DRY_RUN=true
             ;;
         p)
@@ -141,11 +141,12 @@ OS="$(detect_os)"
 
 validate_os "$OS" || exit 1
 
-# --- Build default modules ---
+# --- Load manifest ---
 source "$DOTFILES_DIR/manifests/$OS.sh"
 
 validate_manifest "$OS" || exit 1
 
+# --- Build default modules ---
 DEFAULT_MODULES=()
 
 build_default_modules_for_profile "$PROFILE" || exit 1
