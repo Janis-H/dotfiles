@@ -102,6 +102,9 @@ STOW_ACTION="stow"
 PROFILE="desktop"
 DRY_RUN=false
 
+RESTOW=false
+UNSTOW=false
+
 while getopts ":nurp:h" option; do
     case "$option" in
         n)
@@ -112,10 +115,10 @@ while getopts ":nurp:h" option; do
             PROFILE="$OPTARG"
             ;;
         u)
-            STOW_ACTION="unstow"
+            UNSTOW=true
             ;;
         r)
-            STOW_ACTION="restow"
+            RESTOW=true
             ;;
         h)
             print_usage
@@ -135,6 +138,19 @@ while getopts ":nurp:h" option; do
 done
 
 shift $((OPTIND - 1))
+
+# --- Validate arguments ---
+if [[ "$UNSTOW" == true && "$RESTOW" == true ]]; then
+    error "-u and -r cannot be used together"
+    print_usage
+    exit 1
+fi
+
+if [[ "$UNSTOW" == true ]]; then
+    STOW_ACTION="unstow"
+elif [[ "$RESTOW" == true ]]; then
+    STOW_ACTION="restow"
+fi
 
 # --- Detect os ---
 OS="$(detect_os)"
