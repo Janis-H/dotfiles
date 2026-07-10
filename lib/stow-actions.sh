@@ -8,7 +8,7 @@ source "$DOTFILES_DIR/lib/log.sh"
 source "$DOTFILES_DIR/lib/print-list.sh"
 source "$DOTFILES_DIR/lib/run-command.sh"
 
-# --- Helpers ---
+# --- Conflict handling ---
 create_backup() {
     local target="$1"
     local backup="${target}.bak"
@@ -77,6 +77,7 @@ should_backup_conflicts() {
     [[ "$stow_flag" == "-S" || "$stow_flag" == "-R" ]]
 }
 
+# --- Action helpers ---
 run_stow_command() {
     local stow_args=("$@")
 
@@ -91,7 +92,6 @@ run_stow_command() {
     # Filter only that known warning so real errors still print.
     stow "${stow_args[@]}" \
         2> >(grep -vF 'BUG in find_stowed_path? Absolute/relative mismatch' >&2)
-
 }
 
 process_stow_module() {
@@ -152,7 +152,7 @@ handle_stow_modules() {
     return 0
 }
 
-# --- Public entrypoint ---
+# --- Public actions ---
 stow_modules() {
     handle_stow_modules "-S" "Stowing" "$@"
 }
