@@ -40,6 +40,7 @@ run_external_installs() {
     local os="$1"
     shift
 
+    local tools=("$@")
     local tool
     local failed_tools=()
 
@@ -47,7 +48,16 @@ run_external_installs() {
 
     title "External Tools"
 
-    for tool in "$@"; do
+    if (( ${#tools[@]} == 0 )); then
+        info "No external tools configured"
+        return 0
+    fi
+
+    info "Installing external tools: ${#tools[@]}"
+    print_list "${tools[@]}"
+    printf '\n'
+
+    for tool in "${tools[@]}"; do
         if ! install_external_tool "$tool"; then
             failed_tools+=("$tool")
         fi
