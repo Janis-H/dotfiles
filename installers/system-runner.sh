@@ -22,11 +22,6 @@ load_system_installer() {
 validate_system_package_installer() {
     local os="$1"
 
-    if ! declare -F is_system_package_installed >/dev/null; then
-        error "Missing system package check for OS: $os"
-        return 1
-    fi
-
     if ! declare -F install_system_packages >/dev/null; then
         error "Missing system package installer for OS: $os"
         return 1
@@ -38,11 +33,6 @@ validate_system_cask_installer() {
 
     if [[ "$os" != "macos" ]]; then
         return 0
-    fi
-
-    if ! declare -F is_system_cask_installed >/dev/null; then
-        error "Missing system cask check for OS: $os"
-        return 1
     fi
 
     if ! declare -F install_system_casks >/dev/null; then
