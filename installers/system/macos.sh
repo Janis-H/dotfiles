@@ -8,11 +8,11 @@ source "$DOTFILES_DIR/lib/log.sh"
 source "$DOTFILES_DIR/lib/run-command.sh"
 
 # --- Homebrew helpers ---
-is_formula_installed() {
+is_system_package_installed() {
     brew list --formula "$1" &>/dev/null
 }
 
-is_cask_installed() {
+is_system_cask_installed() {
     brew list --cask "$1" &>/dev/null
 }
 
@@ -58,57 +58,11 @@ install_os_prerequisites() {
 
 # --- Install Steps ---
 install_brew_packages() {
-    local to_install=()
-    local pkg
-
-    if (( $# == 0 )); then
-        info "No packages to install"
-        return 0
-    fi
-
-    for pkg in "$@"; do
-        if is_formula_installed "$pkg"; then
-            info "$pkg already installed"
-            continue
-        fi
-
-        to_install+=("$pkg")
-    done
-
-    if (( ${#to_install[@]} == 0 )); then
-        info "All packages already installed"
-        return 0
-    fi
-
-    info "Installing packages: ${to_install[*]}"
-    run_cmd brew install "${to_install[@]}"
+    run_cmd brew install "$@"
 }
 
 install_brew_casks() {
-    local to_install=()
-    local cask
-
-    if (( $# == 0 )); then
-        info "No casks to install"
-        return 0
-    fi
-
-    for cask in "$@"; do
-        if is_cask_installed "$cask"; then
-            info "$cask already installed"
-            continue
-        fi
-
-        to_install+=("$cask")
-    done
-
-    if (( ${#to_install[@]} == 0 )); then
-        info "All casks already installed"
-        return 0
-    fi
-
-    info "Installing casks: ${to_install[*]}"
-    run_cmd brew install --cask "${to_install[@]}"
+    run_cmd brew install --cask "$@"
 }
 
 # --- Public entrypoint ---
