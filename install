@@ -103,9 +103,14 @@ OS="$(detect_os)"
 validate_os "$OS" || exit 1
 
 # --- Load manifest ---
-# TODO: check that manifest file exists before sourcing and validating
-source "$DOTFILES_DIR/manifests/$OS.sh"
+MANIFEST_FILE="$DOTFILES_DIR/manifests/$OS.sh"
 
+if [[ ! -f "$MANIFEST_FILE" ]]; then
+    error "Missing manifest file for OS: $OS"
+    exit 1
+fi
+
+source "$MANIFEST_FILE"
 validate_manifest "$OS" || exit 1
 
 # --- Build install lists ---
