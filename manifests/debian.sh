@@ -59,6 +59,7 @@ EXTERNAL_CORE=(
     neovim
 
     # not available in apt
+    antidote
     oh_my_posh
     zoxide
 )

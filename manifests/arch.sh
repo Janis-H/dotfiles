@@ -53,7 +53,9 @@ DESKTOP_PACKAGES=(
 # NOTE:
 # External installer IDs.
 # Each value maps to a function named install_external_<id>.
-EXTERNAL_CORE=()
+EXTERNAL_CORE=(
+    antidote
+)
 
 EXTERNAL_HEADLESS=()
 
