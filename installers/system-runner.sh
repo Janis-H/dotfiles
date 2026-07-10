@@ -24,7 +24,7 @@ validate_system_package_installer() {
     local os="$1"
 
     if ! declare -F install_system_packages >/dev/null; then
-        error "Missing system package installer for OS: $os"
+        error "Missing install_system_packages function for OS: $os"
         return 1
     fi
 }
@@ -37,7 +37,7 @@ validate_system_cask_installer() {
     fi
 
     if ! declare -F install_system_casks >/dev/null; then
-        error "Missing system cask installer for OS: $os"
+        error "Missing install_system_casks function for OS: $os"
         return 1
     fi
 }
