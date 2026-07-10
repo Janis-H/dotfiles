@@ -5,6 +5,7 @@
 
 # --- Sources ---
 source "$DOTFILES_DIR/lib/log.sh"
+source "$DOTFILES_DIR/lib/print-list.sh"
 source "$DOTFILES_DIR/lib/run-command.sh"
 
 # --- Helpers ---
@@ -64,8 +65,8 @@ run_external_installs() {
     done
 
     if (( ${#failed_tools[@]} > 0 )); then
-        error "The following external tools failed:"
-        printf '  - %s\n' "${failed_tools[@]}" >&2
+        error "External tools failed:"
+        print_list "${failed_tools[@]}" >&2
         return 1
     fi
 }

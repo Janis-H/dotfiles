@@ -5,6 +5,7 @@
 
 # --- Sources ---
 source "$DOTFILES_DIR/lib/log.sh"
+source "$DOTFILES_DIR/lib/print-list.sh"
 source "$DOTFILES_DIR/lib/run-command.sh"
 
 # --- Helpers ---
@@ -143,8 +144,8 @@ handle_stow_modules() {
     done
 
     if (( "${#failed_modules[@]}" > 0)); then
-        error "The following modules failed:"
-        printf '    - %s\n' "${failed_modules[@]}" >&2
+        error "Modules failed:"
+        print_list "${failed_modules[@]}" >&2
         return 1
     fi
 
