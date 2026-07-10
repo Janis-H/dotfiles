@@ -46,7 +46,7 @@ Options:
 Profiles:
     core            Minimal terminal and dotfiles setup
     headless        Core + non-GUI development/build tools
-    desktop         Headless + development/build tools + GUI/workstation tools
+    desktop         Headless + GUI/workstation tools
 
 Examples:
     $script_name
@@ -73,7 +73,6 @@ DRY_RUN=false
 while getopts ":np:h" option; do
     case "$option" in
         n)
-            title "Dry run enabled. No system changes will be made."
             DRY_RUN=true
             ;;
         p)
@@ -104,7 +103,7 @@ OS="$(detect_os)"
 
 validate_os "$OS" || exit 1
 
-# --- Build package lists ---
+# --- Build install lists ---
 source "$DOTFILES_DIR/manifests/$OS.sh"
 
 validate_manifest "$OS" || exit 1
