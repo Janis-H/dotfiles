@@ -182,7 +182,7 @@ else
     TARGET_MODULES=("${DEFAULT_MODULES[@]}")
 fi
 
-# --- Stow / unstow modules ---
+# --- Stow flow ---
 print_script_info
 
 run_stow_action "$STOW_ACTION" "${TARGET_MODULES[@]}"
