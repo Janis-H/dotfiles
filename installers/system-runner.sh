@@ -6,7 +6,7 @@
 source "$DOTFILES_DIR/lib/log.sh"
 source "$DOTFILES_DIR/lib/print-list.sh"
 
-# --- Helpers ---
+# --- Loaders ---
 load_system_installer() {
     local os="$1"
     local system_file="$DOTFILES_DIR/installers/system/$os.sh"
@@ -19,6 +19,7 @@ load_system_installer() {
     source "$system_file"
 }
 
+# --- Validation ---
 validate_system_package_installer() {
     local os="$1"
 

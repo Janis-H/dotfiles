@@ -8,20 +8,37 @@ source "$DOTFILES_DIR/lib/log.sh"
 source "$DOTFILES_DIR/lib/print-list.sh"
 source "$DOTFILES_DIR/lib/run-command.sh"
 
-# --- Helpers ---
+# --- Loaders ---
+load_common_external_installers() {
+    local common_file="$DOTFILES_DIR/installers/external/common.sh"
+
+    if [[ ! -f "$common_file" ]]; then
+        return 0
+    fi
+
+    source "$common_file"
+}
+
 load_os_external_installers() {
     local os="$1"
     local external_file="$DOTFILES_DIR/installers/external/$os.sh"
 
     if [[ ! -f "$external_file" ]]; then
-        warn "No OS-specific external installer file found for OS: $os"
-        run_os_post_install() { :; }
-        return 0
+        error "No external installers found for OS: $os"
+        return 1
     fi
 
     source "$external_file"
 }
 
+load_external_installers() {
+    local os="$1"
+
+    load_common_external_installers || return 1
+    load_os_external_installers "$os" || return 1
+}
+
+# --- Dispatch ---
 install_external_tool () {
     local tool="$1"
     local installer="install_external_${tool}"
@@ -35,7 +52,6 @@ install_external_tool () {
 }
 
 # --- Public entrypoint ---
-
 # Runs external installer IDs by mapping each ID to install_external_<id>.
 run_external_installs() {
     local os="$1"
@@ -45,7 +61,7 @@ run_external_installs() {
     local tool
     local failed_tools=()
 
-    load_os_external_installers "$os"
+    load_external_installers "$os"
 
     title "External Tools"
 
