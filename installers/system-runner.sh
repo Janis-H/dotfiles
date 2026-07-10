@@ -19,6 +19,38 @@ load_system_installer() {
     source "$system_file"
 }
 
+validate_system_package_installer() {
+    local os="$1"
+
+    if ! declare -F is_system_package_installed >/dev/null; then
+        error "Missing system package check for OS: $os"
+        return 1
+    fi
+
+    if ! declare -F install_system_packages >/dev/null; then
+        error "Missing system package installer for OS: $os"
+        return 1
+    fi
+}
+
+validate_system_cask_installer() {
+    local os="$1"
+
+    if [[ "$os" != "macos" ]]; then
+        return 0
+    fi
+
+    if ! declare -F is_system_cask_installed >/dev/null; then
+        error "Missing system cask check for OS: $os"
+        return 1
+    fi
+
+    if ! declare -F install_system_casks >/dev/null; then
+        error "Missing system cask installer for OS: $os"
+        return 1
+    fi
+}
+
 # --- Public entrypoints ---
 run_system_installs() {
     local os="$1"
@@ -27,6 +59,7 @@ run_system_installs() {
     local packages=("$@")
 
     load_system_installer "$os" || return 1
+    validate_system_package_installer "$os" || return 1
 
     title "System Packages"
 
@@ -51,16 +84,7 @@ run_system_cask_installs() {
     [[ "$os" != "macos" ]] || return 0
 
     load_system_installer "$os" || return 1
-
-    # TODO: move this to separate validate function. Also check for:
-    #   - is_system_package_installed
-    #   - is_system_cask_installed (macos only)
-    #   - install_system_packages
-    #   - install_system_casks (macos only)
-    if ! declare -F install_system_casks >/dev/null; then
-        warn "No system cask installer defined for OS: $os"
-        return 0
-    fi
+    validate_system_cask_installer "$os" || return 1
 
     title "Homebrew Casks"
 
