@@ -144,7 +144,7 @@ handle_stow_modules() {
     done
 
     if (( "${#failed_modules[@]}" > 0)); then
-        error "Modules failed:"
+        error "$action_label failed for modules:"
         print_list "${failed_modules[@]}" >&2
         return 1
     fi
