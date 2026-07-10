@@ -159,9 +159,6 @@ else
     TARGET_MODULES=("${DEFAULT_MODULES[@]}")
 fi
 
-# --- Debug ---
-# printf '%s\n' "${target_modules[@]}"
-
 # --- Stow / unstow modules ---
 print_script_info
 
