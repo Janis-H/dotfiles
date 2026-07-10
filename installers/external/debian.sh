@@ -24,7 +24,7 @@ is_command_available(){
 install_external_rodecaster_pipewire_setup() {
     # FIX: remove line below once I've verified script. Make sure to use a specific tag or version
     warn "please review script before pulling install script"
-    return 1
+    return 0
 
     # install_url="https://parzival-space.github.io/rodecaster-pro-2-virtual-devices-pipewire/configure.sh"
 

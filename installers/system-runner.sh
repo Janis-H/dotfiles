@@ -4,6 +4,7 @@
 : "${DOTFILES_DIR:?DOTFILES_DIR must be set before sourcing installers/system-runner.sh}"
 
 source "$DOTFILES_DIR/lib/log.sh"
+source "$DOTFILES_DIR/lib/print-list.sh"
 
 # --- Helpers ---
 load_system_installer() {
@@ -24,8 +25,6 @@ run_system_installs() {
     shift
 
     local packages=("$@")
-    local to_install=()
-    local pkg
 
     load_system_installer "$os" || return 1
 
@@ -36,22 +35,11 @@ run_system_installs() {
         return 0
     fi
 
-    for pkg in "${packages[@]}"; do
-        if is_system_package_installed "$pkg"; then
-            info "$pkg already installed"
-            continue
-        fi
+    info "Ensuring packages: ${#packages[@]}"
+    print_list "${packages[@]}"
+    printf '\n'
 
-        to_install+=("$pkg")
-    done
-
-    if (( ${#to_install[@]} == 0 )); then
-        info "All packages already installed"
-        return 0
-    fi
-
-    info "Installing packages: ${to_install[*]}"
-    install_system_packages "${to_install[@]}"
+    install_system_packages "${packages[@]}"
 }
 
 run_system_cask_installs() {
@@ -59,8 +47,6 @@ run_system_cask_installs() {
     shift
 
     local casks=("$@")
-    local to_install=()
-    local cask
 
     [[ "$os" != "macos" ]] || return 0
 
@@ -83,21 +69,9 @@ run_system_cask_installs() {
         return 0
     fi
 
-    for cask in "${casks[@]}"; do
-        if is_system_package_installed "$cask"; then
-            info "$cask already installed"
-            continue
-        fi
+    info "Ensuring casks: ${casks[*]}"
+    print_list "${casks[@]}"
+    printf '\n'
 
-        to_install+=("$cask")
-    done
-
-    if (( ${#to_install[@]} == 0 )); then
-        info "All casks already installed"
-        return 0
-    fi
-
-    info "Installing casks: ${to_install[*]}"
-    install_system_casks "${to_install[@]}"
+    install_system_casks "${casks[@]}"
 }
-
