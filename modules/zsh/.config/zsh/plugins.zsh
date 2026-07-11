@@ -13,6 +13,9 @@ source "$ZSH_PLUGINS_DIR/fzf-tab/fzf-tab.plugin.zsh"
 # autosuggestions
 source "$ZSH_PLUGINS_DIR/zsh-autosuggestions/zsh-autosuggestions.zsh"
 
+# additional completion definitions
+source "$ZSH_PLUGINS_DIR/zsh-completions"
+
 # syntax highlighting must be sourced last
 source "$ZSH_PLUGINS_DIR/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
 
