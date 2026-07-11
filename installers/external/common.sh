@@ -5,17 +5,17 @@
 
 source "$DOTFILES_DIR/lib/install-or-update-repo.sh"
 
+# Manages zsh-plugins
 install_external_antidote() {
     install_or_update_repo \
         "https://github.com/mattmc3/antidote.git" \
         "${ZDOTDIR:-$HOME}/.antidote"
 }
 
-# NOTE: Installs zsh plugins manually instead of using Antidote.
-#       It is kept here mainly for reference in case I ever switch back.
-#       To switch back, update .zshrc to source the plugins manually and add
-#       "zsh_plugins" to the relevant EXTERNAL_CORE arrays.
-#       The repos can coexist with Antidote, but .zshrc should only load one set.
+# Manual alternative to Antidote.
+# To switch back, add "zsh_plugins" to the relevant EXTERNAL_CORE arrays
+# and update .zshrc to source these plugins instead of loading Antidote.
+# The cloned repos can coexist, but .zshrc should only load one set.
 install_external_zsh_plugins() {
     local zsh_plugins_dir="$HOME/.zsh/plugins"
 
