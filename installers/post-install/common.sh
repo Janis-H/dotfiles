@@ -116,33 +116,6 @@ setup_git_defaults() {
     run_cmd git config --global diff.coloredMoved zebra
 }
 
-# TODO: use antidote plugin manager instead of installing plugins manually
-install_zsh_plugins() {
-    local zsh_plugins_dir="$HOME/.zsh/plugins"
-
-    run_cmd mkdir -p "$zsh_plugins_dir"
-
-    install_or_update_repo \
-        "https://github.com/zsh-users/zsh-autosuggestions" \
-        "$zsh_plugins_dir/zsh-autosuggestions"
-
-    install_or_update_repo \
-        "https://github.com/zsh-users/zsh-syntax-highlighting.git" \
-        "$zsh_plugins_dir/zsh-syntax-highlighting"
-
-    install_or_update_repo \
-        "https://github.com/Aloxaf/fzf-tab" \
-        "$zsh_plugins_dir/fzf-tab"
-
-    install_or_update_repo \
-        "https://github.com/zsh-users/zsh-completions" \
-        "$zsh_plugins_dir/zsh-completions"
-
-    install_or_update_repo \
-        "https://github.com/zsh-users/zsh-history-substring-search.git" \
-        "$zsh_plugins_dir/zsh-history-substring-search"
-}
-
 # --- Public entrypoint ---
 run_common_post_install() {
     create_dev_dirs
