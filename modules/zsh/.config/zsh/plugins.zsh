@@ -1,24 +1,38 @@
 #############################################
-# Plugins
+# Plugins (via Antidote plugin manager)
 #############################################
 
-ZSH_PLUGINS_DIR="$HOME/.zsh/plugins"
+zsh_plugins=${ZDOTDIR:-$HOME}/.zsh_plugins
 
-# Enable fzf key bindings and autocompletion
-source <(fzf --zsh)
+if [[ ! ${zsh_plugins}.zsh -nt ${zsh_plugins}.txt ]]; then
+  (
+    source $HOME/.antidote/antidote.zsh
+    antidote bundle <${zsh_plugins}.txt >${zsh_plugins}.zsh
+  )
+fi
+source ${zsh_plugins}.zsh
 
-# fzf-tab, loaded after compinit and before autosuggestions/syntax-highlighting
-source "$ZSH_PLUGINS_DIR/fzf-tab/fzf-tab.plugin.zsh"
+#############################################
+# Plugins (via manual installation)
+#############################################
 
-# autosuggestions
-source "$ZSH_PLUGINS_DIR/zsh-autosuggestions/zsh-autosuggestions.zsh"
+# ZSH_PLUGINS_DIR="$HOME/.zsh/plugins"
 
-# additional completion definitions
-source "$ZSH_PLUGINS_DIR/zsh-completions"
+# # Enable fzf key bindings and autocompletion
+# source <(fzf --zsh)
 
-# syntax highlighting must be sourced last
-source "$ZSH_PLUGINS_DIR/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+# # fzf-tab, loaded after compinit and before autosuggestions/syntax-highlighting
+# source "$ZSH_PLUGINS_DIR/fzf-tab/fzf-tab.plugin.zsh"
 
-# cycle through matches of command history
-# zsh-history-substring must be sourced after syntax-highlighting
-source "$ZSH_PLUGINS_DIR/zsh-history-substring-search/zsh-history-substring-search.zsh"
+# # autosuggestions
+# source "$ZSH_PLUGINS_DIR/zsh-autosuggestions/zsh-autosuggestions.zsh"
+
+# # additional completion definitions
+# source "$ZSH_PLUGINS_DIR/zsh-completions"
+
+# # syntax highlighting must be sourced last
+# source "$ZSH_PLUGINS_DIR/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+
+# # cycle through matches of command history
+# # zsh-history-substring must be sourced after syntax-highlighting
+# source "$ZSH_PLUGINS_DIR/zsh-history-substring-search/zsh-history-substring-search.zsh"
