@@ -70,7 +70,11 @@ DESKTOP_CASKS=(
 # External installer IDs.
 # Each value maps to a function named install_external_<id>.
 EXTERNAL_CORE=(
+    # Manages zsh plugins
     antidote
+
+    # Manual alternative to Antidote
+    # zsh_plugins
 )
 
 EXTERNAL_HEADLESS=()
