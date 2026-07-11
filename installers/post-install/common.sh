@@ -149,7 +149,6 @@ run_common_post_install() {
     setup_local_bin
 
     set_default_shell
-    install_zsh_plugins
     install_tmux_plugin_manager
     install_tmux_plugins_from_config
 
