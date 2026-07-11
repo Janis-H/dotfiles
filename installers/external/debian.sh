@@ -20,10 +20,9 @@ is_command_available(){
 # - For git installs, use pinned tags/commits instead of auto-pulling.
 # - For downloaded artifacts, verify checksums when available.
 
-# TODO: look through install script before adding to dotfiles
+# TODO: Inspect upstream `configure.sh`. Check TODO.md for more details
 install_external_rodecaster_pipewire_setup() {
-    # FIX: remove line below once I've verified script. Make sure to use a specific tag or version
-    warn "please review script before pulling install script"
+    warn "Skipping install_external_rodecaster_pipewire_setup"
     return 0
 
     # install_url="https://parzival-space.github.io/rodecaster-pro-2-virtual-devices-pipewire/configure.sh"
