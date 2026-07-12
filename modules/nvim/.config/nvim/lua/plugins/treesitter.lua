@@ -5,6 +5,8 @@ local disabled = {}
 return {
     "nvim-treesitter/nvim-treesitter",
     branch = "main",
+    -- TODO: disable once tree-sitter-manager transition is over
+    enabled = true,
     build = ":TSUpdate",
     event = { "BufReadPost", "BufNewFile" },
     config = function()
