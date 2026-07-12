@@ -20,14 +20,14 @@ is_system_cask_installed() {
 ensure_xcode_tools() {
     if pkgutil --pkg-info=com.apple.pkg.CLTools_Executables >/dev/null 2>&1; then
         info "Xcode Command Line Tools already installed"
-        return
+        return 0
     fi
 
     info "Installing Xcode Command Line Tools"
     run_cmd xcode-select --install
 
     info "Finish the macOS install prompt, then rerun this script"
-    run_cmd exit 1
+    run_cmd return 1
 }
 
 ensure_homebrew() {
@@ -35,14 +35,14 @@ ensure_homebrew() {
 
     if command -v brew &>/dev/null; then
         info "Homebrew already installed"
-        return
+        return 0
     fi
 
     info "Installing Homebrew"
 
     # NOTE:
     # Do not use run_cmd here
-    # Dry-run is checked before command substitution so curl does not run during dry-run.
+    # Dry-run is checked before command substitution so curl does not run
     if [[ "${DRY_RUN:-false}" == true ]]; then
         # shellcheck disable=SC2016
          printf '+ /bin/bash -c "$(curl -fsSL %q)"\n' "$install_url"
@@ -52,7 +52,7 @@ ensure_homebrew() {
 }
 
 install_os_prerequisites() {
-    ensure_xcode_tools
+    ensure_xcode_tools || exit 1
     ensure_homebrew
 }
 
