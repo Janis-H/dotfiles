@@ -41,10 +41,13 @@ HEADLESS_PACKAGES=(
 DESKTOP_PACKAGES=(
     ghostty
 
-    # i3 window manager setup
+    # i3 window manager
     i3
     picom
     rofi
+
+    # sway window manager
+    sway
 )
 
 # ─────────────────────────────────────────────────────────────

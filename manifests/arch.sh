@@ -42,9 +42,11 @@ HEADLESS_PACKAGES=(
 
 # GUI/workstation additions:
 # - window managers, launchers, graphical terminals, editors, and GUI apps
-# TODO: add hyprland and/or sway
 DESKTOP_PACKAGES=(
     ghostty
+
+    # sway window manager
+    sway
 )
 
 # ─────────────────────────────────────────────────────────────
