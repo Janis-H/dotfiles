@@ -6,9 +6,18 @@ local function opts(desc)
     }
 end
 
+local function toggle_quickfix()
+    local winid = vim.fn.getqflist({ winid = 0 }).windid
+
+    if winid ~= 0 then
+        vim.cmd.cclose()
+    else
+        vim.cmd.copen()
+    end
+end
+
 -- File actions
 vim.keymap.set('n', '<leader><leader>', '<cmd>w<cr>', opts('Write to file'))
-vim.keymap.set('n', '<leader><cr>', '<cmd>LazyReloadPlugin<cr>', opts('Reload Lazy Plugin'))
 
 -- Navigation
 vim.keymap.set('n', '<C-d>', '<C-d>zz', opts('Move half-page down'))
@@ -21,7 +30,7 @@ vim.keymap.set('n', '<M-k>', "<cmd>cprev<cr>", opts('Previous quickfix item'))
 vim.keymap.set('n', '<leader>co', '<cmd>copen<cr>', opts('Open quickfix'))
 vim.keymap.set('n', '<leader>cn', "<cmd>cnext<cr>", opts('Next quickfix item'))
 vim.keymap.set('n', '<leader>cp', "<cmd>cprev<cr>", opts('Previous quickfix item'))
-vim.keymap.set('n', '<leader>cq', '<cmd>ClearQuickfix<cr>', opts('Clear quickfix'))
+vim.keymap.set('n', '<leader>cq', toggle_quickfix, opts('Toggle quickfix list'))
 
 -- Search
 vim.keymap.set('n', '<leader>cl', '<cmd>ClearSearch<cr>', opts('Clear highlighted search'))
