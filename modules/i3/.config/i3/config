@@ -308,6 +308,9 @@ set $focus_or_open_by_title ~/.local/bin/focus-or-open-by-window-title
 set $1password_cmd "1password"
 set $1password_class "1password"
 
+set $brave_browser_cmd "brave-browser"
+set $brave_browser_class "Brave-browser"
+
 set $calculator_cmd "gnome-calculator"
 set $calculator_class "Gnome-calculator"
 
@@ -319,9 +322,6 @@ set $discord_class "discord"
 
 set $gnome_parted_cmd "gnome-parted"
 set $gnome_parted_class "Gnome-parted"
-
-set $gnome_terminal_cmd "gnome-terminal"
-set $gnome_terminal_class "Gnome-terminal"
 
 set $ghostty_terminal_cmd "ghostty"
 set $ghostty_terminal_class "ghostty"
@@ -380,18 +380,18 @@ set $zoom_class "zoom"
 bindsym $mod+F1 \
     exec --no-startup-id \
         $focus_or_open_by_class \
-            $ghostty_terminal_cmd \
-            $ghostty_terminal_class
-bindsym $mod+F2 \
-    exec --no-startup-id \
-        $focus_or_open_by_class \
             $zen_browser_cmd \
             $zen_browser_class
-bindsym $mod+Shift+F2 \
+bindsym $mod+F2 \
     exec --no-startup-id \
         $focus_or_open_by_class \
             $librewolf_cmd \
             $librewolf_class
+bindsym $mod+F3 \
+    exec --no-startup-id \
+        $focus_or_open_by_class \
+            $brave_browser_cmd \
+            $brave_browser_class
 bindsym $mod+F5 \
     exec --no-startup-id \
         $focus_or_open_by_class \
