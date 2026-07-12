@@ -31,6 +31,7 @@ CORE_PACKAGES=(
 # - compilers, runtimes, linters, formatters, and project workflow tools
 HEADLESS_PACKAGES=(
     base-devel
+    libreadline
     lazygit
     python
     python-pip

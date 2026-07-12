@@ -43,6 +43,7 @@ HEADLESS_PACKAGES=(
     shellcheck
     shfmt
     tree-sitter-cli
+    luarocks
 )
 
 # Desktop formula additions

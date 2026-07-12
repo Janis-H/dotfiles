@@ -27,6 +27,7 @@ CORE_PACKAGES=(
 # - compilers, runtimes, linters, formatters, and project workflow tools
 HEADLESS_PACKAGES=(
     build-essential
+    libreadline-dev
     python3
     python3-pip
     python3-venv
