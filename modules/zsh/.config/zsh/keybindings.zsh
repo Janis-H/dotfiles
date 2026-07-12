@@ -2,6 +2,9 @@
 # KEY-BINDINGS
 #############################################
 
+# enable vi-style ZLE keybindings
+bindkey -v
+
 # tmux-sessionizer
 # Prefix + f opens the project picker.
 # Alt bindings run TS_SESSION_COMMANDS by index in the active project session.

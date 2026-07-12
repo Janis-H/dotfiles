@@ -58,3 +58,6 @@ elif command -v batcat >/dev/null 2>&1; then
 fi
 export MANPAGER="sh -c \"col -bx | $BAT_CMD -l man -p\""
 export MANROFFOPT="-c"
+
+# Editor used by the fc history command
+export FCEDIT="${EDITOR:-vi}"
