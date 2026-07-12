@@ -1,10 +1,14 @@
 #############################################
 # PATH (put early so everything can use it)
 #############################################
+# removes duplicate paths
+typeset -U path PATH
+
 path=(
     "$HOME/bin"
     "$HOME/.local/bin"
     "$HOME/.fzf/bin"
+    "$HOME/.cargo/bin"
     "$HOME/go/bin"
     "/opt/nvim-linux-x86_64/bin"
     "/usr/local/bin"
@@ -22,11 +26,11 @@ export POSH_THEMES_PATH="$HOME/.config/ohmyposh/themes"
 
 # Preferred editor (SSH-safe)
 if [[ -n $SSH_CONNECTION ]]; then
-  export EDITOR="vim"
-  export VISUAL="vim"
+    export EDITOR="vim"
+    export VISUAL="vim"
 else
-  export EDITOR="nvim"
-  export VISUAL="nvim"
+    export EDITOR="nvim"
+    export VISUAL="nvim"
 fi
 
 # Node Version Manager
