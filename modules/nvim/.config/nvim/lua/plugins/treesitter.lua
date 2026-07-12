@@ -1,12 +1,6 @@
 -- Adds Tree-sitter parsers for better syntax highlighting, indentation, and plugin integrations
 
--- Use vim syntax for shell files
--- because treesitter highlighting looks worse
-local disabled = {
-    -- bash = false,
-    -- sh = false,
-    -- zsh = false,
-}
+local disabled = {}
 
 return {
     "nvim-treesitter/nvim-treesitter",
