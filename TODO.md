@@ -28,3 +28,9 @@
     - Evaluate other parser managers or community forks before future Neovim or parser updates cause compatibility issues
     - Alternatives:
         - (romus204/tree-sitter-manager.nvim)["https://github.com/romus204/tree-sitter-manager.nvim"]
+
+- [ ] Verify whether `neotest` works with `tree-sitter-manager.nvim`
+    - Most `neotest` adapters rely on `nvim-treesitter` for test discovery
+    - Determine whether the required parsers and queries work without keeping `nvim-treesitter` installed
+
+- [ ] Install `nvim-dap` plugin
