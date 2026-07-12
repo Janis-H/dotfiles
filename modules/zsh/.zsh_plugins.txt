@@ -3,3 +3,11 @@ zsh-users/zsh-autosuggestions
 zsh-users/zsh-completions
 zsh-users/zsh-history-substring-search
 zsh-users/zsh-syntax-highlighting
+
+# ------------------------------------------------
+# Disabled:
+# ------------------------------------------------
+
+# NOTE: Disabled because it removes the <C-f> tmux-sessionizer keybinding.
+#       Either find a way to fix that or find an alternative.
+# jeffreytse/zsh-vi-mode
