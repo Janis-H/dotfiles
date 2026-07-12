@@ -41,3 +41,21 @@ install_external_zsh_plugins() {
         "https://github.com/zsh-users/zsh-history-substring-search.git" \
         "$zsh_plugins_dir/zsh-history-substring-search"
 }
+
+install_external_rust_and_cargo() {
+    if command -v rustc && command -v cargo; then
+        info "Rust and Cargo already installed"
+        return 0
+    fi
+
+    info "Installing rust and cargo"
+
+    # NOTE:
+    # Do not use run_cmd here
+    # Dry-run must be checked before the pipeline so the curl does not run
+    if [[ "${DRY_RUN:-false}" = true ]]; then
+        printf '+ curl https://sh.rustupl.rs -sSf | sh'
+    fi
+
+    curl https://sh.rustup.rs -sSf | sh
+}
