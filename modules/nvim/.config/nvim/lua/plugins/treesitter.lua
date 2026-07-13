@@ -35,72 +35,73 @@ return {
         local ensure_installed = {
             -- Neovim / Lua
             "lua",
+            "query",
             "vim",
             "vimdoc",
-            "query",
 
             -- Shell / dotfiles
             "bash",
-            "zsh",
             "tmux",
+            "zsh",
 
             -- Git
+            "diff",
             "git_config",
             "git_rebase",
             "gitattributes",
             "gitcommit",
             "gitignore",
-            "diff",
 
-            -- Web / TypeScript
-            "javascript",
-            "typescript",
-            "tsx",
-            "jsdoc",
-            "html",
+            -- Web
             "css",
-            "scss",
+            "html",
+            "javascript",
+            "jsdoc",
             "json",
             "json5",
+            "scss",
+            "tsx",
+            "typescript",
             "yaml",
 
-            -- Docs
+            -- Dart / Flutter
+            "dart",
+
+            -- Documentation
             "markdown",
             "markdown_inline",
             "mermaid",
 
             -- Backend / scripting
+            "php",
+            "phpdoc",
             "python",
+            "ruby",
             "sql",
-            "dockerfile",
 
-            -- Config formats
-            "toml",
-            "ini",
-
-            -- Project files
-            "editorconfig",
-            "cmake",
-            "make",
-
-            -- Go / Java
+            -- Sytems and compiled languages
+            "c",
+            "cpp",
             "go",
             "gomod",
             "gosum",
             "gowork",
             "java",
+            "rust",
 
-            -- Personal Tooling
+            -- Build and project files
+            "cmake",
+            "dockerfile",
+            "editorconfig",
+            "make",
+
+            -- Config formats
+            "toml",
+            "ini",
+
+            -- Application configuration
             "ghostty",
             "rasi",
-
-            -- Other common languages
-            "rust",
-            "ruby",
-            "php",
-            "phpdoc",
-            "c",
-            "cpp",
         }
 
         treesitter.install(ensure_installed)
