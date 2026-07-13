@@ -385,11 +385,6 @@ bindsym $mod+F1 \
 bindsym $mod+F2 \
     exec --no-startup-id \
         $focus_or_open_by_class \
-            $librewolf_cmd \
-            $librewolf_class
-bindsym $mod+F3 \
-    exec --no-startup-id \
-        $focus_or_open_by_class \
             $brave_browser_cmd \
             $brave_browser_class
 bindsym $mod+F5 \
