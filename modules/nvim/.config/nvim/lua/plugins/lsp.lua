@@ -9,6 +9,7 @@ local server_names = {
     "html",
     "cssls",
     "jsonls",
+    "tailwindcss",
 
     -- Grammar / prose linting
     -- "harper_ls",
@@ -16,6 +17,10 @@ local server_names = {
     -- Config / docs
     "yamlls",
     "marksman",
+
+    -- Build systems
+    "cmake",
+    "autotools_ls",
 
     -- TOML files
     "taplo",
@@ -45,6 +50,13 @@ local server_names = {
 
     -- C / C++
     "clangd",
+
+    -- CI / Linux tooling
+    "gh_actions_ls",
+    "systemd_lsp",
+
+    -- Nix (Used by NixOS)
+    "nil_ls",
 }
 
 local function get_server_configs()
