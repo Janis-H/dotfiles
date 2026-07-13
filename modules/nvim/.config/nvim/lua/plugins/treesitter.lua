@@ -90,8 +90,15 @@ return {
             "gowork",
             "java",
 
+            -- Personal Tooling
+            "ghostty",
+            "rasi",
+
             -- Other common languages
             "rust",
+            "ruby",
+            "php",
+            "phpdoc",
             "c",
             "cpp",
         }
