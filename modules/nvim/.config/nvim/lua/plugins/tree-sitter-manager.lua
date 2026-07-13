@@ -1,38 +1,31 @@
--- Adds Tree-sitter parsers for better syntax highlighting, indentation, and plugin integrations
+-- Installs Tree-sitter parsers and enables Tree-sitter syntax highlighting
 
 return {
-    "nvim-treesitter/nvim-treesitter",
-    branch = "main",
-    -- TODO: disable once tree-sitter-manager transition is over
-    enabled = true,
-    build = ":TSUpdate",
-    event = { "BufReadPost", "BufNewFile" },
-    config = function()
-        local treesitter = require("nvim-treesitter")
-
-        treesitter.setup({
-            install_dir = vim.fn.stdpath("data") .. "/site",
-        })
-
-        local function register_ghostty()
-            require("nvim-treesitter.parsers").ghostty = {
+    "romus204/tree-sitter-manager.nvim",
+    -- TODO: enable tree-sitter-manager once nvim-treesitter is removed
+    enabled = false,
+    lazy = false,
+    opts = {
+        -- Parsers not included in tree-sitter-manager's repository registry
+        languages = {
+            make = {
                 install_info = {
-                    url = "https://github.com/bezhermoso/tree-sitter-ghostty",
-                    revision = "7f41507014534e5f72d16e4639c0346d0adb8054",
-                    queries = "queries/ghostty",
+                    url = "https://github.com/tree-sitter-grammars/tree-sitter-make",
                 },
-            }
-        end
+            },
+            mermaid = {
+                install_info = {
+                    url = "https://github.com/monaqa/tree-sitter-mermaid",
+                },
+            },
+            rasi = {
+                install_info = {
+                    url = "https://github.com/Fymyte/tree-sitter-rasi",
+                },
+            },
+        },
 
-        register_ghostty()
-
-        -- Re-register the custom parser after nvim-treesitter updates its registry
-        vim.api.nvim_create_autocmd("User", {
-            pattern = "TSUpdate",
-            callback = register_ghostty,
-        })
-
-        local ensure_installed = {
+        ensure_installed = {
             -- Neovim / Lua
             "lua",
             "query",
@@ -102,14 +95,7 @@ return {
             -- Application configuration
             "ghostty",
             "rasi",
-        }
-
-        treesitter.install(ensure_installed)
-
-        vim.api.nvim_create_autocmd("FileType", {
-            callback = function(args)
-                pcall(vim.treesitter.start, args.buf)
-            end,
-        })
-    end,
+        },
+        auto_install = true,
+    },
 }

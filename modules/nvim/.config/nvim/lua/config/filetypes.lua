@@ -7,9 +7,11 @@ vim.filetype.add({
         [".zlogin"] = "zsh",
     },
     extension = {
+        rasi = "rasi",
         zsh = "zsh",
     },
     pattern = {
+        [".*/%.config/ghostty/config$"] = "ghostty",
         [".*/%.config/zsh/.*%.zsh"] = "zsh",
     },
 })

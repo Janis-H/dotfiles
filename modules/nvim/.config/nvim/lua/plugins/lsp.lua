@@ -1,51 +1,66 @@
 -- Installs, configures, and enables language servers
-local server_names = {
+local mason_server_names = {
     -- Lua / Neovim
     "lua_ls",
-
-    -- Web / TypeScript
-    "ts_ls",
-    "eslint",
-    "html",
-    "cssls",
-    "jsonls",
-
-    -- Grammar / prose linting
-    -- "harper_ls",
-
-    -- Config / docs
-    "yamlls",
-    "marksman",
-
-    -- TOML files
-    "taplo",
 
     -- Shell
     "bashls",
 
-    -- Python
+    -- Web
+    "cssls",
+    "eslint",
+    "html",
+    "jsonls",
+    "tailwindcss",
+    "ts_ls",
+
+    -- Documentation and grammar
+    -- "harper_ls",
+    "marksman",
+
+    -- Scripting and backend
+    "phpactor",
     "pyright",
     "ruff",
-
-    -- SQL
+    "ruby_lsp",
     "sqlls",
 
-    -- Docker
-    "dockerls",
-    "docker_compose_language_service",
-
-    -- Go
+    -- Systems and compiled languages
+    "clangd",
     "gopls",
-
-    -- Java
     "jdtls",
-
-    -- Rust
     "rust_analyzer",
 
-    -- C / C++
-    "clangd",
+    -- Build and project files
+    "autotools_ls",
+    "cmake",
+
+    -- Configuration formats
+    "taplo",
+    "yamlls",
+
+    -- Containers
+    "docker_compose_language_service",
+    "dockerls",
+
+    -- CI / Linux tooling
+    "gh_actions_ls",
+    "systemd_lsp",
+
+    -- Nix (Used by NixOS)
+    "nil_ls",
 }
+
+-- Servers installed outside of Mason; ensure their executables are available in PATH
+local external_server_names = {
+    -- Dart / Flutter (provided by the Dart SDK)
+    "dartls",
+}
+
+local server_names = vim.list_extend(
+    vim.deepcopy(mason_server_names),
+    external_server_names
+)
 
 local function get_server_configs()
     local schemastore = require("schemastore")
@@ -60,6 +75,7 @@ local function get_server_configs()
                 },
             },
         },
+
         jsonls = {
             settings = {
                 json = {
@@ -68,6 +84,7 @@ local function get_server_configs()
                 },
             },
         },
+
         yamlls = {
             settings = {
                 yaml = {
@@ -82,6 +99,7 @@ local function get_server_configs()
                 },
             },
         },
+
         pyright = {
             settings = {
                 python = {
@@ -108,8 +126,7 @@ return {
             "mason-org/mason.nvim",
         },
         opts = {
-            ensure_installed = server_names,
-            automatic_installation = true,
+            ensure_installed = mason_server_names,
             automatic_enable = false,
         },
     },
@@ -137,7 +154,7 @@ return {
                 vim.lsp.config(server, config)
             end
 
-            -- Enable every server from the install list
+            -- Enable Mason-managed and externally installed servers
             vim.lsp.enable(server_names)
         end,
     }
