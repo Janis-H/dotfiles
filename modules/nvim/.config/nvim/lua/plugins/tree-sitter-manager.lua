@@ -6,6 +6,25 @@ return {
     enabled = false,
     lazy = false,
     opts = {
+        -- Parsers not included in tree-sitter-manager's repository registry
+        languages = {
+            make = {
+                install_info = {
+                    url = "https://github.com/tree-sitter-grammars/tree-sitter-make",
+                },
+            },
+            mermaid = {
+                install_info = {
+                    url = "https://github.com/monaqa/tree-sitter-mermaid",
+                },
+            },
+            rasi = {
+                install_info = {
+                    url = "https://github.com/Fymyte/tree-sitter-rasi",
+                },
+            },
+        },
+
         ensure_installed = {
             -- Neovim / Lua
             "lua",
@@ -17,6 +36,14 @@ return {
             "bash",
             "zsh",
             "tmux",
+
+            -- Git
+            "git_config",
+            "git_rebase",
+            "gitattributes",
+            "gitcommit",
+            "gitignore",
+            "diff",
 
             -- Web / TypeScript
             "javascript",
@@ -33,6 +60,7 @@ return {
             -- Docs
             "markdown",
             "markdown_inline",
+            "mermaid",
 
             -- Backend / scripting
             "python",
@@ -49,6 +77,15 @@ return {
             "gosum",
             "gowork",
             "java",
+
+            -- Project files
+            "editorconfig",
+            "cmake",
+            "make",
+
+            -- Personal tooling
+            "ghostty",
+            "rasi",
 
             -- Other common languages
             "rust",
