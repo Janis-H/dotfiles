@@ -14,6 +14,7 @@ return {
             "nvim-neotest/neotest-python",
             "adrigzr/neotest-mocha",
             "thenbe/neotest-playwright",
+            "rcasia/neotest-bash",
         },
         keys = {
             { "<leader>nr", "<cmd>Neotest run<cr>" },
@@ -95,6 +96,7 @@ return {
                             enable_dynamic_test_discovery = true,
                         },
                     }),
+                    require('neotest-bash'),
                 },
             })
         end,

@@ -16,6 +16,7 @@
   "mason-lspconfig.nvim": { "branch": "main", "commit": "47059d71b42d74b0a1e9f61c1d99d301039c3b5b" },
   "mason.nvim": { "branch": "main", "commit": "2a6940af80375532e5e9e7c1f2fc6319a1b7a69d" },
   "neotest": { "branch": "master", "commit": "fb84d87285698f7055f618083c351984449119b8" },
+  "neotest-bash": { "branch": "main", "commit": "d67519428d6a3efa59707802d3290582938afb71" },
   "neotest-jest": { "branch": "main", "commit": "0e7979d51301dfae5ef839d771bd28cf593fde3f" },
   "neotest-mocha": { "branch": "main", "commit": "e28317a93e48ed7901d8ddb1bd252b64220b2e2c" },
   "neotest-playwright": { "branch": "master", "commit": "6266945039dac27a354de33d2f2a66e75485d5e9" },
