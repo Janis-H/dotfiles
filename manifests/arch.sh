@@ -48,6 +48,10 @@ DESKTOP_PACKAGES=(
 
     # sway window manager
     sway
+    swayidle
+    swaylock
+    xdg-desktop-portal-wlr
+    xdg-desktop-portal-gtk
 )
 
 # ─────────────────────────────────────────────────────────────
