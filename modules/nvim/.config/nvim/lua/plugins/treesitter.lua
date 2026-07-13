@@ -1,7 +1,5 @@
 -- Adds Tree-sitter parsers for better syntax highlighting, indentation, and plugin integrations
 
-local disabled = {}
-
 return {
     "nvim-treesitter/nvim-treesitter",
     branch = "main",
@@ -16,6 +14,24 @@ return {
             install_dir = vim.fn.stdpath("data") .. "/site",
         })
 
+        local function register_ghostty()
+            require("nvim-treesitter.parsers").ghostty = {
+                install_info = {
+                    url = "https://github.com/bezhermoso/tree-sitter-ghostty",
+                    revision = "7f41507014534e5f72d16e4639c0346d0adb8054",
+                    queries = "queries/ghostty",
+                },
+            }
+        end
+
+        register_ghostty()
+
+        -- Re-register the custom parser after nvim-treesitter updates its registry
+        vim.api.nvim_create_autocmd("User", {
+            pattern = "TSUpdate",
+            callback = register_ghostty,
+        })
+
         local ensure_installed = {
             -- Neovim / Lua
             "lua",
@@ -27,6 +43,14 @@ return {
             "bash",
             "zsh",
             "tmux",
+
+            -- Git
+            "git_config",
+            "git_rebase",
+            "gitattributes",
+            "gitcommit",
+            "gitignore",
+            "diff",
 
             -- Web / TypeScript
             "javascript",
@@ -43,6 +67,7 @@ return {
             -- Docs
             "markdown",
             "markdown_inline",
+            "mermaid",
 
             -- Backend / scripting
             "python",
@@ -52,6 +77,11 @@ return {
             -- Config formats
             "toml",
             "ini",
+
+            -- Project files
+            "editorconfig",
+            "cmake",
+            "make",
 
             -- Go / Java
             "go",
@@ -70,16 +100,6 @@ return {
 
         vim.api.nvim_create_autocmd("FileType", {
             callback = function(args)
-                local ft = vim.bo[args.buf].filetype
-
-
-                -- Fall back to Vim syntax for filetypes where Tree-sitter is disabled
-                if disabled[ft] then
-                    vim.cmd("syntax enable")
-                    vim.cmd("setlocal syntax=" .. ft)
-                    return
-                end
-
                 pcall(vim.treesitter.start, args.buf)
             end,
         })
