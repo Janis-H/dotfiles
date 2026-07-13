@@ -40,6 +40,7 @@ CORE_PACKAGES=(
 HEADLESS_PACKAGES=(
     lazygit
     python3
+    go
     shellcheck
     shfmt
     tree-sitter-cli

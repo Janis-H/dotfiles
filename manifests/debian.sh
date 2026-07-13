@@ -31,6 +31,7 @@ HEADLESS_PACKAGES=(
     python3
     python3-pip
     python3-venv
+    golang-go
     shellcheck
     shfmt
     tree-sitter-cli

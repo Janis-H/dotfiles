@@ -35,6 +35,7 @@ HEADLESS_PACKAGES=(
     lazygit
     python
     python-pip
+    go
     shellcheck
     shfmt
     tree-sitter-cli
