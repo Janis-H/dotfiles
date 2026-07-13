@@ -28,69 +28,73 @@ return {
         ensure_installed = {
             -- Neovim / Lua
             "lua",
+            "query",
             "vim",
             "vimdoc",
-            "query",
 
             -- Shell / dotfiles
             "bash",
-            "zsh",
             "tmux",
+            "zsh",
 
             -- Git
+            "diff",
             "git_config",
             "git_rebase",
             "gitattributes",
             "gitcommit",
             "gitignore",
-            "diff",
 
-            -- Web / TypeScript
-            "javascript",
-            "typescript",
-            "tsx",
-            "jsdoc",
-            "html",
+            -- Web
             "css",
-            "scss",
+            "html",
+            "javascript",
+            "jsdoc",
             "json",
             "json5",
+            "scss",
+            "tsx",
+            "typescript",
             "yaml",
 
-            -- Docs
+            -- Dart / Flutter
+            "dart",
+
+            -- Documentation
             "markdown",
             "markdown_inline",
             "mermaid",
 
             -- Backend / scripting
+            "php",
+            "phpdoc",
             "python",
+            "ruby",
             "sql",
-            "dockerfile",
 
-            -- Config formats
-            "toml",
-            "ini",
-
-            -- Go / Java
+            -- Sytems and compiled languages
+            "c",
+            "cpp",
             "go",
             "gomod",
             "gosum",
             "gowork",
             "java",
+            "rust",
 
-            -- Project files
-            "editorconfig",
+            -- Build and project files
             "cmake",
+            "dockerfile",
+            "editorconfig",
             "make",
 
-            -- Personal tooling
+            -- Config formats
+            "toml",
+            "ini",
+
+            -- Application configuration
             "ghostty",
             "rasi",
-
-            -- Other common languages
-            "rust",
-            "c",
-            "cpp",
         },
         auto_install = true,
     },
