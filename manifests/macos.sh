@@ -38,13 +38,14 @@ CORE_PACKAGES=(
 # headless development/build tools:
 # - compilers, runtimes, linters, formatters, and project workflow tools
 HEADLESS_PACKAGES=(
-    lazygit
-    python3
     go
+    lazygit
+    luarocks
+    node
+    python3
     shellcheck
     shfmt
     tree-sitter-cli
-    luarocks
 )
 
 # Desktop formula additions

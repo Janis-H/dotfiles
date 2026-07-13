@@ -31,11 +31,13 @@ CORE_PACKAGES=(
 # - compilers, runtimes, linters, formatters, and project workflow tools
 HEADLESS_PACKAGES=(
     base-devel
-    libreadline
+    go
     lazygit
+    libreadline
+    nodejs
+    npm
     python
     python-pip
-    go
     shellcheck
     shfmt
     tree-sitter-cli
