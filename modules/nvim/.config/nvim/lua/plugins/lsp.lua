@@ -22,7 +22,6 @@ local mason_server_names = {
     "phpactor",
     "pyright",
     "ruff",
-    "ruby_lsp",
     "sqlls",
 
     -- Systems and compiled languages
@@ -46,9 +45,6 @@ local mason_server_names = {
     -- CI / Linux tooling
     "gh_actions_ls",
     "systemd_lsp",
-
-    -- Nix (Used by NixOS)
-    "nil_ls",
 }
 
 -- Servers installed outside of Mason; ensure their executables are available in PATH

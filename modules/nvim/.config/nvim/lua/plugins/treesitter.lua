@@ -76,7 +76,6 @@ return {
             "php",
             "phpdoc",
             "python",
-            "ruby",
             "sql",
 
             -- Sytems and compiled languages
