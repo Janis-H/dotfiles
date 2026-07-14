@@ -11,13 +11,13 @@
     - Goal: reduce indirection without making naming inconsistent
 
 - [ ] Review `install_external_rodecaster_pipewire_setup` setup
-    - Inspect the upstream (configure.sh)["https://parzival-space.github.io/rodecaster-pro-2-virtual-devices-pipewire/configure.sh"] script for security concerns or and unexpected system changes
+    - Inspect the upstream [configure.sh]("https://parzival-space.github.io/rodecaster-pro-2-virtual-devices-pipewire/configure.sh") script for security concerns or and unexpected system changes
     - Decide whether to maintain a local configuration script or pin the installer to a specific upstream version
 
 ## Modules
 
 - [ ] Create `aerospace` config
-    - Reference (aerospace docs)["https://nikitabobko.github.io/AeroSpace/guide"]
+    - Reference [aerospace docs]("https://nikitabobko.github.io/AeroSpace/guide")
 
 - [ ] Reorganize the `linux-scripts` module to match the new directory structure
     - Move scripts into the appropriate locations and update any affected paths, sources, or stow mappings
@@ -27,7 +27,7 @@
 - [ ] Migrate away from the archived `nvim-treesitter` implementation
     - Evaluate other parser managers or community forks before future Neovim or parser updates cause compatibility issues
     - Alternatives:
-        - (romus204/tree-sitter-manager.nvim)["https://github.com/romus204/tree-sitter-manager.nvim"]
+        - [romus204/tree-sitter-manager.nvim](https://github.com/romus204/tree-sitter-manager.nvim)
 
 - [ ] Verify whether `neotest` works with `tree-sitter-manager.nvim`
     - Most `neotest` adapters rely on `nvim-treesitter` for test discovery
