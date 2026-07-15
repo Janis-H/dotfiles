@@ -58,6 +58,7 @@ install_os_prerequisites() {
 
 # --- Install Steps ---
 install_brew_packages() {
+    run_cmd brew update-if-needed
     run_cmd brew install "$@"
 }
 
