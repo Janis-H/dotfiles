@@ -184,4 +184,12 @@ Signed-By: /etc/apt/keyrings/docker.asc
 EOF
 
     run_cmd sudo apt update
+
+    # Install docker packages
+    run_cmd sudo apt -y install \
+        docker-ce \
+        docker-ce-cli \
+        containerd.io \
+        docker-buildx-plugin \
+        docker-compose-plugin
 }
