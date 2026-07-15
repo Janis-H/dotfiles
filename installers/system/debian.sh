@@ -14,5 +14,6 @@ is_system_package_installed() {
 
 # --- Public entrypoint ---
 install_system_packages() {
+    run_cmd sudo apt-get update
     run_cmd sudo apt-get install -y "$@"
 }
