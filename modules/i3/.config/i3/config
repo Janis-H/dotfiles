@@ -356,6 +356,9 @@ set $snapchat_title "Snapchat"
 set $steam_cmd "steam"
 set $steam_class "steam"
 
+set $steam_app_cmd ""
+set $steam_app_class "^steam_app_[0-9]+$"
+
 set $teleprompter_cmd "flatpak run io.github.nokse22.teleprompter"
 set $teleprompter_class "teleprompter"
 
@@ -436,6 +439,7 @@ assign [class=$librewolf_class] workspace number $ws1
 assign [class=$zen_browser_class] workspace number $ws1
 
 assign [class=$steam_class] workspace number $ws10
+assign [class=$steam_app_class] workspace number $ws10
 
 # Assign applications to workspace_right (right_monitor)
 assign [class=$1password_class] $ws_right
