@@ -24,7 +24,8 @@ CORE_PACKAGES=(
 )
 
 # headless development/build tools:
-# - compilers, runtimes, linters, formatters, and project workflow tools
+# - compilers, runtimes, build tools, container tools, linters, formatters,
+#   and project workflow tools
 HEADLESS_PACKAGES=(
     build-essential
     golang-go
@@ -77,11 +78,11 @@ EXTERNAL_CORE=(
 
     # Manual alternative to Antidote
     # zsh_plugins
-
 )
 
 EXTERNAL_HEADLESS=(
     lazygit
+    docker
 )
 
 EXTERNAL_DESKTOP=(

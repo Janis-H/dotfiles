@@ -28,7 +28,8 @@ CORE_PACKAGES=(
 )
 
 # headless development/build tools:
-# - compilers, runtimes, linters, formatters, and project workflow tools
+# - compilers, runtimes, build tools, container tools, linters, formatters,
+#   and project workflow tools
 HEADLESS_PACKAGES=(
     base-devel
     go
