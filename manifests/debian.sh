@@ -81,8 +81,9 @@ EXTERNAL_CORE=(
 )
 
 EXTERNAL_HEADLESS=(
-    lazygit
     docker
+    lazydocker
+    lazygit
 )
 
 EXTERNAL_DESKTOP=(

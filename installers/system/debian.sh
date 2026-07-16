@@ -13,7 +13,6 @@ is_system_package_installed() {
 }
 
 # --- Repository Setup ---
-
 setup_package_repositories() {
     : # no functions as of yet
 
@@ -24,6 +23,8 @@ setup_package_repositories() {
 
 # --- Public entrypoint ---
 install_system_packages() {
+    setup_package_repositories
+
     run_cmd sudo apt-get update
     run_cmd sudo apt-get install -y "$@"
 }
