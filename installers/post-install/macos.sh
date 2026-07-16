@@ -10,7 +10,7 @@ source "$DOTFILES_DIR/lib/run-command.sh"
 
 # --- Next steps ---
 print_next_steps() {
-    section "Next steps:"
+    section "Next steps"
 
     cat <<EOF
     - Restart your terminal

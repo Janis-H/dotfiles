@@ -18,7 +18,7 @@ setup_docker_non_root_access() {
 
 # --- Next steps ---
 print_next_steps() {
-    section "Next steps:"
+    section "Next steps"
 
     cat <<EOF
     - Log out and back in as $USER to use Docker without sudo
