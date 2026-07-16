@@ -8,17 +8,30 @@ RED='\033[0;31m'
 NO_COLOR='\033[0m'
 
 section() {
-    echo -e "${GREEN} \n\t=== $* ===\n${NO_COLOR}"
+    printf '\n%b\t=== %s ===%b\n\n' \
+        "$GREEN" \
+        "$*" \
+        "$NO_COLOR"
+
 }
 
 info() {
-    echo -e "${GREEN} INFO:${NO_COLOR} $*"
+    printf '%b INFO:%b %s\n' \
+        "$GREEN" \
+        "$NO_COLOR" \
+        "$*"
 }
 
 warn() {
-    echo -e "${YELLOW} WARN:${NO_COLOR} $*"
+    printf '%b WARN:%b %s\n' \
+        "$YELLOW" \
+        "$NO_COLOR" \
+        "$*"
 }
 
 error() {
-    echo -e "${RED} ERROR:${NO_COLOR} $*" >&2
+    printf '%b WARN:%b %s\n' \
+        "$RED" \
+        "$NO_COLOR" \
+        "$*"
 }
