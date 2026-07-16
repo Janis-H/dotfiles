@@ -11,7 +11,7 @@
     - Goal: reduce indirection without making naming inconsistent
 
 - [ ] Review `configure_rodecaster_pipewire` setup
-    - Inspect the upstream [configure.sh]("https://parzival-space.github.io/rodecaster-pro-2-virtual-devices-pipewire/configure.sh") script for security concerns or and unexpected system changes
+    - Inspect the upstream [configure.sh]("https://parzival-space.github.io/rodecaster-pro-2-virtual-devices-pipewire/configure.sh") script for security concerns and unexpected system changes
     - Decide whether to maintain a local configuration script or pin the installer to a specific upstream version
 
 ## Modules
