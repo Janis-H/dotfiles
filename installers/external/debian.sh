@@ -105,6 +105,21 @@ install_external_lazygit() {
     run_cmd sudo install lazygit -D -t /usr/local/bin/
 }
 
+install_external_lazydocker() {
+    local install_url="https://raw.githubusercontent.com/jesseduffield/lazydocker/master/scripts/install_update_linux.sh"
+
+    info "Installing or updating lazydocker"
+
+    # NOTE:
+    # Do not use run_cmd here
+    # Dry-run must be checked before the pipeline so curl does not run
+    if [[ "${DRY_RUN:-false}" == true ]]; then
+        printf '+ curl -fsSL %q | bash\n' "$install_url"
+    fi
+
+    curl -fsSL "$install_url" | bash
+}
+
 install_external_neovim() {
     # TODO: Pin Neovim to a specific version to avoid unexpected config breakage.
     # local pinned_version="0.12.2"
