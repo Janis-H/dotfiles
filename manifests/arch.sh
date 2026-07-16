@@ -32,6 +32,9 @@ CORE_PACKAGES=(
 #   and project workflow tools
 HEADLESS_PACKAGES=(
     base-devel
+    docker
+    docker-buildx
+    docker-compose
     go
     lazygit
     libreadline

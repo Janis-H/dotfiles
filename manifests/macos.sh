@@ -36,8 +36,13 @@ CORE_PACKAGES=(
 )
 
 # headless development/build tools:
-# - compilers, runtimes, linters, formatters, and project workflow tools
+# - compilers, runtimes, build tools, container tools, linters, formatters,
+#   and project workflow tools
 HEADLESS_PACKAGES=(
+    docker
+    docker-buildx
+    docker-compose
+    colima
     go
     lazygit
     luarocks
@@ -58,10 +63,11 @@ DESKTOP_PACKAGES=()
 
 # Desktop GUI/workstation casks
 DESKTOP_CASKS=(
+    docker-desktop
+    ghostty
     # TODO: add aerospace config
     # - aerospace guide: https://nikitabobko.github.io/AeroSpace/guide
     nikitabobko/tap/aerospace
-    ghostty
     zed
 )
 
