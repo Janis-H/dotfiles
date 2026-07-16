@@ -20,28 +20,6 @@ is_command_available(){
 # - For git installs, use pinned tags/commits instead of auto-pulling.
 # - For downloaded artifacts, verify checksums when available.
 
-# TODO: Inspect upstream `configure.sh`. Check TODO.md for more details
-install_external_rodecaster_pipewire_setup() {
-    warn "Skipping install_external_rodecaster_pipewire_setup until script has been verified"
-    return 0
-
-    # install_url="https://parzival-space.github.io/rodecaster-pro-2-virtual-devices-pipewire/configure.sh"
-
-    # info "Configuring Rodecaster Pro 2 / Rodecaseter Duo"
-
-    # # NOTE:
-    # # Do not use run_cmd here
-    # # Dry-run is checked before this pipeline so curl does not run
-    # if [[ "${DRY_RUN:-false}" == true ]]; then
-    #     # shellcheck disable=SC2016
-    #     printf '+ curl -sfL %q | sh -s - --install\n' "$install_url"
-    #     return 0
-    # fi
-
-    # # NOTE: installer detects the connected device automatically and selects the matching template for supported Pro II and Duo models.
-    # curl -sfL "$install_url" | sh -s - --install
-}
-
 install_external_fzf() {
     install_dir="$HOME/.fzf"
 
@@ -54,6 +32,21 @@ install_external_fzf() {
 
     run_cmd git clone --depth 1 https://github.com/junegunn/fzf.git "$install_dir"
     run_cmd "$install_dir/install" --bin
+}
+
+install_external_lazydocker() {
+    local install_url="https://raw.githubusercontent.com/jesseduffield/lazydocker/master/scripts/install_update_linux.sh"
+
+    info "Installing or updating lazydocker"
+
+    # NOTE:
+    # Do not use run_cmd here
+    # Dry-run must be checked before the pipeline so curl does not run
+    if [[ "${DRY_RUN:-false}" == true ]]; then
+        printf '+ curl -fsSL %q | bash\n' "$install_url"
+    fi
+
+    curl -fsSL "$install_url" | bash
 }
 
 install_external_lazygit() {
@@ -105,21 +98,6 @@ install_external_lazygit() {
     run_cmd sudo install lazygit -D -t /usr/local/bin/
 }
 
-install_external_lazydocker() {
-    local install_url="https://raw.githubusercontent.com/jesseduffield/lazydocker/master/scripts/install_update_linux.sh"
-
-    info "Installing or updating lazydocker"
-
-    # NOTE:
-    # Do not use run_cmd here
-    # Dry-run must be checked before the pipeline so curl does not run
-    if [[ "${DRY_RUN:-false}" == true ]]; then
-        printf '+ curl -fsSL %q | bash\n' "$install_url"
-    fi
-
-    curl -fsSL "$install_url" | bash
-}
-
 install_external_neovim() {
     # TODO: Pin Neovim to a specific version to avoid unexpected config breakage.
     # local pinned_version="0.12.2"
@@ -141,27 +119,6 @@ install_external_neovim() {
     run_cmd sudo ln -sf "$tarball_dir/bin/nvim" /usr/local/bin/nvim
 }
 
-install_external_zoxide() {
-    local install_url="https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh"
-
-    if is_command_available zoxide; then
-        info "zoxide already installed"
-        return 0
-    fi
-
-    info "Installing zoxide"
-
-    # NOTE:
-    # Do not use run_cmd here
-    # Dry-run must be checked before the pipeline so curl does not run
-    if [[ "${DRY_RUN:-false}" == true ]]; then
-        printf '+ curl -fsSL %q | sh\n' "$install_url"
-        return 0
-    fi
-
-    curl -fsSL "$install_url" | sh
-}
-
 install_external_oh_my_posh() {
     local install_url="https://ohmyposh.dev/install.sh"
 
@@ -181,5 +138,48 @@ install_external_oh_my_posh() {
     fi
 
     curl -fsSL "$install_url" | bash -s
+}
+
+# TODO: Inspect upstream `configure.sh`. Check TODO.md for more details
+install_external_rodecaster_pipewire_setup() {
+    warn "Skipping install_external_rodecaster_pipewire_setup until script has been verified"
+    return 0
+
+    # install_url="https://parzival-space.github.io/rodecaster-pro-2-virtual-devices-pipewire/configure.sh"
+
+    # info "Configuring Rodecaster Pro 2 / Rodecaseter Duo"
+
+    # # NOTE:
+    # # Do not use run_cmd here
+    # # Dry-run is checked before this pipeline so curl does not run
+    # if [[ "${DRY_RUN:-false}" == true ]]; then
+    #     # shellcheck disable=SC2016
+    #     printf '+ curl -sfL %q | sh -s - --install\n' "$install_url"
+    #     return 0
+    # fi
+
+    # # NOTE: installer detects the connected device automatically and selects the matching template for supported Pro II and Duo models.
+    # curl -sfL "$install_url" | sh -s - --install
+}
+
+install_external_zoxide() {
+    local install_url="https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh"
+
+    if is_command_available zoxide; then
+        info "zoxide already installed"
+        return 0
+    fi
+
+    info "Installing zoxide"
+
+    # NOTE:
+    # Do not use run_cmd here
+    # Dry-run must be checked before the pipeline so curl does not run
+    if [[ "${DRY_RUN:-false}" == true ]]; then
+        printf '+ curl -fsSL %q | sh\n' "$install_url"
+        return 0
+    fi
+
+    curl -fsSL "$install_url" | sh
 }
 
