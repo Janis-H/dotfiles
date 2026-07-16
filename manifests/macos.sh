@@ -39,11 +39,12 @@ CORE_PACKAGES=(
 # - compilers, runtimes, build tools, container tools, linters, formatters,
 #   and project workflow tools
 HEADLESS_PACKAGES=(
+    colima
     docker
     docker-buildx
     docker-compose
-    colima
     go
+    jesseduffield/lazydocker/lazydocker
     lazygit
     luarocks
     node
