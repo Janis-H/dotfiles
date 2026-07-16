@@ -87,6 +87,7 @@ setup_package_repositories() {
 install_system_packages() {
     setup_package_repositories
 
+    info "Installing system packages"
     run_cmd sudo apt-get update
     run_cmd sudo apt-get install -y "$@"
 }

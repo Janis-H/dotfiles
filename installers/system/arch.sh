@@ -14,5 +14,6 @@ is_system_package_installed() {
 
 # --- Public entrypoint ---
 install_system_packages() {
+    info "Installing system packages"
     run_cmd sudo pacman -Sy --needed "$@"
 }
