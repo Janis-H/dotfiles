@@ -12,12 +12,26 @@ is_system_package_installed() {
     dpkg -s "$1" &>/dev/null
 }
 
+docker_repository_exists() {
+    grep -Rqs \
+        "https://download.docker.com/linux/ubuntu" \
+        /etc/apt/sources.list \
+        /etc/apt/sources.list.d/ 2>/dev/null
+}
+
 # --- Repository Setup ---
 setup_1password_repository() {
     : # TODO: add 1password steps
 }
 
 setup_docker_repository() {
+    if docker_repository_exists; then
+        info "Docker repository already configured"
+        return 0
+    fi
+
+    info "Configuring Docker repository"
+
     # Add Docker's official GPG key:
     run_cmd sudo apt update
     run_cmd sudo apt install ca-certificates curl
