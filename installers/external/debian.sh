@@ -141,28 +141,6 @@ install_external_oh_my_posh() {
     curl -fsSL "$install_url" | bash -s
 }
 
-# TODO: Inspect upstream `configure.sh`. Check TODO.md for more details
-install_external_rodecaster_pipewire_setup() {
-    warn "Skipping install_external_rodecaster_pipewire_setup until script has been verified"
-    return 0
-
-    # install_url="https://parzival-space.github.io/rodecaster-pro-2-virtual-devices-pipewire/configure.sh"
-
-    # info "Configuring Rodecaster Pro 2 / Rodecaseter Duo"
-
-    # # NOTE:
-    # # Do not use run_cmd here
-    # # Dry-run is checked before this pipeline so curl does not run
-    # if [[ "${DRY_RUN:-false}" == true ]]; then
-    #     # shellcheck disable=SC2016
-    #     printf '+ curl -sfL %q | sh -s - --install\n' "$install_url"
-    #     return 0
-    # fi
-
-    # # NOTE: installer detects the connected device automatically and selects the matching template for supported Pro II and Duo models.
-    # curl -sfL "$install_url" | sh -s - --install
-}
-
 install_external_zoxide() {
     local install_url="https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh"
 
