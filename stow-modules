@@ -62,7 +62,7 @@ EOF
 }
 
 print_script_info() {
-    title "Script Info"
+    section "Script Info"
 
     info "Script: $( basename "$0" )"
     info "OS: $OS"
@@ -79,15 +79,15 @@ run_stow_action() {
 
     case "$action" in
         stow)
-            title "Stowing modules"
+            section "Stowing modules"
             stow_modules "$@"
             ;;
         unstow)
-            title "Unstowing modules"
+            section "Unstowing modules"
             unstow_modules "$@"
             ;;
         restow)
-            title "Restowing modules"
+            section "Restowing modules"
             restow_modules "$@"
             ;;
         *)

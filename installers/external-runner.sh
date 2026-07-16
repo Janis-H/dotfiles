@@ -63,7 +63,7 @@ run_external_installs() {
 
     load_external_installers "$os"
 
-    title "External Tools"
+    section "External Tools"
 
     if (( ${#tools[@]} == 0 )); then
         info "No external tools configured"

@@ -7,7 +7,7 @@ YELLOW='\033[1;33m'
 RED='\033[0;31m'
 NO_COLOR='\033[0m'
 
-title() {
+section() {
     echo -e "$GREEN \n\t--- $* ---\n"
 }
 

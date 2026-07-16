@@ -57,7 +57,7 @@ EOF
 }
 
 print_script_info() {
-    title "Script Info"
+    section "Script Info"
 
     info "Script: $( basename "$0" )"
     info "OS: $OS"

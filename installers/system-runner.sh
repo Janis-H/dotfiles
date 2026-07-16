@@ -52,7 +52,7 @@ run_system_installs() {
     load_system_installer "$os" || return 1
     validate_system_package_installer "$os" || return 1
 
-    title "System Packages"
+    section "System Packages"
 
     if (( ${#packages[@]} == 0 )); then
         info "No packages to install"
@@ -77,7 +77,7 @@ run_system_cask_installs() {
     load_system_installer "$os" || return 1
     validate_system_cask_installer "$os" || return 1
 
-    title "Homebrew Casks"
+    section "Homebrew Casks"
 
     if (( "${#casks[@]}" == 0 )); then
         info "No casks to install"

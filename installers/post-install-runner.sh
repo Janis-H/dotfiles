@@ -57,7 +57,7 @@ run_post_install() {
     load_post_installers "$os" || return 1
     validate_post_installers || return 1
 
-    title "Post Install"
+    section "Post Install"
 
     run_common_post_install
     run_os_post_install
