@@ -59,7 +59,10 @@ install_external_fzf() {
 install_external_lazygit() {
     local api_url="https://api.github.com/repos/jesseduffield/lazygit/releases/latest"
     local install_dir="/usr/local/bin"
-    local version arch tarball_url
+
+    local version
+    local arch
+    local tarball_url
 
     if is_command_available lazygit; then
         info "lazygit already installed"
