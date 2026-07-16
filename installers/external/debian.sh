@@ -183,36 +183,3 @@ install_external_oh_my_posh() {
     curl -fsSL "$install_url" | bash -s
 }
 
-install_external_docker() {
-    # Add Docker's official GPG key:
-    run_cmd sudo apt update
-    run_cmd sudo apt install ca-certificates curl
-    run_cmd sudo install -m 0755 -d /etc/apt/keyrings
-    run_cmd sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
-    run_cmd sudo chmod a+r /etc/apt/keyrings/docker.asc
-
-    # Add the repository to Apt sources:
-    run_cmd sudo tee /etc/apt/sources.list.d/docker.sources <<EOF
-Types: deb
-URIs: https://download.docker.com/linux/ubuntu
-Suites: $(. /etc/os-release && echo "${UBUNTU_CODENAME:-$VERSION_CODENAME}")
-Components: stable
-Architectures: $(dpkg --print-architecture)
-Signed-By: /etc/apt/keyrings/docker.asc
-EOF
-
-    run_cmd sudo apt update
-
-    # TODO:
-    # 1. move docker packages install to debian's HEADLESS_PACKAGES
-    # 2. change func name from isntall_external_docker to setup_docker_repositories
-    # 3. add setup_docker_repositories setup right before install_system_packages package installs
-    #
-    # Install docker packages
-    run_cmd sudo apt -y install \
-        docker-ce \
-        docker-ce-cli \
-        containerd.io \
-        docker-buildx-plugin \
-        docker-compose-plugin
-}
