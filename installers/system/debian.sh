@@ -13,6 +13,10 @@ is_system_package_installed() {
 }
 
 # --- Repository Setup ---
+setup_1password_repository() {
+    : # TODO: add 1password steps
+}
+
 setup_docker_repository() {
     # Add Docker's official GPG key:
     run_cmd sudo apt update
@@ -34,15 +38,10 @@ EOF
     run_cmd sudo apt update
 }
 
-setup_1password_repository() {
-    : # TODO: add 1password steps
-}
-
 setup_package_repositories() {
-    : # no functions as of yet
-
-    setup_docker_repository
+    # TODO: add package check before setting up a repository
     setup_1password_repository
+    setup_docker_repository
 }
 
 # --- Public entrypoint ---
