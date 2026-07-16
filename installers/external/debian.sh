@@ -22,7 +22,7 @@ is_command_available(){
 
 # TODO: Inspect upstream `configure.sh`. Check TODO.md for more details
 install_external_rodecaster_pipewire_setup() {
-    warn "Skipping install_external_rodecaster_pipewire_setup"
+    warn "Skipping install_external_rodecaster_pipewire_setup until script has been verified"
     return 0
 
     # install_url="https://parzival-space.github.io/rodecaster-pro-2-virtual-devices-pipewire/configure.sh"
