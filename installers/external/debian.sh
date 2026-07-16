@@ -120,7 +120,7 @@ install_external_neovim() {
     run_cmd curl -fSLO "$tarball_url"
     run_cmd sudo rm -rf "$tarball_dir"
     run_cmd sudo tar -C /opt -xzf "$tarball_name"
-    run_cmd sudo ln -sf "$install_dir/bin/nvim" /usr/local/bin/nvim
+    run_cmd sudo ln -sf "$tarball_dir/bin/nvim" /usr/local/bin/nvim
 }
 
 install_external_zoxide() {
@@ -185,6 +185,11 @@ EOF
 
     run_cmd sudo apt update
 
+    # TODO:
+    # 1. move docker packages install to debian's HEADLESS_PACKAGES
+    # 2. change func name from isntall_external_docker to setup_docker_repositories
+    # 3. add setup_docker_repositories setup right before install_system_packages package installs
+    #
     # Install docker packages
     run_cmd sudo apt -y install \
         docker-ce \
