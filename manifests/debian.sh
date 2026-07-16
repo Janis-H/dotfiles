@@ -28,6 +28,11 @@ CORE_PACKAGES=(
 #   and project workflow tools
 HEADLESS_PACKAGES=(
     build-essential
+    docker-ce
+    docker-ce-cli
+    containerd.io
+    docker-buildx-plugin
+    docker-compose-plugin
     golang-go
     libreadline-dev
     nodejs
@@ -81,7 +86,6 @@ EXTERNAL_CORE=(
 )
 
 EXTERNAL_HEADLESS=(
-    docker
     lazydocker
     lazygit
 )
