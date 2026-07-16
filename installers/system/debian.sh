@@ -13,12 +13,23 @@ is_system_package_installed() {
 }
 
 # --- Repository Setup ---
+setup_docker_repository() {
+    : # TODO: add docker steps
+
+    # NOTE: This function's setup already exists
+    # in the `install_external_docker` function
+    # of the `installers/external/debian.sh` file
+}
+
+setup_1password_repository() {
+    : # TODO: add 1password steps
+}
+
 setup_package_repositories() {
     : # no functions as of yet
 
-    # TODO: add docker and 1password repo setup functions here
-    # setup_docker_repository
-    # setup_1password_repository
+    setup_docker_repository
+    setup_1password_repository
 }
 
 # --- Public entrypoint ---
