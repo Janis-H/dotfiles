@@ -6,6 +6,7 @@
 source "$DOTFILES_DIR/lib/log.sh"
 source "$DOTFILES_DIR/lib/run-command.sh"
 
+# --- Setup functions ---
 setup_docker_non_root_access() {
     info "Configuring Docker for non-root access"
 
@@ -15,7 +16,15 @@ setup_docker_non_root_access() {
     info "Log out and back in for Docker group membership to take effect"
 }
 
+# --- Next steps ---
+print_next_steps() {
+    info "Next steps:"
+    info "  - Log out and back in to use Docker wihtout sudo "
+}
+
 # --- Public entrypoint ---
 run_os_post_install() {
     setup_docker_non_root_access
+
+    print_next_steps
 }
