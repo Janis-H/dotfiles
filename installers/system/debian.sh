@@ -12,6 +12,16 @@ is_system_package_installed() {
     dpkg -s "$1" &>/dev/null
 }
 
+# --- Repository Setup ---
+
+setup_package_repositories() {
+    : # no functions as of yet
+
+    # TODO: add docker and 1password repo setup functions here
+    # setup_docker_repository
+    # setup_1password_repository
+}
+
 # --- Public entrypoint ---
 install_system_packages() {
     run_cmd sudo apt-get update
