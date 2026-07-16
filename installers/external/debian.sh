@@ -25,7 +25,7 @@ install_external_fzf() {
 
     if is_command_available fzf; then
         info "fzf already installed"
-        return
+        return 0
     fi
 
     info "Installing fzf"
@@ -44,6 +44,7 @@ install_external_lazydocker() {
     # Dry-run must be checked before the pipeline so curl does not run
     if [[ "${DRY_RUN:-false}" == true ]]; then
         printf '+ curl -fsSL %q | bash\n' "$install_url"
+        return 0
     fi
 
     curl -fsSL "$install_url" | bash
