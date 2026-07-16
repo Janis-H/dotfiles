@@ -162,22 +162,19 @@ install_external_oh_my_posh() {
     curl -fsSL "$install_url" | bash -s
 }
 
-# TODO: modify this for DRY_RUN=true
 install_external_docker() {
     # Add Docker's official GPG key:
     run_cmd sudo apt update
     run_cmd sudo apt install ca-certificates curl
     run_cmd sudo install -m 0755 -d /etc/apt/keyrings
-    run_cmd sudo curl -fsSL \
-        https://download.docker.com/linux/debian/gpg \
-        -o /etc/apt/keyrings/docker.asc
+    run_cmd sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
     run_cmd sudo chmod a+r /etc/apt/keyrings/docker.asc
 
     # Add the repository to Apt sources:
     run_cmd sudo tee /etc/apt/sources.list.d/docker.sources <<EOF
 Types: deb
-URIs: https://download.docker.com/linux/debian
-Suites: $(. /etc/os-release && echo "$VERSION_CODENAME")
+URIs: https://download.docker.com/linux/ubuntu
+Suites: $(. /etc/os-release && echo "${UBUNTU_CODENAME:-$VERSION_CODENAME}")
 Components: stable
 Architectures: $(dpkg --print-architecture)
 Signed-By: /etc/apt/keyrings/docker.asc
