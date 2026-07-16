@@ -10,8 +10,11 @@ source "$DOTFILES_DIR/lib/run-command.sh"
 
 # --- Next steps ---
 print_next_steps() {
-    info "Next steps:"
-    info "  - Restart your terminal"
+    title "Next steps:"
+
+    cat <<EOF
+    - Restart your terminal
+EOF
 }
 
 # --- Public entrypoint ---
