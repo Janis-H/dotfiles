@@ -92,9 +92,7 @@ EXTERNAL_HEADLESS=(
     lazygit
 )
 
-EXTERNAL_DESKTOP=(
-    rodecaster_pipewire_setup
-)
+EXTERNAL_DESKTOP=()
 
 # ─────────────────────────────────────────────────────────────
 # Stow module manifests

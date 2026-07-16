@@ -77,9 +77,7 @@ EXTERNAL_CORE=(
 
 EXTERNAL_HEADLESS=()
 
-EXTERNAL_DESKTOP=(
-    rodecaster_pipewire_setup
-)
+EXTERNAL_DESKTOP=()
 
 # ─────────────────────────────────────────────────────────────
 # Stow module manifests
