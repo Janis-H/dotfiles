@@ -12,24 +12,49 @@ is_system_package_installed() {
     dpkg -s "$1" &>/dev/null
 }
 
-docker_repository_exists() {
-    grep -Rqs \
-        "https://download.docker.com/linux/ubuntu" \
-        /etc/apt/sources.list \
-        /etc/apt/sources.list.d/ 2>/dev/null
-}
-
 # --- Repository Setup ---
 setup_1password_repository() {
-    : # TODO: add 1password steps
+    local key_url="https://downloads.1password.com/linux/keys/1password.asc"
+    local policy_url="https://downloads.1password.com/linux/debian/debsig/1password.pol"
+    local policy_id="AC2D62742012EA22"
+    local key_file
+
+    if [[ "${DRY_RUN:-false}" == true ]]; then
+        key_file="${TMPDIR:-/tmp}/1password-key.XXXXXX.asc"
+    else
+        key_file="$(mktemp "${TMPDIR:-/tmp}/1password-key.XXXXXX.asc")"
+        trap 'rm -f -- "$key_file"' EXIT
+    fi
+
+    info "Configuring 1Password repository"
+
+    run_cmd curl -fsSL \
+        "$key_url" \
+        -o "$key_file"
+
+    run_cmd sudo install -d -m 0755 \
+        /usr/share/keyrings \
+        "/etc/debsig/policies/$policy_id" \
+        "/usr/share/debsig/keyrings/$policy_id"
+
+    run_cmd sudo gpg --dearmor --yes \
+        --output /usr/share/keyrings/1password-archive-keyring.gpg \
+        "$key_file"
+
+    run_cmd sudo tee /etc/apt/sources.list.d/1password.list >/dev/null <<EOF
+deb [arch=amd64 signed-by=/usr/share/keyrings/1password-archive-keyring.gpg] https://downloads.1password.com/linux/debian/amd64 stable main
+EOF
+
+    run_cmd sudo curl -fsSL \
+        "$policy_url" \
+        -o "/etc/debsig/policies/$policy_id/1password.pol"
+
+    run_cmd sudo gpg --dearmor --yes \
+        --output "/usr/share/debsig/keyrings/$policy_id/debsig.gpg" \
+        "$key_file"
 }
 
 setup_docker_repository() {
-    if docker_repository_exists; then
-        info "Docker repository already configured"
-        return 0
-    fi
-
     info "Configuring Docker repository"
 
     # Add Docker's official GPG key:
