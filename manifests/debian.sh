@@ -47,9 +47,10 @@ HEADLESS_PACKAGES=(
 # GUI/workstation additions:
 # - window managers, launchers, graphical terminals, editors, and GUI apps
 DESKTOP_PACKAGES=(
-    # TODO: add 1password installation and setup to arch and macos
     1password
     ghostty
+    xclip
+    wl-clipboard
 
     # i3 window manager
     i3

@@ -51,6 +51,8 @@ HEADLESS_PACKAGES=(
 # - window managers, launchers, graphical terminals, editors, and GUI apps
 DESKTOP_PACKAGES=(
     ghostty
+    xclip
+    wl-clipboard
 
     # sway window manager
     sway
