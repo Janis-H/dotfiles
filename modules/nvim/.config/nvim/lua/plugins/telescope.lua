@@ -41,7 +41,7 @@ return {
                     },
                 },
 
-                -- close telescope window with C-c
+                -- close telescope window with C-c and C-[
                 mappings = {
                     i = {
                         ['<C-[>'] = function()
