@@ -44,12 +44,16 @@ return {
                 -- close telescope window with C-c
                 mappings = {
                     i = {
+                        ['<C-[>'] = function()
+                            vim.cmd("stopinsert")
+                        end,
                         ['<C-c>'] = function()
                             vim.cmd("stopinsert")
                         end,
                         ['<M-d>'] = actions.delete_buffer,
                     },
                     n = {
+                        ['<C-[>'] = actions.close,
                         ['<C-c>'] = actions.close,
                         ['dd'] = actions.delete_buffer,
                     },
