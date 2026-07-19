@@ -2,15 +2,15 @@
 # Plugins (via Antidote plugin manager)
 #############################################
 
-zsh_plugins=${ZDOTDIR:-$HOME}/.zsh_plugins
+zsh_plugins="${ZDOTDIR:-$HOME}/.zsh_plugins"
 
-if [[ ! ${zsh_plugins}.zsh -nt ${zsh_plugins}.txt ]]; then
+if [[ ! "${zsh_plugins}.zsh" -nt "${zsh_plugins}.txt" ]]; then
   (
-    source $HOME/.antidote/antidote.zsh
-    antidote bundle <${zsh_plugins}.txt >${zsh_plugins}.zsh
+    source "$HOME/.antidote/antidote.zsh"
+    antidote bundle < "${zsh_plugins}.txt" >| "${zsh_plugins}.zsh"
   )
 fi
-source ${zsh_plugins}.zsh
+source "${zsh_plugins}.zsh"
 
 #############################################
 # Plugins (via manual installation)
