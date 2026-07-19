@@ -5,6 +5,12 @@
 # enable vi-style ZLE keybindings
 bindkey -v
 
+# Edit the current command line in the configured editor
+autoload -Uz edit-command-line
+zle -N edit-command-line
+bindkey -M vicmd 'v' edit-command-line
+bindkey -M viins '^X^E' edit-command-line
+
 # tmux-sessionizer
 # Prefix + f opens the project picker.
 # Alt bindings run TS_SESSION_COMMANDS by index in the active project session.
