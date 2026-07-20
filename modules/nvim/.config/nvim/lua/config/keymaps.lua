@@ -18,6 +18,7 @@ end
 
 -- File actions
 vim.keymap.set('n', '<leader><leader>', '<cmd>w<cr>', opts('Write to file'))
+vim.keymap.set('n', '<C-q>', '<cmd>q<cr>', opts('Quit nvim'))
 
 -- Navigation
 vim.keymap.set('n', '<C-d>', '<C-d>zz', opts('Move half-page down'))
