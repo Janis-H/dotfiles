@@ -1,24 +1,24 @@
 ZSH_CONFIG_DIR="$HOME/.config/zsh"
 
-# PATH, editor, and environment variables
+# Environment variables and PATH
 source "$ZSH_CONFIG_DIR/env.zsh"
 
-# zsh options and history behavior
+# Shell options
 source "$ZSH_CONFIG_DIR/options.zsh"
 
-# completion setup
+# Completion setup
 source "$ZSH_CONFIG_DIR/completion.zsh"
 
-# antidote-managed plugins
+# Antidote-managed plugins
 source "$ZSH_CONFIG_DIR/plugins.zsh"
 
-# External tool integrations
+# Load external tool integrations
 source "$ZSH_CONFIG_DIR/integrations.zsh"
 
-# aliases and command shortcuts
+# Load aliases
 source "$ZSH_CONFIG_DIR/aliases.zsh"
 
-# custom keybindings
+# Apply custom keybindings
 source "$ZSH_CONFIG_DIR/keybindings.zsh"
 
 # oh-my-posh prompt
