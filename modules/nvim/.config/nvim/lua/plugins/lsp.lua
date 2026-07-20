@@ -38,9 +38,11 @@ local mason_server_names = {
     "taplo",
     "yamlls",
 
-    -- Containers
+    -- Infastructure / platform
     "docker_compose_language_service",
     "dockerls",
+    "helm_ls",
+    "terraformls",
 
     -- CI / Linux tooling
     "gh_actions_ls",

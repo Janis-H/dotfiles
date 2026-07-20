@@ -61,7 +61,6 @@ return {
             "scss",
             "tsx",
             "typescript",
-            "yaml",
 
             -- Dart / Flutter
             "dart",
@@ -87,15 +86,20 @@ return {
             "java",
             "rust",
 
+            -- Systems and compiled languages
+            "dockerfile",
+            "hcl",
+            "helm" ,
+
             -- Build and project files
             "cmake",
-            "dockerfile",
             "editorconfig",
             "make",
 
             -- Config formats
             "toml",
             "ini",
+            "yaml",
 
             -- Application configuration
             "ghostty",
