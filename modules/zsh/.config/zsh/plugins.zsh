@@ -18,9 +18,6 @@ source "${zsh_plugins}.zsh"
 
 # ZSH_PLUGINS_DIR="$HOME/.zsh/plugins"
 
-# # Enable fzf key bindings and autocompletion
-# source <(fzf --zsh)
-
 # # fzf-tab, loaded after compinit and before autosuggestions/syntax-highlighting
 # source "$ZSH_PLUGINS_DIR/fzf-tab/fzf-tab.plugin.zsh"
 
