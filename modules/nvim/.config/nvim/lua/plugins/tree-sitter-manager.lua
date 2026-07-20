@@ -23,6 +23,13 @@ return {
                     url = "https://github.com/Fymyte/tree-sitter-rasi",
                 },
             },
+            tmux = {
+                install_info = {
+                    url = "https://github.com/Freed-Wu/tree-sitter-tmux",
+                    revision = "0.1.1",
+                    queries = "queries",
+                }
+            },
         },
 
         ensure_installed = {
@@ -34,7 +41,6 @@ return {
 
             -- Shell / dotfiles
             "bash",
-            "tmux",
             "zsh",
 
             -- Git
