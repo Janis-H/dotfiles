@@ -4,8 +4,7 @@ validate_os() {
     local os="$1"
 
     case "$os" in
-        debian|arch|macos)
-            return 0
+        arch | debian | fedora | macos)
             ;;
         *)
             error "Unsupported OS: $os"
