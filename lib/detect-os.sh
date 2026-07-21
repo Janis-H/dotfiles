@@ -14,6 +14,8 @@ detect_os() {
     Linux)
         if [ -f /etc/arch-release ]; then
           echo "arch"
+        elif [ -f /etc/fedora-release ]; then
+          echo "fedora"
         elif [ -f /etc/debian_version ]; then
           echo "debian"
         else
