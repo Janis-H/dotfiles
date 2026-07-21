@@ -5,9 +5,6 @@
 # Package manifests
 # ─────────────────────────────────────────────────────────────
 
-# TODO: dnf install $pkg
-# TODO: install yazi via cargo
-
 # minimal terminal/dotfiles setup:
 # - shell, editor, search, navigation, archive, and dotfile tools
 CORE_PACKAGES=(
