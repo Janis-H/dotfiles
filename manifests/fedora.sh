@@ -23,7 +23,7 @@ CORE_PACKAGES=(
     ripgrep
     stow
     tar
-    silversearcher-ag
+    the_silver_searcher
     tmux
     unzip
     zoxide
