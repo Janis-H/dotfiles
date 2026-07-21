@@ -80,6 +80,8 @@ DESKTOP_PACKAGES=(
 # External installer IDs.
 # Each value maps to a function named install_external_<id>.
 EXTERNAL_CORE=(
+    yazi
+
     # Manages zsh plugins
     antidote
 
