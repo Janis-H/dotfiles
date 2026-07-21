@@ -62,6 +62,11 @@ DESKTOP_PACKAGES=(
     xclip
     wl-clipboard
 
+    # i3 window manager
+    i3
+    picom
+    rofi
+
     # sway window manager
     sway
     swayidle
