@@ -32,12 +32,12 @@ CORE_PACKAGES=(
 #   and project workflow tools
 HEADLESS_PACKAGES=(
     base-devel
+    cmake
     docker
     docker-buildx
     docker-compose
     go
     lazygit
-    libreadline
     nodejs
     npm
     python

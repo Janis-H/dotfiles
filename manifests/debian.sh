@@ -28,13 +28,13 @@ CORE_PACKAGES=(
 #   and project workflow tools
 HEADLESS_PACKAGES=(
     build-essential
-    docker-ce
-    docker-ce-cli
+    cmake
     containerd.io
     docker-buildx-plugin
+    docker-ce
+    docker-ce-cli
     docker-compose-plugin
     golang-go
-    libreadline-dev
     nodejs
     python3
     python3-pip
@@ -42,6 +42,7 @@ HEADLESS_PACKAGES=(
     shellcheck
     shfmt
     tree-sitter-cli
+    uuid-dev
 )
 
 # GUI/workstation additions:
