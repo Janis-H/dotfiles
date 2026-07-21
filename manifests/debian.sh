@@ -74,12 +74,10 @@ DESKTOP_PACKAGES=(
 # External installer IDs.
 # Each value maps to a function named install_external_<id>.
 EXTERNAL_CORE=(
-    # Apt versions update too slowly
     fzf
     neovim
-
-    # Not available through apt
     oh_my_posh
+    yazi
     zoxide
 
     # Manages zsh plugins
