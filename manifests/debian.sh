@@ -91,6 +91,7 @@ EXTERNAL_CORE=(
 EXTERNAL_HEADLESS=(
     lazydocker
     lazygit
+    rust_and_cargo
 )
 
 EXTERNAL_DESKTOP=()
