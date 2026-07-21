@@ -1,7 +1,30 @@
 #!/usr/bin/env bash
 # Shared OS detection helper used to select the correct install and stow behavior
 
-: "${DOTFILES_DIR:?DOTFILES_DIR must be set before sourcing detect-os.sh}"
+detect_linux_distro() {
+    if [[ ! -r /etc/os-release ]]; then
+        echo "linux-unknown"
+        return
+    fi
+
+    # shellcheck disable=SC1091
+    source /etc/os-release
+
+    case "${ID:-}" in
+        arch | cachyos)
+            echo "arch"
+            ;;
+        fedora)
+            echo "fedora"
+            ;;
+        debian | ubuntu | linuxmint)
+            echo "debian"
+            ;;
+        *)
+            echo "linux-unknown"
+            ;;
+    esac
+}
 
 detect_os() {
     local kernel_name
@@ -12,15 +35,7 @@ detect_os() {
         echo "macos"
         ;;
     Linux)
-        if [ -f /etc/arch-release ]; then
-          echo "arch"
-        elif [ -f /etc/fedora-release ]; then
-          echo "fedora"
-        elif [ -f /etc/debian_version ]; then
-          echo "debian"
-        else
-          echo "linux-unknown"
-        fi
+        detect_linux_distro
         ;;
     *)
         echo "unsupported"
