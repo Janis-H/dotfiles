@@ -42,7 +42,6 @@ install_external_zsh_plugins() {
         "$zsh_plugins_dir/zsh-history-substring-search"
 }
 
-# TODO: move to `installers/external/debian.sh`
 install_external_rust_and_cargo() {
     if command -v rustc && command -v cargo; then
         info "Rust and Cargo already installed"
