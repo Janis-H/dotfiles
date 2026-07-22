@@ -42,22 +42,34 @@ install_external_zsh_plugins() {
         "$zsh_plugins_dir/zsh-history-substring-search"
 }
 
-install_external_rust_and_cargo() {
-    if command -v rustc && command -v cargo; then
-        info "Rust and Cargo already installed"
-        return 0
+install_external_rust() {
+    local rustup_url="https://sh.rustup.rs"
+
+    if command -v rustc &>/dev/null || command -v cargo &>/dev/null; then
+        warn "A system-managed Rust toolchain is installed; installing rustup-managed Rust"
     fi
 
-    info "Installing rust and cargo"
+    if command -v rustup &>/dev/null; then
+        info "Updating Rust stable toolchain"
+        run_cmd rustup update stable
+        run_cmd rustup default stable
+        return
+    fi
 
-    # NOTE:
-    # Do not use run_cmd here
-    # Dry-run must be checked before the pipeline so the curl does not run
+    info "Installing Rust and Cargo through rustup"
+
     if [[ "${DRY_RUN:-false}" = true ]]; then
-        printf '+ curl https://sh.rustupl.rs -sSf | sh'
+        printf '%s\n' \
+            "+ curl --proto '=https' --tlsv1.2 -sSf $rustup_url  | sh -s -- -y --profile minimal --default-toolchain stable"
+        return
     fi
 
-    curl https://sh.rustup.rs -sSf | sh
+    curl --proto '=https' --tlsv1.2 -sSf "$rustup_url" |
+        sh -s -- \
+        -y \
+        --profile minimal \
+        --default-toolchain stable \
+        --no-modify-path
 }
 
 install_external_yazi() {
