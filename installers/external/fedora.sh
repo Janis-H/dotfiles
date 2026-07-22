@@ -13,3 +13,12 @@ is_command_available(){
 }
 
 # --- External tool installers ---
+install_external_lazydocker() {
+    info "Installing or Updating lazydocker"
+    run_cmd go install github.com/jesseduffield/lazydocker@latest
+}
+
+install_external_lazygit() {
+    info "Installing or updating lazygit"
+    run_cmd go install github.com/jesseduffield/lazygit@latest
+}
