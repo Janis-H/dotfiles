@@ -51,6 +51,26 @@ install_external_tool () {
     "$installer"
 }
 
+# --- Prepare external dependencies ---
+prepare_rust_toolchain() {
+    info "Installing rust stable toolchain"
+
+    if [[ "${DRY_RUN:-false}" == true ]]; then
+        run_cmd rustup default stable
+        return 0
+    fi
+
+    command -v rustup >/dev/null 2>&1 || return 0
+
+    if ! rustup show active-toolchain >/dev/null 2>&1; then
+        run_cmd rustup default stable
+    fi
+}
+
+prepare_external_dependencies() {
+    prepare_rust_toolchain
+}
+
 # --- Public entrypoint ---
 # Runs external installer IDs by mapping each ID to install_external_<id>.
 run_external_installs() {
@@ -69,6 +89,8 @@ run_external_installs() {
         info "No external tools configured"
         return 0
     fi
+
+    prepare_external_dependencies
 
     info "Installing external tools: ${#tools[@]}"
     print_list "${tools[@]}"
