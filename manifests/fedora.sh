@@ -20,7 +20,6 @@ CORE_PACKAGES=(
     jq
     neovim
     poppler-utils
-    resvg
     ripgrep
     stow
     tar
@@ -82,6 +81,7 @@ DESKTOP_PACKAGES=(
 # External installer IDs.
 # Each value maps to a function named install_external_<id>.
 EXTERNAL_CORE=(
+    resvg
     yazi
 
     # Manages zsh plugins
