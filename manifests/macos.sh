@@ -25,6 +25,7 @@ CORE_PACKAGES=(
     jq
     neovim
     poppler
+    resvg
     ripgrep
     sevenzip
     stow
