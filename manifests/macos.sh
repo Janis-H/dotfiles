@@ -24,6 +24,7 @@ CORE_PACKAGES=(
     jandedobbeleer/oh-my-posh/oh-my-posh
     jq
     neovim
+    poppler
     ripgrep
     sevenzip
     stow

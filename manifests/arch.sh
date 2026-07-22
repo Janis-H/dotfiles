@@ -19,6 +19,7 @@ CORE_PACKAGES=(
     gzip
     jq
     neovim
+    poppler
     ripgrep
     stow
     tar
