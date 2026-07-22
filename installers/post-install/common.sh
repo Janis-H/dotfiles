@@ -27,8 +27,7 @@ create_dev_dirs() {
 }
 
 setup_docker_non_root_access() {
-   if [[ "$(uname -s)" == "Darwin" ]]; then
-        info "Docker group configuration is not required on macOS"
+   if [[ "$(uname -s)" != "Linux" ]]; then
         return 0
     fi
 
@@ -41,6 +40,27 @@ setup_docker_non_root_access() {
 
     info "Log out and back in for Docker group membership to take effect"
 }
+
+setup_flathub() {
+    if [[ "$(uname -s)" != "Linux" ]]; then
+        return 0
+    fi
+
+    info "Configuring Flathub repository"
+
+    # During dry-run, Flatpak may not exist yet because package installation
+    # commands were only printed.
+    if [[ "${DRY_RUN:-false}" != true ]] && ! command -v flatpak >/dev/null 2>&1; then
+        warn "Flatpak is not installed; skipping Flathub setup"
+        return 0
+    fi
+
+    run_cmd sudo flatpak remote-add \
+        --if-not-exists \
+        flathub \
+        https://dl.flathub.org/repo/flathub.flatpakrepo
+}
+
 
 setup_local_bin() {
     info "Setting up .local/bin"
@@ -144,4 +164,5 @@ run_common_post_install() {
     verify_fzf
     setup_git_defaults
     setup_docker_non_root_access
+    setup_flathub
 }
