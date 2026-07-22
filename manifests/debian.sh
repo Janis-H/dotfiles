@@ -54,6 +54,7 @@ HEADLESS_PACKAGES=(
 # - window managers, launchers, graphical terminals, editors, and GUI apps
 DESKTOP_PACKAGES=(
     1password
+    flatpak
     ghostty
     xclip
     wl-clipboard
