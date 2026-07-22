@@ -46,8 +46,7 @@ HEADLESS_PACKAGES=(
     nodejs
     python3
     python3-pip
-    rust
-    cargo
+    rustup
     ShellCheck
     shfmt
     tree-sitter-cli

@@ -47,7 +47,7 @@ HEADLESS_PACKAGES=(
     npm
     python
     python-pip
-    rust
+    rustup
     shellcheck
     shfmt
     tree-sitter-cli

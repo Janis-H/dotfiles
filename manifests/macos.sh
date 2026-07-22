@@ -54,7 +54,7 @@ HEADLESS_PACKAGES=(
     luarocks
     node
     python3
-    rust
+    rustup
     shellcheck
     shfmt
     tree-sitter-cli

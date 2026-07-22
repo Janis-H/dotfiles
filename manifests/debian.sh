@@ -43,6 +43,7 @@ HEADLESS_PACKAGES=(
     python3
     python3-pip
     python3-venv
+    rustup
     shellcheck
     shfmt
     tree-sitter-cli
@@ -94,7 +95,7 @@ EXTERNAL_CORE=(
 EXTERNAL_HEADLESS=(
     lazydocker
     lazygit
-    rust
+    # rust
 )
 
 EXTERNAL_DESKTOP=()
