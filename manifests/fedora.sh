@@ -31,8 +31,6 @@ CORE_PACKAGES=(
 # - compilers, runtimes, build tools, container tools, linters, formatters,
 #   and project workflow tools
 HEADLESS_PACKAGES=(
-    # TODO: setup docker repository in installers/system/fedora
-    # TODO: run `sudo dnf copr enable atim/lazygit -y`
     @development-tools
     cmake
     docker-ce
