@@ -90,10 +90,8 @@ EXTERNAL_CORE=(
 )
 
 EXTERNAL_HEADLESS=(
-    # TODO: add install_external_lazydocker to external installers
-    # - run `go install github.com/jesseduffield/lazydocker@latest` in function
-    # TODO: uncomment below once the external function has been added
-    # lazydocker
+    lazygit
+    lazydocker
 )
 
 EXTERNAL_DESKTOP=()
