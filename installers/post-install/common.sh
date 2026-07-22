@@ -26,6 +26,22 @@ create_dev_dirs() {
     run_cmd mkdir -p "$HOME/.local/bin"
 }
 
+setup_docker_non_root_access() {
+   if [[ "$(uname -s)" == "Darwin" ]]; then
+        info "Docker group configuration is not required on macOS"
+        return 0
+    fi
+
+    local target_user="${SUDO_USER:-$USER}"
+
+    info "Configuring Docker for non-root access"
+
+    run_cmd sudo groupadd -f docker
+    run_cmd sudo usermod -aG docker "$target_user"
+
+    info "Log out and back in for Docker group membership to take effect"
+}
+
 setup_local_bin() {
     info "Setting up .local/bin"
     run_cmd mkdir -p "$HOME/.local/bin"
@@ -127,4 +143,5 @@ run_common_post_install() {
 
     verify_fzf
     setup_git_defaults
+    setup_docker_non_root_access
 }

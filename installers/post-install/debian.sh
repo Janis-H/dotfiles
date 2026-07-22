@@ -7,15 +7,6 @@ source "$DOTFILES_DIR/lib/log.sh"
 source "$DOTFILES_DIR/lib/run-command.sh"
 
 # --- Setup functions ---
-setup_docker_non_root_access() {
-    info "Configuring Docker for non-root access"
-
-    run_cmd sudo groupadd -f docker
-    run_cmd sudo usermod -aG docker "$USER"
-
-    info "Log out and back in for Docker group membership to take effect"
-}
-
 # TODO: Inspect upstream `configure.sh`. Check TODO.md for more details
 configure_rodecaster_pipewire() {
     warn "Skipping configure_rodecaster_pipewire until upstream script has been verified"
@@ -50,7 +41,6 @@ EOF
 # --- Public entrypoint ---
 run_os_post_install() {
     configure_rodecaster_pipewire
-    setup_docker_non_root_access
 
     print_next_steps
 }
