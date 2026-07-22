@@ -12,6 +12,7 @@ CORE_PACKAGES=(
     bat
     curl
     fd-find
+    ffmpeg
     git
     gzip
     jq

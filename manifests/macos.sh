@@ -8,12 +8,12 @@
 # minimal terminal/dotfiles setup:
 # - shell, editor, search, navigation, archive, and dotfile tools
 CORE_PACKAGES=(
-    sevenzip
     bat
     coreutils
     curl
     diffutils
     fd
+    ffmpeg
     findutils
     fzf
     gawk
@@ -25,6 +25,7 @@ CORE_PACKAGES=(
     jq
     neovim
     ripgrep
+    sevenzip
     stow
     the_silver_searcher
     tmux

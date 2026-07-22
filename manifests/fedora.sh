@@ -13,6 +13,7 @@ CORE_PACKAGES=(
     curl
     diffutils
     fd-find
+    ffmpeg-free
     fzf
     git
     gzip

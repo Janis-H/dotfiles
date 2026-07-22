@@ -13,7 +13,9 @@ CORE_PACKAGES=(
     curl
     diffutils
     fd
-    fzf git
+    ffmpeg
+    fzf
+    git
     gzip
     jq
     neovim
