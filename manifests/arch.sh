@@ -8,6 +8,7 @@
 # minimal terminal/dotfiles setup:
 # - shell, editor, search, navigation, archive, and dotfile tools
 CORE_PACKAGES=(
+    7zip
     bat
     curl
     diffutils
