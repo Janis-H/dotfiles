@@ -52,6 +52,26 @@ install_external_tool () {
 }
 
 # --- Prepare external dependencies ---
+prepare_flathub() {
+    if [[ "$(uname -s)" != "Linux" ]]; then
+        return 0
+    fi
+
+    info "Configuring Flathub repository"
+
+    # During dry-run, Flatpak may not exist yet because package installation
+    # commands were only printed
+    if [[ "${DRY_RUN:-false}" != true ]] && ! command -v flatpak >/dev/null 2>&1; then
+        warn "Flatpak is not installed; skipping Flathub setup"
+        return 0
+    fi
+
+    run_cmd sudo flatpak remote-add \
+        --if-not-exists \
+        flathub \
+        https://dl.flathub.org/repo/flathub.flatpakrepo
+}
+
 prepare_rust_toolchain() {
     info "Installing rust stable toolchain"
 
@@ -68,6 +88,7 @@ prepare_rust_toolchain() {
 }
 
 prepare_external_dependencies() {
+    prepare_flathub
     prepare_rust_toolchain
 }
 
