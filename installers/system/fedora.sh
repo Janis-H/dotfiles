@@ -12,8 +12,21 @@ is_system_package_installed() {
     rpm -q "$1" &>/dev/null
 }
 
+# --- Repository Setup ---
+setup_docker_repository() {
+    info "Configuring Docker repository"
+
+    run_cmd sudo dnf config-manager addrepo --from-repofile https://download.docker.com/linux/fedora/docker-ce.repo
+}
+
+setup_package_repositories() {
+    setup_docker_repository
+}
+
 # --- Public entrypoint ---
 install_system_packages() {
+    setup_docker_repository
+
     info "Installing system packages"
     run_cmd sudo dnf install -y "$@"
 }
