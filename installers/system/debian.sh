@@ -77,10 +77,25 @@ EOF
     run_cmd sudo apt update
 }
 
+setup_helium_browser_repository() {
+    info "Configuring Helium Browser repository"
+
+    local signing_key="https://raw.githubusercontent.com/imputnet/helium-linux/main/pubkey.asc"
+
+    if [[ "${DRY_RUN:-false}" == true ]]; then
+        printf '+ curl -fsSL %q | sudo gpg --dearmor -o /usr/share/keyrings' "$signing_key"
+        printf '+ echo "deb [arch=amd64,arm64 signed-by=/usr/share/keyrings/helium.gpg] https://pkg.helium.computer/deb stable main" | sudo tee /etc/apt/sources.list.d/helium.list'
+    fi
+
+    curl -fsSL "$signing_key" | sudo gpg --dearmor -o /usr/share/keyrings/helium.gpg
+    echo "deb [arch=amd64,arm64 signed-by=/usr/share/keyrings/helium.gpg] https://pkg.helium.computer/deb stable main" | sudo tee /etc/apt/sources.list.d/helium.list
+}
+
 setup_package_repositories() {
     # TODO: add package check before setting up a repository
     setup_1password_repository
     setup_docker_repository
+    setup_helium_browser_repository
 }
 
 # --- Public entrypoint ---
