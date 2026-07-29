@@ -47,6 +47,25 @@ install_external_proton_mail() (
     run_cmd sudo dnf install -y "$package_path"
 )
 
+install_external_proton_pass() (
+    info "Installing Proton Pass"
+
+    local download_url='https://proton.me/download/PassDesktop/linux/x64/ProtonPass.rpm'
+    local temp_dir
+    local package_path
+
+    temp_dir="$(mktemp -d)"
+    package_path="$temp_dir/ProtonPass.rpm"
+
+    trap 'rm -rf "$temp_dir"' EXIT
+
+    run_cmd curl -fL \
+        --output "$package_path" \
+        "$download_url"
+
+    run_cmd sudo dnf install -y "$package_path"
+)
+
 install_external_lazydocker() {
     info "Installing or Updating lazydocker"
     run_cmd go install github.com/jesseduffield/lazydocker@latest

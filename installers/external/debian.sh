@@ -175,6 +175,25 @@ install_external_proton_mail() (
     run_cmd sudo apt install -y "$package_path"
 )
 
+install_external_proton_pass() (
+    info "Installing Proton Pass"
+
+    local download_url='https://proton.me/download/PassDesktop/linux/x64/ProtonPass.deb'
+    local temp_dir
+    local package_path
+
+    temp_dir="$(mktemp -d)"
+    package_path="$temp_dir/ProtonPass.deb"
+
+    trap 'rm -rf "$temp_dir"' EXIT
+
+    run_cmd curl -fL \
+        --output "$package_path" \
+        "$download_url"
+
+    run_cmd sudo apt install -y "$package_path"
+)
+
 install_external_zoxide() {
     local install_url="https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh"
 
