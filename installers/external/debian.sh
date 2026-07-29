@@ -156,6 +156,25 @@ install_external_resvg() {
     run_cmd cargo install resvg --locked
 }
 
+install_external_proton_mail() (
+    info "Installing Proton Mail"
+
+    local download_url='https://proton.me/download/mail/linux/ProtonMail-desktop-beta.deb'
+    local temp_dir
+    local package_path
+
+    temp_dir="$(mktemp -d)"
+    package_path="$temp_dir/ProtonMail-desktop-beta.deb"
+
+    trap 'rm -rf "$temp_dir"' EXIT
+
+    run_cmd curl -fL \
+        --output "$package_path" \
+        "$download_url"
+
+    run_cmd sudo apt install -y "$package_path"
+)
+
 install_external_zoxide() {
     local install_url="https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh"
 
