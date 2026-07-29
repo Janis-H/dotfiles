@@ -17,7 +17,6 @@ CORE_PACKAGES=(
     gzip
     jq
     poppler-utils
-    # resvg
     ripgrep
     silversearcher-ag
     stow
@@ -84,6 +83,7 @@ EXTERNAL_CORE=(
     fzf
     neovim
     oh_my_posh
+    resvg
     yazi
     zoxide
 
