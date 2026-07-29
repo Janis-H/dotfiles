@@ -44,11 +44,6 @@ install_external_zsh_plugins() {
         "$zsh_plugins_dir/zsh-history-substring-search"
 }
 
-install_external_zen_browser() {
-    info "Installing Zen Browser"
-    run_cmd flatpak install flathub app.zen_browser.zen
-}
-
 install_external_yazi() {
     if ! command -v cargo; then
         error "Cargo is required to install Yazi"
@@ -62,4 +57,9 @@ install_external_yazi() {
 
     info "Installing Yazi"
     run_cmd cargo install --force yazi-build
+}
+
+install_external_zen_browser() {
+    info "Installing Zen Browser"
+    run_cmd flatpak install flathub app.zen_browser.zen
 }
