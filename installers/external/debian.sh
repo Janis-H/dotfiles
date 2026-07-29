@@ -141,6 +141,21 @@ install_external_oh_my_posh() {
     curl -fsSL "$install_url" | bash -s
 }
 
+install_external_resvg() {
+    if is_command_available resvg; then
+        info "resvg already installed"
+        return 0
+    fi
+
+    if ! is_command_available cargo; then
+        info "Cargo is required to install resvg"
+        return 0
+    fi
+
+    info "Installing resvg"
+    run_cmd cargo install resvg --locked
+}
+
 install_external_zoxide() {
     local install_url="https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh"
 
