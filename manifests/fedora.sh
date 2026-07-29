@@ -98,6 +98,7 @@ EXTERNAL_HEADLESS=(
 )
 
 EXTERNAL_DESKTOP=(
+    proton_mail
     zen_browser
 )
 
