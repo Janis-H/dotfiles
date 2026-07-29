@@ -320,6 +320,9 @@ set $calibre_class "calibre"
 set $discord_cmd "flatpak run com.discordapp.Discord"
 set $discord_class "discord"
 
+set $helium_cmd "helium"
+set $helium_class "helium"
+
 set $gnome_parted_cmd "gnome-parted"
 set $gnome_parted_class "Gnome-parted"
 
@@ -388,8 +391,8 @@ bindsym $mod+F1 \
 bindsym $mod+F2 \
     exec --no-startup-id \
         $focus_or_open_by_class \
-            $brave_browser_cmd \
-            $brave_browser_class
+            $helium_cmd \
+            $helium_class
 bindsym $mod+F5 \
     exec --no-startup-id \
         $focus_or_open_by_class \
