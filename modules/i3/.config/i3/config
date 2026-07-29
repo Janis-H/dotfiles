@@ -392,17 +392,20 @@ bindsym $mod+F2 \
     exec --no-startup-id \
         $focus_or_open_by_class \
             $helium_cmd \
-            $helium_class
+            $helium_class, \
+    workspace $ws3
 bindsym $mod+F5 \
     exec --no-startup-id \
         $focus_or_open_by_class \
             $proton_mail_cmd \
-            $proton_mail_class
+            $proton_mail_class, \
+    workspace $ws5
 bindsym $mod+F7 \
     exec --no-startup-id \
         $focus_or_open_by_class \
             $lotion_cmd \
-            $lotion_class
+            $lotion_class, \
+    workspace $ws7
 bindsym $mod+F8 \
     exec --no-startup-id \
         $focus_or_open_by_class \
