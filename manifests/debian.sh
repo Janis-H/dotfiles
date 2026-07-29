@@ -101,6 +101,7 @@ EXTERNAL_HEADLESS=(
 
 EXTERNAL_DESKTOP=(
     proton_mail
+    proton_pass
     zen_browser
 )
 
