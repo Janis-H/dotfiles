@@ -44,6 +44,18 @@ install_external_zsh_plugins() {
         "$zsh_plugins_dir/zsh-history-substring-search"
 }
 
+install_external_herdr() {
+    local install_url="https://herdr.dev/install.sh"
+
+    info "Installing Herdr"
+
+    if [[ "${DRY_RUN:-false}" == true ]]; then
+        printf '+ curl -fsSL %q' "$install_url"
+    fi
+
+    curl -fsSL "$install_url" | sh
+}
+
 install_external_yazi() {
     if ! command -v cargo; then
         error "Cargo is required to install Yazi"
