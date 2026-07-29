@@ -19,6 +19,8 @@ install_external_antidote() {
 install_external_zsh_plugins() {
     local zsh_plugins_dir="$HOME/.zsh/plugins"
 
+    info "Installing zsh plugins"
+
     run_cmd mkdir -p "$zsh_plugins_dir"
 
     install_or_update_repo \
@@ -43,6 +45,7 @@ install_external_zsh_plugins() {
 }
 
 install_external_zen_browser() {
+    info "Installing Zen Browser"
     run_cmd flatpak install flathub app.zen_browser.zen
 }
 
@@ -52,5 +55,6 @@ install_external_yazi() {
         return 1
     fi
 
+    info "Installing Yazi"
     run_cmd cargo install --force yazi-build
 }
