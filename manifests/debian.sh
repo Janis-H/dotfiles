@@ -81,6 +81,7 @@ DESKTOP_PACKAGES=(
 # Each value maps to a function named install_external_<id>.
 EXTERNAL_CORE=(
     fzf
+    herdr
     neovim
     oh_my_posh
     resvg

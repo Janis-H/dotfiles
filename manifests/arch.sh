@@ -77,6 +77,8 @@ DESKTOP_PACKAGES=(
 # External installer IDs.
 # Each value maps to a function named install_external_<id>.
 EXTERNAL_CORE=(
+    herdr
+
     # Manages zsh plugins
     antidote
 

@@ -21,6 +21,7 @@ CORE_PACKAGES=(
     gnu-sed
     grep
     gzip
+    herdr
     jandedobbeleer/oh-my-posh/oh-my-posh
     jq
     neovim
