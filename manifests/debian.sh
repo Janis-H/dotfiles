@@ -17,7 +17,7 @@ CORE_PACKAGES=(
     gzip
     jq
     poppler-utils
-    resvg
+    # resvg
     ripgrep
     silversearcher-ag
     stow
