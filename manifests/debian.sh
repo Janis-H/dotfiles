@@ -55,6 +55,7 @@ HEADLESS_PACKAGES=(
 DESKTOP_PACKAGES=(
     1password
     flatpak
+    helium-bin
     ghostty
     xclip
     wl-clipboard
@@ -98,7 +99,9 @@ EXTERNAL_HEADLESS=(
     lazygit
 )
 
-EXTERNAL_DESKTOP=()
+EXTERNAL_DESKTOP=(
+    zen_browser
+)
 
 # ─────────────────────────────────────────────────────────────
 # Stow module manifests

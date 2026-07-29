@@ -56,6 +56,7 @@ HEADLESS_PACKAGES=(
 # - window managers, launchers, graphical terminals, editors, and GUI apps
 DESKTOP_PACKAGES=(
     flatpak
+    helium-bin
     ghostty
     xclip
     wl-clipboard
@@ -96,7 +97,9 @@ EXTERNAL_HEADLESS=(
     lazydocker
 )
 
-EXTERNAL_DESKTOP=()
+EXTERNAL_DESKTOP=(
+    zen_browser
+)
 
 # ─────────────────────────────────────────────────────────────
 # Stow module manifests
