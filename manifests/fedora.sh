@@ -55,6 +55,7 @@ HEADLESS_PACKAGES=(
 # GUI/workstation additions:
 # - window managers, launchers, graphical terminals, editors, and GUI apps
 DESKTOP_PACKAGES=(
+    1password
     flatpak
     helium-bin
     ghostty
