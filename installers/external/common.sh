@@ -55,6 +55,11 @@ install_external_yazi() {
         return 1
     fi
 
+    if command -v yazi; then
+        info "Yazi already installed"
+        return
+    fi
+
     info "Installing Yazi"
     run_cmd cargo install --force yazi-build
 }
