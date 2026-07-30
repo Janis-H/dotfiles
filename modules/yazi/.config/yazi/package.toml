@@ -1,0 +1,7 @@
+[[plugin.deps]]
+use = "yazi-rs/plugins:jump-to-char"
+rev = "9014ed2"
+hash = "7a4b4237223aaa94e589d1c01a23542a"
+
+[flavor]
+deps = []
