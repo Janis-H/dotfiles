@@ -1,5 +1,5 @@
 [Desktop Entry]
 Type=Application
 Name=Fix HDMI Reflect
-Exec=/usr/bin/bash -c "$HOME/.local/bin/fix-monitors.sh"
+Exec=/usr/bin/bash -c "$HOME/.local/bin/fix-monitors"
 X-GNOME-Autostart-enabled=true

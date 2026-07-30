@@ -134,8 +134,8 @@ bindsym $mod+a focus parent
 
 # Monitor aliases
 set $left_monitor "HDMI-A-0"
-set $center_monitor "DisplayPort-1"
-set $right_monitor "DisplayPort-0"
+set $center_monitor "DisplayPort-0"
+set $right_monitor "DisplayPort-1"
 
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
