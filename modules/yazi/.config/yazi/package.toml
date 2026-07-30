@@ -3,5 +3,15 @@ use = "yazi-rs/plugins:jump-to-char"
 rev = "9014ed2"
 hash = "7a4b4237223aaa94e589d1c01a23542a"
 
+[[plugin.deps]]
+use = "yazi-rs/plugins:chmod"
+rev = "9014ed2"
+hash = "5b1c276b75cae91cbbdbe7863f39a540"
+
+[[plugin.deps]]
+use = "yazi-rs/plugins:mount"
+rev = "9014ed2"
+hash = "e3260d0b1feded8c8e3ae3afa1169e30"
+
 [flavor]
 deps = []
