@@ -61,6 +61,7 @@ DESKTOP_PACKAGES=(
     ghostty
     xclip
     wl-clipboard
+    zenity
 
     # i3 window manager
     i3

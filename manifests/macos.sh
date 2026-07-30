@@ -63,7 +63,9 @@ HEADLESS_PACKAGES=(
 
 # Desktop formula additions
 # Most macOS GUI apps should usually go in DESKTOP_CASKS
-DESKTOP_PACKAGES=()
+DESKTOP_PACKAGES=(
+    ncruces/tap/zenity
+)
 
 # ─────────────────────────────────────────────────────────────
 # Homebrew cask manifests

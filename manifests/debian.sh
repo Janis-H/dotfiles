@@ -86,6 +86,7 @@ EXTERNAL_CORE=(
     oh_my_posh
     resvg
     yazi
+    zenity
     zoxide
 
     # Manages zsh plugins

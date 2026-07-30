@@ -60,6 +60,7 @@ DESKTOP_PACKAGES=(
     ghostty
     xclip
     wl-clipboard
+    zenity
 
     # sway window manager
     sway
