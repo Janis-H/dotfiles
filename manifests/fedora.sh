@@ -41,6 +41,8 @@ HEADLESS_PACKAGES=(
     containerd.io
     docker-buildx-plugin
     docker-compose-plugin
+    gcc
+    gcc-c++
     golang
     nodejs
     python3
