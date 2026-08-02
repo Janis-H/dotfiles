@@ -109,7 +109,8 @@ install_tmux_plugin_manager() {
 }
 
 install_tmux_plugins_from_config() {
-    local installer="$HOME/.tmux/plugins/tpm/bin/install_plugins"
+    local tmux_plugins_dir="$HOME/.tmux/plugins"
+    local installer="$tmux_plugins_dir/tpm/bin/install_plugins"
 
     if [[ ! -x "$installer" ]]; then
         warn "TPM installer not found, skipping tmux plugin install"
@@ -117,7 +118,20 @@ install_tmux_plugins_from_config() {
     fi
 
     info "Installing tmux plugins"
+
+    tmux start-server
+
+    local tmux_conf="$HOME/.tmux.conf"
+    [[ ! -f "$tmux_conf" && -f "$HOME/.config/tmux/tmux.conf" ]] && tmux_conf="$HOME/.config/tmux/tmux.conf"
+    if [[ -f "$tmux_conf" ]]; then
+        tmux source-file "$tmux_conf"
+    fi
+
+    export TMUX_PLUGIN_MANAGER_PATH="$tmux_plugins_dir"
+
     run_cmd "$installer"
+
+    tmux kill-server >/dev/null 2>&1 || true
 }
 
 setup_git_defaults() {
