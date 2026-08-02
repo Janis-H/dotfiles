@@ -20,8 +20,8 @@ install_external_resvg() {
     fi
 
     if ! is_command_available cargo; then
-        info "Cargo is required to install resvg"
-        return 0
+        warn "Cargo is required to install resvg"
+        return 1
     fi
 
     info "Installing resvg"

@@ -58,7 +58,7 @@ install_external_herdr() {
 
 install_external_yazi() {
     if ! command -v cargo; then
-        error "Cargo is required to install Yazi"
+        warn "Cargo is required to install Yazi"
         return 1
     fi
 
@@ -73,5 +73,6 @@ install_external_yazi() {
 
 install_external_zen_browser() {
     info "Installing Zen Browser"
+    # TODO: add --non-interactive and --assume-yes flags
     run_cmd flatpak install flathub app.zen_browser.zen
 }
