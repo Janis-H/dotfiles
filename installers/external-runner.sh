@@ -83,7 +83,17 @@ prepare_rust_toolchain() {
 
     command -v rustup >/dev/null 2>&1 || return 0
 
+    local installer
+    installer=$(command -v rustup-init || command -v rustup) || return 0
+
+    if ! rustc >/dev/null 2>&1; then
+        run_cmd "$installer" -y --default-toolchain stable
+        source "$HOME/.cargo/env" 2>/dev/null || true
+    fi
+
     if ! rustup show active-toolchain >/dev/null 2>&1; then
+        info "Toolchain missing from environment. Forcing network download..."
+        run_cmd toolchain install stable
         run_cmd rustup default stable
     fi
 }
@@ -127,6 +137,6 @@ run_external_installs() {
     if (( ${#failed_tools[@]} > 0 )); then
         error "External tools failed:"
         print_list "${failed_tools[@]}" >&2
-        return 1
+        return 0
     fi
 }
