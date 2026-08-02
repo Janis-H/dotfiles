@@ -54,12 +54,10 @@ HEADLESS_PACKAGES=(
 # GUI/workstation additions:
 # - window managers, launchers, graphical terminals, editors, and GUI apps
 DESKTOP_PACKAGES=(
-    # 1password
+    1password
     flatpak
-    # TODO: enable COPR for helium
-    # helium-bin
-    # TODO: enable COPR for ghostty
-    # ghostty
+    helium-bin
+    ghostty
     xclip
     wl-clipboard
     zenity
