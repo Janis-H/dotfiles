@@ -54,5 +54,5 @@ install_system_packages() {
     # setup_package_repositories
 
     info "Installing system packages"
-    run_cmd sudo dnf install -y "$@"
+    run_cmd sudo dnf install -y "$@" --skip-broken
 }
