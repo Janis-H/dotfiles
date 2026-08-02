@@ -14,6 +14,9 @@ is_system_package_installed() {
 
 # --- Repository Setup ---
 setup_docker_repository() {
+    # TODO: add check if docker has already been configured.
+    # ./install script seems to stall if the repository attempts to be added again
+
     info "Configuring Docker repository"
 
     run_cmd sudo dnf config-manager addrepo --from-repofile https://download.docker.com/linux/fedora/docker-ce.repo
@@ -32,13 +35,23 @@ setup_helium_browser_repository() {
     run_cmd sudo dnf copr enable input/helium
 }
 
+setup_ghostty_repository() {
+    info "Configuring Ghostty repository"
+
+    run_cmd sudo dnf copr enable scottames/ghostty
+}
+
 setup_package_repositories() {
     setup_docker_repository
+    setup_1password_repository
+    setup_helium_browser_repository
+    setup_ghostty_repository
 }
 
 # --- Public entrypoint ---
 install_system_packages() {
-    setup_package_repositories
+    # TODO: uncomment below once a check
+    # setup_package_repositories
 
     info "Installing system packages"
     run_cmd sudo dnf install -y "$@"

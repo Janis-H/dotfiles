@@ -42,7 +42,6 @@ HEADLESS_PACKAGES=(
     docker-buildx-plugin
     docker-compose-plugin
     golang
-    lazygit
     nodejs
     python3
     python3-pip
@@ -55,10 +54,12 @@ HEADLESS_PACKAGES=(
 # GUI/workstation additions:
 # - window managers, launchers, graphical terminals, editors, and GUI apps
 DESKTOP_PACKAGES=(
-    1password
+    # 1password
     flatpak
-    helium-bin
-    ghostty
+    # TODO: enable COPR for helium
+    # helium-bin
+    # TODO: enable COPR for ghostty
+    # ghostty
     xclip
     wl-clipboard
     zenity
@@ -85,6 +86,8 @@ DESKTOP_PACKAGES=(
 # Each value maps to a function named install_external_<id>.
 EXTERNAL_CORE=(
     herdr
+    # TODO: double check cargo was installed by rust toolchain
+    # both resvg and yazi are not installing due to Cargo missing
     resvg
     yazi
 
