@@ -22,7 +22,7 @@ setup_docker_repository() {
     run_cmd sudo dnf config-manager addrepo --from-repofile https://download.docker.com/linux/fedora/docker-ce.repo
 }
 
-setup_1password_repostory() {
+setup_1password_repository() {
     info "Configuring 1password repository"
 
     run_cmd sudo rpm --import https://downloads.1password.com/linux/keys/1password.asc
@@ -42,7 +42,7 @@ setup_ghostty_repository() {
 }
 
 setup_package_repositories() {
-    setup_docker_repository
+    # setup_docker_repository
     setup_1password_repository
     setup_helium_browser_repository
     setup_ghostty_repository
@@ -51,7 +51,7 @@ setup_package_repositories() {
 # --- Public entrypoint ---
 install_system_packages() {
     # TODO: uncomment below once a check
-    # setup_package_repositories
+    setup_package_repositories
 
     info "Installing system packages"
     run_cmd sudo dnf install -y "$@"
