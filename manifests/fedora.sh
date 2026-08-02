@@ -62,6 +62,9 @@ DESKTOP_PACKAGES=(
     wl-clipboard
     zenity
 
+    # TODO: fix i3 and sway env installs.
+    # reference: https://docs.fedoraproject.org/en-US/quick-docs/switching-desktop-environments/
+    #
     # i3 window manager
     i3
     picom
