@@ -32,7 +32,7 @@ setup_1password_repository() {
 setup_helium_browser_repository() {
     info "Configuring Helium Browser repository"
 
-    run_cmd sudo dnf copr enable input/helium
+    run_cmd sudo dnf copr enable imput/helium
 }
 
 setup_ghostty_repository() {
