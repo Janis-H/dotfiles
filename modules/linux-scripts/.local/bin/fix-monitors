@@ -1,28 +1,33 @@
 #!/usr/bin/env bash
 
+# TODO: move script under i3 modules folder instead of linux-scripts
+
 sleep 3
 
-hdmi_output="$(xrandr --query | awk '/^HDMI.* connected/ {print $1; exit}')"
+HDMI_OUTPUT="$(xrandr --query | awk '/^HDMI.* connected/ {print $1; exit}')"
+
+PRIMARY_DISPLAY="DisplayPort-0"
+SECONDARY_DISPLAY="DisplayPort-1"
 
 # Primary monitor
-xrandr --output DisplayPort-0 \
+xrandr --output "$PRIMARY_DISPLAY" \
   --primary \
   --mode 2560x1440 \
   --rate 144.00 \
   --rotate normal
 
 # Right portrait monitor
-xrandr --output DisplayPort-1 \
+xrandr --output "$SECONDARY_DISPLAY" \
   --mode 2560x1440 \
   --rate 60.00 \
   --rotate right \
-  --right-of DisplayPort-0
+  --right-of "$PRIMARY_DISPLAY"
 
 # Left HDMI monitor
-if [ -n "$hdmi_output" ]; then
-  xrandr --output "$hdmi_output" \
+if [ -n "$HDMI_OUTPUT" ]; then
+  xrandr --output "$HDMI_OUTPUT" \
     --mode 1024x576 \
     --rate 60.00 \
     --reflect y \
-    --left-of DisplayPort-0
+    --left-of "$PRIMARY_DISPLAY"
 fi
