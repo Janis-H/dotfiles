@@ -34,7 +34,6 @@ CORE_PACKAGES=(
 # - compilers, runtimes, build tools, container tools, linters, formatters,
 #   and project workflow tools
 HEADLESS_PACKAGES=(
-    @development-tools
     cmake
     docker-ce
     docker-ce-cli
@@ -44,6 +43,7 @@ HEADLESS_PACKAGES=(
     gcc
     gcc-c++
     golang
+    make
     nodejs
     python3
     python3-pip
