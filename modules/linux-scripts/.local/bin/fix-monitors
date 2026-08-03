@@ -2,6 +2,10 @@
 
 # TODO: move script under i3 modules folder instead of linux-scripts
 
+# TODO: create fix-monitors script for sway.
+# xrandr is not supported by wayland; therefore, a replacement
+# will be needed once the transition to sway (wayland) is complete
+
 sleep 3
 
 HDMI_OUTPUT="$(xrandr --query | awk '/^HDMI.* connected/ {print $1; exit}')"
