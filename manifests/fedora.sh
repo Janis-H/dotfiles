@@ -74,6 +74,7 @@ DESKTOP_PACKAGES=(
     sway
     swayidle
     swaylock
+    waybar
     xdg-desktop-portal-wlr
     xdg-desktop-portal-gtk
 )
