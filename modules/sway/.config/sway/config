@@ -4,7 +4,16 @@
 #
 # Read `man 5 sway` for a complete reference.
 
-# TODO: copy configs from i3 config to sway
+# TODO: copy configs from i3 config to sway:
+# - monitor aliases
+# - numbered and non-numbered workspaces and shortcuts
+# - create and call fix-monitors-sway script
+# - app keyboard shortcuts
+# - create settings "mode"
+# - find replacement for redshift (Xorg only)
+# - check if the "include .*" lines are debian exclusive
+# - replace sway-bar with waybar
+# - edit idle configurations
 
 ### Variables
 #
