@@ -68,7 +68,7 @@ set_default_shell() {
         return 0
     fi
 
-    chsh -s "$(command -v zsh)"
+    run_cmd chsh -s "$(command -v zsh)"
 }
 
 verify_fzf() {
