@@ -56,6 +56,27 @@ install_external_herdr() {
     run_cmd curl -fsSL "$install_url" | sh
 }
 
+install_external_oh_my_posh() {
+    local install_url="https://ohmyposh.dev/install.sh"
+
+    if is_command_available oh-my-posh; then
+        info "oh-my-posh already installed"
+        return 0
+    fi
+
+    info "Installing oh-my-posh"
+
+    # NOTE:
+    # Do not wrap this in run_cmd.
+    # Dry run must be checked before the pipeline so curl does not run
+    if [[ "${DRY_RUN:-false}" == true ]]; then
+        printf '+ curl -fsSL %q | bash -s\n' "$install_url"
+        return 0
+    fi
+
+    run_cmd curl -fsSL "$install_url" | bash -s
+}
+
 install_external_yazi() {
     if ! command -v cargo; then
         warn "Cargo is required to install Yazi"
