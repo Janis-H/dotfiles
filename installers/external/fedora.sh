@@ -95,5 +95,5 @@ install_external_oh_my_posh() {
         return 0
     fi
 
-    curl -fsSL "$install_url" | bash -s
+    run_cmd curl -fsSL "$install_url" | bash -s
 }

@@ -53,7 +53,7 @@ install_external_herdr() {
         printf '+ curl -fsSL %q' "$install_url"
     fi
 
-    curl -fsSL "$install_url" | sh
+    run_cmd curl -fsSL "$install_url" | sh
 }
 
 install_external_yazi() {
@@ -73,6 +73,5 @@ install_external_yazi() {
 
 install_external_zen_browser() {
     info "Installing Zen Browser"
-    # TODO: add --non-interactive and --assume-yes flags
-    run_cmd flatpak install flathub app.zen_browser.zen
+    run_cmd flatpak install --noninteractive --assumeyes flathub app.zen_browser.zen
 }

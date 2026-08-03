@@ -135,6 +135,4 @@ fi
 
 run_external_installs "$OS" "${EXTERNAL_TOOLS[@]}"
 
-# TODO: investigate why an error in run_external_installs stops the script
-
 run_post_install "$OS"

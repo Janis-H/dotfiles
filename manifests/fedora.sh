@@ -89,8 +89,6 @@ DESKTOP_PACKAGES=(
 # Each value maps to a function named install_external_<id>.
 EXTERNAL_CORE=(
     herdr
-    # TODO: double check cargo was installed by rust toolchain
-    # both resvg and yazi are not installing due to Cargo missing
     oh_my_posh
     resvg
     yazi
