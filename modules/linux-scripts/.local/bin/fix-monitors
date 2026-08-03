@@ -8,10 +8,10 @@
 
 sleep 3
 
-HDMI_OUTPUT="$(xrandr --query | awk '/^HDMI.* connected/ {print $1; exit}')"
-
 PRIMARY_DISPLAY="DisplayPort-0"
 SECONDARY_DISPLAY="DisplayPort-1"
+
+HDMI_OUTPUT="$(xrandr --query | awk '/^HDMI.* connected/ {print $1; exit}')"
 
 # Primary monitor
 xrandr --output "$PRIMARY_DISPLAY" \
