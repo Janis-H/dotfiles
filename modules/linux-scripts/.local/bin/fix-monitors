@@ -1,8 +1,10 @@
 #!/usr/bin/env bash
 
 # TODO: move script under i3 modules folder instead of linux-scripts
+# TODO: rename script to fix-monitors-x11
+# TODO: once fix-monitors-x11 rename is done, update desktop and sleep hook
 
-# TODO: create fix-monitors script for sway.
+# TODO: create fix-monitors-sway script.
 # xrandr is not supported by wayland; therefore, a replacement
 # will be needed once the transition to sway (wayland) is complete
 
