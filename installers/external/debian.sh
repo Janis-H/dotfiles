@@ -120,27 +120,6 @@ install_external_neovim() {
     run_cmd sudo ln -sf "$tarball_dir/bin/nvim" /usr/local/bin/nvim
 }
 
-install_external_oh_my_posh() {
-    local install_url="https://ohmyposh.dev/install.sh"
-
-    if is_command_available oh-my-posh; then
-        info "oh-my-posh already installed"
-        return 0
-    fi
-
-    info "Installing oh-my-posh"
-
-    # NOTE:
-    # Do not wrap this in run_cmd.
-    # Dry run must be checked before the pipeline so curl does not run
-    if [[ "${DRY_RUN:-false}" == true ]]; then
-        printf '+ curl -fsSL %q | bash -s\n' "$install_url"
-        return 0
-    fi
-
-    curl -fsSL "$install_url" | bash -s
-}
-
 install_external_resvg() {
     if is_command_available resvg; then
         info "resvg already installed"
