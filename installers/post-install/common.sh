@@ -27,7 +27,7 @@ create_dev_dirs() {
 }
 
 setup_docker_non_root_access() {
-   if [[ "$(uname -s)" != "Linux" ]]; then
+    if [[ "$(uname -s)" != "Linux" ]]; then
         return 0
     fi
 
@@ -119,19 +119,32 @@ install_tmux_plugins_from_config() {
 
     info "Installing tmux plugins"
 
-    tmux start-server
+    # check if script is already running in an active tmux session
+    local in_tmux=false
+    if [[ -n "$TMUX" ]]; then
+        in_tmux=true
+    else
+        # if not inside tmux, start a background instance safely
+        tmux start-server
+    fi
 
+    # source configuration to map the plugins
     local tmux_conf="$HOME/.tmux.conf"
     [[ ! -f "$tmux_conf" && -f "$HOME/.config/tmux/tmux.conf" ]] && tmux_conf="$HOME/.config/tmux/tmux.conf"
     if [[ -f "$tmux_conf" ]]; then
         tmux source-file "$tmux_conf"
     fi
 
+    # explicitly require path variable required by TPM
     export TMUX_PLUGIN_MANAGER_PATH="$tmux_plugins_dir"
 
     run_cmd "$installer"
 
-    tmux kill-server >/dev/null 2>&1 || true
+    # SAFE CLEANUP: only kill the server if your script created it
+    # If $in_tmux is true, we leave the server completely untouched!
+    if [[ "$in_tmux" == false ]]; then
+        tmux kill-server >/dev/null 2>&1 || true
+    fi
 }
 
 setup_git_defaults() {
