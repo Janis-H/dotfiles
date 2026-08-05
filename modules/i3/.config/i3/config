@@ -401,7 +401,7 @@ bindsym $mod+F2 \
         $focus_or_open_by_class \
             $helium_cmd \
             $helium_class, \
-    workspace $ws3
+    workspace $ws2
 bindsym $mod+F5 \
     exec --no-startup-id \
         $focus_or_open_by_class \
@@ -418,7 +418,8 @@ bindsym $mod+F8 \
     exec --no-startup-id \
         $focus_or_open_by_class \
             $calibre_cmd \
-            $calibre_class
+            $calibre_class, \
+            workspace $ws_right
 bindsym $mod+F10 \
     exec --no-startup-id \
         $focus_or_open_by_title \
@@ -433,12 +434,14 @@ bindsym $mod+F11 \
     exec --no-startup-id \
         $focus_or_open_by_class \
             $1password_cmd \
-            $1password_class
+            $1password_class, \
+            workspace $ws_right
 bindsym $mod+F12 \
     exec --no-startup-id \
         $focus_or_open_by_class \
             $proton_pass_cmd \
-            $proton_pass_class
+            $proton_pass_class, \
+            workspace $ws_right
 
 # Assign applications to workspace_left (left_monitor)
 assign [class=$calculator_class] $ws_left
