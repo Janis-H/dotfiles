@@ -159,7 +159,8 @@ install_external_oh_my_posh() {
         return 0
     fi
 
-    run_cmd curl -fsSL "$install_url" | bash -s
+    printf '+ curl -fsSL %q | bash -s\n' "$install_url"
+    curl -fsSL "$install_url" | bash -s
 }
 
 install_external_yazi() {
