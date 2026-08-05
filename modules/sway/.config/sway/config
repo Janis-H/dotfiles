@@ -9,7 +9,6 @@
 # - numbered and non-numbered workspaces and shortcuts
 # - create and call fix-monitors-sway script
 # - app keyboard shortcuts
-# - create settings "mode"
 # - find replacement for redshift (Xorg only)
 # - check if the "include .*" lines are debian exclusive
 # - replace sway-bar with waybar
@@ -34,6 +33,7 @@ set $term ghostty
 
 set $menu rofi -show drun
 
+# TODO: check if these "include" lines are compatible with other linux OS's
 include /etc/sway/config-vars.d/*
 
 ### Output configuration
@@ -212,6 +212,20 @@ mode "resize" {
 }
 bindsym $mod+r mode "resize"
 
+mode "settings" {
+    # poweroff
+    bindsym $mod+p exec --no-startup-id poweroff
+
+    # reboot
+    bindsym $mod+Shift+p exec --no-startup-id poweroff
+
+    # Return to default mode
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+    bindsym $mod+Shift+c mode "default"
+}
+bindsym $mod+Shift+c mode "settings"
+
 #
 # Status Bar:
 #
@@ -230,4 +244,5 @@ bar {
     }
 }
 
+# TODO: check if these "include" lines are compatible with other linux OS's
 include /etc/sway/config.d/*
