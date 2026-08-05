@@ -89,7 +89,9 @@ EXTERNAL_CORE=(
 
 EXTERNAL_HEADLESS=()
 
-EXTERNAL_DESKTOP=()
+EXTERNAL_DESKTOP=(
+    autotiling
+)
 
 # ─────────────────────────────────────────────────────────────
 # Stow module manifests

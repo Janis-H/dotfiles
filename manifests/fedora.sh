@@ -109,6 +109,7 @@ EXTERNAL_HEADLESS=(
 )
 
 EXTERNAL_DESKTOP=(
+    autotiling
     proton_mail
     proton_pass
     zen_browser
