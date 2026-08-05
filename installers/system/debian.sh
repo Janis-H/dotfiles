@@ -26,6 +26,10 @@ is_repository_setup() {
 
 # --- Repository Setup ---
 setup_1password_repository() {
+    if is_repository_setup "1password"; then
+        return 0
+    fi
+
     local key_url="https://downloads.1password.com/linux/keys/1password.asc"
     local policy_url="https://downloads.1password.com/linux/debian/debsig/1password.pol"
     local policy_id="AC2D62742012EA22"
@@ -67,6 +71,10 @@ run_cmd sudo gpg --dearmor --yes \
 }
 
 setup_docker_repository() {
+    if is_repository_setup "docker"; then
+        return 0
+    fi
+
     info "Configuring Docker repository"
 
     # Add Docker's official GPG key:
@@ -86,10 +94,14 @@ setup_docker_repository() {
     Signed-By: /etc/apt/keyrings/docker.asc
 EOF
 
-run_cmd sudo apt update
+    run_cmd sudo apt update
 }
 
 setup_helium_browser_repository() {
+    if is_repository_setup "helium"; then
+        return 0
+    fi
+
     info "Configuring Helium Browser repository"
 
     local signing_key="https://raw.githubusercontent.com/imputnet/helium-linux/main/pubkey.asc"
