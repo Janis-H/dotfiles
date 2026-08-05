@@ -12,6 +12,56 @@ font_is_installed() {
     [[ -n "$(fc-list "$font_name" family)" ]]
 }
 
+install_external_font() (
+    local file_name="$1"
+    local font_name="$2"
+    local download_url="$3"
+
+    local fonts_folder="$HOME/.local/share/fonts"
+    local install_folder="$fonts_folder/$font_name"
+    local tmp_dir
+    local download_path
+
+    if font_is_installed "$font_name"; then
+        info "$font_name is already installed"
+        return 0
+    fi
+
+    info "Installing $font_name font"
+
+    # Setup temp download directory
+    tmp_dir="$(mktemp -d)" || {
+        error "Failed to create temporary directory"
+        return 1
+    }
+
+    trap 'rm -rf -- "$tmp_dir"' EXIT
+
+    download_path="$tmp_dir/$file_name"
+
+    run_cmd mkdir -p "$tmp_dir/$file_name" || return 1
+
+    # Download and extract
+    run_cmd wget -P "$download_path" "$download_url" || return 1
+    run_cmd 7z x "$tmp_dir/$file_name" -o "$install_folder" || reutrn 1
+
+    # Rebuild font cache
+    run_cmd fc-cache -fv || return 1
+
+    # Commands are intentionally skipped during dry runs
+    if [[ "${DRY_RUN:-false}" == true ]]; then
+        return 0
+    fi
+
+    # Verify Install
+    if font_is_installed "$font_name"; then
+        info "$font_name installed successfully"
+    else
+        error "Failed to install $font_name"
+        return 1
+    fi
+)
+
 # --- External functions ---
 
 # Manages zsh-plugins
@@ -69,35 +119,12 @@ install_external_autotiling() {
     run_cmd pip install autotiling
 }
 
-install_external_nerd_font() {
+install_external_julia_mono_font() {
+    local file_name="JuliaMono.zip"
     local font_name="JuliaMono"
     local download_url="https://github.com/cormullion/juliamono/releases/latest/download/JuliaMono.zip"
 
-    local fonts_folder="$HOME/.local/share/fonts"
-
-    if font_is_installed "$font_name"; then
-        info "$font_name is already installed"
-        return 0
-    else
-        info "Installing $font_name font"
-    fi
-
-    run_cmd mkdir -p "$fonts_folder"
-
-    # Download and extract
-    run_cmd wget "$download_url"
-    run_cmd unzip "$font_name.zip" -d "$fonts_folder/$font_name"
-
-    # Rebuild font cache
-    run_cmd fc-cache -fv
-
-    # Verify Install
-    if font_is_installed "$font_name"; then
-        info "$font_name installed successfully"
-    else
-        error "Failed to install $font_name"
-        return 1
-    fi
+    install_external_font "$file_name" "$font_name" "$download_url"
 }
 
 install_external_herdr() {
