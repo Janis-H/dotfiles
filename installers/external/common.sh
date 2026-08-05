@@ -107,6 +107,7 @@ install_external_herdr() {
 
     if [[ "${DRY_RUN:-false}" == true ]]; then
         printf '+ curl -fsSL %q' "$install_url"
+        return 0
     fi
 
     run_cmd curl -fsSL "$install_url" | sh
