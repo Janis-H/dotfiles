@@ -12,31 +12,60 @@ is_system_package_installed() {
     rpm -q "$1" &>/dev/null
 }
 
-# --- Repository Setup ---
-setup_docker_repository() {
-    # TODO: add check if docker has already been configured.
-    # ./install script seems to stall if the repository attempts to be added again
+is_repository_configured() {
+    local repo="$1"
 
-    info "Configuring Docker repository"
+    repo_dirs=(
+        /etc/yum.repos.d
+        /etc/distro.repos.d
+        /usr/share/dnf5/repos.d
+    )
+
+    if grep -RqsF \
+        --include='*.repo' \
+        -- "$repo" "${repo_dirs[@]}"; then
+    info "$repo repository is already configured"
+    fi
+}
+
+# --- repository setup ---
+setup_docker_repository() {
+    if is_repository_configured "docker"; then
+        return 0
+    fi
+
+    info "configuring docker repository"
 
     run_cmd sudo dnf config-manager addrepo --from-repofile https://download.docker.com/linux/fedora/docker-ce.repo
 }
 
 setup_1password_repository() {
-    info "Configuring 1password repository"
+    if is_repository_configured "1password"; then
+        return 0
+    fi
+
+    info "configuring 1password repository"
 
     run_cmd sudo rpm --import https://downloads.1password.com/linux/keys/1password.asc
-    run_cmd sudo sh -c 'echo -e "[1password]\nname=1Password Stable Channel\nbaseurl=https://downloads.1password.com/linux/rpm/stable/\$basearch\nenabled=1\ngpgcheck=1\nrepo_gpgcheck=1\ngpgkey=\"https://downloads.1password.com/linux/keys/1password.asc\"" > /etc/yum.repos.d/1password.repo'
+    run_cmd sudo sh -c 'echo -e "[1password]\nname=1password stable channel\nbaseurl=https://downloads.1password.com/linux/rpm/stable/\$basearch\nenabled=1\ngpgcheck=1\nrepo_gpgcheck=1\ngpgkey=\"https://downloads.1password.com/linux/keys/1password.asc\"" > /etc/yum.repos.d/1password.repo'
 }
 
 setup_helium_browser_repository() {
-    info "Configuring Helium Browser repository"
+    if is_repository_configured "helium"; then
+        return 0
+    fi
+
+    info "configuring helium browser repository"
 
     run_cmd sudo dnf copr enable imput/helium
 }
 
 setup_ghostty_repository() {
-    info "Configuring Ghostty repository"
+    if is_repository_configured "ghostty"; then
+        return 0
+    fi
+
+    info "configuring ghostty repository"
 
     run_cmd sudo dnf copr enable scottames/ghostty
 }
@@ -48,11 +77,11 @@ setup_package_repositories() {
     setup_ghostty_repository
 }
 
-# --- Public entrypoint ---
+# --- public entrypoint ---
 install_system_packages() {
-    # TODO: uncomment below once a check
+    # todo: uncomment below once a check
     # setup_package_repositories
 
-    info "Installing system packages"
+    info "installing system packages"
     run_cmd sudo dnf install -y "$@" --skip-broken
 }
