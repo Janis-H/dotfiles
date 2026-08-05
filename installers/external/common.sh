@@ -54,8 +54,8 @@ install_external_zsh_plugins() {
 }
 
 install_external_autotiling() {
-    if [[ "$OS" == "macos" ]]; then
-        info "Skipping autotiling install."
+    if [[ "$OS" == "macos" ||  "$OS" == "debian" ]]; then
+        info "Skipping external autotiling install"
         return 0
     fi
 
