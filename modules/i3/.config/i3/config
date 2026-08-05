@@ -284,7 +284,10 @@ mode "settings" {
 	bindsym $mod+s exec pavucontrol
 
     # poweroff
-    bindsym $mod+Shift+p exec --no-startup-id poweroff
+    bindsym $mod+p exec --no-startup-id poweroff
+
+    # reboot
+    bindsym $mod+Shift+p exec --no-startup-id reboot
 
     # turn on Redshift night-light mode
     bindsym $mod+r exec --no-startup-id ~/.local/bin/redshift-on
