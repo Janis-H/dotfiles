@@ -124,7 +124,7 @@ output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
     bindsym $mod+Shift+Right move right
 
 #
-# Monitor / workspace outputs
+# Monitor / Workspace Outputs:
 #
     # Monitor aliases
     set $left_monitor "HDMI-A-0"
@@ -164,7 +164,7 @@ output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
     workspace $ws_left output $left_monitor
     workspace $ws_right output $right_monitor
 #
-# Workspace shortcuts:
+# Workspace Shortcuts:
 #
     # Switch to workspace
     bindsym $mod+1 workspace number $ws1
@@ -278,6 +278,13 @@ mode "settings" {
 }
 bindsym $mod+Shift+c mode "settings"
 
+#
+# Window Gaps:
+#
+    # Inner gaps for all windows: space between two adjacent windows (or split containers)
+    gaps inner 20
+    # Outer gaps for all windws: space along the screen edges
+    gaps outer 10
 #
 # Status Bar:
 #
