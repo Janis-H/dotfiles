@@ -39,6 +39,7 @@ HEADLESS_PACKAGES=(
     docker-compose-plugin
     golang-go
     nodejs
+    pipx
     python3
     python3-pip
     python3-venv
