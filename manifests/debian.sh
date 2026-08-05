@@ -59,6 +59,9 @@ DESKTOP_PACKAGES=(
     xclip
     wl-clipboard
 
+    # i3 and sway dependency (autotiling)
+    ipython3
+
     # i3 window manager
     i3
     picom

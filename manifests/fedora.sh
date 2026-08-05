@@ -35,10 +35,10 @@ CORE_PACKAGES=(
 #   and project workflow tools
 HEADLESS_PACKAGES=(
     cmake
-    docker-ce
-    docker-ce-cli
     containerd.io
     docker-buildx-plugin
+    docker-ce
+    docker-ce-cli
     docker-compose-plugin
     gcc
     gcc-c++
@@ -63,6 +63,9 @@ DESKTOP_PACKAGES=(
     xclip
     wl-clipboard
     zenity
+
+    # i3 and sway dependency (autotiling)
+    ipython
 
     # i3 window manager
     xorg-x11-server-Xorg
