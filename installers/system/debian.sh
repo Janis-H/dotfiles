@@ -12,7 +12,7 @@ is_system_package_installed() {
     dpkg -s "$1" &>/dev/null
 }
 
-is_repository_setup() {
+is_repository_configured() {
     local repo="$1"
 
     if grep -qsF -- "$repo" /etc/apt/sources.list 2>/dev/null ||
@@ -26,7 +26,7 @@ is_repository_setup() {
 
 # --- Repository Setup ---
 setup_1password_repository() {
-    if is_repository_setup "1password"; then
+    if is_repository_configured "1password"; then
         return 0
     fi
 
@@ -71,7 +71,7 @@ run_cmd sudo gpg --dearmor --yes \
 }
 
 setup_docker_repository() {
-    if is_repository_setup "docker"; then
+    if is_repository_configured "docker"; then
         return 0
     fi
 
@@ -98,7 +98,7 @@ EOF
 }
 
 setup_helium_browser_repository() {
-    if is_repository_setup "helium"; then
+    if is_repository_configured "helium"; then
         return 0
     fi
 
