@@ -288,11 +288,14 @@ bindsym $mod+Shift+c mode "settings"
 #
 # Window Gaps:
 #
+    default_border pixel 3
+    smart_borders off
+    smart_gaps off
     # Inner gaps for all windows: space between two adjacent windows (or split containers)
     gaps inner 20
     # Outer gaps for all windws: space along the screen edges
     gaps outer 10
-#
+# #
 # Status Bar:
 #
 # Read `man 5 sway-bar` for more information about this section.
