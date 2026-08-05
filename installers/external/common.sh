@@ -133,11 +133,12 @@ install_external_herdr() {
     info "Installing Herdr"
 
     if [[ "${DRY_RUN:-false}" == true ]]; then
-        printf '+ curl -fsSL %q' "$install_url"
+        printf '+ curl -fsSL %q | sh' "$install_url"
         return 0
     fi
 
-    run_cmd curl -fsSL "$install_url" | sh
+    printf '+ curl -fsSL %q | sh' "$install_url"
+    curl -fsSL "$install_url" | sh
 }
 
 install_external_oh_my_posh() {
