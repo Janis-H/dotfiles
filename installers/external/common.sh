@@ -54,12 +54,17 @@ install_external_zsh_plugins() {
 }
 
 install_external_autotiling() {
-    if [[ "$OS" == "macos" ||  "$OS" == "debian" ]]; then
+    if [[ "$OS" == "macos" ]]; then
         info "Skipping external autotiling install"
         return 0
     fi
 
     info "Installing autotiling script (i3 and sway dependency)"
+
+    if [[ "$OS" == "debian" ]]; then
+        run_cmd pipx install autotiling
+        return 0
+    fi
 
     run_cmd pip install autotiling
 }
