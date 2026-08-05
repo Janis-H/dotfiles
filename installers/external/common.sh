@@ -44,6 +44,17 @@ install_external_zsh_plugins() {
         "$zsh_plugins_dir/zsh-history-substring-search"
 }
 
+install_external_autotiling() {
+    if [[ "$OS" == "macos" ]]; then
+        info "Skipping autotiling install."
+        return 0
+    fi
+
+    info "Installing autotiling script (i3 and sway dependency)"
+
+    run_cmd pip install autotiling
+}
+
 install_external_herdr() {
     local install_url="https://herdr.dev/install.sh"
 
