@@ -119,10 +119,10 @@ install_external_autotiling() {
     run_cmd pip install autotiling
 }
 
-install_external_julia_mono_font() {
-    local file_name="JuliaMono.zip"
-    local font_name="JuliaMono"
-    local download_url="https://github.com/cormullion/juliamono/releases/latest/download/JuliaMono.zip"
+install_external_dejavu_font() {
+    local file_name="dejavu-fonts-ttf-2.37.zip"
+    local font_name="dejavu-fonts"
+    local download_url="https://github.com/dejavu-fonts/dejavu-fonts/releases/download/version_2_37/dejavu-fonts-ttf-2.37.zip"
 
     install_external_font "$file_name" "$font_name" "$download_url"
 }
@@ -139,6 +139,14 @@ install_external_herdr() {
 
     printf '+ curl -fsSL %q | sh' "$install_url"
     curl -fsSL "$install_url" | sh
+}
+
+install_external_julia_mono_font() {
+    local file_name="JuliaMono.zip"
+    local font_name="JuliaMono"
+    local download_url="https://github.com/cormullion/juliamono/releases/latest/download/JuliaMono.zip"
+
+    install_external_font "$file_name" "$font_name" "$download_url"
 }
 
 install_external_oh_my_posh() {
