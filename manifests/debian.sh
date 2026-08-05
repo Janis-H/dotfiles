@@ -108,6 +108,7 @@ EXTERNAL_DESKTOP=(
     autotiling
     proton_mail
     proton_pass
+    nerd_font
     zen_browser
 )
 

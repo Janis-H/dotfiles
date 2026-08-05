@@ -110,6 +110,7 @@ EXTERNAL_HEADLESS=(
 
 EXTERNAL_DESKTOP=(
     autotiling
+    nerd_font
     proton_mail
     proton_pass
     zen_browser
