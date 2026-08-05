@@ -12,6 +12,18 @@ is_system_package_installed() {
     dpkg -s "$1" &>/dev/null
 }
 
+is_repository_setup() {
+    local repo="$1"
+
+    if grep -qsF -- "$repo" /etc/apt/sources.list 2>/dev/null ||
+        grep -RqsF \
+        --include='*.list' \
+        --include='*.sources' \
+        -- "$repo" /etc/apt/sources.list.d; then
+    info "$repo repository is already configured"
+    fi
+}
+
 # --- Repository Setup ---
 setup_1password_repository() {
     local key_url="https://downloads.1password.com/linux/keys/1password.asc"
@@ -42,16 +54,16 @@ setup_1password_repository() {
         "$key_file"
 
     run_cmd sudo tee /etc/apt/sources.list.d/1password.list >/dev/null <<EOF
-deb [arch=amd64 signed-by=/usr/share/keyrings/1password-archive-keyring.gpg] https://downloads.1password.com/linux/debian/amd64 stable main
+    deb [arch=amd64 signed-by=/usr/share/keyrings/1password-archive-keyring.gpg] https://downloads.1password.com/linux/debian/amd64 stable main
 EOF
 
-    run_cmd sudo curl -fsSL \
-        "$policy_url" \
-        -o "/etc/debsig/policies/$policy_id/1password.pol"
+run_cmd sudo curl -fsSL \
+    "$policy_url" \
+    -o "/etc/debsig/policies/$policy_id/1password.pol"
 
-    run_cmd sudo gpg --dearmor --yes \
-        --output "/usr/share/debsig/keyrings/$policy_id/debsig.gpg" \
-        "$key_file"
+run_cmd sudo gpg --dearmor --yes \
+    --output "/usr/share/debsig/keyrings/$policy_id/debsig.gpg" \
+    "$key_file"
 }
 
 setup_docker_repository() {
@@ -66,15 +78,15 @@ setup_docker_repository() {
 
     # Add the repository to Apt sources:
     run_cmd sudo tee /etc/apt/sources.list.d/docker.sources <<EOF
-Types: deb
-URIs: https://download.docker.com/linux/ubuntu
-Suites: $(. /etc/os-release && echo "${UBUNTU_CODENAME:-$VERSION_CODENAME}")
-Components: stable
-Architectures: $(dpkg --print-architecture)
-Signed-By: /etc/apt/keyrings/docker.asc
+    Types: deb
+    URIs: https://download.docker.com/linux/ubuntu
+    Suites: $(. /etc/os-release && echo "${UBUNTU_CODENAME:-$VERSION_CODENAME}")
+    Components: stable
+    Architectures: $(dpkg --print-architecture)
+    Signed-By: /etc/apt/keyrings/docker.asc
 EOF
 
-    run_cmd sudo apt update
+run_cmd sudo apt update
 }
 
 setup_helium_browser_repository() {
