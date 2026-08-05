@@ -12,9 +12,6 @@
 # - replace sway-bar with waybar
 # - edit idle configurations
 # - add open terminal in scratchpad shortcut
-# - install nerdfont (might be good to automate install for all the OS, sans macos )
-# - add i3ipc to manifests
-
 
 ### Variables
 #
