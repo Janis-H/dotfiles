@@ -11,6 +11,7 @@
 # - check if the "include .*" lines are debian exclusive
 # - replace sway-bar with waybar
 # - edit idle configurations
+# - add open terminal in scratchpad shortcut
 
 ### Variables
 #
