@@ -15,15 +15,11 @@ is_system_package_installed() {
 is_repository_configured() {
     local repo="$1"
 
-    repo_dirs=(
-        /etc/yum.repos.d
-        /etc/distro.repos.d
-        /usr/share/dnf5/repos.d
-    )
+    repos_dir="/etc/yum.repos.d"
 
     if grep -RqsF \
         --include='*.repo' \
-        -- "$repo" "${repo_dirs[@]}"; then
+        -- "$repo" "$repos_dir"; then
     info "$repo repository is already configured"
     fi
 }
@@ -79,8 +75,7 @@ setup_package_repositories() {
 
 # --- public entrypoint ---
 install_system_packages() {
-    # todo: uncomment below once a check
-    # setup_package_repositories
+    setup_package_repositories
 
     info "installing system packages"
     run_cmd sudo dnf install -y "$@" --skip-broken
