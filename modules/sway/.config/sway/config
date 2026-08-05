@@ -5,11 +5,9 @@
 # Read `man 5 sway` for a complete reference.
 
 # TODO: copy configs from i3 config to sway:
-# - monitor aliases
-# - numbered and non-numbered workspaces and shortcuts
 # - create and call fix-monitors-sway script
 # - app keyboard shortcuts
-# - find replacement for redshift (Xorg only)
+# - find replacement for redshift (Xorg only application)
 # - check if the "include .*" lines are debian exclusive
 # - replace sway-bar with waybar
 # - edit idle configurations
@@ -123,6 +121,44 @@ output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
     bindsym $mod+Shift+Down move down
     bindsym $mod+Shift+Up move up
     bindsym $mod+Shift+Right move right
+
+# Monitor aliases
+set $left_monitor "HDMI-A-0"
+set $center_monitor "DisplayPort-0"
+set $right_monitor "DisplayPort-1"
+
+# Define workspaces
+workspace 1 output $center_monitor
+workspace 2 output $center_monitor
+workspace 3 output $center_monitor
+workspace 4 output $center_monitor
+workspace 5 output $center_monitor
+workspace 6 output $center_monitor
+workspace 7 output $center_monitor
+workspace 8 output $center_monitor
+workspace 9 output $center_monitor
+workspace 10 output $center_monitor
+
+# Define names for non-numbered side workspaces
+set $ws_left "left"
+set $ws_right "right"
+
+# Define side workspaces
+workspace $ws_left output $left_monitor
+workspace $ws_right output $right_monitor
+
+# Switch to side workspace
+bindsym $mod+grave workspace $ws_left
+bindsym $mod+equal workspace $ws_right
+
+# Move focused container to side workspace
+bindsym $mod+Shift+grave move container to workspace $ws_left
+bindsym $mod+Shift+equal move container to workspace $ws_right
+
+# Workspace left and right start stacked, but I can override it later
+exec --no-startup-id swaymsg 'workspace $ws_left; layout stacked'
+exec --no-startup-id swaymsg 'workspace $ws_right; layout stacked'
+
 #
 # Workspaces:
 #
