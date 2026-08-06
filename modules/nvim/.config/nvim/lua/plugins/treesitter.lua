@@ -29,7 +29,7 @@ return {
             parsers.tmux = {
                 install_info = {
                     url = "https://github.com/Freed-Wu/tree-sitter-tmux",
-                    branch = "master",
+                    branch = "main",
                     queries = "queries",
                 },
                 tier = 2,
