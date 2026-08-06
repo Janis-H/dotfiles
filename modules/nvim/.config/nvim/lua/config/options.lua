@@ -1,4 +1,7 @@
 -- Core settings:
+-- font
+vim.opt.guifont = "Fira Code:h15"
+
 -- search options
 vim.opt.ignorecase = true       -- case-insensitive search
 vim.opt.smartcase = true        -- case-sensitive if uppercase present
