@@ -66,6 +66,7 @@ DESKTOP_PACKAGES=(
     sway
     swayidle
     swaylock
+    waybar
     xdg-desktop-portal-wlr
     xdg-desktop-portal-gtk
 )
@@ -112,4 +113,6 @@ HEADLESS_STOW_MODULES=(
 )
 
 # dotfile modules for GUI/workstation setup
-DESKTOP_STOW_MODULES=()
+DESKTOP_STOW_MODULES=(
+    sway
+)

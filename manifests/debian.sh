@@ -61,7 +61,8 @@ DESKTOP_PACKAGES=(
     xclip
     wl-clipboard
 
-    # i3 and sway dependency (autotiling)
+    # i3 and sway dependency (autotiling+other scripts)
+    python3-i3ipc
     ipython3
 
     # i3 window manager
@@ -138,4 +139,5 @@ HEADLESS_STOW_MODULES=(
 DESKTOP_STOW_MODULES=(
     i3
     picom
+    sway
 )
