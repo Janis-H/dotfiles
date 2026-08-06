@@ -31,6 +31,11 @@ set $term ghostty
 # set $menu dmenu_path | wmenu | xargs swaymsg exec --
 set $menu rofi -show drun
 
+# Font
+font pango:DejaVu Sans Mono 15
+# font pango:Fira Code 15
+# font pango:Julia Mono 15
+
 # TODO: check if these "include" lines are compatible with other linux OS's
 include /etc/sway/config-vars.d/*
 
