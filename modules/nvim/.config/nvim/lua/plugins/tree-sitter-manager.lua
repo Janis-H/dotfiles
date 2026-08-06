@@ -41,6 +41,7 @@ return {
 
             -- Shell / dotfiles
             "bash",
+            "tmux",
             "zsh",
 
             -- Git

@@ -24,7 +24,19 @@ return {
             }
         end
 
+        local function register_tmux()
+            require("nvim-treesitter.parsers").tmux = {
+                install_info = {
+                    url = "https://github.com/Freed-Wu/tree-sitter-tmux",
+                    revision = "bd334851188206824595987350c0bfb60ff76f75",
+                    generate = true,
+                    queries = "queries",
+                },
+            }
+        end
+
         register_ghostty()
+        register_tmux()
 
         -- Re-register the custom parser after nvim-treesitter updates its registry
         vim.api.nvim_create_autocmd("User", {
@@ -41,6 +53,7 @@ return {
 
             -- Shell / dotfiles
             "bash",
+            "tmux",
             "zsh",
 
             -- Git
