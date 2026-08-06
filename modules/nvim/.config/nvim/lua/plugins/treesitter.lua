@@ -14,35 +14,40 @@ return {
             install_dir = vim.fn.stdpath("data") .. "/site",
         })
 
-        local function register_ghostty()
-            require("nvim-treesitter.parsers").ghostty = {
+        local function register_custom_parsers()
+            local parsers = require("nvim-treesitter.parsers")
+
+            parsers.ghostty = {
                 install_info = {
                     url = "https://github.com/bezhermoso/tree-sitter-ghostty",
                     revision = "7f41507014534e5f72d16e4639c0346d0adb8054",
                     queries = "queries/ghostty",
                 },
+                tier = 2,
             }
-        end
 
-        local function register_tmux()
-            require("nvim-treesitter.parsers").tmux = {
+            parsers.tmux = {
                 install_info = {
                     url = "https://github.com/Freed-Wu/tree-sitter-tmux",
-                    revision = "bd334851188206824595987350c0bfb60ff76f75",
-                    generate = true,
+                    branch = "master",
                     queries = "queries",
                 },
+                tier = 2,
             }
         end
-
-        register_ghostty()
-        register_tmux()
 
         -- Re-register the custom parser after nvim-treesitter updates its registry
         vim.api.nvim_create_autocmd("User", {
+            group = vim.api.nvim_create_augroup(
+                "treesitter-custom-parsers",
+                { clear = true }
+            ),
             pattern = "TSUpdate",
-            callback = register_ghostty,
+            callback = register_custom_parsers,
         })
+
+        -- Makes the parsers available immediately
+        register_custom_parsers()
 
         local ensure_installed = {
             -- Neovim / Lua
@@ -119,6 +124,7 @@ return {
             "rasi",
         }
 
+        -- Must happen after creating the TSUpdate autocmd
         treesitter.install(ensure_installed)
 
         vim.api.nvim_create_autocmd("FileType", {
