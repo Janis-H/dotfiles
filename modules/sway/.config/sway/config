@@ -7,6 +7,11 @@
 # - edit idle configurations
 # - add open terminal in scratchpad shortcut
 
+# Fonts
+font pango:DejaVu Sans Mono 15
+# font pango:Fira Code 15
+# font pango:Julia Mono 15
+
 ### Variables
 #
 # Logo key. Use Mod1 for Alt.
@@ -24,11 +29,6 @@ set $term ghostty
 # on the original workspace that the command was run on.
 # set $menu dmenu_path | wmenu | xargs swaymsg exec --
 set $menu rofi -show drun
-
-# Fonts
-font pango:DejaVu Sans Mono 15
-# font pango:Fira Code 15
-# font pango:Julia Mono 15
 
 # TODO: check if these "include" lines are compatible with other linux OS's
 include /etc/sway/config-vars.d/*
