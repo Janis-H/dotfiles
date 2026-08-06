@@ -82,6 +82,11 @@ DESKTOP_PACKAGES=(
     wl-clipboard
     xorg-xwayland
 
+    # Niri-specific tooling
+    niri
+    xwayland-satellite
+    xdg-desktop-portal-gnome
+
     # Sway-specific tooling
     sway
     swayidle
