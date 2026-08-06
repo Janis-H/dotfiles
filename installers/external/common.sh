@@ -7,43 +7,68 @@ source "$DOTFILES_DIR/lib/install-or-update-repo.sh"
 
 # --- Helpers ---
 font_is_installed() {
-    local font_name="$1"
+    local font_family="$1"
 
-    [[ -n "$(fc-list "$font_name" family)" ]]
+    [[ -n "$font_family" ]] || return 1
+
+    fc-list --format='%{family}\n' |
+        awk -F ',' -v target="$font_family" '
+            BEGIN {
+                target = tolower(target)
+            }
+
+            {
+                for (i = 1; i <= NF; i++) {
+                    family = $i
+                    gsub(/^[[:space:]]+|[[:space:]]+$/, "", family)
+
+                    if (tolower(family) == target) {
+                        found = 1
+                    }
+                }
+            }
+
+            END {
+                exit !found
+            }
+        '
 }
 
 install_external_font() (
     local file_name="$1"
-    local font_name="$2"
-    local download_url="$3"
+    local install_dir="$2"
+    local font_family="$3"
+    local download_url="$4"
 
     local fonts_folder="$HOME/.local/share/fonts"
-    local install_folder="$fonts_folder/$font_name"
-    local tmp_dir
-    local download_path
+    local install_folder="$fonts_folder/$install_dir"
 
-    if font_is_installed "$font_name"; then
-        info "$font_name is already installed"
+    if font_is_installed "$font_family"; then
+        info "$font_family is already installed"
         return 0
     fi
 
-    info "Installing $font_name font"
+    info "Installing $font_family font"
 
     # Setup temp download directory
-    tmp_dir="$(mktemp -d)" || {
-        error "Failed to create temporary directory"
-        return 1
-    }
+    local tmp_dir
+    tmp_dir="$(mktemp -d)"
+    trap 'rm -rf "$tmp_dir"' EXIT
 
-    trap 'rm -rf -- "$tmp_dir"' EXIT
+    local download_path="$tmp_dir/$file_name"
 
-    download_path="$tmp_dir/$file_name"
-
-    run_cmd mkdir -p "$tmp_dir/$file_name" || return 1
+    run_cmd mkdir -p "$install_folder" || return 1
 
     # Download and extract
-    run_cmd wget -P "$download_path" "$download_url" || return 1
-    run_cmd 7z x "$tmp_dir/$file_name" -o "$install_folder" || reutrn 1
+    if ! run_cmd wget -O "$download_path" "$download_url"; then
+        error "Failed to download $font_family"
+        return 1
+    fi
+
+    if ! run_cmd 7z x -y "$download_path" "-o$install_folder"; then
+        error "Failed to extract $font_family"
+        return 1
+    fi
 
     # Rebuild font cache
     run_cmd fc-cache -fv || return 1
@@ -54,12 +79,13 @@ install_external_font() (
     fi
 
     # Verify Install
-    if font_is_installed "$font_name"; then
-        info "$font_name installed successfully"
-    else
-        error "Failed to install $font_name"
-        return 1
+    if font_is_installed "$font_family"; then
+        info "$font_family installed successfully"
+        return 0
     fi
+
+    error "Failed to install $font_family"
+    return 1
 )
 
 # --- External functions ---
@@ -121,18 +147,28 @@ install_external_autotiling() {
 
 install_external_dejavu_font() {
     local file_name="dejavu-fonts-ttf-2.37.zip"
-    local font_name="dejavu-fonts"
+    local install_dir="DejaVu"
+    local font_family="DejaVu Sans"
     local download_url="https://github.com/dejavu-fonts/dejavu-fonts/releases/download/version_2_37/dejavu-fonts-ttf-2.37.zip"
 
-    install_external_font "$file_name" "$font_name" "$download_url"
+    install_external_font \
+        "$file_name" \
+        "$install_dir" \
+        "$font_family" \
+        "$download_url"
 }
 
 install_external_fira_code_font() {
     local file_name="Fira_Code_v6.2.zip"
-    local font_name="FiraCode"
+    local install_dir="FiraCode"
+    local font_family="Fira Code"
     local download_url="https://github.com/tonsky/FiraCode/releases/download/6.2/Fira_Code_v6.2.zip"
 
-    install_external_font "$file_name" "$font_name" "$download_url"
+    install_external_font \
+        "$file_name" \
+        "$install_dir" \
+        "$font_family" \
+        "$download_url"
 }
 
 install_external_herdr() {
@@ -151,10 +187,15 @@ install_external_herdr() {
 
 install_external_julia_mono_font() {
     local file_name="JuliaMono.zip"
-    local font_name="JuliaMono"
+    local install_dir="JuliaMono"
+    local font_family="JuliaMono"
     local download_url="https://github.com/cormullion/juliamono/releases/latest/download/JuliaMono.zip"
 
-    install_external_font "$file_name" "$font_name" "$download_url"
+    install_external_font \
+        "$file_name" \
+        "$install_dir" \
+        "$font_family" \
+        "$download_url"
 }
 
 install_external_oh_my_posh() {
