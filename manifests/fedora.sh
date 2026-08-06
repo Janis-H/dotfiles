@@ -95,6 +95,7 @@ DESKTOP_PACKAGES=(
     # Shared Wayland tooling
     waybar
     wl-clipboard
+    xorg-x11-server-Xwayland
 
     # Sway-specific tooling
     sway
