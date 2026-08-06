@@ -213,29 +213,6 @@ bindsym $mod+Shift+equal move container to workspace $ws_right
 exec --no-startup-id i3-msg 'workspace $ws_left; layout stacked'
 exec --no-startup-id i3-msg 'workspace $ws_right; layout stacked'
 
-# Color schemes for windows
-#   - alter transparency via this guide:
-#     https://gist.github.com/lopspower/03fb1cc0ac9f32ef38f4?ref=itsfoss.com
-set $text        #e3eaf2
-set $bar-color   #171a2199
-# focused container and workspaces colors
-set $focused-co  #5f7fa699
-set $focused-ws  #5f7fa680
-
-# inactive background and text colors
-set $in-bgcolor  #2a2f3a66
-set $in-text     #9099a666
-
-# urgent background colors
-set $u-bgcolor   #d95f5f
-set $indicator   #4a5568
-
-#                       border          background      text            indicator (a line which shows where the next window will be placed)
-client.focused          $focused-co     $focused-co     $text           $indicator
-client.unfocused        $in-bgcolor     $in-bgcolor     $in-text        $in-bgcolor
-client.focused_inactive $in-bgcolor     $in-bgcolor     $in-text        $in-bgcolor
-client.urgent           $u-bgcolor      $u-bgcolor      $text           $u-bgcolor
-
 # Enabling "Smart Gaps" means no gaps will be shown where
 # there is one window
 smart_gaps off
@@ -473,6 +450,30 @@ assign [class=$youtube_class] $ws_right
 for_window [class=".*"] border normal 3
 for_window [class=$pika_backup_class] \
     floating enable
+
+# Color schemes for windows
+#   - alter transparency via this guide:
+#     https://gist.github.com/lopspower/03fb1cc0ac9f32ef38f4?ref=itsfoss.com
+set $text        #e3eaf2
+set $bar-color   #171a2199
+
+# focused container and workspaces colors
+set $focused-co  #5f7fa699
+set $focused-ws  #5f7fa680
+
+# inactive background and text colors
+set $in-bgcolor  #2a2f3a66
+set $in-text     #9099a666
+
+# urgent background colors
+set $u-bgcolor   #d95f5f
+set $indicator   #4a5568
+
+#                       border          background      text            indicator (a line which shows where the next window will be placed)
+client.focused          $focused-co     $focused-co     $text           $indicator
+client.unfocused        $in-bgcolor     $in-bgcolor     $in-text        $in-bgcolor
+client.focused_inactive $in-bgcolor     $in-bgcolor     $in-text        $in-bgcolor
+client.urgent           $u-bgcolor      $u-bgcolor      $text           $u-bgcolor
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
