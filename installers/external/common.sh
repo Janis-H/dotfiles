@@ -127,6 +127,14 @@ install_external_dejavu_font() {
     install_external_font "$file_name" "$font_name" "$download_url"
 }
 
+install_external_fira_code_font() {
+    local file_name="Fira_Code_v6.2.zip"
+    local font_name="FiraCode"
+    local download_url="https://github.com/tonsky/FiraCode/releases/download/6.2/Fira_Code_v6.2.zip"
+
+    install_external_font "$file_name" "$font_name" "$download_url"
+}
+
 install_external_herdr() {
     local install_url="https://herdr.dev/install.sh"
 
