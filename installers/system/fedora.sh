@@ -66,11 +66,22 @@ setup_ghostty_repository() {
     run_cmd sudo dnf copr enable scottames/ghostty
 }
 
+setup_swayfx_repository() {
+    if is_repository_configured "swayfx"; then
+        return 0
+    fi
+
+    info "Configuring swayfx repository"
+
+    run_cmd sudo dnf copr enable -y swayfx/swayfx
+}
+
 setup_package_repositories() {
-    setup_docker_repository
     setup_1password_repository
-    setup_helium_browser_repository
+    setup_docker_repository
     setup_ghostty_repository
+    setup_helium_browser_repository
+    setup_swayfx_repository
 }
 
 # --- public entrypoint ---

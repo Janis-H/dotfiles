@@ -98,7 +98,8 @@ DESKTOP_PACKAGES=(
     xorg-x11-server-Xwayland
 
     # Sway-specific tooling
-    sway
+    # sway
+    swayfx
     swayidle
     swaylock
     xdg-desktop-portal-wlr
