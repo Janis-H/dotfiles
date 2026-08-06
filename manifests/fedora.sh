@@ -43,6 +43,7 @@ HEADLESS_PACKAGES=(
     gcc
     gcc-c++
     golang
+    ipython
     make
     nodejs
     python3
@@ -57,31 +58,49 @@ HEADLESS_PACKAGES=(
 # GUI/workstation additions:
 # - window managers, launchers, graphical terminals, editors, and GUI apps
 DESKTOP_PACKAGES=(
+    # General desktop
     1password
     flatpak
-    helium-bin
     ghostty
-    xclip
-    wl-clipboard
+    helium-bin
     zenity
 
-    # i3 and sway dependency (autotiling+other scripts)
-    python3-i3ipc
-    ipython
+    # Desktop audio
+    pipewire
+    pipewire-alsa
+    pipewire-pulseaudio
+    wireplumber
 
-    # i3 window manager
-    xorg-x11-server-Xorg
-    i3
-    picom
+    # Audio controls and diagnostics
+    alsa-utils
+    pavucontrol
+    pulseaudio-utils
+
+    # Camera controls and diagnostics
+    v4l-utils
+
+    # Desktop portals
+    xdg-desktop-portal-gtk
+
+    # Shared window-manager tooling
+    python3-i3ipc
     rofi
 
-    # sway window manager
+    # i3 / X11 tooling
+    i3
+    picom
+    xclip
+    xorg-x11-server-Xorg
+
+    # Shared Wayland tooling
+    waybar
+    wl-clipboard
+
+    # Sway-specific tooling
     sway
     swayidle
     swaylock
-    waybar
     xdg-desktop-portal-wlr
-    xdg-desktop-portal-gtk
 )
 
 # ─────────────────────────────────────────────────────────────

@@ -56,19 +56,37 @@ HEADLESS_PACKAGES=(
 # GUI/workstation additions:
 # - window managers, launchers, graphical terminals, editors, and GUI apps
 DESKTOP_PACKAGES=(
+    # General desktop
     flatpak
     ghostty
-    xclip
-    wl-clipboard
     zenity
 
-    # sway window manager
+    # Desktop audio
+    pipewire
+    pipewire-alsa
+    pipewire-pulse
+    wireplumber
+
+    # Audio controls and diagnostics
+    alsa-utils
+    pavucontrol
+
+    # Camera controls and diagnostics
+    v4l-utils
+
+    # Desktop portals
+    xdg-desktop-portal-gtk
+
+    # Shared Wayland tooling
+    waybar
+    wl-clipboard
+    xorg-xwayland
+
+    # Sway-specific tooling
     sway
     swayidle
     swaylock
-    waybar
     xdg-desktop-portal-wlr
-    xdg-desktop-portal-gtk
 )
 
 # ─────────────────────────────────────────────────────────────

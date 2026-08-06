@@ -23,7 +23,6 @@ CORE_PACKAGES=(
     tar
     tmux
     unzip
-    zenity
     zsh
 )
 
@@ -39,6 +38,7 @@ HEADLESS_PACKAGES=(
     docker-ce-cli
     docker-compose-plugin
     golang-go
+    ipython3
     nodejs
     pipx
     python3
@@ -54,28 +54,47 @@ HEADLESS_PACKAGES=(
 # GUI/workstation additions:
 # - window managers, launchers, graphical terminals, editors, and GUI apps
 DESKTOP_PACKAGES=(
+    # General desktop
     1password
     flatpak
-    helium-bin
     ghostty
+    helium-bin
     xclip
-    wl-clipboard
+    zenity
 
-    # i3 and sway dependency (autotiling+other scripts)
+    # Desktop audio
+    pipewire-audio
+
+    # Audio controls and diagnostics
+    alsa-utils
+    pavucontrol
+    pulseaudio-utils
+
+    # Camera controls and diagnostics
+    v4l-utils
+
+    # Desktop portals
+    xdg-desktop-portal-gtk
+
+    # Shared window-manager tooling
     python3-i3ipc
-    ipython3
-
-    # i3 window manager
-    i3
-    picom
     rofi
 
-    # sway window manager
+    # i3 / X11 tooling
+    i3
+    picom
+
+    # Shared Wayland tooling
+    waybar
+    wl-clipboard
+    xwayland
+
+    # Sway-specific tooling
+    slurp
     sway
     swayidle
     swaylock
     xdg-desktop-portal-wlr
-    xdg-desktop-portal-gtk
 )
 
 # ─────────────────────────────────────────────────────────────
