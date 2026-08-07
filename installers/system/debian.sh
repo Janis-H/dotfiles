@@ -144,6 +144,8 @@ setup_helium_browser_repository() {
 }
 
 setup_package_repositories() {
+    info "Configuring package repositories"
+
     setup_1password_repository "$@"
     setup_docker_repository "$@"
     setup_helium_browser_repository "$@"
