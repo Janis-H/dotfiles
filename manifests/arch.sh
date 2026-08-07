@@ -78,9 +78,16 @@ DESKTOP_PACKAGES=(
     xdg-desktop-portal-gtk
 
     # Shared Wayland tooling
+    mako
     waybar
     wl-clipboard
     xorg-xwayland
+
+    # Hyprland-specific tooling
+    hyprland
+    hypridle
+    hyprlock
+    xdg-desktop-portal-hyprland
 
     # Niri-specific tooling
     niri
