@@ -117,8 +117,10 @@ setup_package_repositories() {
 
 # --- public entrypoint ---
 install_system_packages() {
-    setup_package_repositories "$@"
+    local packages=("$@")
+
+    setup_package_repositories "${packages[@]}"
 
     info "installing system packages"
-    run_cmd sudo dnf install -y "$@" --skip-broken
+    run_cmd sudo dnf install -y "${packages[@]}" --skip-broken
 }
