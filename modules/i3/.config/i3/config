@@ -18,7 +18,7 @@ set $alt Mod1
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
-font pango:DejaVu Sans Mono 15
+font pango:DejaVu Sans Mono 18
 # font pango:Fira Code 15
 # font pango:Julia Mono 15
 
@@ -264,19 +264,16 @@ bindsym $mod+r mode "resize"
 
 # settings mode
 mode "settings" {
-	# open PulseAudio
-	bindsym $mod+s exec pavucontrol
-
     # poweroff
-    bindsym $mod+p exec --no-startup-id poweroff
+    bindsym $mod+Shift+p exec --no-startup-id poweroff
 
     # reboot
-    bindsym $mod+Shift+p exec --no-startup-id reboot
+    bindsym $mod+Shift+r exec --no-startup-id reboot
 
     # turn on Redshift night-light mode
-    bindsym $mod+r exec --no-startup-id ~/.local/bin/redshift-on
+    bindsym $mod+n exec --no-startup-id ~/.local/bin/redshift-on
 
-    bindsym $mod+Shift+r exec --no-startup-id ~/.local/bin/redshift-off
+    bindsym $mod+Shift+n exec --no-startup-id ~/.local/bin/redshift-off
 
 	# back to normal: Enter or Escape or $mod+s
 	bindsym Return mode "default"
@@ -479,15 +476,16 @@ client.urgent           $u-bgcolor    $u-bgcolor    $text      $u-bgcolor
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
-        status_command i3status -c /home/$USER/.config/i3status/i3status.conf
-        colors {
-                background $bar-color
-                separator #191919
-                #                       border          background      text
-                focused_workspace       $focused-ws     $focused-ws     $text
-                inactive_workspace      $in-bgcolor     $in-bgcolor     $text
-                urgent_workspace        $u-bgcolor      $u-bgcolor      $text
-        }
-        i3bar_command i3bar --transparency
-        tray_output none
+    font pango:DejaVu Sans Mono 17
+    status_command i3status -c /home/$USER/.config/i3status/i3status.conf
+    colors {
+            background $bar-color
+            separator #191919
+            #                       border          background      text
+            focused_workspace       $focused-ws     $focused-ws     $text
+            inactive_workspace      $in-bgcolor     $in-bgcolor     $text
+            urgent_workspace        $u-bgcolor      $u-bgcolor      $text
+    }
+    i3bar_command i3bar --transparency
+    tray_output none
 }
