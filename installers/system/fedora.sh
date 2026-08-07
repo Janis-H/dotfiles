@@ -39,15 +39,16 @@ is_in_package_list() {
     done
 
     if ! "$is_in_list"; then
-        info "Skipping $target_package repo setup"
+        info "Skipping $target_package repository setup"
     fi
 }
 
 # --- repository setup ---
 setup_docker_repository() {
-    local pkg="docker"
+    local pkg="docker-ce"
+    local repo="docker"
 
-    if ! is_in_packages_list "$pkg" "$@" || is_repository_configured "$pkg"; then
+    if ! is_in_packages_list "$pkg" "$@" || is_repository_configured "$repo"; then
         return 0
     fi
 
@@ -58,6 +59,7 @@ setup_docker_repository() {
 
 setup_1password_repository() {
     local pkg="1password"
+    local repo="1password"
 
     if ! is_in_packages_list "$pkg" "$@" || is_repository_configured "$pkg"; then
         return 0
@@ -71,8 +73,9 @@ setup_1password_repository() {
 
 setup_helium_browser_repository() {
     local pkg="helium-bin"
+    local repo="helium"
 
-    if ! is_in_packages_list "$pkg" "$@" || is_repository_configured "$pkg"; then
+    if ! is_in_packages_list "$pkg" "$@" || is_repository_configured "$repo"; then
         return 0
     fi
 
@@ -83,8 +86,9 @@ setup_helium_browser_repository() {
 
 setup_ghostty_repository() {
     local pkg="ghostty"
+    local repo="ghostty"
 
-    if ! is_in_packages_list "$pkg" "$@" || is_repository_configured "$pkg"; then
+    if ! is_in_packages_list "$pkg" "$@" || is_repository_configured "$repo"; then
         return 0
     fi
 
@@ -95,8 +99,9 @@ setup_ghostty_repository() {
 
 setup_swayfx_repository() {
     local pkg="swayfx"
+    local repo="swayfx"
 
-    if ! is_in_packages_list "$pkg" "$@" || is_repository_configured "$pkg"; then
+    if ! is_in_packages_list "$pkg" "$@" || is_repository_configured "$repo"; then
         return 0
     fi
 

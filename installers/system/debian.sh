@@ -24,9 +24,31 @@ is_repository_configured() {
     fi
 }
 
+is_in_packages_list() {
+    local target_package="$1"
+    shift
+
+    local packages_list=("$@")
+
+    local is_in_list=false
+
+    for pkg in "${packages_list[@]}"; do
+        if [[ "$pkg" = "$target_package" ]]; then
+            is_in_list=true
+        fi
+    done
+
+    if ! "$is_in_list"; then
+        info "Skipping $target_package repository setup"
+    fi
+}
+
 # --- Repository Setup ---
 setup_1password_repository() {
-    if is_repository_configured "1password"; then
+    local pkg="1password"
+    local repo="1password"
+
+    if ! is_in_packages_list "$pkg" "$@" || is_repository_configured "$repo"; then
         return 0
     fi
 
@@ -71,7 +93,10 @@ run_cmd sudo gpg --dearmor --yes \
 }
 
 setup_docker_repository() {
-    if is_repository_configured "docker"; then
+    local pkg="docker-ce"
+    local repo="docker"
+
+    if ! is_in_packages_list "$pkg" "$@" || is_repository_configured "$repo"; then
         return 0
     fi
 
@@ -98,7 +123,10 @@ EOF
 }
 
 setup_helium_browser_repository() {
-    if is_repository_configured "helium"; then
+    local pkg="helium-bin"
+    local repo="helium"
+
+    if ! is_in_packages_list "$pkg" "$@" || is_repository_configured "$repo"; then
         return 0
     fi
 
@@ -116,17 +144,18 @@ setup_helium_browser_repository() {
 }
 
 setup_package_repositories() {
-    # TODO: add package check before setting up a repository
-    setup_1password_repository
-    setup_docker_repository
-    setup_helium_browser_repository
+    setup_1password_repository "$@"
+    setup_docker_repository "$@"
+    setup_helium_browser_repository "$@"
 }
 
 # --- Public entrypoint ---
 install_system_packages() {
-    setup_package_repositories
+    local packages=("$@")
+
+    setup_package_repositories "${packages[@]}"
 
     info "Installing system packages"
     run_cmd sudo apt-get update
-    run_cmd sudo apt-get install -y "$@"
+    run_cmd sudo apt-get install -y "${packages[@]}"
 }
