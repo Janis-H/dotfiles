@@ -244,42 +244,41 @@ exec_always autotiling
 #
 # Resizing containers:
 #
-mode "resize" {
-    # left will shrink the containers width
-    # right will grow the containers width
-    # up will shrink the containers height
-    # down will grow the containers height
-    bindsym $left resize shrink width 10px
-    bindsym $down resize grow height 10px
-    bindsym $up resize shrink height 10px
-    bindsym $right resize grow width 10px
+    mode "resize" {
+        # left will shrink the containers width
+        # right will grow the containers width
+        # up will shrink the containers height
+        # down will grow the containers height
+        bindsym $left resize shrink width 10px
+        bindsym $down resize grow height 10px
+        bindsym $up resize shrink height 10px
+        bindsym $right resize grow width 10px
 
-    # Ditto, with arrow keys
-    bindsym Left resize shrink width 10px
-    bindsym Down resize grow height 10px
-    bindsym Up resize shrink height 10px
-    bindsym Right resize grow width 10px
+        # Ditto, with arrow keys
+        bindsym Left resize shrink width 10px
+        bindsym Down resize grow height 10px
+        bindsym Up resize shrink height 10px
+        bindsym Right resize grow width 10px
 
-    # Return to default mode
-    bindsym Return mode "default"
-    bindsym Escape mode "default"
-}
-bindsym $mod+r mode "resize"
+        # Return to default mode
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+    }
+    bindsym $mod+r mode "resize"
 
-mode "settings" {
-    # poweroff
-    bindsym $mod+p exec --no-startup-id poweroff
+    mode "settings" {
+        # poweroff
+        bindsym $mod+p exec --no-startup-id poweroff
 
-    # reboot
-    bindsym $mod+Shift+p exec --no-startup-id poweroff
+        # reboot
+        bindsym $mod+Shift+p exec --no-startup-id poweroff
 
-    # Return to default mode
-    bindsym Return mode "default"
-    bindsym Escape mode "default"
-    bindsym $mod+Shift+c mode "default"
-}
-bindsym $mod+Shift+c mode "settings"
-
+        # Return to default mode
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+        bindsym $mod+Shift+c mode "default"
+    }
+    bindsym $mod+Shift+c mode "settings"
 #
 # Window Gaps:
 #
