@@ -44,19 +44,6 @@ is_in_package_list() {
 }
 
 # --- repository setup ---
-setup_docker_repository() {
-    local pkg="docker-ce"
-    local repo="docker"
-
-    if ! is_in_packages_list "$pkg" "$@" || is_repository_configured "$repo"; then
-        return 0
-    fi
-
-    info "configuring $pkg repository"
-
-    run_cmd sudo dnf config-manager addrepo --from-repofile https://download.docker.com/linux/fedora/docker-ce.repo
-}
-
 setup_1password_repository() {
     local pkg="1password"
     local repo="1password"
@@ -69,6 +56,32 @@ setup_1password_repository() {
 
     run_cmd sudo rpm --import https://downloads.1password.com/linux/keys/1password.asc
     run_cmd sudo sh -c 'echo -e "[1password]\nname=1password stable channel\nbaseurl=https://downloads.1password.com/linux/rpm/stable/\$basearch\nenabled=1\ngpgcheck=1\nrepo_gpgcheck=1\ngpgkey=\"https://downloads.1password.com/linux/keys/1password.asc\"" > /etc/yum.repos.d/1password.repo'
+}
+
+setup_dms_repository() {
+    local pkg="dms"
+    local repo="dms"
+
+    if ! is_in_packages_list "$pkg" "$@" || is_repository_configured "$repo"; then
+        return 0
+    fi
+
+    info "Configuring $pkg repository"
+
+    run_cmd sudo dnf copr enable -y avengemedia/dms
+}
+
+setup_docker_repository() {
+    local pkg="docker-ce"
+    local repo="docker"
+
+    if ! is_in_packages_list "$pkg" "$@" || is_repository_configured "$repo"; then
+        return 0
+    fi
+
+    info "configuring $pkg repository"
+
+    run_cmd sudo dnf config-manager addrepo --from-repofile https://download.docker.com/linux/fedora/docker-ce.repo
 }
 
 setup_helium_browser_repository() {
@@ -97,20 +110,6 @@ setup_ghostty_repository() {
     run_cmd sudo dnf copr enable scottames/ghostty
 }
 
-
-setup_dms_repository() {
-    local pkg="dms"
-    local repo="dms"
-
-    if ! is_in_packages_list "$pkg" "$@" || is_repository_configured "$repo"; then
-        return 0
-    fi
-
-    info "Configuring $pkg repository"
-
-    run_cmd sudo dnf copr enable -y avengemedia/dms
-}
-
 setup_swayfx_repository() {
     local pkg="swayfx"
     local repo="swayfx"
@@ -128,6 +127,7 @@ setup_package_repositories() {
     info "Configuring package repositories"
 
     setup_1password_repository "$@"
+    setup_dms_repository "$@"
     setup_docker_repository "$@"
     setup_ghostty_repository "$@"
     setup_helium_browser_repository "$@"
