@@ -311,7 +311,8 @@ bindsym $mod+Shift+c mode "settings"
     set $u-bgcolor   #d95f5f
     set $indicator   #4a5568
 
-    #                       border          background      text            indicator (a line which shows where the next window will be placed)
+    # my color settings
+    # class                 border          background      text            indicator
     client.focused          $focused-bg     $focused-bg     $text           $indicator
     client.focused_inactive $in-bgcolor     $in-bgcolor     $in-text        $in-bgcolor
     client.unfocused        $in-bgcolor     $in-bgcolor     $in-text        $in-bgcolor
