@@ -300,7 +300,7 @@ bindsym $mod+Shift+c mode "settings"
     set $bar-color   #171a2199
 
     # focused container and workspaces colors
-    set $focused-co  #5f7fa699
+    set $focused-bg  #5f7fa699
     set $focused-ws  #5f7fa680
 
     # inactive background and text colors
@@ -312,7 +312,7 @@ bindsym $mod+Shift+c mode "settings"
     set $indicator   #4a5568
 
     #                       border          background      text            indicator (a line which shows where the next window will be placed)
-    client.focused          $focused-co     $focused-co     $text           $indicator
+    client.focused          $focused-bg     $focused-bg     $text           $indicator
     client.focused_inactive $in-bgcolor     $in-bgcolor     $in-text        $in-bgcolor
     client.unfocused        $in-bgcolor     $in-bgcolor     $in-text        $in-bgcolor
     client.urgent           $u-bgcolor      $u-bgcolor      $text           $u-bgcolor
