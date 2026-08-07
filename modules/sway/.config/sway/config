@@ -312,11 +312,11 @@ bindsym $mod+Shift+c mode "settings"
     set $indicator   #4a5568
 
     # my color settings
-    # class                 border          background      text            indicator
-    client.focused          $focused-bg     $focused-bg     $text           $indicator
-    client.focused_inactive $in-bgcolor     $in-bgcolor     $in-text        $in-bgcolor
-    client.unfocused        $in-bgcolor     $in-bgcolor     $in-text        $in-bgcolor
-    client.urgent           $u-bgcolor      $u-bgcolor      $text           $u-bgcolor
+    # class                 border        background    text       indicator
+    client.focused          $focused-bg   $focused-bg   $text      $indicator
+    client.unfocused        $in-bgcolor   $in-bgcolor   $in-text   $in-bgcolor
+    client.focused_inactive $in-bgcolor   $in-bgcolor   $in-text   $in-bgcolor
+    client.urgent           $u-bgcolor    $u-bgcolor    $text      $u-bgcolor
 # #
 # Status Bar:
 #
