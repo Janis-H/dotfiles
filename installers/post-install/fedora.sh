@@ -17,7 +17,20 @@ print_next_steps() {
 EOF
 }
 
+configure_dms() {
+    if ! command -v niri || ! command -v dms &>dev/null; then
+        info "Skipping DMS configuration: Niri or DMS is not installed"
+        return 0
+    fi
+
+    info "Configuring DMS to start with Niri"
+
+    run_cmd systemctl --user add-wants niri.service dms
+}
+
 # --- Public entrypoint ---
 run_os_post_install() {
+    configure_dms
+
     print_next_steps
 }
