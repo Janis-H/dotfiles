@@ -64,7 +64,7 @@ setup_1password_repository() {
         trap 'rm -f -- "$key_file"' EXIT
     fi
 
-    info "Configuring 1Password repository"
+    info "Configuring $pkg repository"
 
     run_cmd curl -fsSL \
         "$key_url" \
