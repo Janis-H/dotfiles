@@ -24,69 +24,100 @@ is_repository_configured() {
     fi
 }
 
+is_in_package_list() {
+    local target_package="$1"
+    shift
+
+    local packages_list=("$@")
+
+    local is_in_list=false
+
+    for pkg in "${packages_list[@]}"; do
+        if [[ "$pkg" = "$target_package" ]]; then
+            is_in_list=true
+        fi
+    done
+
+    if ! "$is_in_list"; then
+        info "Skipping $target_package repo setup"
+    fi
+}
+
 # --- repository setup ---
 setup_docker_repository() {
-    if is_repository_configured "docker"; then
+    local pkg="docker"
+
+    if ! is_in_packages_list "$pkg" "$@" || is_repository_configured "$pkg"; then
         return 0
     fi
 
-    info "configuring docker repository"
+    info "configuring $pkg repository"
 
     run_cmd sudo dnf config-manager addrepo --from-repofile https://download.docker.com/linux/fedora/docker-ce.repo
 }
 
 setup_1password_repository() {
-    if is_repository_configured "1password"; then
+    local pkg="1password"
+
+    if ! is_in_packages_list "$pkg" "$@" || is_repository_configured "$pkg"; then
         return 0
     fi
 
-    info "configuring 1password repository"
+    info "configuring $pkg repository"
 
     run_cmd sudo rpm --import https://downloads.1password.com/linux/keys/1password.asc
     run_cmd sudo sh -c 'echo -e "[1password]\nname=1password stable channel\nbaseurl=https://downloads.1password.com/linux/rpm/stable/\$basearch\nenabled=1\ngpgcheck=1\nrepo_gpgcheck=1\ngpgkey=\"https://downloads.1password.com/linux/keys/1password.asc\"" > /etc/yum.repos.d/1password.repo'
 }
 
 setup_helium_browser_repository() {
-    if is_repository_configured "helium"; then
+    local pkg="helium-bin"
+
+    if ! is_in_packages_list "$pkg" "$@" || is_repository_configured "$pkg"; then
         return 0
     fi
 
-    info "configuring helium browser repository"
+    info "configuring $pkg repository"
 
     run_cmd sudo dnf copr enable imput/helium
 }
 
 setup_ghostty_repository() {
-    if is_repository_configured "ghostty"; then
+    local pkg="ghostty"
+
+    if ! is_in_packages_list "$pkg" "$@" || is_repository_configured "$pkg"; then
         return 0
     fi
 
-    info "configuring ghostty repository"
+    info "configuring $pkg repository"
 
     run_cmd sudo dnf copr enable scottames/ghostty
 }
 
 setup_swayfx_repository() {
-    if is_repository_configured "swayfx"; then
+    local pkg="swayfx"
+
+    if ! is_in_packages_list "$pkg" "$@" || is_repository_configured "$pkg"; then
         return 0
     fi
 
-    info "Configuring swayfx repository"
+    info "Configuring $pkg repository"
 
     run_cmd sudo dnf copr enable -y swayfx/swayfx
 }
 
 setup_package_repositories() {
-    setup_1password_repository
-    setup_docker_repository
-    setup_ghostty_repository
-    setup_helium_browser_repository
-    setup_swayfx_repository
+    info "Configuring package repositories"
+
+    setup_1password_repository "$@"
+    setup_docker_repository "$@"
+    setup_ghostty_repository "$@"
+    setup_helium_browser_repository "$@"
+    setup_swayfx_repository "$@"
 }
 
 # --- public entrypoint ---
 install_system_packages() {
-    setup_package_repositories
+    setup_package_repositories "$@"
 
     info "installing system packages"
     run_cmd sudo dnf install -y "$@" --skip-broken
