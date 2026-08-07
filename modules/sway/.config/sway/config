@@ -5,7 +5,6 @@
 # - check if the "include .*" lines are debian exclusive
 # - replace sway-bar with waybar
 # - edit idle configurations
-# - add open terminal in scratchpad shortcut
 
 # Fonts
 font pango:DejaVu Sans Mono 15
@@ -291,6 +290,32 @@ bindsym $mod+Shift+c mode "settings"
     gaps inner 20
     # Outer gaps for all windws: space along the screen edges
     gaps outer 10
+#
+# Theming
+#
+    # Color schemes for windows
+    #   - alter transparency via this guide:
+    #     https://gist.github.com/lopspower/03fb1cc0ac9f32ef38f4?ref=itsfoss.com
+    set $text        #e3eaf2
+    set $bar-color   #171a2199
+
+    # focused container and workspaces colors
+    set $focused-co  #5f7fa699
+    set $focused-ws  #5f7fa680
+
+    # inactive background and text colors
+    set $in-bgcolor  #2a2f3a66
+    set $in-text     #9099a666
+
+    # urgent background colors
+    set $u-bgcolor   #d95f5f
+    set $indicator   #4a5568
+
+    #                       border          background      text            indicator (a line which shows where the next window will be placed)
+    client.focused          $focused-co     $focused-co     $text           $indicator
+    client.focused_inactive $in-bgcolor     $in-bgcolor     $in-text        $in-bgcolor
+    client.unfocused        $in-bgcolor     $in-bgcolor     $in-text        $in-bgcolor
+    client.urgent           $u-bgcolor      $u-bgcolor      $text           $u-bgcolor
 # #
 # Status Bar:
 #
