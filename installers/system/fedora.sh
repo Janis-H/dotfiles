@@ -97,6 +97,20 @@ setup_ghostty_repository() {
     run_cmd sudo dnf copr enable scottames/ghostty
 }
 
+
+setup_dms_repository() {
+    local pkg="dms"
+    local repo="dms"
+
+    if ! is_in_packages_list "$pkg" "$@" || is_repository_configured "$repo"; then
+        return 0
+    fi
+
+    info "Configuring $pkg repository"
+
+    run_cmd sudo dnf copr enable -y avengemedia/dms
+}
+
 setup_swayfx_repository() {
     local pkg="swayfx"
     local repo="swayfx"
