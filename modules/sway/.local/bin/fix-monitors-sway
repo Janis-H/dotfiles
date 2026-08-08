@@ -2,6 +2,7 @@
 
 set -euo pipefail
 
+# TODO: double check the name of the displays with `swaymsg -t get_outputs`
 PRIMARY_DISPLAY="DP-1"
 SECONDARY_DISPLAY="DP-2"
 
