@@ -13,13 +13,15 @@
     set $down j
     set $up k
     set $right l
-    # Your preferred terminal emulator
+    # Terminal emulator
     set $term ghostty
-    # Your preferred application launcher
+    # Application launcher
     # Note: pass the final command to swaymsg so that the resulting window can be opened
     # on the original workspace that the command was run on.
     # set $menu dmenu_path | wmenu | xargs swaymsg exec --
-    set $menu rofi -show drun
+    set $menu rofi -show drun | xargs swaymsg exec --
+    # Application lancher - window search
+    set $window_search rofi -window drun | xargs swaymsg exec --
 
 # TODO: move configurations from "/etc/sway/config-vars.d/*" to this config
 include /etc/sway/config-vars.d/*
@@ -36,6 +38,9 @@ include /etc/sway/config-vars.d/*
 
     # Start your launcher
     bindsym $mod+d exec $menu
+
+    # Search through windows
+    bindsym $mod+w exec $window_search
 
     # Drag floating windows by holding down $mod and left mouse button.
     # Resize them with right mouse button + $mod.
