@@ -64,15 +64,6 @@ output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
 # You can get the names of your inputs by running: swaymsg -t get_inputs
 # Read `man 5 sway-input` for more information about this section.
 
-### Execs
-#
-# Exec:
-#
-#
-# Exec_always:
-#
-    exec_always autotiling
-
 ### Key bindings
 #
 # Basics:
@@ -347,13 +338,18 @@ bar {
 #
 # Exec:
 #
+    # Applies the configured monitor layout after Sway starts
     exec ~/.local/bin/fix-monitors-sway
 
     # TODO: uncomment below once waybar has been installed and setup
+
+    # Starts the Waybar status bar
     # exec waybar
 #
 # Exec-always:
 #
+    # Automatically chooses horizontal or vertical splits based on window dimensions
+    exec_always autotiling
 
 # TODO: move configurations from "/etc/sway/config.d/*" to this config
 include /etc/sway/config.d/*
