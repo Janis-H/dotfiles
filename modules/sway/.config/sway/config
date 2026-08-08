@@ -348,6 +348,7 @@ bar {
 # Exec:
 #
     exec ~/.local/bin/fix-monitors-sway
+
     exec waybar
 #
 # Exec-always:
