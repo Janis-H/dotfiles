@@ -2,8 +2,12 @@
 
 set -euo pipefail
 
-PRIMARY_DISPLAY="DisplayPort-0"
-SECONDARY_DISPLAY="DisplayPort-1"
+PRIMARY_DISPLAY="DP-1"
+SECONDARY_DISPLAY="DP-2"
+
+PRIMARY_MODE="2560x1440@144Hz"
+SECONDARY_MODE="2560x1440@60Hz"
+HDMI_MODE="1024x576@60Hz"
 
 if [[ -z ${SWAYSOCK:-} ]]; then
     printf 'This script must run inside Sway\n' >&2
@@ -25,7 +29,7 @@ PRIMARY_X=0
 
 if [[ -n "$HDMI_OUTPUT" ]]; then
     swaymsg output "$HDMI_OUTPUT" \
-        mode 1024x576@60Hz \
+        mode "$HDMI_MODE" \
         transform flipped \
         position 0 0
 
@@ -33,11 +37,11 @@ if [[ -n "$HDMI_OUTPUT" ]]; then
 fi
 
 swaymsg output "$PRIMARY_DISPLAY" \
-    mode 2560x1440@144Hz \
+    mode "$PRIMARY_MODE" \
     transform normal \
     position "$PRIMARY_X" 0
 
 swaymsg output "$SECONDARY_DISPLAY" \
-    mode 2560x1440@60Hz \
+    mode "$SECONDARY_MODE" \
     transform 90 \
     position "$((PRIMARY_X + 2560))" 0
