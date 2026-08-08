@@ -1,0 +1,43 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+PRIMARY_DISPLAY="DisplayPort-0"
+SECONDARY_DISPLAY="DisplayPort-1"
+
+if [[ -z ${SWAYSOCK:-} ]]; then
+    printf 'This script must run inside Sway\n' >&2
+    exit 1
+fi
+
+HDMI_OUTPUT="$(
+    swaymsg -r -t get_outputs |
+        jq -r '
+            .[]
+            | select(.active)
+            | select(.name | startswith("HDMI"))
+            | .name
+        ' |
+        head -n 1
+)"
+
+PRIMARY_X=0
+
+if [[ -n "$HDMI_OUTPUT" ]]; then
+    swaymsg output "$HDMI_OUTPUT" \
+        mode 1024x576@60Hz \
+        transform flipped \
+        position 0 0
+
+    PRIMARY_X=1024
+fi
+
+swaymsg output "$PRIMARY_DISPLAY" \
+    mode 2560x1440@144Hz \
+    transform normal \
+    position "$PRIMARY_X" 0
+
+swaymsg output "$SECONDARY_DISPLAY" \
+    mode 2560x1440@60Hz \
+    transform 90 \
+    position "$((PRIMARY_X + 2560))" 0
