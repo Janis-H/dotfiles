@@ -5,9 +5,6 @@
 # - replace sway-bar with waybar
 # - edit idle configurations
 
-# TODO:
-# - setup wlsunset or gammastep (redshift replacement)
-
 # Fonts
 font pango:DejaVu Sans Mono 18
 # font pango:Fira Code 15
