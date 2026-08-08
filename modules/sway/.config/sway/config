@@ -349,7 +349,8 @@ bar {
 #
     exec ~/.local/bin/fix-monitors-sway
 
-    exec waybar
+    # TODO: uncomment below once waybar has been installed and setup
+    # exec waybar
 #
 # Exec-always:
 #
