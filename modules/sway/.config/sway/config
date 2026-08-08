@@ -5,7 +5,6 @@
 # - edit idle configurations
 # - move configurations from the "include .*" lines to this config file
 
-#
 ### Variables
 #
     # Logo key. Use Mod1 for Alt.
@@ -65,10 +64,14 @@ output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
 # You can get the names of your inputs by running: swaymsg -t get_inputs
 # Read `man 5 sway-input` for more information about this section.
 
+### Execs
 #
-# Autostart
+# Exec:
 #
-exec_always autotiling
+#
+# Exec_always:
+#
+    exec_always autotiling
 
 ### Key bindings
 #
@@ -274,6 +277,8 @@ exec_always autotiling
         bindsym $mod+Shift+c mode "default"
     }
     bindsym $mod+Shift+c mode "settings"
+
+### Theming
 #
 # Window Gaps:
 #
@@ -285,7 +290,7 @@ exec_always autotiling
     # Outer gaps for all windws: space along the screen edges
     gaps outer 10
 #
-# Theming
+# Colors:
 #
     # Color schemes for windows
     #   - alter transparency via this guide:
@@ -312,13 +317,13 @@ exec_always autotiling
     client.focused_inactive $in-bgcolor   $in-bgcolor   $in-text   $in-bgcolor
     client.urgent           $u-bgcolor    $u-bgcolor    $text      $u-bgcolor
 #
-# Fonts
+# Fonts:
 #
     # Main font+size. Alter sway-bar font+size under "bar {}" below.
     font pango:DejaVu Sans Mono 18
     # font pango:Fira Code 15
     # font pango:Julia Mono 15
-# #
+##
 # Status Bar:
 #
 # Read `man 5 sway-bar` for more information about this section.
