@@ -343,5 +343,15 @@ bar {
     }
 }
 
+### Startup
+#
+# Exec:
+#
+    exec ~/.local/bin/fix-monitors-sway
+    exec waybar
+#
+# Exec-always:
+#
+
 # TODO: move configurations from "/etc/sway/config.d/*" to this config
 include /etc/sway/config.d/*
