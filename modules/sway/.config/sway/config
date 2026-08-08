@@ -8,20 +8,26 @@
     # Logo key. Use Mod1 for Alt.
     set $mod Mod4
     set $alt Mod1
+
     # Home row direction keys, like vim
     set $left h
     set $down j
     set $up k
     set $right l
+
     # Terminal emulator
     set $term ghostty
+
     # Application launcher
     # Note: pass the final command to swaymsg so that the resulting window can be opened
     # on the original workspace that the command was run on.
     # set $menu dmenu_path | wmenu | xargs swaymsg exec --
     set $menu rofi -show drun | xargs swaymsg exec --
+
     # Application lancher - window search
     set $window_search rofi -window drun | xargs swaymsg exec --
+
+    # Applications
 
 # TODO: move configurations from "/etc/sway/config-vars.d/*" to this config
 include /etc/sway/config-vars.d/*
