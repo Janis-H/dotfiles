@@ -1,34 +1,30 @@
 # TODO: copy configs from i3 config to sway:
 # - create and call fix-monitors-sway script
 # - app keyboard shortcuts
-# - check if the "include .*" lines are debian exclusive
 # - replace sway-bar with waybar
 # - edit idle configurations
+# - move configurations from the "include .*" lines to this config file
 
-# Fonts
-font pango:DejaVu Sans Mono 18
-# font pango:Fira Code 15
-# font pango:Julia Mono 15
-
+#
 ### Variables
 #
-# Logo key. Use Mod1 for Alt.
-set $mod Mod4
-set $alt Mod1
-# Home row direction keys, like vim
-set $left h
-set $down j
-set $up k
-set $right l
-# Your preferred terminal emulator
-set $term ghostty
-# Your preferred application launcher
-# Note: pass the final command to swaymsg so that the resulting window can be opened
-# on the original workspace that the command was run on.
-# set $menu dmenu_path | wmenu | xargs swaymsg exec --
-set $menu rofi -show drun
+    # Logo key. Use Mod1 for Alt.
+    set $mod Mod4
+    set $alt Mod1
+    # Home row direction keys, like vim
+    set $left h
+    set $down j
+    set $up k
+    set $right l
+    # Your preferred terminal emulator
+    set $term ghostty
+    # Your preferred application launcher
+    # Note: pass the final command to swaymsg so that the resulting window can be opened
+    # on the original workspace that the command was run on.
+    # set $menu dmenu_path | wmenu | xargs swaymsg exec --
+    set $menu rofi -show drun
 
-# TODO: check if these "include" lines are compatible with other linux OS's
+# TODO: move configurations from "/etc/sway/config-vars.d/*" to this config
 include /etc/sway/config-vars.d/*
 
 ### Output configuration
@@ -315,6 +311,13 @@ exec_always autotiling
     client.unfocused        $in-bgcolor   $in-bgcolor   $in-text   $in-bgcolor
     client.focused_inactive $in-bgcolor   $in-bgcolor   $in-text   $in-bgcolor
     client.urgent           $u-bgcolor    $u-bgcolor    $text      $u-bgcolor
+#
+# Fonts
+#
+    # Main font+size. Alter sway-bar font+size under "bar {}" below.
+    font pango:DejaVu Sans Mono 18
+    # font pango:Fira Code 15
+    # font pango:Julia Mono 15
 # #
 # Status Bar:
 #
@@ -335,5 +338,5 @@ bar {
     }
 }
 
-# TODO: check if these "include" lines are compatible with other linux OS's
+# TODO: move configurations from "/etc/sway/config.d/*" to this config
 include /etc/sway/config.d/*
