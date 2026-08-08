@@ -1,8 +1,6 @@
 # TODO: copy configs from i3 config to sway:
-# - create and call fix-monitors-sway script
 # - app keyboard shortcuts
 # - replace sway-bar with waybar
-# - edit idle configurations
 # - move configurations from the "include .*" lines to this config file
 
 ### Variables
