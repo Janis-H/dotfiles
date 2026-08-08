@@ -267,7 +267,7 @@ install_external_niri() (
 
     run_cmd sudo install -Dm644 \
         "$tmp_dir/niri/resources/niri.desktop" \
-        /usr/local/share/wayland-sessions/niri.desktop ||
+        /usr/share/wayland-sessions/niri.desktop ||
         return 1
 
     run_cmd sudo install -Dm644 \
