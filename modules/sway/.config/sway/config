@@ -501,3 +501,6 @@ output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
 #
     # Automatically chooses horizontal or vertical splits based on window dimensions
     exec_always autotiling
+
+    # Set rodecaster input volume
+    exec_always --no-startup-id ~/.local/bin/set-rodecaster-input-volume
