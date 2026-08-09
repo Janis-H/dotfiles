@@ -69,6 +69,9 @@ DESKTOP_PACKAGES=(
 
     # Themes
     adwaita-icon-theme
+    breeze
+    breeze5
+    breeze-gtk
     papirus-icon-theme
 
     # sway window manager
@@ -121,4 +124,6 @@ HEADLESS_STOW_MODULES=(
 )
 
 # dotfile modules for GUI/workstation setup
-DESKTOP_STOW_MODULES=()
+DESKTOP_STOW_MODULES=(
+    lxappearance
+)

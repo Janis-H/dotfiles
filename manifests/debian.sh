@@ -70,6 +70,9 @@ DESKTOP_PACKAGES=(
     adwaita-icon-theme
     adwaita-qt
     adwaita-qt6
+    breeze-gtk-theme
+    kde-style-breeze
+    kde-style-breeze-qt5
     papirus-icon-theme
 
     # i3 and sway dependency (autotiling)

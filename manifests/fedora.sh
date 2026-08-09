@@ -74,6 +74,9 @@ DESKTOP_PACKAGES=(
     adwaita-icon-theme
     adwaita-qt5
     adwaita-qt6
+    breeze-gtk
+    plasma-breeze-qt5
+    plasma-breeze-qt6
     papirus-icon-theme
     papirus-icon-theme-dark
 
