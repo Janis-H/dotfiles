@@ -158,6 +158,12 @@ setup_git_defaults() {
     run_cmd git config --global diff.coloredMoved zebra
 }
 
+set_prefer_dark_theme() {
+    info "Setting 'prefer-dark' theming"
+
+    run_cmd gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'
+}
+
 # --- Public entrypoint ---
 run_common_post_install() {
     create_dev_dirs
@@ -170,4 +176,6 @@ run_common_post_install() {
     verify_fzf
     setup_git_defaults
     setup_docker_non_root_access
+
+    set_prefer_dark_theme
 }
