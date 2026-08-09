@@ -61,6 +61,17 @@ DESKTOP_PACKAGES=(
     xclip
     wl-clipboard
 
+    # Theming
+    lxappearance
+    qt5ct
+    qt6ct
+
+    # Themes
+    adwaita-icon-theme
+    adwaita-qt
+    adwaita-qt6
+    papirus-icon-theme
+
     # i3 and sway dependency (autotiling)
     ipython3
 
@@ -110,6 +121,7 @@ EXTERNAL_DESKTOP=(
     dejavu_font
     fira_code_font
     julia_mono_font
+    lxappearance
     niri
     proton_mail
     proton_pass

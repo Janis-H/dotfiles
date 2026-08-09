@@ -65,6 +65,18 @@ DESKTOP_PACKAGES=(
     wl-clipboard
     zenity
 
+    # Theming
+    lxappearance
+    qt5ct
+    qt6ct
+
+    # Themes
+    adwaita-icon-theme
+    adwaita-qt5
+    adwaita-qt6
+    papirus-icon-theme
+    papirus-icon-theme-dark
+
     # i3 and sway dependency (autotiling)
     ipython
 

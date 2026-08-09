@@ -62,6 +62,15 @@ DESKTOP_PACKAGES=(
     wl-clipboard
     zenity
 
+    # Theming
+    lxappearance
+    qt5ct
+    qt6ct
+
+    # Themes
+    adwaita-icon-theme
+    papirus-icon-theme
+
     # sway window manager
     sway
     swayidle
