@@ -1,7 +1,6 @@
 # TODO: copy configs from i3 config to sway:
 # - app keyboard shortcuts
 # - replace sway-bar with waybar
-# - move configurations from the "include .*" lines to this config file
 
 ### Variables
 #
@@ -28,9 +27,6 @@
     set $window_search rofi -window drun | xargs swaymsg exec --
 
     # Applications
-
-# TODO: move configurations from "/etc/sway/config-vars.d/*" to this config
-include /etc/sway/config-vars.d/*
 
 ### Key bindings
 #
@@ -351,11 +347,17 @@ output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
 
     # Starts the Waybar status bar
     # exec waybar
+
+    # import variables into system-user enviroment
+    # based on the instructions in the sway wiki
+    # see also https://github.com/swaywm/sway/issues/5732
+    # and https://github.com/systemd/systemd/blob/dfc637d0ff756889e8e5b7cb4ec991eb06069aa1/xorg/50-systemd-user.sh
+    exec systemctl --user import-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK
+
+    exec hash dbus-update-activation-environment 2>/dev/null && \
+            dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK
 #
 # Exec-always:
 #
     # Automatically chooses horizontal or vertical splits based on window dimensions
     exec_always autotiling
-
-# TODO: move configurations from "/etc/sway/config.d/*" to this config
-include /etc/sway/config.d/*
