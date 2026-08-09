@@ -155,4 +155,7 @@ HEADLESS_STOW_MODULES=(
 DESKTOP_STOW_MODULES=(
     i3
     picom
+    lxappearance
+    qt5ct
+    qt6ct
 )

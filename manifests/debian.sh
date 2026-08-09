@@ -124,7 +124,6 @@ EXTERNAL_DESKTOP=(
     dejavu_font
     fira_code_font
     julia_mono_font
-    lxappearance
     niri
     proton_mail
     proton_pass
@@ -154,4 +153,6 @@ HEADLESS_STOW_MODULES=(
 DESKTOP_STOW_MODULES=(
     i3
     picom
+    lxappearance
+    qt5ct
 )
