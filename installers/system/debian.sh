@@ -154,10 +154,19 @@ setup_package_repositories() {
 # --- Public entrypoint ---
 install_system_packages() {
     local packages=("$@")
+    local available_packages=()
 
-    setup_package_repositories "${packages[@]}"
+    for pkg in "${packages[@]}"; do
+        if apt-cache show "$pkg" &>/dev/null; then
+            available_packages+=("$pkg")
+        else
+            info "Skipping unavailable package: $pkg"
+        fi
+    done
+
+    setup_package_repositories "${available_packages[@]}"
 
     info "Installing system packages"
     run_cmd sudo apt-get update
-    run_cmd sudo apt-get install -y "${packages[@]}"
+    run_cmd sudo apt-get install -y "${available_packages[@]}"
 }

@@ -61,6 +61,18 @@ DESKTOP_PACKAGES=(
     ghostty
     zenity
 
+    # Theming tools
+    lxappearance
+    qt5ct
+    qt6ct
+
+    # Themes
+    adwaita-icon-theme
+    breeze
+    breeze5
+    breeze-gtk
+    papirus-icon-theme
+
     # Desktop audio
     pipewire
     pipewire-alsa
@@ -144,5 +156,11 @@ HEADLESS_STOW_MODULES=(
 
 # dotfile modules for GUI/workstation setup
 DESKTOP_STOW_MODULES=(
+<<<<<<< HEAD
     sway
+=======
+    lxappearance
+    qt5ct
+    qt6ct
+>>>>>>> main
 )

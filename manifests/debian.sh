@@ -62,6 +62,20 @@ DESKTOP_PACKAGES=(
     xclip
     zenity
 
+    # Theming tools
+    lxappearance
+    qt5ct
+    qt6ct
+
+    # Themes
+    adwaita-icon-theme
+    adwaita-qt
+    adwaita-qt6
+    breeze-gtk-theme
+    kde-style-breeze
+    kde-style-breeze-qt5
+    papirus-icon-theme
+
     # Desktop audio
     pipewire-audio
 
@@ -160,4 +174,7 @@ DESKTOP_STOW_MODULES=(
     i3
     picom
     sway
+    lxappearance
+    qt5ct
+    qt6ct
 )

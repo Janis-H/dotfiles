@@ -65,6 +65,21 @@ DESKTOP_PACKAGES=(
     helium-bin
     zenity
 
+    # Theming tooling
+    lxappearance
+    qt5ct
+    qt6ct
+
+    # Themes
+    adwaita-icon-theme
+    adwaita-qt5
+    adwaita-qt6
+    breeze-gtk
+    plasma-breeze-qt5
+    plasma-breeze-qt6
+    papirus-icon-theme
+    papirus-icon-theme-dark
+
     # Desktop audio
     pipewire
     pipewire-alsa
@@ -174,4 +189,7 @@ DESKTOP_STOW_MODULES=(
     i3
     picom
     sway
+    lxappearance
+    qt5ct
+    qt6ct
 )
