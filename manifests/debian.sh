@@ -187,7 +187,5 @@ DESKTOP_STOW_MODULES=(
     i3
     picom
     sway
-    lxappearance
-    qt5ct
-    qt6ct
+    theme
 )
