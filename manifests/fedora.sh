@@ -94,6 +94,11 @@ DESKTOP_PACKAGES=(
     # Camera controls and diagnostics
     v4l-utils
 
+    # Keyboard diagnostics
+    libinput-utils
+    wev
+    evtest
+
     # Desktop portals
     xdg-desktop-portal-gtk
 
