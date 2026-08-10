@@ -62,22 +62,28 @@ DESKTOP_PACKAGES=(
     xclip
     zenity
 
-    # Theming tools
+    # Theming tools and engines
     lxappearance
     qt5ct
     qt6ct
+    qt-style-kvantum
+    qt5-style-kvantum
+    qt6-style-kvantum
 
-    # Themes
+    # Adwaita theme
     adwaita-icon-theme
     adwaita-icon-theme-legacy
     adwaita-qt
     adwaita-qt6
-    breeze-gtk-theme
     gnome-themes-extra
+
+    # Breeze theme
+    breeze-gtk-theme
     kde-style-breeze
+    kde-style-breeze-qt5
+
+    # Papirus icons
     papirus-icon-theme
-    qt5-style-kvantum
-    qt6-style-kvantum
 
     # Desktop audio
     pipewire-audio

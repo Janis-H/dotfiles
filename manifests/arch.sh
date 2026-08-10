@@ -61,20 +61,24 @@ DESKTOP_PACKAGES=(
     ghostty
     zenity
 
-    # Theming tools
+    # Theming tools and engines
     lxappearance
+    kvantum
+    kvantum-qt5
     qt5ct
     qt6ct
 
-    # Themes
-    adwaita-icon-theme
+    # Adwaita Theme
     adw-gtk-theme
+    adwaita-icon-theme
+    gnome-themes-extra
+
+    # Breeze theme
     breeze
     breeze5
     breeze-gtk
-    gnome-themes-extra
-    kvantum
-    kvantum-qt5
+
+    # Papirus icons
     papirus-icon-theme
 
     # Desktop audio

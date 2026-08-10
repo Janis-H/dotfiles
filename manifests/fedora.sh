@@ -67,18 +67,22 @@ DESKTOP_PACKAGES=(
 
     # Theming tooling
     lxappearance
+    kvantum
+    kvantum-qt5
     qt5ct
     qt6ct
 
-    # Themes
+    # Adwaita theme
     adwaita-icon-theme
     adwaita-icon-theme-legacy
     adw-gtk3-theme
+
+    # Breeze theme
     breeze-gtk
-    kvantum
-    kvantum-qt5
     plasma-breeze-qt5
     plasma-breeze-qt6
+
+    # Papirus icons
     papirus-icon-theme
     papirus-icon-theme-dark
 
