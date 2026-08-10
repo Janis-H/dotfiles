@@ -378,6 +378,17 @@
 
 ### Theming
 #
+# Cursor:
+#
+    seat * xcursor_theme Bibata-Modern-Ice 24
+#
+# Fonts:
+#
+    # Main font+size. Alter sway-bar font+size under "bar {}" below.
+    font pango:DejaVu Sans Mono 18
+    # font pango:Fira Code 15
+    # font pango:Julia Mono 15
+#
 # Window Gaps:
 #
     default_border pixel 3
@@ -414,13 +425,6 @@
     client.unfocused        $in-bgcolor   $in-bgcolor   $in-text   $in-bgcolor
     client.focused_inactive $in-bgcolor   $in-bgcolor   $in-text   $in-bgcolor
     client.urgent           $u-bgcolor    $u-bgcolor    $text      $u-bgcolor
-#
-# Fonts:
-#
-    # Main font+size. Alter sway-bar font+size under "bar {}" below.
-    font pango:DejaVu Sans Mono 18
-    # font pango:Fira Code 15
-    # font pango:Julia Mono 15
 ##
 # Status Bar:
 #
