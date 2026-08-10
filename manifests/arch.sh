@@ -142,6 +142,9 @@ EXTERNAL_HEADLESS=()
 EXTERNAL_DESKTOP=(
     autotiling
 
+    # Cursor theme:
+    bibata_cursor_theme
+
     # GTK and Qt/Gvantum theme:
     graphite_theme
 

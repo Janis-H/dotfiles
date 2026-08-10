@@ -173,6 +173,9 @@ EXTERNAL_DESKTOP=(
     proton_pass
     zen_browser
 
+    # Cursor theme:
+    bibata_cursor_theme
+
     # GTK and Qt/Gvantum theme:
     graphite_theme
 
