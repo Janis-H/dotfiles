@@ -108,7 +108,7 @@ input {
 
 cursor {
     xcursor-theme "Bibata-Modern-Ice"
-    xcursor-size 20
+    xcursor-size 24
 }
 
 // Settings that influence how windows are positioned and sized.
