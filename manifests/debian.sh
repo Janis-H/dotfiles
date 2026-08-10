@@ -77,6 +77,10 @@ DESKTOP_PACKAGES=(
     adwaita-qt6
     gnome-themes-extra
 
+    # Arc Theme
+    arc-kde
+    arc-theme
+
     # Breeze theme
     breeze-gtk-theme
     kde-style-breeze

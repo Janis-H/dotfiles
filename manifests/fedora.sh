@@ -77,6 +77,10 @@ DESKTOP_PACKAGES=(
     adwaita-icon-theme-legacy
     adw-gtk3-theme
 
+    # Arc theme
+    arc-kde
+    arc-theme
+
     # Breeze theme
     breeze-gtk
     plasma-breeze-qt5
