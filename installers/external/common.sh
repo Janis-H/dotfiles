@@ -294,7 +294,7 @@ install_external_graphite_theme() (
     run_cmd bash "$gtk_source_dir/install.sh" \
         -d "$HOME/.themes" \
         -c dark \
-        --tweaks nord ||
+        --tweaks nord normal ||
         return 1
 
     # Qt / Kvantum
