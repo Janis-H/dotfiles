@@ -156,6 +156,7 @@ EXTERNAL_DESKTOP=(
     autotiling
     dejavu_font
     fira_code_font
+    graphite_theme
     julia_mono_font
     niri
     nordic_theme

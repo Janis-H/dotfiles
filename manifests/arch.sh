@@ -142,6 +142,7 @@ EXTERNAL_HEADLESS=()
 
 EXTERNAL_DESKTOP=(
     autotiling
+    graphite_theme
     nordic_theme
 )
 
