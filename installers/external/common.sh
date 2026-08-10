@@ -198,6 +198,62 @@ install_external_julia_mono_font() {
         "$download_url"
 }
 
+install_external_nordic_theme() (
+    local repo_url="https://github.com/EliverLara/Nordic.git"
+
+    local gtk_theme_dir="$HOME/.themes/Nordic"
+    local kvantum_theme_dir="$HOME/.config/Kvantum/Nordic"
+
+    if [[ -f "$gtk_theme_dir/index.theme" &&
+          -f "$gtk_theme_dir/gtk-3.0/gtk.css" &&
+          -f "$gtk_theme_dir/gtk-4.0/gtk.css" &&
+          -f "$kvantum_theme_dir/Nordic.kvconfig" &&
+          -f "$kvantum_theme_dir/Nordic.svg" ]]; then
+        info "Nordic theme is already installed"
+        return 0
+    fi
+
+    info "Installing Nordic theme"
+
+    local tmp_dir
+    tmp_dir="$(mktemp -d)" || return 1
+    trap 'rm -rf "$tmp_dir"' EXIT
+
+    local source_dir="$tmp_dir/Nordic"
+
+    run_cmd git clone --depth 1 "$repo_url" "$source_dir" ||
+        return 1
+
+    run_cmd mkdir -p "$gtk_theme_dir" "$kvantum_theme_dir" ||
+        return 1
+
+    local gtk_paths=(
+        assets
+        cinnamon
+        gnome-shell
+        gtk-2.0
+        gtk-3.0
+        gtk-4.0
+        metacity-1
+        xfwm4
+        index.theme
+    )
+
+    for path in "${gtk_paths[@]}"; do
+        run_cmd cp -a "$source_dir/$path" "$gtk_theme_dir/" ||
+            return 1
+    done
+
+    run_cmd cp -a \
+        "$source_dir/kde/kvantum/Nordic/." \
+        "$kvantum_theme_dir/" ||
+        return 1
+
+    run_cmd kvantummanager --set Nordic || return 1
+
+    info "Nordic theme installed successfully"
+)
+
 install_external_oh_my_posh() {
     local install_url="https://ohmyposh.dev/install.sh"
 
