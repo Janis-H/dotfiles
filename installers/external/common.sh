@@ -145,6 +145,37 @@ install_external_autotiling() {
     run_cmd pip install autotiling
 }
 
+install_external_bibata_cursor_theme() (
+    local theme_name="Bibata-Modern-Ice"
+    local archive_name="$theme_name.tar.xz"
+    local download_url="https://github.com/ful1e5/Bibata_Cursor/releases/latest/download/$archive_name"
+
+    local icons_dir="$HOME/.local/share/icons"
+    local install_dir="$icons_dir/$theme_name"
+
+    if [[ -f "$install_dir/index.theme" &&
+          -e "$install_dir/cursors/left_ptr" ]]; then
+        info "$theme_name cursor theme is already installed"
+        return 0
+    fi
+
+    info "Installing $theme_name cursor theme"
+
+    local tmp_dir
+    tmp_dir="$(mktemp -d)" || return 1
+    trap 'rm -rf "$tmp_dir"' EXIT
+
+    local download_path="$tmp_dir/$archive_name"
+
+    run_cmd mkdir -p "$icons_dir" || return 1
+
+    run_cmd wget -O "$download_path" "$download_url" || return 1
+
+    run_cmd tar -xJf "$download_path" -C "$icons_dir" || return 1
+
+    info "$theme_name cursor theme installed successfully"
+)
+
 install_external_dejavu_font() {
     local file_name="dejavu-fonts-ttf-2.37.zip"
     local install_dir="DejaVu"
@@ -170,6 +201,63 @@ install_external_fira_code_font() {
         "$font_family" \
         "$download_url"
 }
+
+install_external_graphite_theme() (
+    local gtk_repo_url="https://github.com/vinceliuice/Graphite-gtk-theme.git"
+    local kde_repo_url="https://github.com/vinceliuice/Graphite-kde-theme.git"
+
+    local gtk_theme_dir="$HOME/.themes/Graphite-Dark-nord"
+    local kvantum_theme_dir="$HOME/.config/Kvantum/GraphiteNord"
+
+    if [[ -f "$gtk_theme_dir/gtk-3.0/gtk.css" &&
+          -f "$gtk_theme_dir/gtk-4.0/gtk.css" &&
+          -f "$kvantum_theme_dir/GraphiteNord.kvconfig" &&
+          -f "$kvantum_theme_dir/GraphiteNordDark.kvconfig" ]]; then
+        info "Graphite Nord theme is already installed"
+        return 0
+    fi
+
+    info "Installing Graphite Nord theme"
+
+    local tmp_dir
+    tmp_dir="$(mktemp -d)" || return 1
+    trap 'rm -rf -- "$tmp_dir"' EXIT
+
+    local gtk_source_dir="$tmp_dir/Graphite-gtk-theme"
+    local kde_source_dir="$tmp_dir/Graphite-kde-theme"
+
+    run_cmd git clone --depth 1 \
+        "$gtk_repo_url" \
+        "$gtk_source_dir" ||
+        return 1
+
+    run_cmd git clone --depth 1 \
+        "$kde_repo_url" \
+        "$kde_source_dir" ||
+        return 1
+
+    # GTK
+    run_cmd bash "$gtk_source_dir/install.sh" \
+        -d "$HOME/.themes" \
+        -c dark \
+        --tweaks nord normal ||
+        return 1
+
+    # Qt / Kvantum
+    run_cmd mkdir -p "$kvantum_theme_dir" ||
+        return 1
+
+    run_cmd cp -a \
+        "$kde_source_dir/Kvantum/GraphiteNord/." \
+        "$kvantum_theme_dir/" ||
+        return 1
+
+    # Sets GraphiteNord as the default kvantum-dark theme
+    # run_cmd kvantummanager --set GraphiteNord ||
+        # return 1
+
+    info "Graphite Nord theme installed successfully"
+)
 
 install_external_herdr() {
     local install_url="https://herdr.dev/install.sh"
@@ -256,62 +344,6 @@ install_external_nordic_theme() (
     info "Nordic theme installed successfully"
 )
 
-install_external_graphite_theme() (
-    local gtk_repo_url="https://github.com/vinceliuice/Graphite-gtk-theme.git"
-    local kde_repo_url="https://github.com/vinceliuice/Graphite-kde-theme.git"
-
-    local gtk_theme_dir="$HOME/.themes/Graphite-Dark-nord"
-    local kvantum_theme_dir="$HOME/.config/Kvantum/GraphiteNord"
-
-    if [[ -f "$gtk_theme_dir/gtk-3.0/gtk.css" &&
-          -f "$gtk_theme_dir/gtk-4.0/gtk.css" &&
-          -f "$kvantum_theme_dir/GraphiteNord.kvconfig" &&
-          -f "$kvantum_theme_dir/GraphiteNordDark.kvconfig" ]]; then
-        info "Graphite Nord theme is already installed"
-        return 0
-    fi
-
-    info "Installing Graphite Nord theme"
-
-    local tmp_dir
-    tmp_dir="$(mktemp -d)" || return 1
-    trap 'rm -rf -- "$tmp_dir"' EXIT
-
-    local gtk_source_dir="$tmp_dir/Graphite-gtk-theme"
-    local kde_source_dir="$tmp_dir/Graphite-kde-theme"
-
-    run_cmd git clone --depth 1 \
-        "$gtk_repo_url" \
-        "$gtk_source_dir" ||
-        return 1
-
-    run_cmd git clone --depth 1 \
-        "$kde_repo_url" \
-        "$kde_source_dir" ||
-        return 1
-
-    # GTK
-    run_cmd bash "$gtk_source_dir/install.sh" \
-        -d "$HOME/.themes" \
-        -c dark \
-        --tweaks nord normal ||
-        return 1
-
-    # Qt / Kvantum
-    run_cmd mkdir -p "$kvantum_theme_dir" ||
-        return 1
-
-    run_cmd cp -a \
-        "$kde_source_dir/Kvantum/GraphiteNord/." \
-        "$kvantum_theme_dir/" ||
-        return 1
-
-    # Sets GraphiteNord as the default kvantum-dark theme
-    # run_cmd kvantummanager --set GraphiteNord ||
-        # return 1
-
-    info "Graphite Nord theme installed successfully"
-)
 
 install_external_oh_my_posh() {
     local install_url="https://ohmyposh.dev/install.sh"
