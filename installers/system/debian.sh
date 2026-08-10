@@ -143,12 +143,26 @@ setup_helium_browser_repository() {
     echo "deb [arch=amd64,arm64 signed-by=/usr/share/keyrings/helium.gpg] https://pkg.helium.computer/deb stable main" | sudo tee /etc/apt/sources.list.d/helium.list
 }
 
+setup_papirus_repository() {
+    local pkg="qt6-style-kvantum"
+    local repo="ppa:papirus/papirus"
+
+    if ! is_in_packages_list "$pkg" "$@" || is_repository_configured "$repo"; then
+        return 0
+    fi
+
+    info "Configuring Papirus repository"
+
+    run_cmd sudo add-apt-repository -y "$repo" || return 1
+}
+
 setup_package_repositories() {
     info "Configuring package repositories"
 
     setup_1password_repository "$@"
     setup_docker_repository "$@"
     setup_helium_browser_repository "$@"
+    setup_papirus_repository "$@"
 }
 
 # --- Public entrypoint ---
