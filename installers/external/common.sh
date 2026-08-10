@@ -249,7 +249,9 @@ install_external_nordic_theme() (
         "$kvantum_theme_dir/" ||
         return 1
 
-    run_cmd kvantummanager --set Nordic || return 1
+    # Sets Nordic as the default kvantum-dark theme
+    run_cmd kvantummanager --set Nordic ||
+        return 1
 
     info "Nordic theme installed successfully"
 )
@@ -304,8 +306,9 @@ install_external_graphite_theme() (
         "$kvantum_theme_dir/" ||
         return 1
 
-    run_cmd kvantummanager --set GraphiteNord ||
-        return 1
+    # Sets GraphiteNord as the default kvantum-dark theme
+    # run_cmd kvantummanager --set GraphiteNord ||
+        # return 1
 
     info "Graphite Nord theme installed successfully"
 )
