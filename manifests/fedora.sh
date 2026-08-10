@@ -73,8 +73,6 @@ DESKTOP_PACKAGES=(
     qt6ct
 
     # Adwaita theme
-    adwaita-icon-theme
-    adwaita-icon-theme-legacy
     adw-gtk3-theme
 
     # Arc theme
@@ -170,12 +168,14 @@ EXTERNAL_DESKTOP=(
     autotiling
     dejavu_font
     fira_code_font
-    graphite_theme
     julia_mono_font
-    nordic_theme
     proton_mail
     proton_pass
     zen_browser
+
+    # QT Themes under Kvantum Manager
+    # graphite_theme
+    nordic_theme
 )
 
 # ─────────────────────────────────────────────────────────────

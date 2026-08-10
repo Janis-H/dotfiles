@@ -70,7 +70,6 @@ DESKTOP_PACKAGES=(
 
     # Adwaita Theme
     adw-gtk-theme
-    adwaita-icon-theme
     gnome-themes-extra
 
     # Breeze theme

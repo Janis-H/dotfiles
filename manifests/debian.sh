@@ -71,8 +71,6 @@ DESKTOP_PACKAGES=(
     qt6-style-kvantum
 
     # Adwaita theme
-    adwaita-icon-theme
-    adwaita-icon-theme-legacy
     adwaita-qt
     adwaita-qt6
     gnome-themes-extra
