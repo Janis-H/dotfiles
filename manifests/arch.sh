@@ -68,9 +68,13 @@ DESKTOP_PACKAGES=(
 
     # Themes
     adwaita-icon-theme
+    adw-gtk-theme
     breeze
     breeze5
     breeze-gtk
+    gnome-themes-extra
+    kvantum
+    kvantum-qt5
     papirus-icon-theme
 
     # Desktop audio

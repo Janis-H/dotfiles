@@ -72,9 +72,11 @@ DESKTOP_PACKAGES=(
 
     # Themes
     adwaita-icon-theme
-    adwaita-qt5
-    adwaita-qt6
+    adwaita-icon-theme-legacy
+    adw-gtk3-theme
     breeze-gtk
+    kvantum
+    kvantum-qt5
     plasma-breeze-qt5
     plasma-breeze-qt6
     papirus-icon-theme

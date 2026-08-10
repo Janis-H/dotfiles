@@ -69,12 +69,15 @@ DESKTOP_PACKAGES=(
 
     # Themes
     adwaita-icon-theme
+    adwaita-icon-theme-legacy
     adwaita-qt
     adwaita-qt6
     breeze-gtk-theme
+    gnome-themes-extra
     kde-style-breeze
-    kde-style-breeze-qt5
     papirus-icon-theme
+    qt5-style-kvantum
+    qt6-style-kvantum
 
     # Desktop audio
     pipewire-audio
@@ -145,6 +148,7 @@ EXTERNAL_DESKTOP=(
     fira_code_font
     julia_mono_font
     niri
+    nordic_theme
     proton_mail
     proton_pass
     zen_browser
