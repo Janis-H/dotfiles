@@ -144,11 +144,24 @@ setup_helium_browser_repository() {
 }
 
 setup_papirus_repository() {
-    local pkg="qt6-style-kvantum"
+    local pkgs=(
+        "qt6-style-kvantum"
+        "arc-kde"
+    )
+
     local repo="papirus/papirus"
     local ppa="ppa:papirus/papirus"
 
-    if ! is_in_packages_list "$pkg" "$@" || is_repository_configured "$repo"; then
+    local configure_repo=false
+
+    for pkg in "${pkgs[@]}"; do
+        if is_in_packages_list "$pkg" "$@" ; then
+            configure_repo=true
+            break
+        fi
+    done
+
+    if ! "$configure_repo" || is_repository_configured "$repo"; then
         return 0
     fi
 
@@ -187,6 +200,6 @@ install_system_packages() {
         fi
     done
 
-    run_cmd sudo apt-get install -y "${available_packages[@]}" ||
+    run_cmd sudo apt-get install --install-recommends -y "${available_packages[@]}" ||
         return 1
 }
