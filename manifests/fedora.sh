@@ -173,8 +173,10 @@ EXTERNAL_DESKTOP=(
     proton_pass
     zen_browser
 
-    # QT Themes under Kvantum Manager
-    # graphite_theme
+    # GTK and Qt/Gvantum theme:
+    graphite_theme
+
+    # GTK and Qt/Gvantum theme:
     nordic_theme
 )
 
