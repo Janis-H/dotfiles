@@ -163,6 +163,7 @@ EXTERNAL_DESKTOP=(
     dejavu_font
     fira_code_font
     julia_mono_font
+    nordic_theme
     proton_mail
     proton_pass
     zen_browser
