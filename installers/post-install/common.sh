@@ -198,5 +198,5 @@ run_common_post_install() {
     setup_git_defaults
     setup_docker_non_root_access
 
-    set_gnome_theme
+    configure_gnome_theme
 }
