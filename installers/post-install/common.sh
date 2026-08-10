@@ -179,6 +179,7 @@ configure_gnome_theme() {
     info "Configuring GNOME theme"
 
     run_cmd gsettings set "$schema" color-scheme 'prefer-dark'
+    run_cmd gsettings set "$schema" gtk-theme 'Nordic'
     run_cmd gsettings set "$schema" icon-theme 'Papirus-Dark'
     run_cmd gsettings set "$schema" cursor-theme 'Bibata-Modern-Ice'
     run_cmd gsettings set "$schema" cursor-size 20
