@@ -7,6 +7,15 @@ source "$DOTFILES_DIR/lib/log.sh"
 source "$DOTFILES_DIR/lib/install-or-update-repo.sh"
 source "$DOTFILES_DIR/lib/run-command.sh"
 
+# --- Helpers ---
+gsettings_key_exists() {
+    local schema="$1"
+    local key="$2"
+
+    command -v gsettings >/dev/null 2>&1 &&
+        gsettings list-schemas | grep -Fxq "$schema" &&
+        gsettings list-keys "$schema" | grep -Fxq "$key"
+}
 # --- Setup functions ---
 create_dev_dirs() {
     info "Creating dev dirs"
@@ -158,10 +167,20 @@ setup_git_defaults() {
     run_cmd git config --global diff.coloredMoved zebra
 }
 
-set_prefer_dark_theme() {
-    info "Setting 'prefer-dark' theming"
+configure_gnome_theme() {
+    local schema="org.gnome.desktop.interface"
 
-    run_cmd gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'
+    if ! command -v gsettings >/dev/null 2>&1 ||
+       ! gsettings list-schemas | grep -Fxq "$schema"; then
+        info "Skipping GNOME theme configuration"
+        return 0
+    fi
+
+    info "Configuring GNOME theme"
+
+    run_cmd gsettings set "$schema" color-scheme 'prefer-dark'
+    run_cmd gsettings set "$schema" cursor-theme 'Bibata-Modern-Ice'
+    run_cmd gsettings set "$schema" cursor-size 20
 }
 
 # --- Public entrypoint ---
@@ -177,5 +196,5 @@ run_common_post_install() {
     setup_git_defaults
     setup_docker_non_root_access
 
-    set_prefer_dark_theme
+    set_gnome_theme
 }
