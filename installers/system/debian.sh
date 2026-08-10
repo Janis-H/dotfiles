@@ -21,7 +21,10 @@ is_repository_configured() {
         --include='*.sources' \
         -- "$repo" /etc/apt/sources.list.d; then
     info "$repo repository is already configured"
+    return 0
     fi
+
+    return 1
 }
 
 is_in_packages_list() {
@@ -30,17 +33,14 @@ is_in_packages_list() {
 
     local packages_list=("$@")
 
-    local is_in_list=false
-
     for pkg in "${packages_list[@]}"; do
         if [[ "$pkg" = "$target_package" ]]; then
-            is_in_list=true
+            return 0
         fi
     done
 
-    if ! "$is_in_list"; then
-        info "Skipping $target_package repository setup"
-    fi
+    info "Skipping $target_package repository setup"
+    return 1
 }
 
 # --- Repository Setup ---
@@ -145,7 +145,8 @@ setup_helium_browser_repository() {
 
 setup_papirus_repository() {
     local pkg="qt6-style-kvantum"
-    local repo="ppa:papirus/papirus"
+    local repo="papirus/papirus"
+    local ppa="ppa:papirus/papirus"
 
     if ! is_in_packages_list "$pkg" "$@" || is_repository_configured "$repo"; then
         return 0
@@ -153,7 +154,7 @@ setup_papirus_repository() {
 
     info "Configuring Papirus repository"
 
-    run_cmd sudo add-apt-repository -y "$repo" || return 1
+    run_cmd sudo add-apt-repository -y "$ppa" || return 1
 }
 
 setup_package_repositories() {
@@ -170,6 +171,14 @@ install_system_packages() {
     local packages=("$@")
     local available_packages=()
 
+    setup_package_repositories "${packages[@]}" ||
+        return 1
+
+    info "Installing system packages"
+
+    run_cmd sudo apt-get update ||
+        return 1
+
     for pkg in "${packages[@]}"; do
         if apt-cache show "$pkg" &>/dev/null; then
             available_packages+=("$pkg")
@@ -178,9 +187,6 @@ install_system_packages() {
         fi
     done
 
-    setup_package_repositories "${available_packages[@]}"
-
-    info "Installing system packages"
-    run_cmd sudo apt-get update
-    run_cmd sudo apt-get install -y "${available_packages[@]}"
+    run_cmd sudo apt-get install -y "${available_packages[@]}" ||
+        return 1
 }
