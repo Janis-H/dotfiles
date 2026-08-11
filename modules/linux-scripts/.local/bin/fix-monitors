@@ -4,10 +4,6 @@
 # TODO: rename script to fix-monitors-x11
 # TODO: once fix-monitors-x11 rename is done, update desktop and sleep hook
 
-# TODO: create fix-monitors-sway script.
-# xrandr is not supported by wayland; therefore, a replacement
-# will be needed once the transition to sway (wayland) is complete
-
 set -euo pipefail
 
 sleep 3
