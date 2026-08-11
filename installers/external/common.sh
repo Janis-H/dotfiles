@@ -190,10 +190,10 @@ install_external_dejavu_font() {
 }
 
 install_external_fira_code_font() {
-    local file_name="Fira_Code_v6.2.zip"
-    local install_dir="FiraCode"
-    local font_family="Fira Code"
-    local download_url="https://github.com/tonsky/FiraCode/releases/download/6.2/Fira_Code_v6.2.zip"
+    local file_name="FiraCode.zip"
+    local install_dir="FiraCodeNerdFont"
+    local font_family="FiraCode Nerd Font"
+    local download_url="https://github.com/ryanoasis/nerd-fonts/releases/latest/download/FiraCode.zip"
 
     install_external_font \
         "$file_name" \
@@ -287,10 +287,10 @@ install_external_julia_mono_font() {
 }
 
 install_external_hack_font() {
-    local file_name="Hack-v3.003-ttf.zip"
-    local install_dir="Hack"
-    local font_family="Hack"
-    local download_url="https://github.com/source-foundry/Hack/releases/download/v3.003/Hack-v3.003-ttf.zip"
+    local file_name="Hack.zip"
+    local install_dir="HackNerdFont"
+    local font_family="Hack Nerd Font Mono"
+    local download_url="https://github.com/ryanoasis/nerd-fonts/releases/latest/download/Hack.zip"
 
     install_external_font \
         "$file_name" \
