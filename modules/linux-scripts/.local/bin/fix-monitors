@@ -42,3 +42,6 @@ if [ -n "$HDMI_OUTPUT" ]; then
     --reflect y \
     --left-of "$PRIMARY_DISPLAY"
 fi
+
+# Set wallpaper
+xwallpaper --zoom "$HOME/.local/share/wallpapers/minimal-nord.png"
