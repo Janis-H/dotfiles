@@ -485,6 +485,9 @@ output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
     # Applies the configured monitor layout after Sway starts
     exec ~/.local/bin/fix-monitors-sway
 
+    exec swaybg \
+        -i "$HOME/.local/share/wallpapers/dark-mountain-landscape.jpg"
+
     # TODO: uncomment below once waybar has been installed and setup
 
     # Starts the Waybar status bar
