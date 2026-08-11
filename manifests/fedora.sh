@@ -212,6 +212,7 @@ DESKTOP_STOW_MODULES=(
     ghostty
     i3
     picom
+    rofi
     sway
     theme
 )

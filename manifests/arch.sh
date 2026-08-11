@@ -179,6 +179,7 @@ HEADLESS_STOW_MODULES=(
 # dotfile modules for GUI/workstation setup
 DESKTOP_STOW_MODULES=(
     ghostty
+    rofi
     sway
     theme
 )
