@@ -286,6 +286,19 @@ install_external_julia_mono_font() {
         "$download_url"
 }
 
+install_external_hack_font() {
+    local file_name="Hack-v3.003-ttf.zip"
+    local install_dir="Hack"
+    local font_family="Hack"
+    local download_url="https://github.com/source-foundry/Hack/releases/download/v3.003/Hack-v3.003-ttf.zip"
+
+    install_external_font \
+        "$file_name" \
+        "$install_dir" \
+        "$font_family" \
+        "$download_url"
+}
+
 install_external_nordic_theme() (
     local repo_url="https://github.com/EliverLara/Nordic.git"
 
