@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 
-# TODO: move script under i3 modules folder instead of linux-scripts
 # TODO: rename script to fix-monitors-x11
 # TODO: once fix-monitors-x11 rename is done, update desktop and sleep hook
 
@@ -40,4 +39,13 @@ if [ -n "$HDMI_OUTPUT" ]; then
 fi
 
 # Set wallpaper
-xwallpaper --zoom "$HOME/.local/share/wallpapers/minimal-nord.png"
+background_color="$HOME/.local/share/wallpapers/nord-background.png"
+wallpaper="$HOME/.local/share/wallpapers/nord-lake.png"
+
+xwallpaper \
+    --output "$PRIMARY_DISPLAY" --zoom  "$wallpaper" \
+    --output "$SECONDARY_DISPLAY" --zoom "$background_color" \
+    --output "$HDMI_OUTPUT" --zoom "$background_color"
+
+# Set all outputs to the same wallpaper
+# xwallpaper --zoom "$HOME/.local/share/wallpapers/nord-lake.png"
