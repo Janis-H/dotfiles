@@ -1,0 +1,99 @@
+
+* {
+    background:         #eceff4;
+    background-alt:     #e5e9f0;
+    selected:           #d8dee9;
+
+    foreground:         #2e3440;
+    foreground-muted:   #4c566a;
+
+    accent:             #5e81ac;
+    urgent:             #bf616a;
+
+    background-color:   transparent;
+    text-color:         @foreground;
+
+    font: "DejaVu Sans 14";
+}
+
+window {
+    width:              720px;
+    padding:            12px;
+
+    background-color:   @background;
+
+    border:             2px;
+    border-color:       @accent;
+    border-radius:      8px;
+}
+
+mainbox {
+    spacing:            10px;
+}
+
+inputbar {
+    padding:            10px 12px;
+    spacing:            8px;
+
+    background-color:   @background-alt;
+    border-radius:      6px;
+}
+
+prompt {
+    text-color:         @accent;
+}
+
+entry {
+    placeholder:        "Search";
+    placeholder-color:  @foreground-muted;
+}
+
+listview {
+    lines:              8;
+    spacing:            4px;
+    scrollbar:          false;
+}
+
+element {
+    padding:            8px 10px;
+    spacing:            10px;
+
+    background-color:   transparent;
+    border-radius:      6px;
+}
+
+element selected {
+    background-color:   @selected;
+    text-color:         @foreground;
+}
+
+element-icon {
+    size:               1.6em;
+    background-color:   inherit;
+}
+
+element-text {
+    vertical-align:     0.5;
+    background-color:   inherit;
+    text-color:         inherit;
+}
+
+element urgent {
+    text-color:         @urgent;
+}
+
+mode-switcher {
+    spacing:            4px;
+}
+
+button {
+    padding:            6px 10px;
+
+    text-color:         @foreground-muted;
+    border-radius:      6px;
+}
+
+button selected {
+    background-color:   @selected;
+    text-color:         @foreground;
+}
