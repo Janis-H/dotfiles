@@ -7,8 +7,6 @@
 // Find the full list of options on the wiki:
 // https://niri-wm.github.io/niri/Configuration:-Input
 input {
-    background-color "#2e3440"
-
     keyboard {
         xkb {
             // You can set rules, model, layout, variant and options.
@@ -117,6 +115,8 @@ cursor {
 // Find more information on the wiki:
 // https://niri-wm.github.io/niri/Configuration:-Layout
 layout {
+    background-color "#2e3440"
+
     // Set gaps around windows in logical pixels.
     gaps 16
 
@@ -274,8 +274,15 @@ layout {
 // which may be more convenient to use.
 // See the binds section below for more spawn examples.
 
+// TODO: Setup mako, swaybg, waybar and swayidle with systemd.
+// Reference doc below:
+// - https://niri-wm.github.io/niri/Example-systemd-Setup.html?utm_source=chatgpt.com
+
 // This line starts waybar, a commonly used bar for Wayland compositors.
 spawn-at-startup "waybar"
+
+// This line starts swaybg, a background setter
+spawn-at-startup "swaybg" "-i" "$HOME/.local/share/wallpapers/dark-mountain-landscape.jpg" "-m" "fill"
 
 // To run a shell command (with variables, pipes, etc.), use spawn-sh-at-startup:
 // spawn-sh-at-startup "qs -c ~/source/qs/MyAwesomeShell"
