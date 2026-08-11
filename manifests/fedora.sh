@@ -173,6 +173,12 @@ EXTERNAL_DESKTOP=(
     proton_pass
     zen_browser
 
+    # Fonts:
+    dejavu_font
+    fira_code_font
+    hack_font
+    julia_mono_font
+
     # Cursor theme:
     bibata_cursor_theme
 
