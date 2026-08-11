@@ -110,6 +110,7 @@ DESKTOP_PACKAGES=(
     rofi
 
     # i3 / X11 tooling
+    feh
     i3
     picom
     xclip
