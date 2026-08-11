@@ -39,13 +39,13 @@ if [ -n "$HDMI_OUTPUT" ]; then
 fi
 
 # Set wallpaper
-background_color="$HOME/.local/share/wallpapers/nord-background.png"
-wallpaper="$HOME/.local/share/wallpapers/nord-lake.png"
+wallpaper="$HOME/.local/share/wallpapers/dark-mountain-landscape.jpg"
 
-xwallpaper \
-    --output "$PRIMARY_DISPLAY" --zoom  "$wallpaper" \
-    --output "$SECONDARY_DISPLAY" --zoom "$background_color" \
-    --output "$HDMI_OUTPUT" --zoom "$background_color"
+# Set seperate outputs, settings and wallpapers
+# xwallpaper \
+#     --output "$PRIMARY_DISPLAY" --zoom  "$wallpaper" \
+#     --output "$SECONDARY_DISPLAY" --zoom "$wallpaper" \
+#     --output "$HDMI_OUTPUT" --zoom "$wallpaper"
 
 # Set all outputs to the same wallpaper
-# xwallpaper --zoom "$HOME/.local/share/wallpapers/nord-lake.png"
+xwallpaper --zoom "$wallpaper"
