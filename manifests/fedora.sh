@@ -118,6 +118,7 @@ DESKTOP_PACKAGES=(
 
     # Shared Wayland tooling
     mako
+    swaybg
     waybar
     wl-clipboard
     xorg-x11-server-Xwayland

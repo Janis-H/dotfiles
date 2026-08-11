@@ -111,6 +111,7 @@ DESKTOP_PACKAGES=(
     xwallpaper
 
     # Shared Wayland tooling
+    swaybg
     waybar
     wl-clipboard
     xwayland
