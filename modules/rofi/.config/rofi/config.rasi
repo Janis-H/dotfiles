@@ -1,2 +1,7 @@
-// @theme "graphite-nord"
-@theme "nord"
+// Avaivailable themes:
+// - "graphite"
+// - "graphite-nord"
+// - "graphite-nord-light"
+// - "nord"
+// - "nord-light"
+@theme "nord-light"
