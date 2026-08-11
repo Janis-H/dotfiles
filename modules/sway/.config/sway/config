@@ -385,9 +385,7 @@
 # Fonts:
 #
     # Main font+size. Alter sway-bar font+size under "bar {}" below.
-    font pango:DejaVu Sans Mono 18
-    # font pango:Fira Code 15
-    # font pango:Julia Mono 15
+    font pango:DejaVu Sans 18
 #
 # Window Gaps:
 #
@@ -432,7 +430,7 @@
 bar {
     position bottom
 
-    font pango:DejaVu Sans Mono 17
+    font pango:DejaVu Sans 18
 
     # When the status_command prints a new line to stdout, swaybar updates.
     # The default just shows the current date and time.
