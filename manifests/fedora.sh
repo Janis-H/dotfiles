@@ -119,6 +119,8 @@ DESKTOP_PACKAGES=(
     # Shared Wayland tooling
     mako
     swaybg
+    swaylock
+    swayidle
     waybar
     wl-clipboard
     xorg-x11-server-Xwayland
@@ -136,8 +138,6 @@ DESKTOP_PACKAGES=(
 
     # Sway-specific tooling
     sway
-    swayidle
-    swaylock
     xdg-desktop-portal-wlr
 )
 

@@ -112,6 +112,8 @@ DESKTOP_PACKAGES=(
 
     # Shared Wayland tooling
     swaybg
+    swaylock
+    swayidle
     waybar
     wl-clipboard
     xwayland
@@ -119,8 +121,6 @@ DESKTOP_PACKAGES=(
     # Sway-specific tooling
     slurp
     sway
-    swayidle
-    swaylock
     xdg-desktop-portal-wlr
 )
 
