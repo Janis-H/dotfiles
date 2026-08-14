@@ -1,0 +1,13 @@
+configuration {
+    show-icons: true;
+    icon-theme: "Papirus-Dark";
+}
+
+// Avaivailable themes:
+// - "graphite"
+// - "graphite-nord"
+// - "graphite-nord-warm-light"
+// - "graphite-nord-light"
+// - "nord"
+// - "nord-light"
+@theme "graphite-nord-warm-light"

@@ -62,18 +62,29 @@ DESKTOP_PACKAGES=(
     xclip
     zenity
 
-    # Theming tools
+    # Theming tools and engines
     lxappearance
     qt5ct
     qt6ct
+    qt-style-kvantum
+    qt5-style-kvantum
+    qt6-style-kvantum
 
-    # Themes
-    adwaita-icon-theme
+    # Adwaita theme
     adwaita-qt
     adwaita-qt6
+    gnome-themes-extra
+
+    # Arc Theme
+    arc-kde
+    arc-theme
+
+    # Breeze theme
     breeze-gtk-theme
     kde-style-breeze
     kde-style-breeze-qt5
+
+    # Papirus icons
     papirus-icon-theme
 
     # Desktop audio
@@ -102,8 +113,12 @@ DESKTOP_PACKAGES=(
     # i3 / X11 tooling
     i3
     picom
+    xwallpaper
 
     # Shared Wayland tooling
+    swaybg
+    swaylock
+    swayidle
     waybar
     wl-clipboard
     xwayland
@@ -111,8 +126,6 @@ DESKTOP_PACKAGES=(
     # Sway-specific tooling
     slurp
     sway
-    swayidle
-    swaylock
     xdg-desktop-portal-wlr
 )
 
@@ -146,13 +159,25 @@ EXTERNAL_HEADLESS=(
 
 EXTERNAL_DESKTOP=(
     autotiling
-    dejavu_font
-    fira_code_font
-    julia_mono_font
     niri
     proton_mail
     proton_pass
     zen_browser
+
+    # Fonts:
+    dejavu_font
+    hack_font
+    fira_code_font
+    julia_mono_font
+
+    # Cursor theme:
+    bibata_cursor_theme
+
+    # GTK and Qt/Gvantum theme:
+    graphite_theme
+
+    # GTK and Qt/Gvantum theme:
+    nordic_theme
 )
 
 # ─────────────────────────────────────────────────────────────
@@ -176,10 +201,10 @@ HEADLESS_STOW_MODULES=(
 
 # dotfile modules for GUI/workstation setup
 DESKTOP_STOW_MODULES=(
+    ghostty
     i3
     picom
+    rofi
     sway
-    lxappearance
-    qt5ct
-    qt6ct
+    theme
 )

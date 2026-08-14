@@ -61,16 +61,23 @@ DESKTOP_PACKAGES=(
     ghostty
     zenity
 
-    # Theming tools
+    # Theming tools and engines
     lxappearance
+    kvantum
+    kvantum-qt5
     qt5ct
     qt6ct
 
-    # Themes
-    adwaita-icon-theme
+    # Adwaita Theme
+    adw-gtk-theme
+    gnome-themes-extra
+
+    # Breeze theme
     breeze
     breeze5
     breeze-gtk
+
+    # Papirus icons
     papirus-icon-theme
 
     # Desktop audio
@@ -139,6 +146,21 @@ EXTERNAL_HEADLESS=()
 
 EXTERNAL_DESKTOP=(
     autotiling
+
+    # Fonts:
+    dejavu_font
+    fira_code_font
+    hack_font
+    julia_mono_font
+
+    # Cursor theme:
+    bibata_cursor_theme
+
+    # GTK and Qt/Gvantum theme:
+    graphite_theme
+
+    # GTK and Qt/Gvantum theme:
+    nordic_theme
 )
 
 # ─────────────────────────────────────────────────────────────
@@ -161,11 +183,8 @@ HEADLESS_STOW_MODULES=(
 
 # dotfile modules for GUI/workstation setup
 DESKTOP_STOW_MODULES=(
-<<<<<<< HEAD
+    ghostty
+    rofi
     sway
-=======
-    lxappearance
-    qt5ct
-    qt6ct
->>>>>>> main
+    theme
 )

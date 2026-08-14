@@ -67,16 +67,24 @@ DESKTOP_PACKAGES=(
 
     # Theming tooling
     lxappearance
+    kvantum
+    kvantum-qt5
     qt5ct
     qt6ct
 
-    # Themes
-    adwaita-icon-theme
-    adwaita-qt5
-    adwaita-qt6
+    # Adwaita theme
+    adw-gtk3-theme
+
+    # Arc theme
+    arc-kde
+    arc-theme
+
+    # Breeze theme
     breeze-gtk
     plasma-breeze-qt5
     plasma-breeze-qt6
+
+    # Papirus icons
     papirus-icon-theme
     papirus-icon-theme-dark
 
@@ -111,9 +119,13 @@ DESKTOP_PACKAGES=(
     picom
     xclip
     xorg-x11-server-Xorg
+    xwallpaper
 
     # Shared Wayland tooling
     mako
+    swaybg
+    swaylock
+    swayidle
     waybar
     wl-clipboard
     xorg-x11-server-Xwayland
@@ -131,8 +143,6 @@ DESKTOP_PACKAGES=(
 
     # Sway-specific tooling
     sway
-    swayidle
-    swaylock
     xdg-desktop-portal-wlr
 )
 
@@ -169,6 +179,21 @@ EXTERNAL_DESKTOP=(
     proton_mail
     proton_pass
     zen_browser
+
+    # Fonts:
+    dejavu_font
+    fira_code_font
+    hack_font
+    julia_mono_font
+
+    # Cursor theme:
+    bibata_cursor_theme
+
+    # GTK and Qt/Gvantum theme:
+    graphite_theme
+
+    # GTK and Qt/Gvantum theme:
+    nordic_theme
 )
 
 # ─────────────────────────────────────────────────────────────
@@ -191,10 +216,10 @@ HEADLESS_STOW_MODULES=(
 
 # dotfile modules for GUI/workstation setup
 DESKTOP_STOW_MODULES=(
+    ghostty
     i3
     picom
+    rofi
     sway
-    lxappearance
-    qt5ct
-    qt6ct
+    theme
 )

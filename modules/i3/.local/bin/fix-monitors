@@ -1,12 +1,7 @@
 #!/usr/bin/env bash
 
-# TODO: move script under i3 modules folder instead of linux-scripts
 # TODO: rename script to fix-monitors-x11
 # TODO: once fix-monitors-x11 rename is done, update desktop and sleep hook
-
-# TODO: create fix-monitors-sway script.
-# xrandr is not supported by wayland; therefore, a replacement
-# will be needed once the transition to sway (wayland) is complete
 
 set -euo pipefail
 
@@ -42,3 +37,15 @@ if [ -n "$HDMI_OUTPUT" ]; then
     --reflect y \
     --left-of "$PRIMARY_DISPLAY"
 fi
+
+# Set wallpaper
+wallpaper="$HOME/.local/share/wallpapers/dark-mountain-landscape.jpg"
+
+# Set seperate outputs, settings and wallpapers
+# xwallpaper \
+#     --output "$PRIMARY_DISPLAY" --zoom  "$wallpaper" \
+#     --output "$SECONDARY_DISPLAY" --zoom "$wallpaper" \
+#     --output "$HDMI_OUTPUT" --zoom "$wallpaper"
+
+# Set all outputs to the same wallpaper
+xwallpaper --zoom "$wallpaper"

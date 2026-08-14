@@ -74,8 +74,6 @@ return {
             "html",
             "javascript",
             "jsdoc",
-            "json",
-            "json5",
             "scss",
             "tsx",
             "typescript",
@@ -115,8 +113,11 @@ return {
             "make",
 
             -- Config formats
-            "toml",
+            "json",
+            "json5",
+            "kdl",
             "ini",
+            "toml",
             "yaml",
 
             -- Application configuration

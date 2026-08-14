@@ -21,7 +21,10 @@ is_repository_configured() {
         --include='*.sources' \
         -- "$repo" /etc/apt/sources.list.d; then
     info "$repo repository is already configured"
+    return 0
     fi
+
+    return 1
 }
 
 is_in_packages_list() {
@@ -30,17 +33,14 @@ is_in_packages_list() {
 
     local packages_list=("$@")
 
-    local is_in_list=false
-
     for pkg in "${packages_list[@]}"; do
         if [[ "$pkg" = "$target_package" ]]; then
-            is_in_list=true
+            return 0
         fi
     done
 
-    if ! "$is_in_list"; then
-        info "Skipping $target_package repository setup"
-    fi
+    info "Skipping $target_package repository setup"
+    return 1
 }
 
 # --- Repository Setup ---
@@ -143,18 +143,54 @@ setup_helium_browser_repository() {
     echo "deb [arch=amd64,arm64 signed-by=/usr/share/keyrings/helium.gpg] https://pkg.helium.computer/deb stable main" | sudo tee /etc/apt/sources.list.d/helium.list
 }
 
+setup_papirus_repository() {
+    local pkgs=(
+        "qt6-style-kvantum"
+        "arc-kde"
+    )
+
+    local repo="papirus/papirus"
+    local ppa="ppa:papirus/papirus"
+
+    local configure_repo=false
+
+    for pkg in "${pkgs[@]}"; do
+        if is_in_packages_list "$pkg" "$@" ; then
+            configure_repo=true
+            break
+        fi
+    done
+
+    if ! "$configure_repo" || is_repository_configured "$repo"; then
+        return 0
+    fi
+
+    info "Configuring Papirus repository"
+
+    run_cmd sudo add-apt-repository -y "$ppa" || return 1
+}
+
 setup_package_repositories() {
     info "Configuring package repositories"
 
     setup_1password_repository "$@"
     setup_docker_repository "$@"
     setup_helium_browser_repository "$@"
+    setup_papirus_repository "$@"
 }
 
 # --- Public entrypoint ---
 install_system_packages() {
     local packages=("$@")
     local available_packages=()
+
+    setup_package_repositories "${packages[@]}" ||
+        return 1
+
+    info "Installing system packages"
+
+    run_cmd sudo apt-get update ||
+        return 1
 
     for pkg in "${packages[@]}"; do
         if apt-cache show "$pkg" &>/dev/null; then
@@ -164,9 +200,6 @@ install_system_packages() {
         fi
     done
 
-    setup_package_repositories "${available_packages[@]}"
-
-    info "Installing system packages"
-    run_cmd sudo apt-get update
-    run_cmd sudo apt-get install -y "${available_packages[@]}"
+    run_cmd sudo apt-get install --install-recommends -y "${available_packages[@]}" ||
+        return 1
 }
