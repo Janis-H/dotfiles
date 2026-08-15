@@ -4,6 +4,9 @@
 
 ### Variables
 #
+    # Font (shared by title and bar)
+    set $font pango:DejaVu Sans
+
     # Logo key. Use Mod1 for Alt.
     set $mod Mod4
     set $alt Mod1
@@ -385,7 +388,7 @@
 # Fonts:
 #
     # Main font+size. Alter sway-bar font+size under "bar {}" below.
-    font pango:DejaVu Sans 18
+    font $font 18
 #
 # Window Gaps:
 #
@@ -430,7 +433,7 @@
 bar {
     position bottom
 
-    font pango:DejaVu Sans 18
+    font $font 18
 
     # When the status_command prints a new line to stdout, swaybar updates.
     # The default just shows the current date and time.
