@@ -153,6 +153,8 @@ EXTERNAL_CORE=(
 )
 
 EXTERNAL_HEADLESS=(
+    claude_code
+    codex
     lazydocker
     lazygit
 )

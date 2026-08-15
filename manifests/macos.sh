@@ -96,7 +96,10 @@ EXTERNAL_CORE=(
     # zsh_plugins
 )
 
-EXTERNAL_HEADLESS=()
+EXTERNAL_HEADLESS=(
+    claude_code
+    codex
+)
 
 EXTERNAL_DESKTOP=()
 
