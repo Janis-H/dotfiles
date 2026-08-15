@@ -176,6 +176,38 @@ install_external_bibata_cursor_theme() (
     info "$theme_name cursor theme installed successfully"
 )
 
+install_external_claude_code() {
+    if command -v claude &>/dev/null; then
+        info "Claude Code is already installed"
+        return 0
+    fi
+
+    info "Installing Claude Code"
+
+    if [[ "${DRY_RUN:-false}" = true ]]; then
+        printf '+ curl -fsSL https://claude.ai/install.sh | bash\n'
+        return 0
+    fi
+
+    curl -fsSL https://claude.ai/install.sh | bash
+}
+
+install_external_codex() {
+    if command -v codex &>/dev/null; then
+        info "Codex is already installed"
+        return 0
+    fi
+
+    info "Installing Codex"
+
+    if [[ "${DRY_RUN:-false}" = true ]]; then
+        printf '+ curl -fsSL https://chatgpt.com/codex/install.sh | sh\n'
+        return 0
+    fi
+
+    curl -fsSL https://chatgpt.com/codex/install.sh | sh
+}
+
 install_external_dejavu_font() {
     local file_name="dejavu-fonts-ttf-2.37.zip"
     local install_dir="DejaVu"
