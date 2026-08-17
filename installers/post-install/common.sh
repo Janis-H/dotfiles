@@ -16,6 +16,7 @@ gsettings_key_exists() {
         gsettings list-schemas | grep -Fxq "$schema" &&
         gsettings list-keys "$schema" | grep -Fxq "$key"
 }
+
 # --- Setup functions ---
 create_dev_dirs() {
     info "Creating dev dirs"
@@ -33,21 +34,6 @@ create_dev_dirs() {
 
     run_cmd mkdir -p "$HOME/.config"
     run_cmd mkdir -p "$HOME/.local/bin"
-}
-
-setup_docker_non_root_access() {
-    if [[ "$(uname -s)" != "Linux" ]]; then
-        return 0
-    fi
-
-    local target_user="${SUDO_USER:-$USER}"
-
-    info "Configuring Docker for non-root access"
-
-    run_cmd sudo groupadd -f docker
-    run_cmd sudo usermod -aG docker "$target_user"
-
-    info "Log out and back in for Docker group membership to take effect"
 }
 
 setup_local_bin() {
@@ -100,6 +86,74 @@ verify_fzf() {
     warn "Make sure .zshrc has fallback paths for fzf keybindings/completion"
 }
 
+install_herdr_plugins() {
+    local plugins=(
+        "paulbkim-dev/vim-herdr-navigation"
+        "andrewchng/herdr-sessionizer"
+    )
+
+    if ! command -v herdr >/dev/null 2>&1; then
+        info "Skipping Herdr plugins: herdr is not installed"
+        return
+    fi
+
+    for plugin in "${plugins[@]}"; do
+        info "Installing Herdr plugin: $plugin"
+        herdr plugin install "$plugin" --yes
+    done
+}
+
+firefoxpwa_site_is_installed() {
+    local site_name="$1"
+
+    firefoxpwa profile list | grep -Fq -- "- $site_name:"
+}
+
+install_firefoxpwa_webapp() {
+    local site_name="$1"
+    local manifest_url="$2"
+    local document_url="${3:-}"
+
+    if firefoxpwa_site_is_installed "$site_name"; then
+        info "FirefoxPWA web app already installed: $site_name"
+        return 0
+    fi
+
+    info "Installing FirefoxPWA web app: $site_name"
+    if [[ -n "$document_url" ]]; then
+        run_cmd firefoxpwa site install "$manifest_url" \
+            --document-url "$document_url" \
+            --name "$site_name"
+        return
+    fi
+
+    run_cmd firefoxpwa site install "$manifest_url" --name "$site_name"
+}
+
+install_firefoxpwa_webapps() {
+    if ! command -v firefoxpwa >/dev/null 2>&1; then
+        info "Skipping FirefoxPWA web apps: firefoxpwa is not installed"
+        return 0
+    fi
+
+    info "Installing FirefoxPWA runtime"
+    run_cmd firefoxpwa runtime install || return 1
+
+    install_firefoxpwa_webapp \
+        "YouTube" \
+        "https://www.youtube.com/manifest.webmanifest" || return 1
+    install_firefoxpwa_webapp \
+        "LinkedIn" \
+        "https://www.linkedin.com/manifest.json" || return 1
+    install_firefoxpwa_webapp \
+        "Master.dev" \
+        "https://master.dev/manifest.json" || return 1
+    install_firefoxpwa_webapp \
+        "Snapchat" \
+        "https://cf-st.sc-cdn.net/dw/favicons/e9b6d2d3-dweb_slash_web-prod-web-v9/manifest.json" \
+        "https://www.snapchat.com/web" || return 1
+}
+
 install_tmux_plugin_manager() {
     local tmux_plugins_dir="$HOME/.tmux/plugins"
 
@@ -128,32 +182,10 @@ install_tmux_plugins_from_config() {
 
     info "Installing tmux plugins"
 
-    # check if script is already running in an active tmux session
-    local in_tmux=false
-    if [[ -n "$TMUX" ]]; then
-        in_tmux=true
-    else
-        # if not inside tmux, start a background instance safely
-        tmux start-server
-    fi
-
-    # source configuration to map the plugins
-    local tmux_conf="$HOME/.tmux.conf"
-    [[ ! -f "$tmux_conf" && -f "$HOME/.config/tmux/tmux.conf" ]] && tmux_conf="$HOME/.config/tmux/tmux.conf"
-    if [[ -f "$tmux_conf" ]]; then
-        tmux source-file "$tmux_conf"
-    fi
-
-    # explicitly require path variable required by TPM
+    # TPM reads the plugin declarations from tmux.conf and manages its own server.
     export TMUX_PLUGIN_MANAGER_PATH="$tmux_plugins_dir"
 
     run_cmd "$installer"
-
-    # SAFE CLEANUP: only kill the server if your script created it
-    # If $in_tmux is true, we leave the server completely untouched!
-    if [[ "$in_tmux" == false ]]; then
-        tmux kill-server >/dev/null 2>&1 || true
-    fi
 }
 
 setup_git_defaults() {
@@ -167,38 +199,17 @@ setup_git_defaults() {
     run_cmd git config --global diff.coloredMoved zebra
 }
 
-configure_gnome_theme() {
-    local schema="org.gnome.desktop.interface"
-
-    if ! command -v gsettings >/dev/null 2>&1 ||
-       ! gsettings list-schemas | grep -Fxq "$schema"; then
-        info "Skipping GNOME theme configuration"
-        return 0
-    fi
-
-    info "Configuring GNOME theme"
-
-    run_cmd gsettings set "$schema" color-scheme 'prefer-dark'
-    run_cmd gsettings set "$schema" gtk-theme 'Nordic'
-    run_cmd gsettings set "$schema" icon-theme 'Papirus-Dark'
-    run_cmd gsettings set "$schema" cursor-theme 'Bibata-Modern-Ice'
-    run_cmd gsettings set "$schema" cursor-size 28
-    run_cmd gsettings set "$schema" font-name 'DejaVu Sans 12'
-    run_cmd gsettings set "$schema" monospace-font-name 'FiraCode Nerd Font 13'
-}
-
 # --- Public entrypoint ---
 run_common_post_install() {
     create_dev_dirs
     setup_local_bin
 
     set_default_shell
+    install_herdr_plugins
+    install_firefoxpwa_webapps
     install_tmux_plugin_manager
     install_tmux_plugins_from_config
 
     verify_fzf
     setup_git_defaults
-    setup_docker_non_root_access
-
-    configure_gnome_theme
 }

@@ -7,6 +7,7 @@ typeset -U path PATH
 path=(
     "$HOME/bin"
     "$HOME/.local/bin"
+    "$HOME/.bun/bin"
     "$HOME/.fzf/bin"
     "$HOME/.cargo/bin"
     "$HOME/go/bin"
@@ -32,11 +33,6 @@ else
     export EDITOR="nvim"
     export VISUAL="nvim"
 fi
-
-# Node Version Manager
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
-[ -s "$NVM_DIR/bash_completion" ] && . "$NVM_DIR/bash_completion"
 
 # Fzf Customization
 FZF_BASE="$HOME/.fzf"

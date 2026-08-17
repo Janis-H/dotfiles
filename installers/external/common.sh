@@ -294,6 +294,11 @@ install_external_graphite_theme() (
 install_external_herdr() {
     local install_url="https://herdr.dev/install.sh"
 
+    if command -v herdr >/dev/null 2>&1; then
+        info "Herdr is already installed"
+        return 0
+    fi
+
     info "Installing Herdr"
 
     if [[ "${DRY_RUN:-false}" == true ]]; then

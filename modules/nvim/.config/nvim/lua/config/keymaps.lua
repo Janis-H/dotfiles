@@ -67,9 +67,17 @@ vim.keymap.set("n", "<leader>de", vim.diagnostic.open_float, opts("Show diagnost
 vim.keymap.set("n", "<leader>dq", vim.diagnostic.setloclist, opts("Open diagnostic quickfix list"))
 
 -- tmux-sessionizer
--- Ctrl-f opens the project picker
+-- Ctrl-f opens the Herdr or tmux project picker for the current environment.
 -- Alt bindings run TS_SESSION_COMMANDS by index in the active project session.
-vim.keymap.set("n", "<C-f>", "<cmd>silent !tmux neww tmux-sessionizer<cr>", opts('Opens tmux-sessionizer project picker'))
+vim.keymap.set('n', '<C-f>', function()
+    if vim.env.HERDR_ENV == '1' then
+        vim.cmd('silent !herdr-sessionizer')
+    elseif vim.env.TMUX and vim.env.TMUX ~= '' then
+        vim.cmd('silent !tmux neww tmux-sessionizer')
+    else
+        vim.cmd('silent !tmux-sessionizer')
+    end
+end, opts('Open environment sessionizer'))
 vim.keymap.set(
     "n",
     "<M-1>",

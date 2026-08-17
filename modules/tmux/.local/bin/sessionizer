@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+# Use Herdr's workspace picker inside Herdr; otherwise open tmux-sessionizer.
+if [[ "${HERDR_ENV:-}" == "1" ]]; then
+    exec herdr-sessionizer
+fi
+
+exec tmux-sessionizer

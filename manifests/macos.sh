@@ -75,6 +75,7 @@ DESKTOP_PACKAGES=(
 DESKTOP_CASKS=(
     docker-desktop
     ghostty
+    google-chrome
     # TODO: add aerospace config
     # - aerospace guide: https://nikitabobko.github.io/AeroSpace/guide
     nikitabobko/tap/aerospace

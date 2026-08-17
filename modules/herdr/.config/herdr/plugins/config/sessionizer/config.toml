@@ -1,0 +1,40 @@
+# Sessionizer config file
+# See: https://github.com/andrewchng/herdr-sessionizer
+
+[projects]
+roots = [
+    "~",
+    "~/dev",
+    "~/dev/archived",
+    "~/dev/coursework",
+    "~/dev/personal",
+    "~/dev/notes",
+    "~/dev/scripts",
+    "~/dev/tools",
+    "~/dev/work",
+    "~/git",
+]
+git_only = true
+depth = 1
+
+[ui]
+placement = "popup"   # overlay | split | popup (popup needs Herdr >= 0.7.4)
+
+[layout]
+focus = "editor"
+
+[tabs.dev]
+label = "dev"
+
+[[tabs.dev.panes]]
+id = "editor"
+title = "nvim"
+command = "nvim"
+
+[[tabs.dev.panes]]
+id = "agent"
+from = "editor"
+title = "agent"
+split = "right"
+ratio = 0.3
+command = "codex"

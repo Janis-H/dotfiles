@@ -58,7 +58,9 @@ HEADLESS_PACKAGES=(
 DESKTOP_PACKAGES=(
     # General desktop
     flatpak
+    firefoxpwa
     ghostty
+    weechat
     zenity
 
     # Theming tools and engines

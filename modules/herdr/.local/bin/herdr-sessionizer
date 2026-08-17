@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+# Open the installed Herdr Sessionizer plugin from a shell.
+exec herdr plugin action invoke sessionizer.open

@@ -57,9 +57,13 @@ DESKTOP_PACKAGES=(
     # General desktop
     1password
     flatpak
+    firefoxpwa
     ghostty
+    google-chrome-stable
     helium-bin
+    hexchat
     xclip
+    weechat
     zenity
 
     # Theming tools and engines
