@@ -1,10 +1,10 @@
-
 #!/usr/bin/env bash
 
 : "${DOTFILES_DIR:?DOTFILES_DIR must be set before sourcing post-install/common.sh}"
 
 # --- Sources ---
 source "$DOTFILES_DIR/lib/log.sh"
+source "$DOTFILES_DIR/lib/is-supported-linux-os.sh"
 source "$DOTFILES_DIR/lib/install-or-update-repo.sh"
 source "$DOTFILES_DIR/lib/run-command.sh"
 
@@ -16,17 +16,6 @@ gsettings_key_exists() {
     command -v gsettings >/dev/null 2>&1 &&
         gsettings list-schemas | grep -Fxq "$schema" &&
         gsettings list-keys "$schema" | grep -Fxq "$key"
-}
-
-check_valid_linux_os() {
-    case "$OS" in
-        arch | fedora | debian)
-            return 0
-            ;;
-        *)
-            return 1
-            ;;
-    esac
 }
 
 # --- Setup functions ---
@@ -147,7 +136,7 @@ configure_browser_extensions() {
 
 # --- Public entrypoint ---
 run_common_linux_post_install() {
-    check_valid_linux_os || return 0
+    is_supported_linux_os "$OS" || return 0
 
     setup_docker_non_root_access
 
