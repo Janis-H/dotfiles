@@ -514,11 +514,9 @@
     # Make inactive windows transparent
     exec ~/.config/sway/inactive_windows_transparent
 
-    # TODO: create ~/dotfiles/modules/waybar/.config/waybar/config.jsonc modules file
     # Starts the Waybar status bar
     exec waybar
 
-    # TODO: create ~/dotfiles/modules/mako/.config/mako/config modules file
     # Notification daemon
     exec mako
 
