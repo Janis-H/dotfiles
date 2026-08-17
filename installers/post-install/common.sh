@@ -168,6 +168,10 @@ setup_git_defaults() {
 }
 
 configure_gnome_theme() {
+    if [[ "$(uname -s)" == "Darwin" ]]; then
+        return 0
+    fi
+
     local schema="org.gnome.desktop.interface"
 
     if ! command -v gsettings >/dev/null 2>&1 ||
