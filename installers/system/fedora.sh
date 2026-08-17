@@ -58,6 +58,33 @@ setup_1password_repository() {
     run_cmd sudo sh -c 'echo -e "[1password]\nname=1password stable channel\nbaseurl=https://downloads.1password.com/linux/rpm/stable/\$basearch\nenabled=1\ngpgcheck=1\nrepo_gpgcheck=1\ngpgkey=\"https://downloads.1password.com/linux/keys/1password.asc\"" > /etc/yum.repos.d/1password.repo'
 }
 
+setup_chrome_repository() {
+    local pkg="google-chrome-stable"
+    local repo="google-chrome"
+
+    if ! is_in_packages_list "$pkg" "$@" || is_repository_configured "$repo"; then
+        return 0
+    fi
+
+    info "Configuring Google Chrome repository"
+
+    # Add Google's official signing key
+    run_cmd sudo rpm --import \
+        https://dl.google.com/linux/linux_signing_key.pub
+
+    # Add the Google Chrome repository
+    run_cmd sudo tee /etc/yum.repos.d/google-chrome.repo <<EOF
+[google-chrome]
+name=Google Chrome
+baseurl=https://dl.google.com/linux/chrome/rpm/stable/x86_64
+enabled=1
+gpgcheck=1
+gpgkey=https://dl.google.com/linux/linux_signing_key.pub
+EOF
+
+    run_cmd sudo dnf makecache
+}
+
 setup_dms_repository() {
     local pkg="dms"
     local repo="dms"
@@ -127,6 +154,7 @@ setup_package_repositories() {
     info "Configuring package repositories"
 
     setup_1password_repository "$@"
+    setup_chrome_repository "$@"
     setup_dms_repository "$@"
     setup_docker_repository "$@"
     setup_ghostty_repository "$@"

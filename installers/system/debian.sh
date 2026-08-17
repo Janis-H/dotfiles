@@ -92,6 +92,38 @@ run_cmd sudo gpg --dearmor --yes \
     "$key_file"
 }
 
+setup_chrome_repository() {
+    local pkg="google-chrome-stable"
+    local repo="google-chrome"
+
+    if ! is_in_packages_list "$pkg" "$@" || is_repository_configured "$repo"; then
+        return 0
+    fi
+
+    info "Configuring Google Chrome repository"
+
+    # Add Google's official GPG key
+    run_cmd sudo apt update
+    run_cmd sudo apt install -y ca-certificates curl
+    run_cmd sudo install -m 0755 -d /etc/apt/keyrings
+    run_cmd sudo curl -fsSL \
+        https://dl.google.com/linux/linux_signing_key.pub \
+        -o /etc/apt/keyrings/google-chrome.asc
+    run_cmd sudo chmod a+r /etc/apt/keyrings/google-chrome.asc
+
+    # Add the Google Chrome repository
+    run_cmd sudo tee /etc/apt/sources.list.d/google-chrome.sources <<EOF
+Types: deb
+URIs: https://dl.google.com/linux/chrome/deb/
+Suites: stable
+Components: main
+Architectures: amd64
+Signed-By: /etc/apt/keyrings/google-chrome.asc
+EOF
+
+    run_cmd sudo apt update
+}
+
 setup_docker_repository() {
     local pkg="docker-ce"
     local repo="docker"
@@ -174,6 +206,7 @@ setup_package_repositories() {
     info "Configuring package repositories"
 
     setup_1password_repository "$@"
+    setup_chrome_repository "$@"
     setup_docker_repository "$@"
     setup_helium_browser_repository "$@"
     setup_papirus_repository "$@"
