@@ -188,9 +188,14 @@ configure_gnome_theme() {
 }
 
 configure_browser_extensions() {
+    if [[ "$(uname -s)" == "Darwin" ]]; then
+        return 0
+    fi
+
     local policies_dir="$HOME/dotfiles/modules/browsers/policies"
     local zen_policy="$policies_dir/zen.json"
     local helium_policy="$policies_dir/helium.json"
+    local chrome_policy="$policies_dir/chrome.json"
 
     #
     # Zen Browser
@@ -211,7 +216,7 @@ configure_browser_extensions() {
         zen_policy_dir+="/$zen_arch/$zen_branch/policies"
 
         if [[ -f "$zen_policy" ]]; then
-            echo "Installing Zen Browser extension policy..."
+            info "Installing Zen Browser extension policy..."
 
             run_cmd mkdir -p "$zen_policy_dir" ||
                 return 1
@@ -221,10 +226,34 @@ configure_browser_extensions() {
                 "$zen_policy_dir/policies.json" ||
                 return 1
         else
-            echo "Zen Browser policy not found: $zen_policy"
+            warn "Zen Browser policy not found: $zen_policy"
         fi
     else
-        echo "Zen Browser is not installed, skipping extension policy"
+        warn "Zen Browser is not installed, skipping extension policy"
+    fi
+
+    #
+    # Google Chrome / Chromium
+    #
+    if [[ -f "$chrome_policy" ]]; then
+        local chrome_policy_dir=""
+
+        if command -v google-chrome-stable &>/dev/null ||
+            command -v google-chrome &>/dev/null; then
+            chrome_policy_dir="/etc/opt/chrome/policies/managed"
+        elif command -v chromium &>/dev/null ||
+            command -v chromium-browser &>/dev/null; then
+            chrome_policy_dir="/etc/chromium/policies/managed"
+        fi
+
+        if [[ -n "$chrome_policy_dir" ]]; then
+            info "Installing Chrome extension policy"
+
+            run_cmd sudo install -Dm644 \
+                "$chrome_policy" \
+                "$chrome_policy_dir/extensions.json" ||
+                return 1
+        fi
     fi
 
     #
@@ -232,17 +261,17 @@ configure_browser_extensions() {
     #
     if command -v helium &>/dev/null; then
         if [[ -f "$helium_policy" ]]; then
-            echo "Installing Helium extension policy..."
+            info "Installing Helium extension policy..."
 
             run_cmd sudo install -Dm644 \
                 "$helium_policy" \
                 /etc/chromium/policies/managed/helium.json ||
                 return 1
         else
-            echo "Helium policy not found: $helium_policy"
+            warn "Helium policy not found: $helium_policy"
         fi
     else
-        echo "Helium is not installed, skipping extension policy"
+        warn "Helium is not installed, skipping extension policy"
     fi
 }
 
