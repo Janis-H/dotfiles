@@ -298,6 +298,7 @@
     assign [class=$proton_mail_class] $ws_right
     assign [class=$proton_pass_class] $ws_right
     assign [class=$youtube_class] $ws_right
+    assign [class="Pavucontrol"] $ws_right
 
     # For_Window applications
     for_window [class=".*"] border normal 3
@@ -476,6 +477,11 @@ output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
 #
 # You can get the names of your inputs by running: swaymsg -t get_inputs
 # Read `man 5 sway-input` for more information about this section.
+    input type:keyboard {
+        xkb_capslock    disabled
+        xkb_numlock     enabled
+        xkb_layout      "us"
+    }
 
 ### Session services
 #
