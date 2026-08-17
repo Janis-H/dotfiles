@@ -189,6 +189,7 @@ DESKTOP_STOW_MODULES=(
     ghostty
     hexchat
     rofi
+    niri
     sway
     theme
 )

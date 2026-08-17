@@ -222,6 +222,7 @@ DESKTOP_STOW_MODULES=(
     hexchat
     i3
     picom
+    niri
     rofi
     sway
     theme
