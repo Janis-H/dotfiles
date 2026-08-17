@@ -62,6 +62,7 @@ DESKTOP_PACKAGES=(
     1password
     flatpak
     ghostty
+    google-chrome-stable
     helium-bin
     zenity
 
