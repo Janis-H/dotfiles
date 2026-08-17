@@ -230,4 +230,5 @@ DESKTOP_STOW_MODULES=(
     rofi
     sway
     theme
+    weechat
 )

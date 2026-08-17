@@ -194,4 +194,5 @@ DESKTOP_STOW_MODULES=(
     niri
     sway
     theme
+    weechat
 )
