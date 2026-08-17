@@ -157,7 +157,7 @@
         }
         i3bar_command i3bar --transparency
         tray_output primary
-        tray_padding 3
+        tray_padding 6
     }
 
 ### Keybindings
