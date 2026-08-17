@@ -301,8 +301,13 @@
 
     # For_Window applications
     for_window [class=".*"] border normal 3
-    for_window [class=$pika_backup_class] \
-        floating enable
+    for_window [window_role="pop-up"] floating enable
+    for_window [window_role="bubble"] floating enable
+    for_window [window_role="dialog"] floating enable
+    for_window [window_type="dialog"] floating enable
+
+    # Aplication-specific rules
+    for_window [class=$pika_backup_class] floating enable
 #
 # Layout stuff:
 #
