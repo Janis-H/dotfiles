@@ -64,6 +64,7 @@ DESKTOP_PACKAGES=(
     ghostty
     google-chrome-stable
     helium-bin
+    hexchat
     zenity
 
     # Theming tooling
