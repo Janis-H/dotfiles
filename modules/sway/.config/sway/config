@@ -30,6 +30,29 @@
     # Application lancher - window search
     set $window_search rofi -window drun | xargs swaymsg exec --
 
+    # Monitor aliases
+    set $left_monitor "HDMI-A-0"
+    set $center_monitor "DisplayPort-0"
+    set $right_monitor "DisplayPort-1"
+
+    # Define names for default workspaces for which we configure key bindings later on.
+    # We use variables to avoid repeating the names in multiple places.
+    set $ws1 "1"
+    set $ws2 "2"
+    set $ws3 "3"
+    set $ws4 "4"
+    set $ws5 "5"
+    set $ws6 "6"
+    set $ws7 "7"
+    set $ws8 "8"
+    set $ws9 "9"
+    set $ws10 "10"
+
+    # Define names for non-numbered side workspaces
+    set $ws_left "left"
+    set $ws_right "right"
+
+
     # Application Command and Window Class Variables
     #   * Note: find window class via wmctrl
     set $1password_cmd "1password"
@@ -257,28 +280,6 @@
 #
 # Monitor / Workspace Outputs:
 #
-    # Monitor aliases
-    set $left_monitor "HDMI-A-0"
-    set $center_monitor "DisplayPort-0"
-    set $right_monitor "DisplayPort-1"
-
-    # Define names for default workspaces for which we configure key bindings later on.
-    # We use variables to avoid repeating the names in multiple places.
-    set $ws1 "1"
-    set $ws2 "2"
-    set $ws3 "3"
-    set $ws4 "4"
-    set $ws5 "5"
-    set $ws6 "6"
-    set $ws7 "7"
-    set $ws8 "8"
-    set $ws9 "9"
-    set $ws10 "10"
-
-    # Define names for non-numbered side workspaces
-    set $ws_left "left"
-    set $ws_right "right"
-
     # Define workspaces
     workspace $ws1 output $center_monitor
     workspace $ws2 output $center_monitor
