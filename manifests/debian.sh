@@ -58,6 +58,7 @@ DESKTOP_PACKAGES=(
     1password
     flatpak
     ghostty
+    google-chrome-stable
     helium-bin
     xclip
     zenity
@@ -204,7 +205,6 @@ HEADLESS_STOW_MODULES=(
 # dotfile modules for GUI/workstation setup
 DESKTOP_STOW_MODULES=(
     ghostty
-    google-chrome-stable
     hexchat
     i3
     picom
