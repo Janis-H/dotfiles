@@ -59,6 +59,7 @@ DESKTOP_PACKAGES=(
     # General desktop
     flatpak
     ghostty
+    weechat
     zenity
 
     # Theming tools and engines

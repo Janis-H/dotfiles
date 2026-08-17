@@ -62,6 +62,7 @@ DESKTOP_PACKAGES=(
     helium-bin
     hexchat
     xclip
+    weechat
     zenity
 
     # Theming tools and engines

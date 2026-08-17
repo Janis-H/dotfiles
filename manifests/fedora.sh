@@ -65,6 +65,7 @@ DESKTOP_PACKAGES=(
     google-chrome-stable
     helium-bin
     hexchat
+    weechat
     zenity
 
     # Theming tooling
