@@ -308,6 +308,7 @@
 
     # Aplication-specific rules
     for_window [class=$pika_backup_class] floating enable
+    for_window [class="Pavucontrol"] floating enable
 #
 # Layout stuff:
 #
