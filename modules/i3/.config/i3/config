@@ -500,12 +500,15 @@
 #
     # Start XDG autostart .desktop files using dex.
     # See: https://wiki.archlinux.org/index.php/XDG_Autostart
-    exec --no-startup-id dex --autostart --environment i3 # The combination of xss-lock, nm-applet and pactl is a popular choice, so
+    exec --no-startup-id dex --autostart --environment i3
 #
 # Services:
 #
     # Lock the session before suspend
     exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
+
+    # Bluetooth tray applet
+    exec --no-startup-id blueman-applet
 
     # NetworkManager tray applet
     exec --no-startup-id nm-applet
