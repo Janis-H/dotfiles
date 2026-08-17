@@ -187,6 +187,65 @@ configure_gnome_theme() {
     run_cmd gsettings set "$schema" monospace-font-name 'FiraCode Nerd Font 13'
 }
 
+configure_browser_extensions() {
+    local policies_dir="$HOME/dotfiles/modules/browsers/policies"
+    local zen_policy="$policies_dir/zen.json"
+    local helium_policy="$policies_dir/helium.json"
+
+    #
+    # Zen Browser
+    #
+    if flatpak info app.zen_browser.zen &>/dev/null; then
+        local zen_arch
+        local zen_branch
+        local zen_policy_dir
+
+        zen_arch="$(flatpak info --show-arch app.zen_browser.zen)" ||
+            return 1
+
+        zen_branch="$(flatpak info --show-branch app.zen_browser.zen)" ||
+            return 1
+
+        zen_policy_dir="${XDG_DATA_HOME:-$HOME/.local/share}/flatpak/extension"
+        zen_policy_dir+="/app.zen_browser.zen.systemconfig"
+        zen_policy_dir+="/$zen_arch/$zen_branch/policies"
+
+        if [[ -f "$zen_policy" ]]; then
+            echo "Installing Zen Browser extension policy..."
+
+            run_cmd mkdir -p "$zen_policy_dir" ||
+                return 1
+
+            run_cmd install -m644 \
+                "$zen_policy" \
+                "$zen_policy_dir/policies.json" ||
+                return 1
+        else
+            echo "Zen Browser policy not found: $zen_policy"
+        fi
+    else
+        echo "Zen Browser is not installed, skipping extension policy"
+    fi
+
+    #
+    # Helium
+    #
+    if command -v helium &>/dev/null; then
+        if [[ -f "$helium_policy" ]]; then
+            echo "Installing Helium extension policy..."
+
+            run_cmd sudo install -Dm644 \
+                "$helium_policy" \
+                /etc/chromium/policies/managed/helium.json ||
+                return 1
+        else
+            echo "Helium policy not found: $helium_policy"
+        fi
+    else
+        echo "Helium is not installed, skipping extension policy"
+    fi
+}
+
 # --- Public entrypoint ---
 run_common_post_install() {
     create_dev_dirs
@@ -200,5 +259,6 @@ run_common_post_install() {
     setup_git_defaults
     setup_docker_non_root_access
 
+    configure_browser_extensions
     configure_gnome_theme
 }
