@@ -12,6 +12,9 @@ vim.filetype.add({
     },
     pattern = {
         [".*/%.config/ghostty/config$"] = "ghostty",
+        [".*/sway/config"] = "swayconfig",
+        [".*/sway/config%.d/.*"] = "swayconfig",
+        [".*/sway/.*%.conf"] = "swayconfig",
         [".*/%.config/zsh/.*%.zsh"] = "zsh",
     },
 })
