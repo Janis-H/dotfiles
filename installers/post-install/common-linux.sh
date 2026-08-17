@@ -4,7 +4,6 @@
 
 # --- Sources ---
 source "$DOTFILES_DIR/lib/log.sh"
-source "$DOTFILES_DIR/lib/is-supported-linux-os.sh"
 source "$DOTFILES_DIR/lib/install-or-update-repo.sh"
 source "$DOTFILES_DIR/lib/run-command.sh"
 
@@ -34,9 +33,9 @@ configure_gnome_theme() {
     local schema="org.gnome.desktop.interface"
 
     if ! command -v gsettings >/dev/null 2>&1 ||
-       ! gsettings list-schemas | grep -Fxq "$schema"; then
-        info "Skipping GNOME theme configuration"
-        return 0
+        ! gsettings list-schemas | grep -Fxq "$schema"; then
+    info "Skipping GNOME theme configuration"
+    return 0
     fi
 
     info "Configuring GNOME theme"
@@ -60,22 +59,22 @@ configure_browser_extensions() {
     # Zen Browser
     #
     if flatpak info app.zen_browser.zen &>/dev/null; then
+        local zen_ref
         local zen_arch
         local zen_branch
         local zen_policy_dir
 
-        zen_arch="$(flatpak info --show-arch app.zen_browser.zen)" ||
+        zen_ref="$(flatpak info --show-ref app.zen_browser.zen)" ||
             return 1
 
-        zen_branch="$(flatpak info --show-branch app.zen_browser.zen)" ||
-            return 1
+        IFS='/' read -r _ _ zen_arch zen_branch <<< "$zen_ref"
 
         zen_policy_dir="${XDG_DATA_HOME:-$HOME/.local/share}/flatpak/extension"
         zen_policy_dir+="/app.zen_browser.zen.systemconfig"
         zen_policy_dir+="/$zen_arch/$zen_branch/policies"
 
         if [[ -f "$zen_policy" ]]; then
-            info "Installing Zen Browser extension policy..."
+            info "Installing Zen Browser extension policy"
 
             run_cmd mkdir -p "$zen_policy_dir" ||
                 return 1
@@ -120,7 +119,7 @@ configure_browser_extensions() {
     #
     if command -v helium &>/dev/null; then
         if [[ -f "$helium_policy" ]]; then
-            info "Installing Helium extension policy..."
+            info "Installing Helium extension policy"
 
             run_cmd sudo install -Dm644 \
                 "$helium_policy" \
@@ -136,8 +135,6 @@ configure_browser_extensions() {
 
 # --- Public entrypoint ---
 run_common_linux_post_install() {
-    is_supported_linux_os "$OS" || return 0
-
     setup_docker_non_root_access
 
     configure_browser_extensions

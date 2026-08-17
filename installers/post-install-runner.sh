@@ -5,9 +5,23 @@
 
 source "$DOTFILES_DIR/lib/log.sh"
 
+# --- Helpers ---
+is_supported_linux_os() {
+    case "$1" in
+        arch | fedora | debian)
+            return 0
+            ;;
+        *)
+            return 1
+            ;;
+    esac
+}
+
 # --- Loaders ---
 load_common_post_install() {
     local common_file="$DOTFILES_DIR/installers/post-install/common.sh"
+
+    info "Loading common post-install: $common_file"
 
     if [[ ! -f "$common_file" ]]; then
         error "Missing common post-install file"
@@ -21,10 +35,9 @@ load_common_linux_post_install() {
     local os="$1"
     local common_linux_file="$DOTFILES_DIR/installers/post-install/common-linux.sh"
 
-    if ! is_supported_linux_os "$os"; then
-        run_common_linux_post_install() { :; }
-        return 0
-    fi
+    is_supported_linux_os "$os" || return 0
+
+    info "Loading common Linux post-install: $common_linux_file"
 
     if [[ ! -f "$common_linux_file" ]]; then
         error "Missing common Linux post-install file"
@@ -37,6 +50,8 @@ load_common_linux_post_install() {
 load_os_post_install() {
     local os="$1"
     local post_install_file="$DOTFILES_DIR/installers/post-install/$os.sh"
+
+    info "Loading os post-install: $post_install_file"
 
     if [[ ! -f "$post_install_file" ]]; then
         warn "No OS-specific post-install file found for OS: $os"
@@ -75,10 +90,10 @@ validate_post_installers() {
 run_post_install() {
     local os="$1"
 
+    section "Post Install"
+
     load_post_installers "$os" || return 1
     validate_post_installers || return 1
-
-    section "Post Install"
 
     run_common_post_install
     run_common_linux_post_install
