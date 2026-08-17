@@ -17,6 +17,23 @@ load_common_post_install() {
     source "$common_file"
 }
 
+load_common_linux_post_install() {
+    local os="$1"
+    local common_linux_file="$DOTFILES_DIR/installers/post-install/common-linux.sh"
+
+    if ! is_supported_linux_os "$os"; then
+        run_common_linux_post_install() { :; }
+        return 0
+    fi
+
+    if [[ ! -f "$common_linux_file" ]]; then
+        error "Missing common Linux post-install file"
+        return 1
+    fi
+
+    source "$common_linux_file"
+}
+
 load_os_post_install() {
     local os="$1"
     local post_install_file="$DOTFILES_DIR/installers/post-install/$os.sh"
@@ -34,20 +51,24 @@ load_post_installers() {
     local os="$1"
 
     load_common_post_install || return 1
+    load_common_linux_post_install "$os" || return 1
     load_os_post_install "$os" || return 1
 }
 
 # --- Validation ---
 validate_post_installers() {
-    if ! declare -F run_common_post_install >/dev/null; then
-        error "Missing post-install function: run_common_post_install"
-        return 1
-    fi
+    local function_name
 
-    if ! declare -F run_os_post_install >/dev/null; then
-        error "Missing post-install function: run_os_post_install"
-        return 1
-    fi
+    for function_name in \
+        run_common_post_install \
+        run_common_linux_post_install \
+        run_os_post_install; do
+
+        if ! declare -F "$function_name" >/dev/null; then
+            error "Missing post-install function: $function_name"
+            return 1
+        fi
+    done
 }
 
 # --- Public entrypoint ---
@@ -60,5 +81,6 @@ run_post_install() {
     section "Post Install"
 
     run_common_post_install
+    run_common_linux_post_install
     run_os_post_install
 }
