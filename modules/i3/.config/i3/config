@@ -438,6 +438,7 @@
     assign [class=$proton_mail_class] $ws_right
     assign [class=$proton_pass_class] $ws_right
     assign [class=$youtube_class] $ws_right
+    # assign [class="Pavucontrol"] $ws_right
 
     # Numbered workspaces (center_monitor)
     assign [class=$librew/lf_class] workspace number $ws1
@@ -455,8 +456,8 @@
     for_window [window_type="dialog"] floating enable
 
     # Application-specific rules
-    for_window [class=$pika_backup_class] \
-        floating enable
+    for_window [class=$pika_backup_class] floating enable
+    for_window [class="Pavucontrol"] floating enable
 
 ### Theming
 #
