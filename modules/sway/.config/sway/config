@@ -111,7 +111,7 @@
 
 ### Output configuration
 #
-# Monitor layout is applied by ~/.local/bin/fix-monitors-sway
+# Monitor layout is applied by ~/.local/libexec/sway/fix-monitors-sway
 #
 # You can get output names with:
 # swaymsg -t get_outputs
@@ -503,7 +503,7 @@
 #
 
     # Applies the configured monitor layout after Sway starts
-    exec fix-monitors-sway
+    exec ~/.local/libexec/sway/fix-monitors-sway
 
     # Wallpaper
     exec swaybg \
@@ -512,7 +512,7 @@
 # Services:
 #
     # Make inactive windows transparent
-    exec ~/.config/sway/inactive_windows_transparent
+    exec ~/.local/libexec/sway/inactive_windows_transparent
 
     # Starts the Waybar status bar
     exec waybar
