@@ -47,6 +47,14 @@ workspace_picker = "prefix+w"
 # Move Herdr settings off prefix+s so it can be used for session selection
 settings = "prefix+shift+s"
 
+# Agent navigation
+# Mirrors prefix+p / prefix+n tab cycling without requiring the Herdr prefix
+previous_agent = "alt+p"
+next_agent = "alt+n"
+
+# Optional: jump directly to agents 1-9
+focus_agent = "alt+1..9"
+
 ### Plugin keybingings
 #
 # Session/workspace chooser: tmux prefix+s equivalent
