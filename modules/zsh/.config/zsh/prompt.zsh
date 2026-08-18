@@ -2,14 +2,16 @@
 if command -v oh-my-posh >/dev/null 2>&1; then
     # themes
     catppuccin_theme="${POSH_THEMES_PATH:-$HOME/.cache/oh-my-posh/themes}/catppuccin.omp.json"
+    catppuccin_frappe_theme="${POSH_THEMES_PATH:-$HOME/.cache/oh-my-posh/themes}/catppuccin_frappe.omp.json"
+    catppuccin_mocha_theme="${POSH_THEMES_PATH:-$HOME/.cache/oh-my-posh/themes}/catppuccin_mocha.omp.json"
     gruvbox_theme="${POSH_THEMES_PATH:-$HOME/.cache/oh-my-posh/themes}/gruvbox.omp.json"
     material_theme="${POSH_THEMES_PATH:-$HOME/.cache/oh-my-posh/themes}/material.omp.json"
     nordtron_theme="${POSH_THEMES_PATH:-$HOME/.cache/oh-my-posh/themes}/nordtron.omp.json"
+    nordtron_with_time_theme="${POSH_THEMES_PATH:-$HOME/.cache/oh-my-posh/themes}/nordtron_with_time.omp.json"
     pararussel_theme="${POSH_THEMES_PATH:-$HOME/.cache/oh-my-posh/themes}/pararussel.omp.json"
     pure_theme="${POSH_THEMES_PATH:-$HOME/.cache/oh-my-posh/themes}/pure.omp.json"
     robbyrussel_theme="${POSH_THEMES_PATH:-$HOME/.cache/oh-my-posh/themes}/robbyrussell.omp.json"
 
     # apply theme
     eval "$(oh-my-posh init zsh --config "$material_theme")"
-    # eval "$(oh-my-posh init zsh --config "$nordtron_theme")"
 fi
