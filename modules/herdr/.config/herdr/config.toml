@@ -10,6 +10,55 @@ delivery = "system"
 [ui]
 show_agent_labels_on_pane_borders = true
 
+### Keybindings
+#
+[keys]
+prefix = "ctrl+b"
+
+# Tabs: tmux window equivalents
+new_tab = "prefix+c"        # Create a new tab
+previous_tab = "prefix+p"   # Switch to previous tab
+next_tab = "prefix+n"       # Switch to next tab
+switch_tab = "prefix+1..9"  # Switch directly to tab 1-9
+
+# Pane management
+close_pane = "prefix+x"      # Close the current pane
+zoom = "prefix+z"            # Toggle pane zoom
+copy_mode = "prefix+["       # Enter copy mode
+cycle_pane_next = "prefix+o" # Cycle focus to the next pane
+
+# Session control
+detach = "prefix+d"          # Detach from the current Herdr session
+
+# Pane splitting: match tmux defaults
+split_vertical = "prefix+%"       # Side-by-side split
+split_horizontal = "prefix+\""    # Stacked split
+
+# Pane navigation
+# Vim-style directions instead of tmux's default arrow bindings
+focus_pane_left = "prefix+h"
+focus_pane_down = "prefix+j"
+focus_pane_up = "prefix+k"
+focus_pane_right = "prefix+l"
+
+# Workspace chooser: tmux prefix+w equivalent
+workspace_picker = "prefix+w"
+
+# Move Herdr settings off prefix+s so it can be used for session selection
+settings = "prefix+shift+s"
+
+### Plugin keybingings
+#
+# Session/workspace chooser: tmux prefix+s equivalent
+#
+[[keys.command]]
+key = "prefix+s"
+type = "plugin_action"
+command = "sessionizer.pick"
+description = "choose workspace"
+#
+# vim-herdr-navigation:
+#
 [[keys.command]]
 key = "ctrl+h"
 type = "plugin_action"
@@ -33,3 +82,4 @@ key = "ctrl+l"
 type = "plugin_action"
 command = "vim-herdr-navigation.right"
 description = "navigate right (vim/herdr)"
+
