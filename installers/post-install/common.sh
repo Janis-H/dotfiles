@@ -86,6 +86,23 @@ verify_fzf() {
     warn "Make sure .zshrc has fallback paths for fzf keybindings/completion"
 }
 
+install_herdr_plugins() {
+    local plugins=(
+        "paulbkim-dev/vim-herdr-navigation"
+        "salkhalil/herdr-sessionizer"
+    )
+
+    if ! command -v herdr >/dev/null 2>&1; then
+        info "Skipping Herdr plugins: herdr is not installed"
+        return
+    fi
+
+    for plugin in "${plugins[@]}"; do
+        info "Installing Herdr plugin: $plugin"
+        herdr plugin install "$plugin" --yes
+    done
+}
+
 install_tmux_plugin_manager() {
     local tmux_plugins_dir="$HOME/.tmux/plugins"
 
@@ -159,6 +176,7 @@ run_common_post_install() {
     setup_local_bin
 
     set_default_shell
+    install_herdr_plugins
     install_tmux_plugin_manager
     install_tmux_plugins_from_config
 
