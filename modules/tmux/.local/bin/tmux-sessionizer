@@ -238,6 +238,9 @@ find_dirs() {
         tmux list-sessions -F "[TMUX] #{session_name}" 2>/dev/null
     fi
 
+    # Include the home directory itself; find below only returns its children.
+    printf '%s\n' "$HOME"
+
     # note: TS_SEARCH_PATHS is an array of paths to search for directories
     # if the path ends with :number, it will search for directories with a max depth of number ;)
     # if there is no number, it will search for directories with a max depth defined by TS_MAX_DEPTH or 1 if not set
