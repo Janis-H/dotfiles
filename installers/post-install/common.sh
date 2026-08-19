@@ -133,7 +133,7 @@ install_tmux_plugins_from_config() {
 
     # check if script is already running in an active tmux session
     local in_tmux=false
-    if [[ -n "$TMUX" ]]; then
+    if [[ -n "${TMUX:-}" ]]; then
         in_tmux=true
     else
         # if not inside tmux, start a background instance safely
