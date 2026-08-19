@@ -156,7 +156,7 @@ EOF
 
 setup_firefox_repository() {
     local pkg="firefoxpwa"
-    local repo="FirefoxPWA"
+    local repo="FirefoxPWA/any"
 
     if ! is_in_packages_list "$pkg" "$@" || is_repository_configured "$repo"; then
         return 0
@@ -164,7 +164,7 @@ setup_firefox_repository() {
 
     info "Configuring FirefoxPWA repository"
 
-    run_cmd sh -c 'curl -fsSL https://packagecloud.io/install/repositories/filips/FirefoxPWA/script.deb.sh | sudo bash'
+    run_cmd sh -c 'curl -fsSL https://packagecloud.io/install/repositories/filips/FirefoxPWA/script.deb.sh?any=true | sudo bash'
 }
 
 setup_helium_browser_repository() {
