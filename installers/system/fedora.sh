@@ -14,33 +14,32 @@ is_system_package_installed() {
 
 is_repository_configured() {
     local repo="$1"
-
-    repos_dir="/etc/yum.repos.d"
+    local repos_dir="/etc/yum.repos.d"
 
     if grep -RqsF \
         --include='*.repo' \
         -- "$repo" "$repos_dir"; then
-    info "$repo repository is already configured"
+        info "$repo repository is already configured"
+        return 0
     fi
+
+    return 1
 }
 
-is_in_package_list() {
+is_in_packages_list() {
     local target_package="$1"
     shift
 
     local packages_list=("$@")
 
-    local is_in_list=false
-
     for pkg in "${packages_list[@]}"; do
         if [[ "$pkg" = "$target_package" ]]; then
-            is_in_list=true
+            return 0
         fi
     done
 
-    if ! "$is_in_list"; then
-        info "Skipping $target_package repository setup"
-    fi
+    info "Skipping $target_package repository setup"
+    return 1
 }
 
 # --- repository setup ---
@@ -111,6 +110,19 @@ setup_docker_repository() {
     run_cmd sudo dnf config-manager addrepo --from-repofile https://download.docker.com/linux/fedora/docker-ce.repo
 }
 
+setup_firefox_repository() {
+    local pkg="firefoxpwa"
+    local repo="FirefoxPWA"
+
+    if ! is_in_packages_list "$pkg" "$@" || is_repository_configured "$repo"; then
+        return 0
+    fi
+
+    info "Configuring FirefoxPWA repository"
+
+    run_cmd sh -c 'curl -fsSL https://packagecloud.io/install/repositories/filips/FirefoxPWA/script.rpm.sh | sudo bash'
+}
+
 setup_helium_browser_repository() {
     local pkg="helium-bin"
     local repo="helium"
@@ -157,6 +169,7 @@ setup_package_repositories() {
     setup_chrome_repository "$@"
     setup_dms_repository "$@"
     setup_docker_repository "$@"
+    setup_firefox_repository "$@"
     setup_ghostty_repository "$@"
     setup_helium_browser_repository "$@"
     setup_swayfx_repository "$@"
