@@ -50,10 +50,30 @@ configure_gnome_theme() {
 }
 
 configure_browser_extensions() {
-    local policies_dir="$HOME/dotfiles/modules/browsers/policies"
+    local policies_dir="$HOME/dotfiles/installers/config/browsers/policies"
+    local firefox_policy="$policies_dir/firefox.json"
     local zen_policy="$policies_dir/zen.json"
     local helium_policy="$policies_dir/helium.json"
     local chrome_policy="$policies_dir/chrome.json"
+
+    #
+    # Firefox Browser
+    #
+    if command -v firefox &>/dev/null ||
+        command -v firefox-developer-edition &>/dev/null; then
+        if [[ -f "$firefox_policy" ]]; then
+            info "Installing Firefox extension policy"
+
+            run_cmd sudo install -Dm644 \
+                "$firefox_policy" \
+                /etc/firefox/policies/policies.json ||
+                return 1
+        else
+            warn "Firefox policy not found: $firefox_policy"
+        fi
+    else
+        warn "Firefox is not installed, skipping extension policy"
+    fi
 
     #
     # Zen Browser
