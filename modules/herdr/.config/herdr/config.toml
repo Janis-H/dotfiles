@@ -16,23 +16,22 @@ show_agent_labels_on_pane_borders = true
 prefix = "ctrl+b"
 
 # Tabs: tmux window equivalents
-new_tab = "prefix+c"        # Create a new tab
-previous_tab = "prefix+p"   # Switch to previous tab
-next_tab = "prefix+n"       # Switch to next tab
-switch_tab = "prefix+1..9"  # Switch directly to tab 1-9
+new_tab = "prefix+c"            # Create a new tab
+previous_tab = "prefix+p"       # Switch to previous tab
+next_tab = "prefix+n"           # Switch to next tab
+switch_tab = "prefix+1..9"      # Switch directly to tab 1-9
+rename_tab = "prefix+comma"     # Rename current window
+close_tab = "prefix+ampersand"  # Close current window
 
-# Pane management
-close_pane = "prefix+x"      # Close the current pane
-zoom = "prefix+z"            # Toggle pane zoom
-copy_mode = "prefix+["       # Enter copy mode
-cycle_pane_next = "prefix+o" # Cycle focus to the next pane
-
-# Session control
-detach = "prefix+d"          # Detach from the current Herdr session
-
-# Pane splitting: match tmux defaults
-split_vertical = "prefix+%"       # Side-by-side split
-split_horizontal = "prefix+\""    # Stacked split
+# Pane management: match tmux where practical
+close_pane = "prefix+x"         # Close the current pane
+zoom = "prefix+z"               # Toggle pane zoom
+copy_mode = "prefix+["          # Enter copy mode
+resize_mode = "prefix+r"        # Resize panes
+cycle_pane_next = "prefix+o"    # Cycle focus to the next pane
+cycle_pane_previous = "prefix+shift+o" # Cycle focus to the prev pane
+last_pane = "prefix+;"          # Return to previously focused pane
+rename_pane = "prefix+shift+p"  # Rename pane
 
 # Pane navigation
 # Vim-style directions instead of tmux's default arrow bindings
@@ -41,21 +40,29 @@ focus_pane_down = "prefix+j"
 focus_pane_up = "prefix+k"
 focus_pane_right = "prefix+l"
 
-# Workspace chooser: tmux prefix+w equivalent
+# Pane splitting: match tmux defaults
+split_vertical = "prefix+%"       # Side-by-side split
+split_horizontal = "prefix+\""    # Stacked split
+
+# Workspace/session navigation
 workspace_picker = "prefix+w"
+settings = "prefix+shift+s"     # Open settings
+detach = "prefix+d"             # Detach from the current Herdr session
+rename_workspace = "prefix+$"   # Tmux equivalent of rename-session
 
-# Move Herdr settings off prefix+s so it can be used for session selection
-settings = "prefix+shift+s"
+# Agents
+previous_agent = "alt+p"    # Mirrors prefix+p tab cycling
+next_agent = "alt+n"        # Mirrors prefix+p tab cycling
+focus_agent = "alt+1..9"    # Jump directly to agents 1-9
 
-# Agent navigation
-# Mirrors prefix+p / prefix+n tab cycling without requiring the Herdr prefix
-previous_agent = "alt+p"
-next_agent = "alt+n"
+# General utilities
+edit_scrollback = "prefix+e"
+goto = "prefix+g"
+help = "prefix+?"                # Show keybindings
+reload_config = "prefix+shift+r" # Reload config
+toggle_sidebar = "prefix+b"      # Toggle sidebar visibility
 
-# Optional: jump directly to agents 1-9
-focus_agent = "alt+1..9"
-
-### Plugin keybingings
+### Plugin keybindings
 #
 # Session/workspace chooser: tmux prefix+s equivalent
 #
@@ -90,4 +97,3 @@ key = "ctrl+l"
 type = "plugin_action"
 command = "vim-herdr-navigation.right"
 description = "navigate right (vim/herdr)"
-
