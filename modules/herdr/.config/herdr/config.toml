@@ -45,7 +45,7 @@ split_vertical = "prefix+%"       # Side-by-side split
 split_horizontal = "prefix+\""    # Stacked split
 
 # Workspace/session navigation
-workspace_picker = "prefix+w"
+workspace_picker = "prefix+s"
 settings = "prefix+shift+s"     # Open settings
 detach = "prefix+d"             # Detach from the current Herdr session
 rename_workspace = "prefix+$"   # Tmux equivalent of rename-session
@@ -64,10 +64,10 @@ toggle_sidebar = "prefix+b"      # Toggle sidebar visibility
 
 ### Plugin keybindings
 #
-# Session/workspace chooser: tmux prefix+s equivalent
+# Session/workspace chooser
 #
 [[keys.command]]
-key = "prefix+s"
+key = "ctrl+f"
 type = "plugin_action"
 command = "sessionizer.pick"
 description = "choose workspace"
