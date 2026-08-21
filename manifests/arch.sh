@@ -37,6 +37,7 @@ CORE_PACKAGES=(
 #   and project workflow tools
 HEADLESS_PACKAGES=(
     base-devel
+    bun
     cmake
     docker
     docker-buildx

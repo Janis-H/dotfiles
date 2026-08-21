@@ -172,6 +172,7 @@ EXTERNAL_CORE=(
 )
 
 EXTERNAL_HEADLESS=(
+    bun
     claude_code
     codex
     lazygit
