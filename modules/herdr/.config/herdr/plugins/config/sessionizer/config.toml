@@ -1,3 +1,6 @@
+# Sessionizer config file
+# See: https://github.com/andrewchng/herdr-sessionizer
+
 [projects]
 roots = [
     "~",
