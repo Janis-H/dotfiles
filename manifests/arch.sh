@@ -104,7 +104,8 @@ DESKTOP_PACKAGES=(
     xdg-desktop-portal-gtk
 
     # Shared Wayland tooling
-    mako
+    # mako
+    dunst
     waybar
     wl-clipboard
     xorg-xwayland
@@ -188,6 +189,7 @@ HEADLESS_STOW_MODULES=(
 
 # dotfile modules for GUI/workstation setup
 DESKTOP_STOW_MODULES=(
+    dunst
     ghostty
     hexchat
     rofi

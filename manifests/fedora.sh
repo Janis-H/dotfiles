@@ -126,7 +126,8 @@ DESKTOP_PACKAGES=(
     xwallpaper
 
     # Shared Wayland tooling
-    mako
+    # mako
+    dunst
     swaybg
     swaylock
     swayidle
@@ -222,6 +223,7 @@ HEADLESS_STOW_MODULES=(
 
 # dotfile modules for GUI/workstation setup
 DESKTOP_STOW_MODULES=(
+    dunst
     ghostty
     hexchat
     i3
