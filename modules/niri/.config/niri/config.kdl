@@ -281,6 +281,10 @@ layout {
 // This line starts waybar, a commonly used bar for Wayland compositors.
 spawn-at-startup "waybar"
 
+// Notification daemon.
+// spawn-at-startup "mako"
+spawn-at-startup "dunst"
+
 // This line starts swaybg, a background setter
 spawn-at-startup "swaybg" "-i" "$HOME/.local/share/wallpapers/dark-mountain-landscape.jpg" "-m" "fill"
 
