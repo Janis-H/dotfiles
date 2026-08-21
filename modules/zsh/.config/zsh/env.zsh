@@ -7,6 +7,7 @@ typeset -U path PATH
 path=(
     "$HOME/bin"
     "$HOME/.local/bin"
+    "$HOME/.bun/bin"
     "$HOME/.fzf/bin"
     "$HOME/.cargo/bin"
     "$HOME/go/bin"
