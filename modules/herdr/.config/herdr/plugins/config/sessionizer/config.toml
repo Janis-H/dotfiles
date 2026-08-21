@@ -2,8 +2,12 @@
 roots = [
     "~",
     "~/dev",
+    "~/dev/archived",
     "~/dev/coursework",
     "~/dev/personal",
+    "~/dev/notes",
+    "~/dev/scripts",
+    "~/dev/tools",
     "~/dev/work",
     "~/git",
 ]
