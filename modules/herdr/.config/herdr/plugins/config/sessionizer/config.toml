@@ -7,5 +7,27 @@ roots = [
     "~/dev/work",
     "~/git",
 ]
-git_only = false
+git_only = true
 depth = 1
+
+[ui]
+placement = "popup"   # overlay | split | popup (popup needs Herdr >= 0.7.4)
+
+[layout]
+focus = "editor"
+
+[tabs.dev]
+label = "dev"
+
+[[tabs.dev.panes]]
+id = "editor"
+title = "nvim"
+command = "nvim"
+
+[[tabs.dev.panes]]
+id = "agent"
+from = "editor"
+title = "agent"
+split = "right"
+ratio = 0.3
+command = "codex"
