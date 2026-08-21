@@ -89,7 +89,7 @@ verify_fzf() {
 install_herdr_plugins() {
     local plugins=(
         "paulbkim-dev/vim-herdr-navigation"
-        "salkhalil/herdr-sessionizer"
+        "andrewchng/herdr-sessionizer"
     )
 
     if ! command -v herdr >/dev/null 2>&1; then
