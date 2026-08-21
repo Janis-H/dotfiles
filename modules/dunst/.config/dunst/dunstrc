@@ -2,9 +2,9 @@
     # Display notifications near the active window, not on a fixed monitor.
     follow = keyboard
     origin = top-right
-    offset = 24x24
+    offset = (24, 24)
     width = (360, 460)
-    height = 300
+    height = (0, 300)
     notification_limit = 4
     indicate_hidden = yes
 
@@ -33,6 +33,9 @@
     min_icon_size = 32
     max_icon_size = 64
     icon_corner_radius = 8
+    icon_theme = Papirus-Dark, Papirus, hicolor
+    # Resolve named icons from the installed Papirus icon themes.
+    enable_recursive_icon_lookup = true
 
     progress_bar = true
     progress_bar_height = 8

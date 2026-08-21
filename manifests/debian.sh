@@ -111,7 +111,6 @@ DESKTOP_PACKAGES=(
     xdg-desktop-portal-gtk
 
     # Shared window-manager tooling
-    dunst
     python3-i3ipc
     rofi
 
@@ -167,6 +166,7 @@ EXTERNAL_HEADLESS=(
 
 EXTERNAL_DESKTOP=(
     autotiling
+    dunst
     niri
     proton_mail
     proton_pass
