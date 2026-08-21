@@ -1,0 +1,11 @@
+[projects]
+roots = [
+    "~",
+    "~/dev",
+    "~/dev/coursework",
+    "~/dev/personal",
+    "~/dev/work",
+    "~/git",
+]
+git_only = false
+depth = 1

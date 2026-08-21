@@ -67,10 +67,10 @@ toggle_sidebar = "prefix+b"      # Toggle sidebar visibility
 # Session/workspace chooser
 #
 [[keys.command]]
-key = "ctrl+f"
+key = "prefix+f"
 type = "plugin_action"
-command = "sessionizer.pick"
-description = "choose workspace"
+command = "sessionizer.open"
+description = "open project workspace"
 #
 # vim-herdr-navigation:
 #
