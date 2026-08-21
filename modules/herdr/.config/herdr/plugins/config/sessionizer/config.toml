@@ -4,6 +4,7 @@
 [projects]
 roots = [
     "~",
+    "~/dotfiles",
     "~/dev",
     "~/dev/archived",
     "~/dev/coursework",
