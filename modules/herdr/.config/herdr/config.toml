@@ -62,6 +62,10 @@ help = "prefix+?"                # Show keybindings
 reload_config = "prefix+shift+r" # Reload config
 toggle_sidebar = "prefix+b"      # Toggle sidebar visibility
 
+# Sidebar/navigation-mode selection
+navigate_workspace_down = "j"
+navigate_workspace_up = "k"
+
 ### Plugin keybindings
 #
 # Session/workspace chooser
