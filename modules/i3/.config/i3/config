@@ -504,6 +504,9 @@
 #
 # Services:
 #
+    # Notification daemon
+    exec --no-startup-id dunst
+
     # Lock the session before suspend
     exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 
