@@ -115,6 +115,7 @@ DESKTOP_PACKAGES=(
     xdg-desktop-portal-gtk
 
     # Shared window-manager tooling
+    dunst
     python3-i3ipc
     rofi
 
@@ -127,7 +128,6 @@ DESKTOP_PACKAGES=(
 
     # Shared Wayland tooling
     # mako
-    dunst
     swaybg
     swaylock
     swayidle

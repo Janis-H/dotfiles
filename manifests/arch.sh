@@ -100,12 +100,14 @@ DESKTOP_PACKAGES=(
     wev
     evtest
 
+    # Shared window-manager tooling
+    dunst
+
     # Desktop portals
     xdg-desktop-portal-gtk
 
     # Shared Wayland tooling
     # mako
-    dunst
     waybar
     wl-clipboard
     xorg-xwayland
