@@ -109,7 +109,6 @@ DESKTOP_PACKAGES=(
 
     # Desktop portals
     gnome-keyring
-    nautilus
     xdg-desktop-portal-gtk
 
     # Shared window-manager tooling
@@ -130,6 +129,9 @@ DESKTOP_PACKAGES=(
     waybar
     wl-clipboard
     xwayland
+
+    # Niri-specific tooling
+    nautilus
 
     # Sway-specific tooling
     slurp

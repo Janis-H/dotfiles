@@ -113,7 +113,6 @@ DESKTOP_PACKAGES=(
 
     # Desktop portals
     gnome-keyring
-    nautilus
     xdg-desktop-portal-gtk
 
     # Shared window-manager tooling
@@ -140,6 +139,7 @@ DESKTOP_PACKAGES=(
 
     # Niri-specific tooling
     niri
+    nautilus
     xwayland-satellite
     xdg-desktop-portal-gnome
 
