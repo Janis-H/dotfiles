@@ -106,6 +106,7 @@ DESKTOP_PACKAGES=(
 
     # Desktop portals
     gnome-keyring
+    nautilus
     xdg-desktop-portal-gtk
 
     # Shared Wayland tooling
