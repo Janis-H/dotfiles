@@ -54,6 +54,7 @@ configure_niri_services() {
     local services=(
         dunst.service
         waybar.service
+        swaybg.service
         swayidle.service
     )
 
@@ -62,6 +63,8 @@ configure_niri_services() {
         info "Skipping Niri service configuration: niri.service is unavailable"
         return 0
     fi
+
+    run_cmd systemctl --user daemon-reload || return 1
 
     info "Configuring services to start with Niri"
 
