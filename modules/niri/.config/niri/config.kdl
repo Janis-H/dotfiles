@@ -3,6 +3,19 @@
 // Check the wiki for a full description of the configuration:
 // https://niri-wm.github.io/niri/Configuration:-Introduction
 
+// TODO:
+// - start/configure swayidle
+// - theme and invoke swaylock
+// - define timeout actions for lock, display-off, and suspend
+// - port session utilities:
+//      - clipboard history: wl-paste --watch cliphist store
+//      - night light: wlsunset
+//      - networkmanager/bluetooth tray behavior, if waybar is invoking the tray
+//      - any "focus or launch" scripts and app-specific rules I rely on in i3/sway
+// - finish panel setup. niri starts waybar, but no waybar module/configA yet, so make sure workspaces, tray, audio, betery and niri integration are defined
+// - fix or remove bindings that call unavailable tools (like playerctl and brightnessctl)
+// - verify that portals work (screensharing)
+
 // Input device configuration.
 // Find the full list of options on the wiki:
 // https://niri-wm.github.io/niri/Configuration:-Input
@@ -11,9 +24,7 @@ input {
         xkb {
             // You can set rules, model, layout, variant and options.
             // For more information, see xkeyboard-config(7).
-
-            // For example:
-            // layout "us,ru"
+            // layout "us"
             // options "grp:win_space_toggle,compose:ralt,ctrl:nocaps"
 
             // If this section is empty, niri will fetch xkb settings
@@ -62,7 +73,7 @@ input {
     }
 
     // Uncomment this to make the mouse warp to the center of newly focused windows.
-    // warp-mouse-to-focus
+    warp-mouse-to-focus
 
     // Focus windows and outputs automatically when moving the mouse into them.
     // Setting max-scroll-amount="0%" makes it work only on windows already fully on screen.
@@ -104,6 +115,54 @@ input {
     // If the position is unset or results in an overlap, the output is instead placed
     // automatically.
     position x=1280 y=0
+}
+
+output "DP-1" {
+    // Resolution and, optionally, refresh rate of the output.
+    // The format is "<width>x<height>" or "<width>x<height>@<refresh rate>".
+    mode "2560x1440@144"
+
+    // You can use integer or fractional scale, for example use 1.5 for 150% scale.
+    scale 2
+
+    // Transform allows output rotation
+    // Valid values: normal, 90, 180, 270, flipped, flipped-90, flipped-180 and flipped-270.
+    transform "normal"
+
+    // Keep this centered between the HDMI display and portrait monitor.
+    // Positions are logical pixels because all outputs use scale 2.
+    position x=512 y=0
+}
+
+output "DP-2" {
+    // Resolution and, optionally, refresh rate of the output.
+    // The format is "<width>x<height>" or "<width>x<height>@<refresh rate>".
+    mode "2560x1440@60"
+
+    // You can use integer or fractional scale, for example use 1.5 for 150% scale.
+    scale 2
+
+    // Transform allows output rotation
+    // Valid values: normal, 90, 180, 270, flipped, flipped-90, flipped-180 and flipped-270.
+    transform "90"
+
+    // DP-1 is 1280 logical pixels wide at scale 2.
+    position x=1792 y=0
+}
+
+output "HDMI-A-1" {
+    // Resolution and, optionally, refresh rate of the output.
+    // The format is "<width>x<height>" or "<width>x<height>@<refresh rate>".
+    mode "1024x576@60"
+
+    // You can use integer or fractional scale, for example use 1.5 for 150% scale.
+    scale 2
+
+    // Mirror the display horizontally, matching fix-monitors-sway.
+    transform "flipped"
+
+    // This 1024-pixel-wide output is 512 logical pixels wide at scale 2.
+    position x=0 y=0
 }
 
 cursor {
@@ -380,8 +439,8 @@ binds {
     Mod+Shift+Slash { show-hotkey-overlay; }
 
     // Suggested binds for running programs: terminal, app launcher, screen locker.
-    Mod+T hotkey-overlay-title="Open a Terminal: alacritty" { spawn "alacritty"; }
-    Mod+D hotkey-overlay-title="Run an Application: fuzzel" { spawn "fuzzel"; }
+    Mod+T hotkey-overlay-title="Open a Terminal: Ghostty" { spawn "ghostty"; }
+    Mod+D hotkey-overlay-title="Run an Application: rofi" { spawn "rofi"; }
     Super+Alt+L hotkey-overlay-title="Lock the Screen: swaylock" { spawn "swaylock"; }
 
     // Use spawn-sh to run a shell command. Do this if you need pipes, multiple commands, etc.
