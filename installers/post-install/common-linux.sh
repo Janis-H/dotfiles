@@ -53,6 +53,7 @@ configure_niri_services() {
     local service
     local services=(
         dunst.service
+        plasma-polkit-agent.service
         waybar.service
         swaybg.service
         swayidle.service
