@@ -204,21 +204,21 @@
 #
 # Read `man 5 sway-bar` for more information about this section.
 #
-    # bar {
-    #     position bottom
+    bar {
+        position bottom
 
-    #     font $font 18
+        font $font 18
 
-    #     # When the status_command prints a new line to stdout, swaybar updates.
-    #     # The default just shows the current date and time.
-    #     status_command while date +'%Y-%m-%d %X'; do sleep 1; done
+        # When the status_command prints a new line to stdout, swaybar updates.
+        # The default just shows the current date and time.
+        status_command while date +'%Y-%m-%d %X'; do sleep 1; done
 
-    #     colors {
-    #         statusline #ffffff
-    #         background #323232
-    #         inactive_workspace #32323200 #32323200 #5c5c5c
-    #     }
-    # }
+        colors {
+            statusline #ffffff
+            background #323232
+            inactive_workspace #32323200 #32323200 #5c5c5c
+        }
+    }
 
 
 
@@ -332,8 +332,8 @@
     bindsym $mod+Shift+equal move container to workspace $ws_right
 
     # Workspace left and right start stacked, but I can override it later
-    exec --no-startup-id swaymsg 'workspace $ws_left; layout stacked'
-    exec --no-startup-id swaymsg 'workspace $ws_right; layout stacked'
+    exec --no-startup-id swaymsg 'workspace $ws_left; layout stacking'
+    exec --no-startup-id swaymsg 'workspace $ws_right; layout stacking'
 #
 # Opening applications:
 #
@@ -519,7 +519,8 @@
     exec waybar
 
     # Notification daemon
-    exec mako
+    # exec mako
+    exec dunst
 
     # Network
     exec nm-applet
