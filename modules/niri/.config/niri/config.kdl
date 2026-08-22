@@ -4,15 +4,15 @@
 // https://niri-wm.github.io/niri/Configuration:-Introduction
 
 // TODO:
-// - start/configure swayidle
-// - theme and invoke swaylock
+// - configure waybar - make sure workspaces, tray, audio, betery and niri integration are defined
+// - theme swaylock
 // - define timeout actions for lock, display-off, and suspend
+// - configure swayidle
 // - port session utilities:
 //      - clipboard history: wl-paste --watch cliphist store
 //      - night light: wlsunset
 //      - networkmanager/bluetooth tray behavior, if waybar is invoking the tray
 //      - any "focus or launch" scripts and app-specific rules I rely on in i3/sway
-// - finish panel setup. niri starts waybar, but no waybar module/configA yet, so make sure workspaces, tray, audio, betery and niri integration are defined
 // - fix or remove bindings that call unavailable tools (like playerctl and brightnessctl)
 // - verify that portals work (screensharing)
 
