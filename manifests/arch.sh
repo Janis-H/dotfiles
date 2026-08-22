@@ -103,6 +103,7 @@ DESKTOP_PACKAGES=(
 
     # Shared window-manager tooling
     dunst
+    polkit-kde-agent
 
     # Desktop portals
     gnome-keyring

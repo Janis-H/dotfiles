@@ -113,6 +113,7 @@ DESKTOP_PACKAGES=(
     xdg-desktop-portal-gtk
 
     # Shared window-manager tooling
+    polkit-kde-agent-1
     python3-i3ipc
     rofi
 

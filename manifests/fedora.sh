@@ -118,6 +118,7 @@ DESKTOP_PACKAGES=(
 
     # Shared window-manager tooling
     dunst
+    polkit-kde
     python3-i3ipc
     rofi
 
