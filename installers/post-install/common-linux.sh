@@ -49,6 +49,32 @@ configure_gnome_theme() {
     run_cmd gsettings set "$schema" monospace-font-name 'FiraCode Nerd Font 13'
 }
 
+configure_niri_services() {
+    local service
+    local services=(
+        dunst.service
+        waybar.service
+        swayidle.service
+    )
+
+    if ! command -v systemctl >/dev/null 2>&1 ||
+        ! systemctl --user cat niri.service >/dev/null 2>&1; then
+        info "Skipping Niri service configuration: niri.service is unavailable"
+        return 0
+    fi
+
+    info "Configuring services to start with Niri"
+
+    for service in "${services[@]}"; do
+        if ! systemctl --user cat "$service" >/dev/null 2>&1; then
+            warn "Skipping $service: user unit is unavailable"
+            continue
+        fi
+
+        run_cmd systemctl --user add-wants niri.service "$service" || return 1
+    done
+}
+
 configure_browser_extensions() {
     local policies_dir="$HOME/dotfiles/installers/config/browsers/policies"
     local firefox_policy="$policies_dir/firefox.json"
@@ -159,4 +185,5 @@ run_common_linux_post_install() {
 
     configure_browser_extensions
     configure_gnome_theme
+    configure_niri_services
 }
