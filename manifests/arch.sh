@@ -105,6 +105,7 @@ DESKTOP_PACKAGES=(
     dunst
 
     # Desktop portals
+    gnome-keyring
     xdg-desktop-portal-gtk
 
     # Shared Wayland tooling

@@ -112,6 +112,7 @@ DESKTOP_PACKAGES=(
     evtest
 
     # Desktop portals
+    gnome-keyring
     xdg-desktop-portal-gtk
 
     # Shared window-manager tooling
