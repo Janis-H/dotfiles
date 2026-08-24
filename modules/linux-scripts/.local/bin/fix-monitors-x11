@@ -1,8 +1,5 @@
 #!/usr/bin/env bash
 
-# TODO: rename script to fix-monitors-x11
-# TODO: once fix-monitors-x11 rename is done, update desktop and sleep hook
-
 set -euo pipefail
 
 PRIMARY_DISPLAY="DisplayPort-0"
@@ -62,7 +59,7 @@ fi
 # Set wallpaper
 wallpaper="$HOME/.local/share/wallpapers/dark-mountain-landscape.jpg"
 
-# Set seperate outputs, settings and wallpapers
+# Set separate outputs, settings and wallpapers
 # xwallpaper \
 #     --output "$PRIMARY_DISPLAY" --zoom  "$wallpaper" \
 #     --output "$SECONDARY_DISPLAY" --zoom "$wallpaper" \

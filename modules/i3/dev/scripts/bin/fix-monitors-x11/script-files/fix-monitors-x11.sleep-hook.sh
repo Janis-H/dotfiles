@@ -5,6 +5,6 @@ case "$1" in
     export DISPLAY=:0
     export XAUTHORITY="/home/residentgoose/Xauthority"
 
-    su residentgoose -c '/home/residentgoose/.local/bin/fix-monitors'
+    su residentgoose -c '/home/residentgoose/.local/bin/fix-monitors-x11'
     ;;
 esac
