@@ -125,6 +125,7 @@ DESKTOP_PACKAGES=(
     i3
     picom
     xclip
+    xrandr
     xorg-x11-server-Xorg
     xwallpaper
 

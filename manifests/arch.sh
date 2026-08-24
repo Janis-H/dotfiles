@@ -105,6 +105,10 @@ DESKTOP_PACKAGES=(
     dunst
     polkit-kde-agent
 
+    # X11 monitor tooling
+    xorg-xrandr
+    xwallpaper
+
     # Desktop portals
     gnome-keyring
     xdg-desktop-portal-gtk
