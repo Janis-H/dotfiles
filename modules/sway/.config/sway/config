@@ -30,11 +30,6 @@
     # Application lancher - window search
     set $window_search rofi -window drun | xargs swaymsg exec --
 
-    # Monitor aliases
-    set $left_monitor "HDMI-A-0"
-    set $center_monitor "DisplayPort-0"
-    set $right_monitor "DisplayPort-1"
-
     # Define names for default workspaces for which we configure key bindings later on.
     # We use variables to avoid repeating the names in multiple places.
     set $ws1 "1"
@@ -278,21 +273,8 @@
 #
 # Monitor / Workspace Outputs:
 #
-    # Define workspaces
-    workspace $ws1 output $center_monitor
-    workspace $ws2 output $center_monitor
-    workspace $ws3 output $center_monitor
-    workspace $ws4 output $center_monitor
-    workspace $ws5 output $center_monitor
-    workspace $ws6 output $center_monitor
-    workspace $ws7 output $center_monitor
-    workspace $ws8 output $center_monitor
-    workspace $ws9 output $center_monitor
-    workspace $ws10 output $center_monitor
-
-    # Define side workspaces
-    workspace $ws_left output $left_monitor
-    workspace $ws_right output $right_monitor
+# Workspace-to-output routing is configured by
+# ~/.local/libexec/sway/fix-monitors-sway after output layout is ready.
 #
 # Workspace Shortcuts:
 #
@@ -329,9 +311,8 @@
     bindsym $mod+Shift+grave move container to workspace $ws_left
     bindsym $mod+Shift+equal move container to workspace $ws_right
 
-    # Workspace left and right start stacked, but I can override it later
-    exec --no-startup-id swaymsg 'workspace $ws_left; layout stacking'
-    exec --no-startup-id swaymsg 'workspace $ws_right; layout stacking'
+    # Side workspaces are created and placed after output layout setup in
+    # ~/.local/libexec/sway/fix-monitors-sway.
 #
 # Opening applications:
 #
