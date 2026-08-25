@@ -34,8 +34,8 @@
     set $ws10 "10"
 
     # Define names for non-numbered side workspaces
-    set $ws_left "left"
-    set $ws_right "right"
+    set $ws_left left
+    set $ws_right right
 
     # Application Command and Window Class Variables
     #   * Note: find window class via wmctrl or xprop
