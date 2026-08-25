@@ -342,8 +342,7 @@
         exec --no-startup-id \
             $focus_or_open_by_class \
                 $helium_cmd \
-                $helium_class, \
-        workspace $ws2
+                $helium_class
     bindsym $mod+F5 \
         exec --no-startup-id \
             $focus_or_open_by_class \
