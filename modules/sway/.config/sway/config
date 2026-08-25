@@ -44,8 +44,8 @@
     set $ws10 "10"
 
     # Define names for non-numbered side workspaces
-    set $ws_left "left"
-    set $ws_right "right"
+    set $ws_left left
+    set $ws_right right
 
 
     # Application Command and Window Class Variables
@@ -481,10 +481,6 @@
 #
 # Setup:
 #
-
-    # Applies the configured monitor layout after Sway starts
-    exec ~/.local/libexec/sway/fix-monitors-sway
-
     # Wallpaper
     exec swaybg \
         -i "$HOME/.local/share/wallpapers/dark-mountain-landscape.jpg"
@@ -523,3 +519,6 @@
 #
     # Reapply Rodecaster input volume when the config is reloaded
     exec_always --no-startup-id ~/.local/bin/set-rodecaster-input-volume
+
+    # Applies the configured monitor layout after Sway starts
+    exec_always ~/.local/libexec/sway/fix-monitors-sway
