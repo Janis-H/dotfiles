@@ -208,6 +208,11 @@ install_external_codex() {
     curl -fsSL https://chatgpt.com/codex/install.sh | sh
 }
 
+install_external_dejadup() {
+    info "Installing DejaDup"
+    run_cmd flatpak install --noninteractive --assumeyes flathub org.gnome.DejaDup
+}
+
 install_external_dejavu_font() {
     local file_name="dejavu-fonts-ttf-2.37.zip"
     local install_dir="DejaVu"
