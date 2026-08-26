@@ -49,6 +49,7 @@ HEADLESS_PACKAGES=(
     python3
     python3-pip
     python3-wheel
+    restic
     rustup
     ShellCheck
     shfmt

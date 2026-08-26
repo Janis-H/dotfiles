@@ -20,6 +20,7 @@ CORE_PACKAGES=(
     jq
     neovim
     poppler
+    restic
     resvg
     ripgrep
     stow
