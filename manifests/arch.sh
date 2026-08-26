@@ -151,6 +151,7 @@ EXTERNAL_HEADLESS=(
 
 EXTERNAL_DESKTOP=(
     autotiling
+    dejadup
 
     # Fonts:
     dejavu_font

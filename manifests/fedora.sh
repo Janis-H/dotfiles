@@ -179,7 +179,7 @@ EXTERNAL_HEADLESS=(
 
 EXTERNAL_DESKTOP=(
     autotiling
-    dejavu_font
+    dejadup
     fira_code_font
     julia_mono_font
     proton_mail

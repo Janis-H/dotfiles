@@ -165,6 +165,7 @@ EXTERNAL_HEADLESS=(
 
 EXTERNAL_DESKTOP=(
     autotiling
+    dejadup
     niri
     proton_mail
     proton_pass
