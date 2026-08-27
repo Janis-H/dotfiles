@@ -143,8 +143,8 @@
     set $bar-color   #171a2199
 
     # focused container and workspaces colors
-    set $focused-bg  #5f7fa699
-    set $focused-ws  #5f7fa680
+    set $focused-bg  #6a8bb2b3
+    set $focused-ws  #789bbdb3
 
     # inactive background and text colors
     set $in-bgcolor  #2a2f3a66
