@@ -164,7 +164,7 @@ output "HDMI-A-1" {
     scale 2
 
     // Mirror the display horizontally, matching fix-monitors-sway.
-    transform "flipped"
+    transform "flipped-180"
 
     // This 1024-pixel-wide output is 512 logical pixels wide at scale 2.
     position x=0 y=0
