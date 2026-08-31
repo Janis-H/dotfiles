@@ -1,6 +1,13 @@
 -- Git commands with :Git or :G
 return {
     'tpope/vim-fugitive',
+    cmd = {
+        'G',
+        'Git',
+        'Gdiffsplit',
+        'Gvdiffsplit',
+        'Ghdiffsplit',
+    },
     keys = {
         { '<leader>g:', ':G' , desc = 'Fugitive Git command' },
         { '<leader>gs', '<cmd>Git<cr>', desc = 'Git status' },

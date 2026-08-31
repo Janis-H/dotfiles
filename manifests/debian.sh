@@ -109,9 +109,11 @@ DESKTOP_PACKAGES=(
     evtest
 
     # Desktop portals
+    gnome-keyring
     xdg-desktop-portal-gtk
 
     # Shared window-manager tooling
+    polkit-kde-agent-1
     python3-i3ipc
     rofi
 
@@ -121,12 +123,16 @@ DESKTOP_PACKAGES=(
     xwallpaper
 
     # Shared Wayland tooling
+    # mako
     swaybg
     swaylock
     swayidle
     waybar
     wl-clipboard
     xwayland
+
+    # Niri-specific tooling
+    nautilus
 
     # Sway-specific tooling
     slurp
@@ -158,6 +164,7 @@ EXTERNAL_CORE=(
 )
 
 EXTERNAL_HEADLESS=(
+    bun
     claude_code
     codex
     lazydocker
@@ -167,6 +174,7 @@ EXTERNAL_HEADLESS=(
 EXTERNAL_DESKTOP=(
     autotiling
     dejadup
+    dunst
     niri
     proton_mail
     proton_pass
@@ -209,11 +217,14 @@ HEADLESS_STOW_MODULES=(
 
 # dotfile modules for GUI/workstation setup
 DESKTOP_STOW_MODULES=(
+    dunst
     ghostty
     hexchat
     i3
     picom
+    niri
     rofi
     sway
     theme
+    weechat
 )

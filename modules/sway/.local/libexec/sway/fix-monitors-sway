@@ -1,0 +1,84 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+# =============================================================================
+# Configuration
+# =============================================================================
+
+# Output layout
+PRIMARY_DISPLAY="DP-1"
+SECONDARY_DISPLAY="DP-2"
+
+PRIMARY_MODE="2560x1440@144Hz"
+SECONDARY_MODE="2560x1440@60Hz"
+HDMI_MODE="1024x576@60Hz"
+
+# Workspace routing
+LEFT_WORKSPACE=left
+RIGHT_WORKSPACE=right
+NUMBERED_WORKSPACES=(1 2 3 4 5 6 7 8 9 10)
+
+# =============================================================================
+# Output layout
+# =============================================================================
+
+if [[ -z ${SWAYSOCK:-} ]]; then
+    printf 'This script must run inside Sway\n' >&2
+    exit 1
+fi
+
+
+HDMI_OUTPUT="$(
+    swaymsg -r -t get_outputs |
+        jq -r '
+            .[]
+            | select(.active)
+            | select(.name | startswith("HDMI"))
+            | .name
+        ' |
+        head -n 1
+)"
+
+PRIMARY_X=0
+
+if [[ -n "$HDMI_OUTPUT" ]]; then
+    swaymsg output "$HDMI_OUTPUT" \
+        mode "$HDMI_MODE" \
+        transform flipped-180 \
+        position 0 0
+
+    PRIMARY_X=1024
+fi
+
+swaymsg output "$PRIMARY_DISPLAY" \
+    mode "$PRIMARY_MODE" \
+    transform normal \
+    position "$PRIMARY_X" 0
+
+swaymsg output "$SECONDARY_DISPLAY" \
+    mode "$SECONDARY_MODE" \
+    transform 90 \
+    position "$((PRIMARY_X + 2560))" 0
+
+
+# =============================================================================
+# Workspace routing
+# =============================================================================
+
+# Sway starts `exec` commands asynchronously. Place the side workspaces here,
+# after output modes and positions have been applied, rather than racing the
+# layout setup from the Sway config.
+LEFT_OUTPUT="${HDMI_OUTPUT:-$PRIMARY_DISPLAY}"
+
+# Keep all physical-output routing with the output layout. These commands set
+# workspace preferences without creating the numbered workspaces.
+for workspace in "${NUMBERED_WORKSPACES[@]}"; do
+    swaymsg "workspace $workspace output $PRIMARY_DISPLAY"
+done
+
+swaymsg "workspace $LEFT_WORKSPACE output $LEFT_OUTPUT"
+swaymsg "workspace $RIGHT_WORKSPACE output $SECONDARY_DISPLAY"
+
+swaymsg "workspace $LEFT_WORKSPACE; layout stacking; move workspace to output $LEFT_OUTPUT"
+swaymsg "workspace $RIGHT_WORKSPACE; layout stacking; move workspace to output $SECONDARY_DISPLAY"

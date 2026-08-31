@@ -15,6 +15,28 @@
     set $focus_or_open_by_class ~/.local/bin/focus-or-open-by-window-class
     set $focus_or_open_by_title ~/.local/bin/focus-or-open-by-window-title
 
+    # Monitor aliases
+    set $left_monitor "HDMI-A-0"
+    set $center_monitor "DisplayPort-0"
+    set $right_monitor "DisplayPort-1"
+
+    # Define names for default workspaces for which we configure key bindings later on.
+    # We use variables to avoid repeating the names in multiple places.
+    set $ws1 "1"
+    set $ws2 "2"
+    set $ws3 "3"
+    set $ws4 "4"
+    set $ws5 "5"
+    set $ws6 "6"
+    set $ws7 "7"
+    set $ws8 "8"
+    set $ws9 "9"
+    set $ws10 "10"
+
+    # Define names for non-numbered side workspaces
+    set $ws_left left
+    set $ws_right right
+
     # Application Command and Window Class Variables
     #   * Note: find window class via wmctrl or xprop
     set $1password_cmd "1password"
@@ -121,8 +143,8 @@
     set $bar-color   #171a2199
 
     # focused container and workspaces colors
-    set $focused-bg  #5f7fa699
-    set $focused-ws  #5f7fa680
+    set $focused-bg  #6a8bb2b3
+    set $focused-ws  #789bbdb3
 
     # inactive background and text colors
     set $in-bgcolor  #2a2f3a66
@@ -157,7 +179,7 @@
         }
         i3bar_command i3bar --transparency
         tray_output primary
-        tray_padding 3
+        tray_padding 6
     }
 
 ### Keybindings
@@ -184,13 +206,8 @@
     # kill all app windows
     bindsym $mod+Shift+x exec --no-startup-id  i3-msg '[class=".*"] kill'
 
-    # start dmenu (a program launcher)
-    # bindsym $mod+d exec --no-startup-id dmenu_run
-    # A more modern dmenu replacement is rofi:
+    # start rofi (a program launcher)
     bindcode $mod+40 exec "rofi -modi drun,run -show drun"
-    # There also is i3-dmenu-desktop which only displays applications shipping a
-    # .desktop file. It is a wrapper around dmenu, so you need that installed.
-    # bindcode $mod+40 exec --no-startup-id i3-dmenu-desktop
 
     # Launch rofi in window switching mode
     bindsym $mod+Shift+d exec "rofi -show window"
@@ -261,24 +278,6 @@
 #
 # Workspaces:
 #
-    # Monitor aliases
-    set $left_monitor "HDMI-A-0"
-    set $center_monitor "DisplayPort-0"
-    set $right_monitor "DisplayPort-1"
-
-    # Define names for default workspaces for which we configure key bindings later on.
-    # We use variables to avoid repeating the names in multiple places.
-    set $ws1 "1"
-    set $ws2 "2"
-    set $ws3 "3"
-    set $ws4 "4"
-    set $ws5 "5"
-    set $ws6 "6"
-    set $ws7 "7"
-    set $ws8 "8"
-    set $ws9 "9"
-    set $ws10 "10"
-
     # Define workspaces
     workspace $ws1 output $center_monitor
     workspace $ws2 output $center_monitor
@@ -315,10 +314,6 @@
     bindsym $mod+Shift+9 move container to workspace number $ws9
     bindsym $mod+Shift+0 move container to workspace number $ws10
 
-    # Define names for non-numbered side workspaces
-    set $ws_left "left"
-    set $ws_right "right"
-
     # Define side workspaces
     workspace $ws_left output $left_monitor
     workspace $ws_right output $right_monitor
@@ -347,8 +342,7 @@
         exec --no-startup-id \
             $focus_or_open_by_class \
                 $helium_cmd \
-                $helium_class, \
-        workspace $ws2
+                $helium_class
     bindsym $mod+F5 \
         exec --no-startup-id \
             $focus_or_open_by_class \
@@ -505,12 +499,18 @@
 #
     # Start XDG autostart .desktop files using dex.
     # See: https://wiki.archlinux.org/index.php/XDG_Autostart
-    exec --no-startup-id dex --autostart --environment i3 # The combination of xss-lock, nm-applet and pactl is a popular choice, so
+    exec --no-startup-id dex --autostart --environment i3
 #
 # Services:
 #
+    # Notification daemon
+    exec --no-startup-id dunst
+
     # Lock the session before suspend
     exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
+
+    # Bluetooth tray applet
+    exec --no-startup-id blueman-applet
 
     # NetworkManager tray applet
     exec --no-startup-id nm-applet

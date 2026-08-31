@@ -44,6 +44,7 @@ CORE_PACKAGES=(
 # - compilers, runtimes, build tools, container tools, linters, formatters,
 #   and project workflow tools
 HEADLESS_PACKAGES=(
+    bun
     cmake
     colima
     docker

@@ -137,6 +137,6 @@ run_external_installs() {
     if (( ${#failed_tools[@]} > 0 )); then
         error "External tools failed:"
         print_list "${failed_tools[@]}" >&2
-        return 0
+        return 1
     fi
 }

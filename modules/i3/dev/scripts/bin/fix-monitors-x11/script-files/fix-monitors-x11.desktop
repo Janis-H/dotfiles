@@ -1,0 +1,5 @@
+[Desktop Entry]
+Type=Application
+Name=Configure X11 Monitors
+Exec=/usr/bin/bash -c "$HOME/.local/bin/fix-monitors-x11"
+X-GNOME-Autostart-enabled=true

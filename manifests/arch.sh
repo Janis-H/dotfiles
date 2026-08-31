@@ -38,6 +38,7 @@ CORE_PACKAGES=(
 #   and project workflow tools
 HEADLESS_PACKAGES=(
     base-devel
+    bun
     cmake
     docker
     docker-buildx
@@ -101,11 +102,20 @@ DESKTOP_PACKAGES=(
     wev
     evtest
 
+    # Shared window-manager tooling
+    dunst
+    polkit-kde-agent
+
+    # X11 monitor tooling
+    xorg-xrandr
+    xwallpaper
+
     # Desktop portals
+    gnome-keyring
     xdg-desktop-portal-gtk
 
     # Shared Wayland tooling
-    mako
+    # mako
     waybar
     wl-clipboard
     xorg-xwayland
@@ -118,6 +128,7 @@ DESKTOP_PACKAGES=(
 
     # Niri-specific tooling
     niri
+    nautilus
     xwayland-satellite
     xdg-desktop-portal-gnome
 
@@ -190,9 +201,12 @@ HEADLESS_STOW_MODULES=(
 
 # dotfile modules for GUI/workstation setup
 DESKTOP_STOW_MODULES=(
+    dunst
     ghostty
     hexchat
     rofi
+    niri
     sway
     theme
+    weechat
 )

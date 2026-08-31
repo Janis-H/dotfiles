@@ -57,3 +57,5 @@ export MANROFFOPT="-c"
 
 # Editor used by the fc history command
 export FCEDIT="${EDITOR:-vi}"
+
+export GREP_COLOR='mt=1;37;41'

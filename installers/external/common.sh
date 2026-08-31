@@ -208,10 +208,29 @@ install_external_codex() {
     curl -fsSL https://chatgpt.com/codex/install.sh | sh
 }
 
+install_external_bun() {
+    local install_url="https://bun.sh/install"
+
+    if command -v bun >/dev/null 2>&1; then
+        info "Bun is already installed"
+        return 0
+    fi
+
+    info "Installing Bun"
+
+    if [[ "${DRY_RUN:-false}" == true ]]; then
+        printf '+ curl -fsSL %q | bash\n' "$install_url"
+        return 0
+    fi
+
+    curl -fsSL "$install_url" | bash
+}
+
 install_external_dejadup() {
     info "Installing DejaDup"
     run_cmd flatpak install --noninteractive --assumeyes flathub org.gnome.DejaDup
 }
+
 
 install_external_dejavu_font() {
     local file_name="dejavu-fonts-ttf-2.37.zip"

@@ -30,6 +30,24 @@
     # Application lancher - window search
     set $window_search rofi -window drun | xargs swaymsg exec --
 
+    # Define names for default workspaces for which we configure key bindings later on.
+    # We use variables to avoid repeating the names in multiple places.
+    set $ws1 "1"
+    set $ws2 "2"
+    set $ws3 "3"
+    set $ws4 "4"
+    set $ws5 "5"
+    set $ws6 "6"
+    set $ws7 "7"
+    set $ws8 "8"
+    set $ws9 "9"
+    set $ws10 "10"
+
+    # Define names for non-numbered side workspaces
+    set $ws_left left
+    set $ws_right right
+
+
     # Application Command and Window Class Variables
     #   * Note: find window class via wmctrl
     set $1password_cmd "1password"
@@ -111,7 +129,7 @@
 
 ### Output configuration
 #
-# Monitor layout is applied by ~/.local/bin/fix-monitors-sway
+# Monitor layout is applied by ~/.local/libexec/sway/fix-monitors-sway
 #
 # You can get output names with:
 # swaymsg -t get_outputs
@@ -159,8 +177,8 @@
     set $bar-color   #171a2199
 
     # focused container and workspaces colors
-    set $focused-bg  #5f7fa699
-    set $focused-ws  #5f7fa680
+    set $focused-bg  #6a8bb2b3
+    set $focused-ws  #789bbdb3
 
     # inactive background and text colors
     set $in-bgcolor  #2a2f3a66
@@ -197,8 +215,6 @@
     #     }
     # }
 
-
-
 ### Key bindings
 #
 # Basics:
@@ -213,7 +229,7 @@
     bindsym $mod+d exec $menu
 
     # Search through windows
-    bindsym $mod+w exec $window_search
+    bindsym $mod+Shift+w exec $window_search
 
     # Drag floating windows by holding down $mod and left mouse button.
     # Resize them with right mouse button + $mod.
@@ -257,43 +273,8 @@
 #
 # Monitor / Workspace Outputs:
 #
-    # Monitor aliases
-    set $left_monitor "HDMI-A-0"
-    set $center_monitor "DisplayPort-0"
-    set $right_monitor "DisplayPort-1"
-
-    # Define names for default workspaces for which we configure key bindings later on.
-    # We use variables to avoid repeating the names in multiple places.
-    set $ws1 "1"
-    set $ws2 "2"
-    set $ws3 "3"
-    set $ws4 "4"
-    set $ws5 "5"
-    set $ws6 "6"
-    set $ws7 "7"
-    set $ws8 "8"
-    set $ws9 "9"
-    set $ws10 "10"
-
-    # Define names for non-numbered side workspaces
-    set $ws_left "left"
-    set $ws_right "right"
-
-    # Define workspaces
-    workspace $ws1 output $center_monitor
-    workspace $ws2 output $center_monitor
-    workspace $ws3 output $center_monitor
-    workspace $ws4 output $center_monitor
-    workspace $ws5 output $center_monitor
-    workspace $ws6 output $center_monitor
-    workspace $ws7 output $center_monitor
-    workspace $ws8 output $center_monitor
-    workspace $ws9 output $center_monitor
-    workspace $ws10 output $center_monitor
-
-    # Define side workspaces
-    workspace $ws_left output $left_monitor
-    workspace $ws_right output $right_monitor
+# Workspace-to-output routing is configured by
+# ~/.local/libexec/sway/fix-monitors-sway after output layout is ready.
 #
 # Workspace Shortcuts:
 #
@@ -330,9 +311,8 @@
     bindsym $mod+Shift+grave move container to workspace $ws_left
     bindsym $mod+Shift+equal move container to workspace $ws_right
 
-    # Workspace left and right start stacked, but I can override it later
-    exec --no-startup-id swaymsg 'workspace $ws_left; layout stacked'
-    exec --no-startup-id swaymsg 'workspace $ws_right; layout stacked'
+    # Side workspaces are created and placed after output layout setup in
+    # ~/.local/libexec/sway/fix-monitors-sway.
 #
 # Opening applications:
 #
@@ -372,8 +352,8 @@
     # You can "split" the current object of your focus with
     # $mod+b or $mod+v, for horizontal and vertical splits
     # respectively.
-    bindsym $mod+b splith
-    bindsym $mod+v splitv
+    # bindsym $mod+b splith
+    # bindsym $mod+v splitv
 
     # Switch the current container between different layout styles
     bindsym $mod+s layout stacking
@@ -482,7 +462,7 @@
         bindsym Escape mode "default"
         bindsym $mod+Shift+c mode "default"
     }
-    bindsym $mod+Shift+c mode "settings"
+    bindsym $mod+Shift+s mode "settings"
 
 ### Session services
 #
@@ -501,10 +481,6 @@
 #
 # Setup:
 #
-
-    # Applies the configured monitor layout after Sway starts
-    exec fix-monitors-sway
-
     # Wallpaper
     exec swaybg \
         -i "$HOME/.local/share/wallpapers/dark-mountain-landscape.jpg"
@@ -512,13 +488,14 @@
 # Services:
 #
     # Make inactive windows transparent
-    exec ~/.config/sway/inactive_windows_transparent
+    exec ~/.local/libexec/sway/inactive_windows_transparent
 
     # Starts the Waybar status bar
     exec waybar
 
     # Notification daemon
-    exec mako
+    # exec mako
+    exec dunst
 
     # Network
     exec nm-applet
@@ -542,3 +519,6 @@
 #
     # Reapply Rodecaster input volume when the config is reloaded
     exec_always --no-startup-id ~/.local/bin/set-rodecaster-input-volume
+
+    # Applies the configured monitor layout after Sway starts
+    exec_always ~/.local/libexec/sway/fix-monitors-sway

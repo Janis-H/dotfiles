@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+SETUP_SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
+SCRIPT_FILES_DIR="$SETUP_SCRIPT_DIR/script-files"
+
+# Setup desktop script
+DESKTOP_FILE="$SCRIPT_FILES_DIR/fix-monitors-x11.desktop"
+DESKTOP_CONFIG_DIR="$HOME/.config/autostart"
+mkdir -p "$DESKTOP_CONFIG_DIR"
+cp "$DESKTOP_FILE" "$DESKTOP_CONFIG_DIR"
+rm -f "$DESKTOP_CONFIG_DIR/fix-monitors.desktop"
+
+# Setup sleep hook
+SLEEP_HOOK="$SCRIPT_FILES_DIR/fix-monitors-x11.sleep-hook.sh"
+SLEEP_DIR="/lib/systemd/system-sleep"
+sudo install -m 755 "$SLEEP_HOOK" "${SLEEP_DIR}/fix-monitors-x11"
+sudo rm -f "${SLEEP_DIR}/fix-monitors"

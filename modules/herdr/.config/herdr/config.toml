@@ -49,6 +49,7 @@ workspace_picker = "prefix+s"
 settings = "prefix+shift+s"     # Open settings
 detach = "prefix+d"             # Detach from the current Herdr session
 rename_workspace = "prefix+$"   # Tmux equivalent of rename-session
+goto = ["prefix+g", "prefix+w"] # Match tmux's choose-tree muscle memory while retaining Herdr's default.
 
 # Agents
 previous_agent = "alt+p"    # Mirrors prefix+p tab cycling
@@ -57,7 +58,6 @@ focus_agent = "alt+1..9"    # Jump directly to agents 1-9
 
 # General utilities
 edit_scrollback = "prefix+e"
-goto = "prefix+g"
 help = "prefix+?"                # Show keybindings
 reload_config = "prefix+shift+r" # Reload config
 toggle_sidebar = "prefix+b"      # Toggle sidebar visibility
