@@ -507,7 +507,7 @@
     exec wl-paste --watch cliphist store
 
     # Automatically chooses horizontal or vertical splits based on window dimensions
-    exec autotiling
+    exec ~/.local/bin/autotiling
 
     # Idle handling and screen locking
     exec swayidle -w \
