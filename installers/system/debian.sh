@@ -154,19 +154,6 @@ EOF
     run_cmd sudo apt update
 }
 
-setup_firefox_repository() {
-    local pkg="firefoxpwa"
-    local repo="FirefoxPWA/any"
-
-    if ! is_in_packages_list "$pkg" "$@" || is_repository_configured "$repo"; then
-        return 0
-    fi
-
-    info "Configuring FirefoxPWA repository"
-
-    run_cmd sh -c 'curl -fsSL https://packagecloud.io/install/repositories/filips/FirefoxPWA/script.deb.sh?any=true | sudo bash'
-}
-
 setup_helium_browser_repository() {
     local pkg="helium-bin"
     local repo="helium"
@@ -221,7 +208,6 @@ setup_package_repositories() {
     setup_1password_repository "$@"
     setup_chrome_repository "$@"
     setup_docker_repository "$@"
-    setup_firefox_repository "$@"
     setup_helium_browser_repository "$@"
     setup_papirus_repository "$@"
 }

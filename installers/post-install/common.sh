@@ -103,57 +103,6 @@ install_herdr_plugins() {
     done
 }
 
-firefoxpwa_site_is_installed() {
-    local site_name="$1"
-
-    firefoxpwa profile list | grep -Fq -- "- $site_name:"
-}
-
-install_firefoxpwa_webapp() {
-    local site_name="$1"
-    local manifest_url="$2"
-    local document_url="${3:-}"
-
-    if firefoxpwa_site_is_installed "$site_name"; then
-        info "FirefoxPWA web app already installed: $site_name"
-        return 0
-    fi
-
-    info "Installing FirefoxPWA web app: $site_name"
-    if [[ -n "$document_url" ]]; then
-        run_cmd firefoxpwa site install "$manifest_url" \
-            --document-url "$document_url" \
-            --name "$site_name"
-        return
-    fi
-
-    run_cmd firefoxpwa site install "$manifest_url" --name "$site_name"
-}
-
-install_firefoxpwa_webapps() {
-    if ! command -v firefoxpwa >/dev/null 2>&1; then
-        info "Skipping FirefoxPWA web apps: firefoxpwa is not installed"
-        return 0
-    fi
-
-    info "Installing FirefoxPWA runtime"
-    run_cmd firefoxpwa runtime install || return 1
-
-    install_firefoxpwa_webapp \
-        "YouTube" \
-        "https://www.youtube.com/manifest.webmanifest" || return 1
-    install_firefoxpwa_webapp \
-        "LinkedIn" \
-        "https://www.linkedin.com/manifest.json" || return 1
-    install_firefoxpwa_webapp \
-        "Master.dev" \
-        "https://master.dev/manifest.json" || return 1
-    install_firefoxpwa_webapp \
-        "Snapchat" \
-        "https://cf-st.sc-cdn.net/dw/favicons/e9b6d2d3-dweb_slash_web-prod-web-v9/manifest.json" \
-        "https://www.snapchat.com/web" || return 1
-}
-
 install_tmux_plugin_manager() {
     local tmux_plugins_dir="$HOME/.tmux/plugins"
 
@@ -206,7 +155,6 @@ run_common_post_install() {
 
     set_default_shell
     install_herdr_plugins
-    install_firefoxpwa_webapps
     install_tmux_plugin_manager
     install_tmux_plugins_from_config
 
