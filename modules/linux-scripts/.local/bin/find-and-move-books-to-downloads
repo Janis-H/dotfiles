@@ -1,0 +1,77 @@
+#!/usr/bin/env bash
+
+# shellcheck disable=SC1091
+source "$HOME/.local/bin/lib/prompt_user.sh"
+source "$HOME/.local/bin/lib/display_info_message.sh"
+source "$HOME/.local/bin/lib/display_error_message.sh"
+
+BOOKS_DIR="$HOME/Books"
+DOWNLOADS_DIR="$HOME/Downloads"
+
+### Helper functions
+#
+function find_and_move_books() {
+    local name=("$@")
+    local name_glob=""
+
+    # Build glob
+    for word in "${name[@]}"; do
+        name_glob+="*$word"
+    done
+    name_glob+="*"
+
+    # Replace `spaces` with `*`
+    name_glob="${name_glob// /*}"
+
+    # Search for matching books
+    local search_results
+    mapfile search_results < <(fd --glob "$name_glob" "$DOWNLOADS_DIR" )
+
+    if [[ "${#search_results[@]}" == 0 ]]; then
+        notify-send -e "No files found for \"${name[*]}\"."
+        return 0;
+    fi
+
+    # Move found books to `Books` folder
+    fd --glob "$name_glob" "$DOWNLOADS_DIR" -x mv -t "$BOOKS_DIR" "{}"
+    notify-send -e "Moved ${#search_results[@]} files."
+}
+
+list_all_books_in_downloads() {
+    local search_results
+    mapfile search_results < <(fd --regex ".*\.(epub|mobi)" "$DOWNLOADS_DIR" -x basename | sort -fV)
+
+    if [[ "${#search_results[@]}" -eq 0 ]]; then
+        display_info_message "No results."
+    fi
+
+    zenity --text-info \
+      --title="Search results" \
+      --filename=<(printf '%s\n' "${search_results[*]}") \
+      --width=800 \
+      --height=400
+}
+
+### Main Program
+#
+while true; do
+    USER_INPUT=$(prompt_user "What would you like to do? \n\t1. Move books. \n\t2. List books. \n\t3. Exit.")
+
+    case "$USER_INPUT" in
+        1)
+            BOOK_NAME=$(prompt_user "Please enter a book name:")
+            find_and_move_books "$BOOK_NAME"
+            ;;
+        2)
+            # TODO: fix displayed list
+            list_all_books_in_downloads
+            ;;
+        3)
+            notify-send -e "Exiting script"
+            exit
+            ;;
+        *)
+            display_error_message "Not a valid option."
+            ;;
+    esac
+done
