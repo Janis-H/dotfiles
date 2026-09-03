@@ -14,7 +14,7 @@ function display_error_message() {
     local text="$1"
 
     # if no argument passed, exit
-    if [[ $# -q 0 ]]; then
+    if [[ $# -eq 0 ]]; then
         echo "No arguments supplied." >&2
         exit 0
     fi
