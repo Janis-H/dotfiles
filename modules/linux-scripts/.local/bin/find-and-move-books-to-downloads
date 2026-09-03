@@ -46,10 +46,10 @@ list_all_books_in_downloads() {
     fi
 
     zenity --text-info \
-      --title="Search results" \
-      --filename=<(printf '%s\n' "${search_results[*]}") \
-      --width=800 \
-      --height=400
+        --title="Books in Downloads (${#search_results[@]})" \
+        --filename=<(printf '%s\n' "${search_results[*]}") \
+        --width=800 \
+        --height=400
 }
 
 ### Main Program
@@ -63,7 +63,6 @@ while true; do
             find_and_move_books "$BOOK_NAME"
             ;;
         2)
-            # TODO: fix displayed list
             list_all_books_in_downloads
             ;;
         3)
