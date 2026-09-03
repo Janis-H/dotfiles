@@ -47,7 +47,7 @@ list_all_books_in_downloads() {
 
     zenity --text-info \
         --title="Books in Downloads (${#search_results[@]})" \
-        --filename=<(printf '%s\n' "${search_results[*]}") \
+        --filename=<(printf '%s\n' "${search_results[@]}") \
         --width=800 \
         --height=400
 }
