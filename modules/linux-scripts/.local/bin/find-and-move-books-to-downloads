@@ -37,17 +37,36 @@ function find_and_move_books() {
     notify-send -e "Moved ${#search_results[@]} files."
 }
 
+format_book_entry() {
+    local number="$1"
+    local entry="$2"
+
+    case "$entry" in
+        *.[eE][pP][uU][bB])
+            entry="${entry%.[eE][pP][uU][bB]}"
+            ;;
+        *.[mM][oO][bB][iI])
+            entry="${entry%.[mM][oO][bB][iI]}"
+            ;;
+    esac
+
+    entry="${entry//[._-]/ }"
+
+    printf '%3d. %s\n' "$number" "$entry"
+}
+
 list_all_books_in_downloads() {
     local search_results
-    mapfile search_results < <(fd --regex ".*\.(epub|mobi)" "$DOWNLOADS_DIR" -x basename | sort -fV)
+    local index
+    mapfile -t search_results < <(fd --regex ".*\.(epub|mobi)" "$DOWNLOADS_DIR" -x basename | sort -fV)
 
     if [[ "${#search_results[@]}" -eq 0 ]]; then
-        display_info_message "No results."
+        display_info_message "No books in Downloads folder."
     fi
 
     zenity --text-info \
         --title="Books in Downloads (${#search_results[@]})" \
-        --filename=<(printf '%s\n' "${search_results[@]}") \
+        --filename=<(for index in "${!search_results[@]}"; do format_book_entry "$((index + 1))" "${search_results[index]}"; done) \
         --width=800 \
         --height=400
 }
