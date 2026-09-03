@@ -76,6 +76,7 @@ list_all_books_in_downloads() {
 while true; do
     USER_INPUT=$(prompt_user "What would you like to do? \n\t1. Move books. \n\t2. List books. \n\t3. Exit.")
 
+    # TODO: add a batch move books option
     case "$USER_INPUT" in
         1)
             BOOK_NAME=$(prompt_user "Please enter a book name:")
