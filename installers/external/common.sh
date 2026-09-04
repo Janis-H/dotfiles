@@ -176,6 +176,24 @@ install_external_bibata_cursor_theme() (
     info "$theme_name cursor theme installed successfully"
 )
 
+install_external_bun() {
+    local install_url="https://bun.sh/install"
+
+    if command -v bun >/dev/null 2>&1; then
+        info "Bun is already installed"
+        return 0
+    fi
+
+    info "Installing Bun"
+
+    if [[ "${DRY_RUN:-false}" == true ]]; then
+        printf '+ curl -fsSL %q | bash\n' "$install_url"
+        return 0
+    fi
+
+    curl -fsSL "$install_url" | bash
+}
+
 install_external_claude_code() {
     if command -v claude &>/dev/null; then
         info "Claude Code is already installed"
@@ -206,24 +224,6 @@ install_external_codex() {
     fi
 
     curl -fsSL https://chatgpt.com/codex/install.sh | sh
-}
-
-install_external_bun() {
-    local install_url="https://bun.sh/install"
-
-    if command -v bun >/dev/null 2>&1; then
-        info "Bun is already installed"
-        return 0
-    fi
-
-    info "Installing Bun"
-
-    if [[ "${DRY_RUN:-false}" == true ]]; then
-        printf '+ curl -fsSL %q | bash\n' "$install_url"
-        return 0
-    fi
-
-    curl -fsSL "$install_url" | bash
 }
 
 install_external_dejadup() {
@@ -315,6 +315,19 @@ install_external_graphite_theme() (
     info "Graphite Nord theme installed successfully"
 )
 
+install_external_hack_font() {
+    local file_name="Hack.zip"
+    local install_dir="HackNerdFont"
+    local font_family="Hack Nerd Font Mono"
+    local download_url="https://github.com/ryanoasis/nerd-fonts/releases/latest/download/Hack.zip"
+
+    install_external_font \
+        "$file_name" \
+        "$install_dir" \
+        "$font_family" \
+        "$download_url"
+}
+
 install_external_herdr() {
     local install_url="https://herdr.dev/install.sh"
 
@@ -339,19 +352,6 @@ install_external_julia_mono_font() {
     local install_dir="JuliaMono"
     local font_family="JuliaMono"
     local download_url="https://github.com/cormullion/juliamono/releases/latest/download/JuliaMono.zip"
-
-    install_external_font \
-        "$file_name" \
-        "$install_dir" \
-        "$font_family" \
-        "$download_url"
-}
-
-install_external_hack_font() {
-    local file_name="Hack.zip"
-    local install_dir="HackNerdFont"
-    local font_family="Hack Nerd Font Mono"
-    local download_url="https://github.com/ryanoasis/nerd-fonts/releases/latest/download/Hack.zip"
 
     install_external_font \
         "$file_name" \
