@@ -456,6 +456,22 @@ install_external_yazi() {
     run_cmd cargo install --force yazi-build
 }
 
+# TODO: create a install_cargo function
+install_external_workmux() {
+    if ! command -v cargo; then
+        warn "Cargo is required to install Workmux"
+        return 1
+    fi
+
+    if command -v workmux; then
+        warn "workmux already installed"
+        return 1
+    fi
+
+    info "Installing Workmux"
+    run_cmd cargo install workmux
+}
+
 install_external_zen_browser() {
     info "Installing Zen Browser"
     run_cmd flatpak install --noninteractive --assumeyes flathub app.zen_browser.zen
