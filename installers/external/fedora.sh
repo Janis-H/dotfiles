@@ -13,19 +13,14 @@ is_command_available(){
 }
 
 # --- External tool installers ---
-install_external_resvg() {
-    if is_command_available resvg; then
-        info "resvg already installed"
-        return 0
-    fi
+install_external_lazydocker() {
+    info "Installing or Updating lazydocker"
+    run_cmd go install github.com/jesseduffield/lazydocker@latest
+}
 
-    if ! is_command_available cargo; then
-        warn "Cargo is required to install resvg"
-        return 1
-    fi
-
-    info "Installing resvg"
-    run_cmd cargo install resvg --locked
+install_external_lazygit() {
+    info "Installing or updating lazygit"
+    run_cmd go install github.com/jesseduffield/lazygit@latest
 }
 
 install_external_proton_mail() (
@@ -66,12 +61,17 @@ install_external_proton_pass() (
     run_cmd sudo dnf install -y "$package_path"
 )
 
-install_external_lazydocker() {
-    info "Installing or Updating lazydocker"
-    run_cmd go install github.com/jesseduffield/lazydocker@latest
-}
+install_external_resvg() {
+    if is_command_available resvg; then
+        info "resvg already installed"
+        return 0
+    fi
 
-install_external_lazygit() {
-    info "Installing or updating lazygit"
-    run_cmd go install github.com/jesseduffield/lazygit@latest
+    if ! is_command_available cargo; then
+        warn "Cargo is required to install resvg"
+        return 1
+    fi
+
+    info "Installing resvg"
+    run_cmd cargo install resvg --locked
 }
