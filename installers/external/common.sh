@@ -459,7 +459,7 @@ install_external_yazi() {
 # TODO: create a install_cargo function
 install_external_workmux() {
     if ! command -v cargo; then
-        warn "Cargo is required to install Workmux"
+        warn "Cargo is required to install workmux"
         return 1
     fi
 

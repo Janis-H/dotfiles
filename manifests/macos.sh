@@ -60,6 +60,7 @@ HEADLESS_PACKAGES=(
     shellcheck
     shfmt
     tree-sitter-cli
+    raine/workmux/workmux
 )
 
 # Desktop formula additions

@@ -168,6 +168,7 @@ EXTERNAL_HEADLESS=(
     codex
     lazydocker
     lazygit
+    workmux
 )
 
 EXTERNAL_DESKTOP=(

@@ -158,6 +158,7 @@ EXTERNAL_CORE=(
 EXTERNAL_HEADLESS=(
     claude_code
     codex
+    workmux
 )
 
 EXTERNAL_DESKTOP=(
