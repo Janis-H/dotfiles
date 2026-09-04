@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+# shellcheck disable=SC1091
+
 SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
 LIB_PATH="$SCRIPT_DIR/lib"
 
@@ -7,9 +9,7 @@ LIB_PATH="$SCRIPT_DIR/lib"
 DOWNLOAD_DIR="$HOME/Downloads";
 
 # source zenity functions
-# shellcheck source="lib/display_info_message.sh"
 source "${LIB_PATH}/display_info_message.sh"
-# shellcheck source="lib/prompt_user.sh"
 source "${LIB_PATH}/prompt_user.sh"
 
 # find SearchBot File
