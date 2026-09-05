@@ -149,7 +149,7 @@ output "DP-2" {
 
     // Transform allows output rotation
     // Valid values: normal, 90, 180, 270, flipped, flipped-90, flipped-180 and flipped-270.
-    transform "90"
+    transform "180"
 
     // DP-1 is 1280 logical pixels wide at scale 2.
     position x=1792 y=0
